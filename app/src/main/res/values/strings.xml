@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Linear</string>
+    <string name="switchtext_on">Switch is on</string>
+    <string name="switchtext_off">Switch is off</string>
+    <string name="checkbox_check">Checkbox is checked</string>
+    <string name="checkbox_uncheck">Checkbox is unchecked</string>
+    <string name="radiobtn_check">Radiobutton is checked</string>
+    <string name="radiobtn_uncheck">Radiobutton is unchecked</string>
+
+    <string-array name="fruits">
+        <item>Apple</item>
+        <item>Mango</item>
+        <item>Banana</item>
+        <item>Orange</item>
+        <item>Guava</item>
+        <item>Kiwi</item>
+    </string-array>
+</resources>

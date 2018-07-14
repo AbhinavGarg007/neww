@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Rel4">
+    
+    <Button
+        android:id="@+id/mango"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:text="MANGO"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"/>
+
+    <Button
+        android:id="@+id/apple"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="APPLE"
+        android:layout_alignBaseline="@+id/mango"
+        android:layout_marginLeft="20dp"/>
+    
+    <Button
+        android:id="@+id/banana"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:text="BANANA"
+        android:layout_below="@+id/mango"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"/>
+    
+    <Button
+        android:id="@+id/kiwi"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:text="KIWI"
+        android:layout_alignStart="@id/banana"
+        android:layout_below="@id/banana"/>
+
+    <Button
+        android:id="@+id/grapes"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:text="GRAPES"
+        android:layout_alignTop="@id/kiwi"
+        android:layout_alignRight="@id/mango"
+        android:layout_alignParentBottom="true"
+
+        />
+
+</RelativeLayout>
