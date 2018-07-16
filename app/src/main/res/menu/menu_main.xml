@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/icon"
+        android:icon="@drawable/ic_map"
+        app:showAsAction="always"
+        android:title="Icon"
+
+        />
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/search"
+        app:showAsAction="always"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+
+        android:title="@string/search"/>
+    <item
+        android:id="@+id/gps"
+        android:icon="@drawable/gps"
+        app:showAsAction="always |withText"
+
+        android:title="@string/gps"/>
+    <item
+        android:id="@+id/refresh"
+        android:icon="@android:drawable/ic_dialog_info"
+        app:showAsAction="never"
+        android:title="@string/refresh"/>
+    <item
+        android:id="@+id/help"
+        app:showAsAction="never"
+        android:title="@string/help"/>
+    <item
+        android:id="@+id/check_for_updates"
+        app:showAsAction="never"
+        android:title="@string/check_for_updates"/>
+
+
+</menu>

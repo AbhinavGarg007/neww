@@ -19,7 +19,7 @@ public class Rel2 extends AppCompatActivity {
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(Rel2.this,Main7Activity.class);
+                Intent i=new Intent(Rel2.this,RelativeLayoutAssignment1.class);
                 startActivity(i);
             }
         });

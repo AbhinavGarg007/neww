@@ -17,8 +17,8 @@ public class Compoundbtn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compoundbtn);
 
-        final Switch switch1=findViewById(R.id.switch1);
-        final Switch switch2=findViewById(R.id.switch2);
+        final Switch switch1 = findViewById(R.id.switch1);
+        final Switch switch2 = findViewById(R.id.switch2);
         final CheckBox checkbox_1 = findViewById(R.id.checkbox_1);
         final CheckBox checkbox_2 = findViewById(R.id.checkbox_2);
         final RadioButton radiobutton_1 = findViewById(R.id.radiobutton_1);
@@ -34,12 +34,9 @@ public class Compoundbtn extends AppCompatActivity {
         switch1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(switch1.isChecked())
-                {
+                if (switch1.isChecked()) {
                     textView_5.setText("Switch is on");
-                }
-                else
-                {
+                } else {
                     textView_5.setText("Switch is off");
                 }
             }
@@ -47,28 +44,21 @@ public class Compoundbtn extends AppCompatActivity {
         switch2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(switch2.isChecked())
-                {
+                if (switch2.isChecked()) {
                     textView_6.setText("Switch is on");
-                }
-                else
-                {
+                } else {
                     textView_6.setText("Switch is off");
                 }
             }
         });
 
 
-
         checkbox_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkbox_1.isChecked())
-                {
+                if (checkbox_1.isChecked()) {
                     textview_1.setText("Checkbox is checked");
-                }
-                else
-                {
+                } else {
                     textview_1.setText("Checkbox is unchecked");
                 }
             }
@@ -76,12 +66,9 @@ public class Compoundbtn extends AppCompatActivity {
         checkbox_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkbox_2.isChecked())
-                {
+                if (checkbox_2.isChecked()) {
                     textview_2.setText("Checkbox is checked");
-                }
-                else
-                {
+                } else {
                     textview_2.setText("Checkbox is unchecked");
                 }
             }
@@ -89,12 +76,13 @@ public class Compoundbtn extends AppCompatActivity {
         radiobutton_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(radiobutton_1.isChecked())
-                {
+
+                radiobutton_1.setChecked(!radiobutton_1.isChecked());
+
+
+                if (((RadioButton) view).isChecked()) {
                     textView_3.setText("Radiobutton is checked");
-                }
-                else
-                {
+                } else {
                     textView_3.setText("Radiobutton is unchecked");
                 }
             }
@@ -102,12 +90,9 @@ public class Compoundbtn extends AppCompatActivity {
         radiobutton_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(radiobutton_2.isChecked())
-                {
+                if (radiobutton_2.isChecked()) {
                     textView_4.setText("Radiobutton is checked");
-                }
-                else
-                {
+                } else {
                     textView_4.setText("Radiobutton is unchecked");
                 }
             }

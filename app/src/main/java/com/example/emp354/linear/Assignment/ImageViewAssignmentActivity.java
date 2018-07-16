@@ -1,9 +1,11 @@
-package com.example.emp354.linear;
+package com.example.emp354.linear.Assignment;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class View_img extends AppCompatActivity {
+import com.example.emp354.linear.R;
+
+public class ImageViewAssignmentActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Main2Activity extends AppCompatActivity implements View.OnClickListener {
+public class LinearLayoutAssignment extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.LinearLayoutAssignment2);
 
         Button b5 = findViewById(R.id.b5);
         Button b6 = findViewById(R.id.b6);
@@ -23,12 +23,12 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.b5:
-                Intent i = new Intent(Main2Activity.this, MainActivity.class);
+                Intent i = new Intent(LinearLayoutAssignment.this, LinearLayoutAssignment1.class);
                 startActivity(i);
                 break;
 
             case R.id.b6:
-                Intent j = new Intent(Main2Activity.this, Main3Activity.class);
+                Intent j = new Intent(LinearLayoutAssignment.this, Main3Activity.class);
                 startActivity(j);
                 break;
         }

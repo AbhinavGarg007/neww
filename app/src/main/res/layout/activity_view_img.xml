@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View_img"
+    tools:context=".Assignment.ImageViewAssignmentActivity"
     android:orientation="vertical"
 
     >
@@ -99,8 +99,8 @@
             android:layout_below="@id/imageview_centercrop"/>
         <ImageView
             android:id="@+id/imageview_matrix"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_marginRight="@dimen/margin_20"
             android:layout_alignParentRight="true"
             android:background="@color/color_black"

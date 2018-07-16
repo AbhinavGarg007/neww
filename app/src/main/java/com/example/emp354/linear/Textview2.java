@@ -12,14 +12,13 @@ public class Textview2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_textview2);
 
-        TextView tv1=findViewById(R.id.tv1);
-        TextView tv2=findViewById(R.id.tv2);
+        TextView tv1 = findViewById(R.id.tv1);
+        TextView tv2 = findViewById(R.id.tv2);
 
-        String s1=tv1.getText().toString();
-        Integer n=s1.length();
+        String s1 = tv1.getText().toString();
+        Integer n = s1.length();
 
-        String s2=n.toString();
+        String.format(getString(R.string.lenght_format), n.toString());
 
-        tv2.setText("Length is " + s2);
     }
 }
