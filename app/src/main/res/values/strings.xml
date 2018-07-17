@@ -24,5 +24,22 @@
         <item>Kiwi</item>
     </string-array>
 
-    <string name="lenght_format">Length is %1$s</string>
+    <string-array name="cheese">
+    <item>Apple</item>
+    <item>Mango</item>
+    <item>Banana</item>
+    <item>Orange</item>
+    <item>Guava</item>
+    <item>Kiwi</item>
+    </string-array>
+
+
+
+    <string name="length_format">Length is %1$s</string>
+    <string name="next">NEXT</string>
+    <string name="back">BACK</string>
+
+    <string name="gps_toast">Searching for your location</string>
+    <string name="image_description">It is the test image</string>
+
 </resources>

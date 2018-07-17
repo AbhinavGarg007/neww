@@ -12,5 +12,9 @@
         <!-- Customize your theme here. -->
 
     </style>
+    <style name="header" parent="ToolBarTheme">
+        <item name="android:background">#FF0000</item>
+
+    </style>
 
 </resources>

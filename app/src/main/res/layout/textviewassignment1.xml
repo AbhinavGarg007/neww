@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TextView.TextviewAssignment1"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    android:layout_centerInParent="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text size 22sp"
+        android:textSize="@dimen/textsize_22"
+        android:onClick="back_activity"
+        android:textColor="@color/color_black"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_20"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Red color text"
+        android:textSize="@dimen/textsize_22"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_20"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bold Text"
+        android:textSize="@dimen/textsize_22"
+        android:textStyle="bold"
+        android:textColor="@color/color_black"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_20"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Italic Text"
+        android:textStyle="italic"
+        android:textSize="@dimen/textsize_22"
+        android:textColor="@color/color_black"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_20"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Single line text gets trimmed wh........"
+        android:textSize="@dimen/textsize_22"
+        android:textColor="@color/color_black"
+        android:singleLine="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_20"
+
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  Single line text gets trimmed when length of the text reaches end"
+        android:textSize="@dimen/textsize_22"
+        android:textColor="@color/color_black"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_20"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="all capital text"
+        android:textSize="@dimen/textsize_22"
+        android:textColor="@color/color_black"
+        android:textAllCaps="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_20"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CLick Me"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/textsize_22"
+        android:onClick="next_activity"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_20"/>
+
+</LinearLayout>
