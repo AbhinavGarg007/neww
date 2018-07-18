@@ -24,15 +24,60 @@
         <item>Kiwi</item>
     </string-array>
 
-    <string-array name="cheese">
-    <item>Apple</item>
-    <item>Mango</item>
-    <item>Banana</item>
-    <item>Orange</item>
-    <item>Guava</item>
-    <item>Kiwi</item>
-    </string-array>
+    <string-array name="data">
+        <item>data at pos 0</item>
+        <item>data at pos 1</item>
+        <item>data at pos 2</item>
+        <item>data at pos 3</item>
+        <item>data at pos 4</item>
+        <item>data at pos 5</item>
+        <item>data at pos 6</item>
+        <item>data at pos 7</item>
+        <item>data at pos 8</item>
+        <item>data at pos 9</item>
+        <item>data at pos 10</item>
+        <item>data at pos 11</item>
+        <item>data at pos 12</item>
+        <item>data at pos 13</item>
+        <item>data at pos 14</item>
+        <item>data at pos 15</item>
+        <item>data at pos 16</item>
+        <item>data at pos 17</item>
+        <item>data at pos 18</item>
+        <item>data at pos 19</item>
+        <item>data at pos 20</item>
+        <item>data at pos 21</item>
+        <item>data at pos 22</item>
+        <item>data at pos 23</item>
+        <item>data at pos 24</item>
+        <item>data at pos 25</item>
+        <item>data at pos 26</item>
+        <item>data at pos 27</item>
+        <item>data at pos 28</item>
+        <item>data at pos 29</item>
+        <item>data at pos 30</item>
+        <item>data at pos 31</item>
+        <item>data at pos 32</item>
+        <item>data at pos 33</item>
+        <item>data at pos 34</item>
+        <item>data at pos 35</item>
+        <item>data at pos 36</item>
+        <item>data at pos 37</item>
+        <item>data at pos 38</item>
+        <item>data at pos 39</item>
+        <item>data at pos 40</item>
+        <item>data at pos 41</item>
+        <item>data at pos 42</item>
+        <item>data at pos 43</item>
+        <item>data at pos 44</item>
+        <item>data at pos 45</item>
+        <item>data at pos 46</item>
+        <item>data at pos 47</item>
+        <item>data at pos 48</item>
+        <item>data at pos 49</item>
 
+
+    </string-array>
 
 
     <string name="length_format">Length is %1$s</string>
@@ -41,5 +86,7 @@
 
     <string name="gps_toast">Searching for your location</string>
     <string name="image_description">It is the test image</string>
+    <string name="header">HEADER</string>
+    <string name="footer">FOOTER</string>
 
 </resources>

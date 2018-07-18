@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+
+        android:id="@+id/grid_textview"
+        android:textStyle="bold"
+        android:background="@drawable/squarestroke"
+        android:padding="@dimen/margin_20"
+
+
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/textsize_22"
+         />
+</LinearLayout>

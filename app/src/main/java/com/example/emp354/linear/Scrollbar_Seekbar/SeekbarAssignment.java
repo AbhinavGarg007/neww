@@ -77,7 +77,7 @@ public class SeekbarAssignment extends AppCompatActivity implements AdapterView.
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String text=adapterView.getItemAtPosition(i).toString();
         TextView spintextview=findViewById(R.id.spintextview);
-        spintextview.setText("Spinner selected item is - " + text);
+        spintextview.setText("Spinner selected item_list is - " + text);
     }
 
     @Override

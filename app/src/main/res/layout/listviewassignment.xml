@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.ListViewAssignment">
+    android:id="@+id/listview_linear"
+    tools:context=".AdapterView.ListViewAssignment1">
 
     <ListView
-        android:id="@+id/listview_1"
+        android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </ListView>
+        android:layout_height="match_parent"
+        android:dividerHeight="@dimen/margin_10"
+        android:divider="@color/color_black"/>
 
 </LinearLayout>

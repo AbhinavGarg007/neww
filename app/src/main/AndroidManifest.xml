@@ -39,19 +39,25 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity android:name=".Toast.ToastMessageAssignment1" />
-        <activity android:name=".Toast.CustomToastAssignment"></activity>
-        <activity android:name=".SnackbarAssignment"></activity>
+        <activity android:name=".Toast.CustomToastAssignment" />
+        <activity android:name=".SnackbarAssignment" />
         <activity
             android:name=".ActionBar.ToolbarAssignment"
-            android:theme="@style/header">
+            android:theme="@style/header" />
+        <activity android:name=".AdapterView.ListViewAssignment1" >
+        </activity>
+
+        <activity android:name=".AdapterView.ListViewAssignment2">
 
         </activity>
-        <activity android:name=".View.ListViewAssignment">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".AdapterView.ListViewAssignment3" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
+        <activity android:name=".AdapterView.GridViewAssignment1">
+
         </activity>
     </application>
 
