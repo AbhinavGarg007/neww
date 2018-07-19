@@ -44,19 +44,23 @@
         <activity
             android:name=".ActionBar.ToolbarAssignment"
             android:theme="@style/header" />
-        <activity android:name=".AdapterView.ListViewAssignment1" >
+        <activity android:name=".AdapterView.ListViewAssignment1" />
+        <activity android:name=".AdapterView.ListViewAssignment2" />
+        <activity android:name=".AdapterView.ListViewAssignment3" />
+        <activity android:name=".AdapterView.GridViewAssignment1" >
         </activity>
-
-        <activity android:name=".AdapterView.ListViewAssignment2">
+        <activity android:name=".AdapterView.GridViewAssignment2">
 
         </activity>
-        <activity android:name=".AdapterView.ListViewAssignment3" >
+        <activity android:name=".AdapterView.RecyclerViewAssignment1"></activity>
+        <activity android:name=".AdapterView.RecyclerViewAssignment2" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter></activity>
-        <activity android:name=".AdapterView.GridViewAssignment1">
+        <activity android:name=".AdapterView.RecyclerViewAssignment3">
+
 
         </activity>
     </application>

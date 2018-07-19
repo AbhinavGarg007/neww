@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.example.emp354.linear.R;
 
-public class CustomAdapter extends BaseAdapter{
+public class CustomAdapter_list extends BaseAdapter{
 
     final int VIEWTYPE_FIRST=1;
     final int VIEWTYPE_SECOND=2;

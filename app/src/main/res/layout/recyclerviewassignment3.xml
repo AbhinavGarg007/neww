@@ -4,18 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdapterView.GridViewAssignment1"
-   >
-    <GridView
+
+    tools:context=".AdapterView.RecyclerViewAssignment3">
+
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/grid_view"
-        android:numColumns="3"
-        android:layout_margin="@dimen/margin_15"
-        android:columnWidth="10dp"
-        android:verticalSpacing="@dimen/margin_10"
-        android:horizontalSpacing="@dimen/margin_10">
-
-    </GridView>
+        android:id="@+id/recycler_view"/>
 
 </LinearLayout>
