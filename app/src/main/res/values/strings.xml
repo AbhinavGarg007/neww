@@ -88,5 +88,18 @@
     <string name="image_description">It is the test image</string>
     <string name="header">HEADER</string>
     <string name="footer">FOOTER</string>
+    <string name="signup_label">Sign up</string>
+    <string name="signup_button">SIGN UP</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="username">Username</string>
+    <string name="phone_no">Phone Number</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="referral_code">Enter referral code (Optional) </string>
+    <string name="signup_policy">By signing up you agree to our\n Privacy Policy and Terms of Service</string>
+
+    <string name="ourValues_label">ourValues</string>
 
 </resources>

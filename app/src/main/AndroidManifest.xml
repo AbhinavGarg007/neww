@@ -28,7 +28,6 @@
         <activity android:name=".Button.CompoundBtnAssignment" />
         <activity android:name=".Scrollbar_Seekbar.SeekbarAssignment" />
         <activity android:name=".DrawablesFigureAssignment" />
-        <activity android:name=".Assignment.Assignment1" />
         <activity android:name=".ActionBar.ActionbarAssignment">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -47,21 +46,23 @@
         <activity android:name=".AdapterView.ListViewAssignment1" />
         <activity android:name=".AdapterView.ListViewAssignment2" />
         <activity android:name=".AdapterView.ListViewAssignment3" />
-        <activity android:name=".AdapterView.GridViewAssignment1" >
-        </activity>
-        <activity android:name=".AdapterView.GridViewAssignment2">
+        <activity android:name=".AdapterView.GridViewAssignment1"></activity>
+        <activity android:name=".AdapterView.GridViewAssignment2"></activity>
+        <activity android:name=".AdapterView.RecyclerViewAssignment1" />
+        <activity android:name=".AdapterView.RecyclerViewAssignment2"></activity>
+        <activity android:name=".AdapterView.RecyclerViewAssignment3"></activity>
+        <activity
+            android:name=".Assignment.Assignment1"
+            android:theme="@style/signuptheme">
 
         </activity>
-        <activity android:name=".AdapterView.RecyclerViewAssignment1"></activity>
-        <activity android:name=".AdapterView.RecyclerViewAssignment2" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".Assignment.Assignment2"
+            android:theme="@style/ourValuestheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
-        <activity android:name=".AdapterView.RecyclerViewAssignment3">
-
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

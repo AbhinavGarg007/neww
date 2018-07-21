@@ -17,4 +17,16 @@
 
     </style>
 
+    <style name="signuptheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/color_purple</item>
+        <item name="android:colorPrimaryDark">@color/color_purple</item>
+        <item name="android:textSize">@dimen/textsize_20</item>
+    </style>
+
+    <style name="ourValuestheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:colorPrimary">@color/color_blue</item>
+    <item name="android:colorPrimaryDark">@color/color_dark_blue</item>
+
+</style>
+
 </resources>

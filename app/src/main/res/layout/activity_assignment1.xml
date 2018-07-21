@@ -4,6 +4,160 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Assignment.Assignment1">
+    tools:context=".Assignment.Assignment1"
+    android:orientation="vertical">
+
+   <android.support.v7.widget.Toolbar
+
+       android:id="@+id/toolbar"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="@color/color_purple"
+       >
+
+      <ImageView
+          android:layout_width="@dimen/width_20"
+          android:layout_height="@dimen/height_20"
+          android:src="@drawable/back" />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:text="@string/signup_label"
+          android:textColor="@android:color/white"
+          android:textSize="@dimen/margin_20" />
+   </android.support.v7.widget.Toolbar>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:layout_margin="@dimen/margin_20">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          >
+
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:layout_weight="1"
+          android:paddingRight="@dimen/margin_20">
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@drawable/info_box"
+          android:text="@string/first_name"
+          android:layout_marginBottom="@dimen/margin_20"
+          android:padding="@dimen/margin_10"/>
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@drawable/info_box"
+          android:text="@string/last_name"
+
+          android:padding="@dimen/margin_10"/>
+      </LinearLayout>
+         <RelativeLayout
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:gravity="center"
+
+             >
+
+         <ImageView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:background="@drawable/ic_camera"
+
+             />
+         </RelativeLayout>
+
+      </LinearLayout>
+
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@drawable/info_box"
+          android:text="@string/username"
+          android:layout_marginBottom="@dimen/margin_20"
+          android:layout_marginTop="@dimen/margin_20"
+          android:padding="@dimen/margin_10"/>
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@drawable/info_box"
+          android:text="@string/phone_no"
+          android:layout_marginBottom="@dimen/margin_20"
+          android:padding="@dimen/margin_10"/>
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@drawable/info_box"
+          android:text="@string/email"
+          android:layout_marginBottom="@dimen/margin_20"
+          android:padding="@dimen/margin_10"/>
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@drawable/info_box"
+          android:text="@string/password"
+          android:layout_marginBottom="@dimen/margin_20"
+          android:padding="@dimen/margin_10"/>
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@drawable/info_box"
+          android:text="@string/confirm_password"
+          android:layout_marginBottom="@dimen/margin_20"
+          android:padding="@dimen/margin_10"/>
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@drawable/info_box"
+          android:text="@string/referral_code"
+          android:layout_marginBottom="@dimen/margin_20"
+          android:padding="@dimen/margin_10"/>
+
+      <TextView
+          android:id="@+id/signup_policy_textview"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="@dimen/margin_10"
+          android:textSize="@dimen/textsize_15"
+          android:gravity="center"
+
+          />
+
+
+
+
+   </LinearLayout>
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="@string/signup_button"
+       android:textSize="@dimen/textsize_20"
+       android:textColor="@android:color/white"
+       android:background="@color/color_purple"/>
+
+   </LinearLayout>
+
+</ScrollView>
+
+
+
 
 </LinearLayout>
