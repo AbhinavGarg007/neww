@@ -46,18 +46,24 @@
         <activity android:name=".AdapterView.ListViewAssignment1" />
         <activity android:name=".AdapterView.ListViewAssignment2" />
         <activity android:name=".AdapterView.ListViewAssignment3" />
-        <activity android:name=".AdapterView.GridViewAssignment1"></activity>
-        <activity android:name=".AdapterView.GridViewAssignment2"></activity>
+        <activity android:name=".AdapterView.GridViewAssignment1" />
+        <activity android:name=".AdapterView.GridViewAssignment2" />
         <activity android:name=".AdapterView.RecyclerViewAssignment1" />
-        <activity android:name=".AdapterView.RecyclerViewAssignment2"></activity>
-        <activity android:name=".AdapterView.RecyclerViewAssignment3"></activity>
+        <activity android:name=".AdapterView.RecyclerViewAssignment2" />
+        <activity android:name=".AdapterView.RecyclerViewAssignment3" />
         <activity
-            android:name=".Assignment.Assignment1"
-            android:theme="@style/signuptheme">
+            android:name=".Assignment.Signup_page"
+            android:theme="@style/signuptheme"></activity>
+        <activity
+            android:name=".Assignment.Child_view"
+            android:theme="@style/ourValuestheme"></activity>
+        <activity
+            android:name=".Assignment.EditVesselDetails"
+            android:theme="@style/editvessseltheme">
 
         </activity>
-        <activity android:name=".Assignment.Assignment2"
-            android:theme="@style/ourValuestheme">
+        <activity android:name=".Assignment.Flight_assignment"
+            android:theme="@style/Flighttheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

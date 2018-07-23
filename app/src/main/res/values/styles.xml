@@ -24,9 +24,20 @@
     </style>
 
     <style name="ourValuestheme" parent="Theme.AppCompat.Light.NoActionBar">
-    <item name="android:colorPrimary">@color/color_blue</item>
-    <item name="android:colorPrimaryDark">@color/color_dark_blue</item>
+        <item name="android:colorPrimary">@color/color_blue</item>
+        <item name="android:colorPrimaryDark">@color/color_dark_blue</item>
 
 </style>
+
+    <style name="editvessseltheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/color_brown</item>
+        <item name="android:colorPrimaryDark">@color/color_darkbrown</item>
+        <item name="android:textSize">@dimen/textsize_15</item>
+
+    </style>
+
+    <style name="Flighttheme" parent="Theme.AppCompat.Light.NoActionBar">
+<item name="android:textSize">@dimen/textsize_15</item>
+    </style>
 
 </resources>
