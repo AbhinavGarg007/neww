@@ -3,6 +3,7 @@
     <dimen name="textsize_10">10sp</dimen>
     <dimen name="textsize_15">15sp</dimen>
     <dimen name="textsize_22">22sp</dimen>
+    <dimen name="textsize_24">24sp</dimen>
     <dimen name="textsize_50">50sp</dimen>
     <dimen name="textsize_20">20sp</dimen>
     <dimen name="textsize_30">30sp</dimen>
@@ -15,6 +16,7 @@
     <dimen name="margin_40">40dp</dimen>
     <dimen name="margin_50">50dp</dimen>
     <dimen name="margin_60">60dp</dimen>
+    <dimen name="margin_80">80dp</dimen>
 
 
 

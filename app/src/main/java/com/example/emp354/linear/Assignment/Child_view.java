@@ -1,5 +1,6 @@
 package com.example.emp354.linear.Assignment;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -7,6 +8,8 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.emp354.linear.R;
@@ -18,6 +21,9 @@ public class Child_view extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.child_view);
+
+        ImageView back=findViewById(R.id.back);
+        ImageView next=findViewById(R.id.next);
 
         TextView textview_4=findViewById(R.id.textview_4);
         TextView textview_5=findViewById(R.id.textview_5);
@@ -47,6 +53,21 @@ public class Child_view extends AppCompatActivity {
         textview_6.setText(text_2);
         textview_7.setText(text_1);
         textview_8.setText(text_3);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(Child_view.this,Signup_page.class);
+                startActivity(i);
+            }
+        });
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent j= new Intent(Child_view.this,Flight_assignment.class);
+                startActivity(j);
+            }
+        });
 
 
 

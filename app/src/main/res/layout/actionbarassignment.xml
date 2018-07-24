@@ -13,4 +13,23 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BACK"/>
+    <Button
+        android:id="@+id/next"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+    android:text="NEXT"/>
+    </RelativeLayout>
+
 </LinearLayout>

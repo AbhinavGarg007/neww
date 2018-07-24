@@ -1,13 +1,17 @@
 package com.example.emp354.linear.ActionBar;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.emp354.linear.R;
+import com.example.emp354.linear.Toast.ToastMessageAssignment1;
 
 public class ToolbarAssignment extends AppCompatActivity {
     private Toolbar mTopToolbar;
@@ -17,6 +21,24 @@ public class ToolbarAssignment extends AppCompatActivity {
         setContentView(R.layout.toolbar_assignment);
         mTopToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mTopToolbar);
+
+        Button back=findViewById(R.id.back);
+        Button next=findViewById(R.id.next);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(ToolbarAssignment.this,ActionbarAssignment.class);
+                startActivity(i);
+            }
+        });
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent j= new Intent(ToolbarAssignment.this, ToastMessageAssignment1.class);
+                startActivity(j);
+            }
+        });
     }
 
     @Override

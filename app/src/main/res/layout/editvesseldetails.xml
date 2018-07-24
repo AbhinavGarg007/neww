@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@color/color_brown">
         <ImageView
+            android:id="@+id/back"
             android:layout_width="@dimen/width_20"
             android:layout_height="@dimen/height_20"
             android:src="@drawable/left_arrow"/>

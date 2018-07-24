@@ -232,6 +232,7 @@
 
 
         <ImageView
+            android:id="@+id/back"
             android:layout_width="@dimen/width_50"
             android:layout_height="@dimen/height_50"
             android:layout_alignLeft="@id/frame"
@@ -239,6 +240,7 @@
             android:background="@drawable/ic_logout" />
 
         <ImageView
+            android:id="@+id/next"
             android:layout_width="@dimen/width_50"
             android:layout_height="@dimen/height_50"
             android:layout_alignRight="@+id/frame"

@@ -37,6 +37,13 @@
         <item>Fishing Boat</item>
     </string-array>
 
+    <string-array name="flight_class">
+        <item>All</item>
+        <item>Business</item>
+        <item>First</item>
+        <item>Economy</item>
+    </string-array>
+
     <string-array name="data">
         <item>data at pos 0</item>
         <item>data at pos 1</item>

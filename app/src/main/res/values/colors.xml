@@ -17,6 +17,8 @@
     <color name="color_brown">#F26522</color>
     <color name="color_darkbrown">#C2511B</color>
     <color name="color_greyvessel">#F2F2F2</color>
+    <color name="color_flight_red">#F3373E</color>
+    <color name="color_flight_grey">#F6F9FC</color>
 
 
 </resources>
