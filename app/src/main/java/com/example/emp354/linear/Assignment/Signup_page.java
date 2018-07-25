@@ -33,8 +33,8 @@ private Toolbar mTopToolbar;
 
 
         final SpannableString text = new SpannableString("By signing up you agree to our\nPrivacy Policy & Terms of Service");
-        text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.color_purple)), 31, 44, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.color_purple)), 50, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.color_purple)), 31, 44, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.color_purple)), 48, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         signup_policy_textview.setText(text);
 
         back.setOnClickListener(new View.OnClickListener() {

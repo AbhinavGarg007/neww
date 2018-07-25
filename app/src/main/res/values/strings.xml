@@ -125,5 +125,6 @@
     <string name="save">Save</string>
     <string name="vessel_details">vessel details</string>
     <string name="additional_info">additional information</string>
+    <string name="fragment_label">My Complete Project</string>
 
 </resources>

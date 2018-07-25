@@ -50,7 +50,7 @@
         android:id="@+id/parent_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/parent_bg"
+        android:background="@drawable/app_parent_bg"
         android:orientation="vertical">
 
         <LinearLayout

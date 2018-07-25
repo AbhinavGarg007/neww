@@ -9,12 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LinearLayout.LinearLayoutAssignment1" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+        <activity android:name=".LinearLayout.LinearLayoutAssignment1" />
         <activity android:name=".LinearLayout.LinearLayoutAssignment2" />
         <activity android:name=".LinearLayout.LinearLayoutAssignment3" />
         <activity android:name=".LinearLayout.LinearLayoutAssignment4" />
@@ -27,16 +22,13 @@
         <activity android:name=".Scrollbar_Seekbar.ScrollbarAssignment" />
         <activity android:name=".TextView.TextviewAssignment1" />
         <activity android:name=".TextView.TextviewAssignment2" />
-        <activity android:name=".EdittextAssignment" >
-        </activity>
+        <activity android:name=".EdittextAssignment" />
         <activity android:name=".Button.DrawableButtonAssignment" />
         <activity android:name=".ImageViewAssignment" />
         <activity android:name=".Button.CompoundBtnAssignment" />
-        <activity android:name=".Scrollbar_Seekbar.SeekbarAssignment" >
-        </activity>
+        <activity android:name=".Scrollbar_Seekbar.SeekbarAssignment" />
         <activity android:name=".DrawablesFigureAssignment" />
         <activity android:name=".ActionBar.ActionbarAssignment">
-
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -48,7 +40,8 @@
         <activity android:name=".Toast.ToastMessageAssignment1" />
         <activity android:name=".Toast.CustomToastAssignment" />
         <activity android:name=".SnackbarAssignment" />
-        <activity android:name=".ActionBar.ToolbarAssignment"
+        <activity
+            android:name=".ActionBar.ToolbarAssignment"
             android:theme="@style/header" />
         <activity android:name=".AdapterView.ListViewAssignment1" />
         <activity android:name=".AdapterView.ListViewAssignment2" />
@@ -60,20 +53,31 @@
         <activity android:name=".AdapterView.RecyclerViewAssignment3" />
         <activity
             android:name=".Assignment.Signup_page"
-            android:theme="@style/signuptheme">
-
-        </activity>
+            android:theme="@style/signuptheme" />
         <activity
             android:name=".Assignment.Child_view"
-            android:theme="@style/ourValuestheme"></activity>
+            android:theme="@style/ourValuestheme" />
         <activity
             android:name=".Assignment.EditVesselDetails"
-            android:theme="@style/editvessseltheme">
+            android:theme="@style/editvessseltheme" />
+        <activity
+            android:name=".Assignment.Flight_assignment"
+            android:theme="@style/Flighttheme" />
+        <activity android:name=".Fragment.PracticeFirst"></activity>
+        <activity
+            android:name=".Fragment2.MainActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".Fragment3.FragmentThirdMain">
 
         </activity>
-        <activity android:name=".Assignment.Flight_assignment"
-            android:theme="@style/Flighttheme">
+        <activity android:name=".FragmentAssignment.FragmentAssignmentMain"
+            android:screenOrientation="landscape"
+            android:theme="@style/ToolBarTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
