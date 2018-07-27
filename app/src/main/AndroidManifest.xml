@@ -63,15 +63,13 @@
         <activity
             android:name=".Assignment.Flight_assignment"
             android:theme="@style/Flighttheme" />
-        <activity android:name=".Fragment.PracticeFirst"></activity>
+        <activity android:name=".Fragment.PracticeFirst" />
         <activity
             android:name=".Fragment2.MainActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".Fragment3.FragmentThirdMain">
-
-        </activity>
-        <activity android:name=".FragmentAssignment.FragmentAssignmentMain"
-            android:screenOrientation="landscape"
+        <activity android:name=".Fragment3.FragmentThirdMain" />
+        <activity
+            android:name=".FragmentAssignment.FragmentAssignmentMain"
             android:theme="@style/ToolBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -79,6 +77,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FragmentAssignment.FragmentAssignmentSignup" />
+        <activity android:name=".FragmentAssignment.FragmentAssignmentInfo3"></activity>
     </application>
 
 </manifest>
