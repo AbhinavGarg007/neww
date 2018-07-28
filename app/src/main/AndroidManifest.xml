@@ -78,7 +78,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".FragmentAssignment.FragmentAssignmentSignup" />
-        <activity android:name=".FragmentAssignment.FragmentAssignmentInfo3"></activity>
+        <activity android:name=".FragmentAssignment.FragmentAssignmentInfo3"
+            ></activity>
     </application>
 
 </manifest>

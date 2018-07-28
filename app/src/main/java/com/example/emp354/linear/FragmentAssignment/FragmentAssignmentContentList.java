@@ -7,12 +7,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.emp354.linear.AdapterView.CustomAdapter_recycler;
 import com.example.emp354.linear.Assignment.Signup_page;
 import com.example.emp354.linear.R;
 
@@ -22,8 +25,6 @@ public class FragmentAssignmentContentList extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_assignment_content_list,container,false);
-
-
         return view;
     }
 
@@ -39,10 +40,15 @@ public class FragmentAssignmentContentList extends Fragment {
                 startActivityForResult(i,1);
             }
         });
-
         /*Bundle bundle=getArguments();
         String strtext=bundle.getString("name");
         textview.setText(strtext);*/
+        RecyclerView recycler_view=(RecyclerView)view.findViewById(R.id.recycler_view);
+        CustomAdapterFragment array_adapter=new CustomAdapterFragment();
+        recycler_view.setAdapter(array_adapter);
+
+        LinearLayoutManager layout_manager=new LinearLayoutManager(getContext());
+        recycler_view.setLayoutManager(layout_manager);
     }
 
     @Override
@@ -51,10 +57,11 @@ public class FragmentAssignmentContentList extends Fragment {
         {
             if(resultCode == Activity.RESULT_OK)
             {
-                String result=data.getStringExtra("result");
+                String name=data.getStringExtra("name");
+                String mail=data.getStringExtra("mail");
+                String gender=data.getStringExtra("gender");
                 TextView textview= getView().findViewById(R.id.textview);
-
-                textview.setText(result);
+                textview.setText(name + mail + gender);
             }
         }
     }

@@ -23,6 +23,7 @@
         android:text="Gender"
         android:textSize="@dimen/textsize_20"/>
     <RadioGroup
+        android:id="@+id/radiogroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RadioButton
