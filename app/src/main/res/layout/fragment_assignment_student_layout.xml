@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/student_frame"
+    android:layout_margin="@dimen/margin_5">
 
 
 
@@ -10,10 +13,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/white_stroke_corner_square"
-        android:layout_margin="@dimen/margin_10">
+        android:layout_margin="@dimen/margin_5">
 
         <TextView
-            android:id="@+id/textview_name"
+            android:id="@+id/textview_sname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/textsize_20"
@@ -48,15 +51,17 @@
     </LinearLayout>
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:id="@+id/imageview_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:src="@drawable/ic_close_black_24dp"
             android:background="@drawable/circle_black"/>
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:id="@+id/imageview_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="right | bottom"
 
 

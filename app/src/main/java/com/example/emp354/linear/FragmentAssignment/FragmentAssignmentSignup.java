@@ -73,9 +73,6 @@ public class FragmentAssignmentSignup extends AppCompatActivity {
             }
         });
 
-
-
-
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,19 +85,35 @@ public class FragmentAssignmentSignup extends AppCompatActivity {
                 String gender=((RadioButton)findViewById(radiogroup_gender.getCheckedRadioButtonId())).getText().toString();
                 if(radiobutton_student.isChecked())
                 {
-                    Intent j=getIntent();
-                j.putExtra("name",name);
+                    Intent j=new Intent();
+                /*j.putExtra("sname",name);
                 j.putExtra("type",type);
                 j.putExtra("mail",mail);
-                j.putExtra("gender",gender);
+                j.putExtra("gender",gender);*/
+                    Bundle bundle_1=new Bundle();
+                bundle_1.putString("sname",name);
+                bundle_1.putString("type",type);
+                bundle_1.putString("mail",mail);
+                bundle_1.putString("gender",gender);
+                j.putExtras(bundle_1);
+
                 setResult(Activity.RESULT_OK,j);
                 finish();
                 }
                 else
                 {
-                    Intent j=getIntent();
-                    j.putExtra("name",name);
-                    j.putExtra("type",type);
+                    Intent j=new Intent();
+
+                    /*j.putExtra("ename",name);
+                    j.putExtra("type",type);*/
+                    Bundle bundle_1=new Bundle();
+                    bundle_1.putString("ename",name);
+                    bundle_1.putString("type",type);
+                   /* FragmentAssignmentContentList myfragment=new FragmentAssignmentContentList();
+                    myfragment.setArguments(bundle);*/
+                   j.putExtras(bundle_1);
+                    setResult(Activity.RESULT_OK,j);
+                    finish();
                 }
 
               /* Bundle bundle = new Bundle();

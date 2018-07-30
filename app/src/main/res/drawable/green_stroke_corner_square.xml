@@ -5,6 +5,6 @@
         android:color="@color/color_green_employee"/>
 
     <corners
-        android:radius="@dimen/margin_20"/>
+        android:radius="@dimen/margin_10"/>
 
 </shape>

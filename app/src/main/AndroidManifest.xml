@@ -70,16 +70,16 @@
         <activity android:name=".Fragment3.FragmentThirdMain" />
         <activity
             android:name=".FragmentAssignment.FragmentAssignmentMain"
-            android:theme="@style/ToolBarTheme">
+            android:theme="@style/ToolBarTheme"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FragmentAssignment.FragmentAssignmentSignup" />
-        <activity android:name=".FragmentAssignment.FragmentAssignmentInfo3"
-            ></activity>
+        <activity android:name=".FragmentAssignment.FragmentAssignmentSignup"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

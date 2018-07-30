@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/parent_layout"
     tools:context=".FragmentAssignment.FragmentAssignmentSignup"
     android:orientation="vertical">
 
@@ -46,6 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Employee"
+                android:checked="true"
                 android:textSize="@dimen/textsize_20"/>
         </RadioGroup>
 
@@ -78,12 +80,14 @@
         <RadioGroup
             android:id="@+id/radiogroup_gender"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
             <RadioButton
                 android:id="@+id/radiobutton_male"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/textsize_20"
+                android:checked="true"
                 android:text="Male"/>
             <RadioButton
                 android:id="@+id/radiobutton_female"
@@ -94,6 +98,8 @@
         </RadioGroup>
 
     </LinearLayout>
+
+
     <Button
         android:id="@+id/save_button"
         android:layout_width="match_parent"
@@ -101,5 +107,4 @@
         android:textSize="@dimen/textsize_20"
         android:text="SAVE"
         android:layout_alignParentBottom="true"/>
-
-</RelativeLayout>
+    </RelativeLayout>
