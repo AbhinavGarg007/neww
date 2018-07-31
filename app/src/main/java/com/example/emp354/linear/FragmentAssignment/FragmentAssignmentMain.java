@@ -25,12 +25,13 @@ public class FragmentAssignmentMain extends AppCompatActivity {
         FrameLayout framelayout_2=findViewById(R.id.framelayout_2);*/
 
         /*ImageView imageview_add=findViewById(R.id.imageview_add);*/
-        Toolbar toolbar=findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         loadfragment1(new FragmentAssignmentContentList());
         loadfragment2(new FragmentAssignmentDescriptionList());
+
 
 
 
@@ -42,20 +43,29 @@ public class FragmentAssignmentMain extends AppCompatActivity {
             }
         });*/
     }
-    private void loadfragment1(Fragment fragment)
-    {
-        FragmentManager fm=getSupportFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
-        ft.replace(R.id.framelayout_1,fragment);
-        ft.commit();
-    }
-    private void loadfragment2(Fragment fragment)
-    {
-        FragmentManager fm=getSupportFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
-        ft.replace(R.id.framelayout_2,fragment);
+
+    private void loadfragment1(Fragment fragment) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.framelayout_1, fragment);
         ft.commit();
     }
 
+    private void loadfragment2(Fragment fragment) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.framelayout_2, fragment);
+        ft.commit();
+    }
 
+/*
+    private void loadfFragment() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.framelayout_2, new FragmentAssignmentDescriptionList());
+        ft.commit();
+        ft = fm.beginTransaction();
+        ft.replace(R.id.framelayout_1, new FragmentAssignmentDescriptionList());
+        ft.commit();
+    }*/
 }

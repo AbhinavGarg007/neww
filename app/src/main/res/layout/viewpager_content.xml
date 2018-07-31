@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/parent_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/margin_10">
+    
+    <TextView
+        android:id="@+id/textview_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="TITLE"
+        android:textSize="@dimen/textsize_30"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/textview_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Apr 25,2016"
+        android:textSize="@dimen/textsize_20"/>
+    <LinearLayout
+        android:id="@+id/child_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|center_horizontal">
+        <TextView
+            android:id="@+id/textview_like"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+           android:layout_weight="1"
+            android:hint="145 Likes"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_thumb_up_black_24dp"
+            />
+        <TextView
+            android:id="@+id/textview_share"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Share"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_share_black_24dp"
+            />
+        <TextView
+            android:id="@+id/textview_bookmark"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Bookmark"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_bookmark_border_black_24dp"/>
+        <TextView
+            android:id="@+id/textview_remove"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Remove"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_bookmark_black_24dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -70,16 +70,24 @@
         <activity android:name=".Fragment3.FragmentThirdMain" />
         <activity
             android:name=".FragmentAssignment.FragmentAssignmentMain"
-            android:theme="@style/ToolBarTheme"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:theme="@style/ToolBarTheme"></activity>
+        <activity
+            android:name=".FragmentAssignment.FragmentAssignmentSignup"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ViewPager.ViewPagerMain"
+            android:theme="@style/ViewPagerTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".FragmentAssignment.FragmentAssignmentSignup"
-            android:screenOrientation="landscape"/>
+        <activity android:name=".ViewPagerExample.ViewPagerExample">
+
+        </activity>
     </application>
 
 </manifest>

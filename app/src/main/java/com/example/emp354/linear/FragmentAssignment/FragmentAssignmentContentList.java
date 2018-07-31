@@ -25,7 +25,7 @@ import com.example.emp354.linear.R;
 
 import java.util.ArrayList;
 
-public class FragmentAssignmentContentList extends Fragment implements CustomAdapterFragment.onClickItem {
+public class FragmentAssignmentContentList extends Fragment {
 
     ArrayList<User> list=new ArrayList<User>();
     CustomAdapterFragment array_adapter;
@@ -124,7 +124,7 @@ public class FragmentAssignmentContentList extends Fragment implements CustomAda
             }
             }
 
-    @Override
+   /* @Override
     public void onItemClick(int position) {
         User user=list.get(position);
         FragmentAssignmentDescriptionList descriptionList = new FragmentAssignmentDescriptionList();
@@ -148,8 +148,8 @@ public class FragmentAssignmentContentList extends Fragment implements CustomAda
         list.remove(position);
         array_adapter.notifyItemRemoved(position);
 
-       /* if(list.size()==0){
+       *//* if(list.size()==0){
             textView.setVisibility(View.VISIBLE);
         }*/
     }
-}
+

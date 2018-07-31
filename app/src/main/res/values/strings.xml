@@ -95,9 +95,9 @@
         <item>data at pos 47</item>
         <item>data at pos 48</item>
         <item>data at pos 49</item>
-
-
     </string-array>
+    
+    <string-array name=""
 
 
     <string name="length_format">Length is %1$s</string>
@@ -126,5 +126,9 @@
     <string name="vessel_details">vessel details</string>
     <string name="additional_info">additional information</string>
     <string name="fragment_label">My Complete Project</string>
+
+    <string name="my_course">MYCOURSE</string>
+    <string name="bookmarked">BOOKMARKED</string>
+    <string name="nearby">NEARBY</string>
 
 </resources>

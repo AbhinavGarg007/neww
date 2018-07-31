@@ -40,4 +40,9 @@
 <item name="android:textSize">@dimen/textsize_15</item>
     </style>
 
+    <style name="ViewPagerTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/color_brown_viewpager</item>
+        <item name="android:colorPrimaryDark">@color/color_brown_dark_viewpager</item>
+    </style>
+
 </resources>

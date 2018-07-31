@@ -18,15 +18,16 @@ import com.example.emp354.linear.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomAdapterFragment extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class CustomAdapterFragment extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<User> list;
     private Context mcontext;
     private onClickItem onClickItem;
+    private int VIEW_STUDENT = 0;
 
-    public CustomAdapterFragment(Context context,ArrayList<User> arrayList) {
-        list=arrayList;
-        mcontext=context;
+    public CustomAdapterFragment(Context context, ArrayList<User> arrayList) {
+        list = arrayList;
+        mcontext = context;
 
 
     }
@@ -38,21 +39,18 @@ public class CustomAdapterFragment extends RecyclerView.Adapter<RecyclerView.Vie
         //assign layout to holder
         MyViewHolder view_holder = new MyViewHolder(recycler_view);
         return view_holder;*/
-       View recycler_view;
+        View recycler_view;
 
-       if(viewType==0)
-       {
-           recycler_view=LayoutInflater.from(mcontext).inflate(R.layout.fragment_assignment_student_layout,parent,false);
-          /* MyViewHolder viewHolder=new MyViewHolder(recycler_view);*/
-           return new StudentHolder(recycler_view);
-       }
-       else if(viewType==1)
-       {
-           recycler_view=LayoutInflater.from(mcontext).inflate(R.layout.fragment_assignment_employee_layout,parent,false);
-           /*MyViewHolder viewHolder=new MyViewHolder(recycler_view);*/
-           return new EmployeeHolder(recycler_view);
-       }
-       return null;
+        if (viewType == VIEW_STUDENT) {
+            recycler_view = LayoutInflater.from(mcontext).inflate(R.layout.fragment_assignment_student_layout, parent, false);
+            /* MyViewHolder viewHolder=new MyViewHolder(recycler_view);*/
+            return new StudentHolder(recycler_view);
+        } else if (viewType == 1) {
+            recycler_view = LayoutInflater.from(mcontext).inflate(R.layout.fragment_assignment_employee_layout, parent, false);
+            /*MyViewHolder viewHolder=new MyViewHolder(recycler_view);*/
+            return new EmployeeHolder(recycler_view);
+        }
+        return null;
 
     }
 
@@ -67,8 +65,7 @@ public class CustomAdapterFragment extends RecyclerView.Adapter<RecyclerView.Vie
                 ((StudentHolder) holder).textview_sname.setText(user.getName());
                 ((StudentHolder) holder).textview_mail.setText(user.getMail());
                 ((StudentHolder) holder).textview_gender.setText(user.getGender());
-            }
-            else if (user.getType().equals("Employee")) {
+            } else if (user.getType().equals("Employee")) {
                 ((EmployeeHolder) holder).textview_ename.setText(user.getName());
             }
         }
@@ -78,17 +75,15 @@ public class CustomAdapterFragment extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public int getItemViewType(int position) {
 
-        String Type=list.get(position).getType();
-        if(Type.equals("Student"))
-        {
-            return 0;
-        }
-        else if(Type.equals("Employee"))
-        {
+        String Type = list.get(position).getType();
+        if (Type.equals("Student")) {
+            return VIEW_STUDENT;
+        } else if (Type.equals("Employee")) {
             return 1;
         }
         return -1;
     }
+
     @Override
     public int getItemCount() {
         return list.size();
@@ -104,72 +99,80 @@ public class CustomAdapterFragment extends RecyclerView.Adapter<RecyclerView.Vie
             super(itemView);
 
 // get the reference of item view's
-                textview_sname = itemView.findViewById(R.id.textview_sname);
-                textview_mail = itemView.findViewById(R.id.textview_mail);
-                textview_gender = itemView.findViewById(R.id.textview_gender);
+            textview_sname = itemView.findViewById(R.id.textview_sname);
+            textview_mail = itemView.findViewById(R.id.textview_mail);
+            textview_gender = itemView.findViewById(R.id.textview_gender);
 
 
             // To make an entry of student clickable
-             FrameLayout item_details=(FrameLayout) itemView.findViewById(R.id.student_frame);
+            FrameLayout item_details = (FrameLayout) itemView.findViewById(R.id.student_frame);
             item_details.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(onClickItem!=null)
-                    {
+                    if (onClickItem != null) {
                         onClickItem.onItemClick(getAdapterPosition());
                     }
                 }
             });
             // To delete an entry of student
-            ImageView deletestd=(ImageView)itemView.findViewById(R.id.imageview_close);
+            ImageView deletestd = (ImageView) itemView.findViewById(R.id.imageview_close);
             deletestd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(onClickItem!=null)
-                    {
+                    if (onClickItem != null) {
                         onClickItem.onDeleteClick(getAdapterPosition());
                     }
                 }
             });
         }
-            }
-            public class EmployeeHolder extends RecyclerView.ViewHolder {
-                TextView textview_ename;
+    }
 
-                public EmployeeHolder(View itemView) {
-                    super(itemView);
-                    textview_ename = itemView.findViewById(R.id.textview_ename);
+    public class EmployeeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView textview_ename;
 
-                    // To make an entry of student clickable
-                    FrameLayout item_details = (FrameLayout) itemView.findViewById(R.id.employee_frame);
-                    item_details.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (onClickItem != null) {
-                                onClickItem.onItemClick(getAdapterPosition());
-                            }
-                        }
-                    });
-                    // To delete an entry of employee
-                    ImageView deletestd = (ImageView) itemView.findViewById(R.id.imageview_close);
-                    deletestd.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (onClickItem != null) {
-                                onClickItem.onDeleteClick(getAdapterPosition());
-                            }
-                        }
-                    });
+        public EmployeeHolder(View itemView) {
+            super(itemView);
+            textview_ename = itemView.findViewById(R.id.textview_ename);
+
+            // To make an entry of student clickable
+            FrameLayout item_details = (FrameLayout) itemView.findViewById(R.id.employee_frame);
+            item_details.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onClickItem != null) {
+                        onClickItem.onItemClick(getAdapterPosition());
+                    }
                 }
-            }
-                // To delete an entry and show details on right fragment
-                public interface onClickItem {
-                    void onItemClick(int position);
+            });
+            // To delete an entry of employee
+           // ImageView deletestd = (ImageView) itemView.findViewById(R.id.imageview_close);
+            itemView.findViewById(R.id.imageview_close).setOnClickListener(this);
+           /* deletestd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                    void onDeleteClick(int position);
                 }
+            });*/
+        }
 
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.imageview_close:
+                    if (onClickItem != null) {
+                        onClickItem.onDeleteClick(getAdapterPosition());
+                    }
+                    break;
+            }
+        }
+    }
 
+    // To delete an entry and show details on right fragment
+    public interface onClickItem {
+        void onItemClick(int position);
+
+        void onDeleteClick(int position);
+    }
 
 
 }
