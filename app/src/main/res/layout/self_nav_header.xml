@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_header"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/nav_drawer_bg">
+
+    <ImageView
+        android:layout_width="@dimen/width_100"
+        android:layout_height="@dimen/height_100"
+        android:src="@drawable/ic_person_black_24dp"
+
+        android:background="@drawable/circle_white"/>
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_person_black_24dp"
+        android:layout_alignParentRight="true"
+        />
+    <TextView
+        android:id="@+id/textview_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="abhinav garg"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textsize_20"
+        android:textStyle="bold"
+        android:layout_above="@+id/textview_mail"
+
+        />
+    <TextView
+        android:id="@+id/textview_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="abhinav.g@finoit.co.in"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="@dimen/textsize_20"
+        android:layout_alignParentBottom="true"
+        />
+
+</RelativeLayout>

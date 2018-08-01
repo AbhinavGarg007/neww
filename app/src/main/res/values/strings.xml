@@ -44,6 +44,16 @@
         <item>Economy</item>
     </string-array>
 
+
+    <string-array name="date">
+        <item>Apr 20,2018</item>
+        <item>Mar 19,2017</item>
+        <item>July 22,2018</item>
+        <item>Nov 9,1996</item>
+        <item>Jan 1,2001</item>
+    </string-array>
+
+
     <string-array name="data">
         <item>data at pos 0</item>
         <item>data at pos 1</item>
@@ -96,8 +106,15 @@
         <item>data at pos 48</item>
         <item>data at pos 49</item>
     </string-array>
-    
-    <string-array name=""
+
+
+    <string-array name="viewpager_title">
+        <item>The Hauge to Southwold</item>
+        <item>Washington Journey</item>
+        <item>Goa tour</item>
+        <item>Washington Tour</item>
+        <item>SouthWald</item>
+    </string-array>
 
 
     <string name="length_format">Length is %1$s</string>
@@ -130,5 +147,13 @@
     <string name="my_course">MYCOURSE</string>
     <string name="bookmarked">BOOKMARKED</string>
     <string name="nearby">NEARBY</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">chike mgbemena</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawer</string>
 
 </resources>
