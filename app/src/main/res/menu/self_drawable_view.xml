@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        android:id="@+id/group_1">
         <item android:id="@+id/all_inboxes"
             android:icon="@drawable/ic_storage_black_24dp"
             android:title="All Inboxes"/>
     </group>
-    <group android:checkableBehavior="single">
+
+
+
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/group_2">
         <item android:id="@+id/Inbox"
             android:icon="@drawable/ic_inbox_black_24dp"
             android:title="Inbox"/>
@@ -17,9 +23,12 @@
         <item android:id="@+id/done"
             android:icon="@drawable/ic_check_black_24dp"
             android:title="Done"/>
-
     </group>
-    <group android:checkableBehavior="single">
+
+
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/group_3">
         <item
              android:id="@+id/drafts"
             android:icon="@drawable/ic_drafts_black_24dp"
@@ -33,7 +42,10 @@
             android:icon="@drawable/ic_add_alert_black_24dp"
             android:title="Reminder"/>
     </group>
-    <group android:checkableBehavior="single">
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/group_4">
+
         <item android:id="@+id/settings"
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="Setttings"/>
