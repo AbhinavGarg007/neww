@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.example.emp354.linear.R;
@@ -34,6 +37,7 @@ public class DialogAlertClass extends AppCompatActivity implements View.OnClickL
         Button button_7 = findViewById(R.id.button_7);
         Button button_8 = findViewById(R.id.button_8);
         Button button_9 = findViewById(R.id.button_9);
+        Button button_10= findViewById(R.id.button_10);
 
 
         button_1.setOnClickListener(this);
@@ -45,6 +49,7 @@ public class DialogAlertClass extends AppCompatActivity implements View.OnClickL
         button_7.setOnClickListener(this);
         button_8.setOnClickListener(this);
         button_9.setOnClickListener(this);
+        button_10.setOnClickListener(this);
         }
 
     @Override
@@ -76,6 +81,7 @@ public class DialogAlertClass extends AppCompatActivity implements View.OnClickL
                                  eighth.show(fm,"eighth tag");
                                  break;
             case R.id.button_9: initiatePopUp(v);
+            case R.id.button_10:fullScreenPopUp(v);
         }
     }
 
@@ -88,10 +94,18 @@ public class DialogAlertClass extends AppCompatActivity implements View.OnClickL
 
         Button cancel_btn=layout.findViewById(R.id.cancel_btn);
         cancel_btn.setOnClickListener(cancel_button_click_listener);
+        }
 
+        private void fullScreenPopUp(View v)
+        {
+         LayoutInflater inflater=(LayoutInflater)DialogAlertClass.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+         View layout=inflater.inflate(R.layout.fullscreen_popup_layout,null,false);
+         popupWindow=new PopupWindow(layout, LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT,true);
+         popupWindow.showAtLocation(layout,Gravity.CENTER,0,0);
 
-
-    }
+            ImageView cancel_btn=layout.findViewById(R.id.cancel_btn);
+            cancel_btn.setOnClickListener(cancel_button_click_listener);
+        }
 
     private View.OnClickListener cancel_button_click_listener=new View.OnClickListener() {
         @Override

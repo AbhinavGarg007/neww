@@ -53,6 +53,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/popup"/>
+    <Button
+        android:id="@+id/button_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Full Screen Pop Up"/>
 
 
 </LinearLayout>
