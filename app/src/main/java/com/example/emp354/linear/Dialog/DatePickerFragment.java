@@ -15,18 +15,20 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Calendar c=Calendar.getInstance();
-        int year=c.get(Calendar.YEAR);
-        int month=c.get(Calendar.MONTH);
-        int day=c.get(Calendar.DAY_OF_MONTH);
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
 
-        return new DatePickerDialog(getActivity(),this,year,month,day);
+        DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
+
+        return dialog;
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String text=("Date is : " + dayOfMonth + "-" + month + "-" + year);
-        Toast.makeText(getContext(),text,Toast.LENGTH_SHORT).show();
+        String text = ("Date is : " + dayOfMonth + "-" + (month + 1) + "-" + year);
+        Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 
     }
 }

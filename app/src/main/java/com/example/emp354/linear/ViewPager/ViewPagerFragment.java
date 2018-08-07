@@ -49,7 +49,7 @@ public class ViewPagerFragment extends Fragment{
         recycler_view.setLayoutManager(layout_manager);
     }
 
-    public static ViewPagerFragment newInstance(String title,String text,int image,String[] date) {
+    /*public static ViewPagerFragment newInstance(String title,String text,int image,String[] date) {
 
         ViewPagerFragment f = new ViewPagerFragment();
         Bundle b = new Bundle();
@@ -62,5 +62,5 @@ public class ViewPagerFragment extends Fragment{
         f.setArguments(b);
 
         return f;
-    }
+    }*/
 }

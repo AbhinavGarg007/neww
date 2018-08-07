@@ -1,6 +1,7 @@
 package com.example.emp354.linear.ViewPager;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,17 +16,21 @@ import java.util.concurrent.Callable;
 public class ViewPagerAdapter extends FragmentPagerAdapter {
     private Context mcontext;
 
-    public ViewPagerAdapter(Context context,FragmentManager fm)
-    {
+    public ViewPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
-        mcontext=context;
+        mcontext = context;
     }
+
     @Override
     public Fragment getItem(int position) {
         View view;
-        String[] data=mcontext.getResources().getStringArray(R.array.viewpager_title);
-        String[] date=mcontext.getResources().getStringArray(R.array.date);
-        switch (position)
+        String[] data = mcontext.getResources().getStringArray(R.array.viewpager_title);
+        String[] date = mcontext.getResources().getStringArray(R.array.date);
+
+        String title = data[position], text = "";
+
+        int image = 0;
+       /* switch (position)
         {
             case 0: return ViewPagerFragment.newInstance(data[position],"Finish",R.drawable.ic_delete_black_24dp,date);
 
@@ -35,10 +40,35 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
             default:return ViewPagerFragment.newInstance(data[position],"Finish",R.drawable.ic_delete_black_24dp,date);
 
-            /*view= new ViewPagerFragment().getView();
+            *//*view= new ViewPagerFragment().getView();
                    view.findViewById(R.id.textview_bookmark).setVisibility(View.GONE);
-                   return ViewPagerFragment.*/
+                   return ViewPagerFragment.*//*
+        }*/
+        switch (position) {
+            case 0:
+                text = "Finish";
+                image = R.drawable.ic_delete_black_24dp;
+                break;
+            case 1:
+                text = "Remove";
+                image = R.drawable.ic_bookmark_black_24dp;
+                break;
+            case 2:
+                text = "Bookmark";
+                image = R.drawable.ic_bookmark_border_black_24dp;
+                break;
         }
+
+
+        ViewPagerFragment f = new ViewPagerFragment();
+        Bundle b = new Bundle();
+        b.putString("title", title);
+        b.putString("text", text);
+        b.putInt("image", image);
+        b.putStringArray("date", date);
+
+        f.setArguments(b);
+        return f;
 
     }
 
@@ -50,15 +80,18 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        switch(position)
-        {
-            case 0: return mcontext.getString(R.string.my_course);
+        switch (position) {
+            case 0:
+                return mcontext.getString(R.string.my_course);
 
-            case 1: return mcontext.getString(R.string.bookmarked);
+            case 1:
+                return mcontext.getString(R.string.bookmarked);
 
-            case 2: return mcontext.getString(R.string.nearby);
+            case 2:
+                return mcontext.getString(R.string.nearby);
 
-            default: return mcontext.getString(R.string.my_course);
+            default:
+                return mcontext.getString(R.string.my_course);
         }
     }
 }

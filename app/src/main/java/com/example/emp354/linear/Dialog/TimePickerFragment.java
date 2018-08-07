@@ -13,23 +13,24 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
+public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Calendar c=Calendar.getInstance();
-        int hour=c.get(Calendar.HOUR_OF_DAY);
-        int minute=c.get(Calendar.MINUTE);
+        Calendar c = Calendar.getInstance();
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+        TimePickerDialog dialog = new TimePickerDialog(getActivity(), this, hour, minute, DateFormat.is24HourFormat(getActivity()));
 
-        return new TimePickerDialog(getActivity(),this,hour,minute, DateFormat.is24HourFormat(getActivity()));
+        return dialog;
     }
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        String text=("Time is : \n" + hourOfDay + " hours" + minute + " minutes");
-      /*  (Button)view.findViewsWithText("Ok");
-*/
-        Toast.makeText(getContext(),text,Toast.LENGTH_SHORT).show();
+        String text = ("Time is : \n" + hourOfDay + " hours" + minute + " minutes");
+        /*  (Button)view.findViewsWithText("Ok");
+         */
+        Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
 
     }
 }

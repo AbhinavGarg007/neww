@@ -82,18 +82,22 @@
         <activity
             android:name=".NavigationDrawer.NavigationDrawer"
             android:label="@string/title_activity_navigation_drawer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NavigationDrawer.NavigationDrawerSelf.NavigationDrawerSelf"
-            android:theme="@style/ToolBarTheme">
+            android:theme="@style/ToolBarTheme" />
+        <activity android:name=".Dialog.DialogAlertClass"></activity>
+        <activity android:name=".CustomView.CustomViewAssignment_1">
+
 
         </activity>
-        <activity android:name=".Dialog.DialogAlertClass">
+        <activity android:name=".CustomView.CustomViewAssignment_2">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
     </application>
 
