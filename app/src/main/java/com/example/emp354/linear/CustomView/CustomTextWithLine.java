@@ -15,7 +15,7 @@ import org.w3c.dom.Text;
 public class CustomTextWithLine extends View {
 
     private Paint mOuterRect,mInnerRect,mLine,mText;
-    /*private Path path;*/
+   /* private Path path;*/
 
     public CustomTextWithLine(Context context) {
         super(context);
@@ -50,9 +50,10 @@ public class CustomTextWithLine extends View {
 
         mText=new Paint();
         mText.setColor(Color.BLACK);
-        mText.setTextSize(100.0f);
+        mText.setTextSize(80.0f);
 
-    /*    path=new Path();*/
+        /*path=new Path();
+        path.addRect(220.0f,260.0f,550.0f,750.0f, Path.Direction.CW);*/
 
 
     }
@@ -66,7 +67,11 @@ public class CustomTextWithLine extends View {
         canvas.drawLine(10.f,960.0f,210.0f,760.0f,mLine);
         canvas.drawLine(760.f,50.0f,560.0f,250.0f,mLine);
         canvas.drawLine(760.f,960.0f,560.0f,760.0f,mLine);
-        canvas.drawText("This is a Custom View",0,20,230.0f,370.0f,mText);
+
+       /* canvas.drawTextOnPath("This is a custom view",path,10.0f,10.0f,mText);*/
+        canvas.drawText("This is a",230.0f,370.0f,mText);
+        canvas.drawText(" Custom ",230.0f,470.0f,mText);
+        canvas.drawText("   View  ",230.0f,570.0f,mText);
 
     }
 }
