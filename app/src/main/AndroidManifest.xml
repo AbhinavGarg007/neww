@@ -87,12 +87,16 @@
             android:name=".NavigationDrawer.NavigationDrawerSelf.NavigationDrawerSelf"
             android:theme="@style/ToolBarTheme" />
         <activity android:name=".Dialog.DialogAlertClass" />
-        <activity android:name=".CustomView.CustomViewAssignment_1" />
+        <activity android:name=".CustomView.CustomViewAssignment_1" >
+
+        </activity>
         <activity android:name=".CustomView.CustomViewAssignment_2">
+
 
         </activity>
         <activity android:name=".CustomView.CountDownTimer"></activity>
         <activity android:name=".CustomView.CandleView">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

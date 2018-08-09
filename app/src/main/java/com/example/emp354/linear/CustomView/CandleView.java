@@ -23,7 +23,7 @@ public class CandleView extends AppCompatActivity {
     EditText et_even_no;
     Button submit_btn;
     TextView mTextField;
-    Rect myRect;
+   /* Rect myRect;*/
     FrameLayout frameLayout;
 
     @Override
@@ -31,88 +31,68 @@ public class CandleView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.candle_view);
 
-        et_even_no=findViewById(R.id.et_even_no);
-        submit_btn=findViewById(R.id.submit_btn);
-        mTextField=findViewById(R.id.textview);
-        frameLayout=findViewById(R.id.candle_layout);
-       /* View myView=findViewById(R.id.myview);*/
-
-        final MyView myView=new MyView(getApplicationContext());
-        myView.setTopHeight(100);
-
-        Canvas canvas=new Canvas();
+        et_even_no = findViewById(R.id.et_even_no);
+        submit_btn = findViewById(R.id.submit_btn);
+        mTextField = findViewById(R.id.textview);
+        frameLayout = findViewById(R.id.candle_layout);
+        /* View myView=findViewById(R.id.myview);*/
         /* myRect=new Rect();
          myRect.left=300;
         myRect.right=500;
         myRect.bottom=500;
         myRect.top=400;*/
-        myView.draw(canvas);
+        /*myView.draw(canvas);*/
 
 
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final int totalTime=Integer.valueOf(et_even_no.getText().toString());
+                final int totalTime = Integer.valueOf(et_even_no.getText().toString());
 
-
-                new CountDownTimer(totalTime*1000, 1000) {
+                new CountDownTimer(totalTime * 1000, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
                         int remainprogress = (int) (millisUntilFinished / 1000);
-                        mTextField.setText(String.valueOf(totalTime - remainprogress));
 
-                        /*for(int i=0;i<10;i++){
-                            myView.setTopHeight(i*100);
+                        MyView myView = findViewById(R.id.myview);
+                        int height=frameLayout.getHeight();
+                        int totalTime2=totalTime/2;
+
+                        if((millisUntilFinished/1000)>=(totalTime/2)) {
+
+                            /* int top = (int) (height-(50*(millisUntilFinished/1000)));*/
+                            int top = (int) ((height / totalTime) * (millisUntilFinished / 1000));
+                            myView.setTopHeight(top);
+                            myView.setVisibility(View.VISIBLE);
+                            myView.invalidate();
+
+                            mTextField.setText(String.valueOf(millisUntilFinished/1000));
+
+
+
                         }
-*/
+                        else {
+                            int top = (int) ((height / totalTime) *(totalTime- (millisUntilFinished / 1000)));
+                            myView.setTopHeight(top);
+                            myView.setVisibility(View.VISIBLE);
+                            myView.invalidate();
+
+                            mTextField.setText(String.valueOf(millisUntilFinished/1000));
+
+                        }
                         }
                     @Override
                     public void onFinish() {
                         finish();
-                        }
+                    }
                 }.start();
-                }
+            }
         });
 
-        }
-
-/*
-    public class MyView extends View {
-
-        Paint mPaint;
-
-        public MyView(Context context) {
-            super(context);
-            init();
-        }
-
-        public MyView(Context context, @Nullable AttributeSet attrs) {
-            super(context, attrs);
-            init();
-
-        }
-
-        public MyView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-            super(context, attrs, defStyleAttr);
-            init();
-        }
-        private void init()
-        {
-            mPaint=new Paint();
-            mPaint.setColor(Color.BLUE);
-            mPaint.setStyle(Paint.Style.FILL);
-
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            canvas.drawRect(myRect,mPaint);
-           *//* canvas.drawRect(300.0f,getHeight()-(getHeight()/10),500.0f,getHeight(),mPaint);*//*
-        }
-
-
-    }*/
-
-
+    }
 }
+
+
+
+

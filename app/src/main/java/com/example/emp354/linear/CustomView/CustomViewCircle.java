@@ -39,6 +39,8 @@ public class CustomViewCircle extends View{
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawCircle(getWidth()/2.0f,getHeight()/2.0f,150.0f,mPaint);
+        int width=getWidth();
+        int height=getHeight();
+        canvas.drawCircle(width/2.0f,height/2.0f,100.0f,mPaint);
     }
 }

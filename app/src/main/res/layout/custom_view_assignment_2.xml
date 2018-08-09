@@ -7,6 +7,7 @@
     tools:context=".CustomView.CustomViewAssignment_2">
 
     <com.example.emp354.linear.CustomView.CustomTextWithLine
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

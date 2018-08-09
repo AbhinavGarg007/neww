@@ -57,12 +57,17 @@ public class CustomViewCircleArc extends View{
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawArc(50.0f,100.0f,350.0f,400.0f,0,60,true,mArc1);
-        canvas.drawArc(50.0f,100.0f,350.0f,400.0f,60,60,true,mArc2);
-        canvas.drawArc(50.0f,100.0f,350.0f,400.0f,120,60,true,mArc3);
-        canvas.drawArc(50.0f,100.0f,350.0f,400.0f,180,60,true,mArc4);
-        canvas.drawArc(50.0f,100.0f,350.0f,400.0f,240,60,true,mArc5);
-        canvas.drawArc(50.0f,100.0f,350.0f,400.0f,300,60,true,mArc6);
+
+        int width=getWidth();
+        int height=getHeight();
+
+        int margin=50;
+        canvas.drawArc(margin,margin,width-margin,height-margin,0,60,true,mArc1);
+        canvas.drawArc(margin,margin,width-margin,height-margin,60,60,true,mArc2);
+        canvas.drawArc(margin,margin,width-margin,height-margin,120,60,true,mArc3);
+        canvas.drawArc(margin,margin,width-margin,height-margin,180,60,true,mArc4);
+        canvas.drawArc(margin,margin,width-margin,height-margin,240,60,true,mArc5);
+        canvas.drawArc(margin,margin,width-margin,height-margin,300,60,true,mArc6);
 
 
 

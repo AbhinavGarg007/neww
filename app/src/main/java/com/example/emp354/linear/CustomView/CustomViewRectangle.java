@@ -38,7 +38,11 @@ public class CustomViewRectangle extends View{
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawRect(50.0f,50.0f,350.0f,450.0f,mpaint);
+        int width=getWidth();
+        int height=getHeight();
+
+        int margin=50;
+        canvas.drawRect(margin,margin,width-margin,height-margin,mpaint);
 
     }
 }

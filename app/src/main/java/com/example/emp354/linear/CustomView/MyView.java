@@ -6,13 +6,15 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 public class MyView extends View {
 
     Paint mPaint;
-    private int topHeight=50;
+    private int topHeight;
     /*CandleView candleView=new CandleView();*/
+
 
     public MyView(Context context) {
         super(context);
@@ -27,6 +29,7 @@ public class MyView extends View {
 
     public MyView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
         init();
     }
     private void init()
@@ -34,15 +37,25 @@ public class MyView extends View {
         mPaint=new Paint();
         mPaint.setColor(Color.BLUE);
         mPaint.setStyle(Paint.Style.FILL);
+
     }
+
+
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawRect(300.0f,getTopHeight(),500.0f,getHeight(),mPaint);
+
+        int top=getTopHeight();
+        int height=getHeight();
+        int width=getWidth();
+        int left=(int)(0.3*width);
+        int right=(width-left);
+
+
+
+        canvas.drawRect(left,top,right,height,mPaint);
        /*canvas.drawRect(candleView.myRect,mPaint);*/
     }
-
-
     public int getTopHeight() {
         return topHeight;
     }
@@ -50,4 +63,6 @@ public class MyView extends View {
     public void setTopHeight(int topHeight) {
         this.topHeight = topHeight;
     }
+
+
 }
