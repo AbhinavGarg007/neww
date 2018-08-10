@@ -1,15 +1,8 @@
 package com.example.emp354.linear.CustomView;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.os.CountDownTimer;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.emp354.linear.R;
 
-public class CandleView extends AppCompatActivity {
+public class CandleViewActivity extends AppCompatActivity {
 
     EditText et_even_no;
     Button submit_btn;
@@ -55,9 +48,9 @@ public class CandleView extends AppCompatActivity {
                     public void onTick(long millisUntilFinished) {
                         int remainprogress = (int) (millisUntilFinished / 1000);
 
-                        MyView myView = findViewById(R.id.myview);
+                        Candle myView = findViewById(R.id.myview);
                         int height=frameLayout.getHeight();
-                        int totalTime2=totalTime/2;
+                      /*  int totalTime2=totalTime/2;*/
 
                         if((millisUntilFinished/1000)>=(totalTime/2)) {
 

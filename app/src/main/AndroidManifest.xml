@@ -87,21 +87,23 @@
             android:name=".NavigationDrawer.NavigationDrawerSelf.NavigationDrawerSelf"
             android:theme="@style/ToolBarTheme" />
         <activity android:name=".Dialog.DialogAlertClass" />
-        <activity android:name=".CustomView.CustomViewAssignment_1" >
+        <activity android:name=".CustomView.CustomViewAssignment_1" />
+        <activity android:name=".CustomView.CustomViewAssignment_2" />
+        <activity android:name=".CustomView.CountDownTimer" />
+        <activity android:name=".CustomView.CandleViewActivity"></activity>
+        <activity
+            android:name=".CustomView.CircleWithSeekBar"
+            android:configChanges="screenSize|orientation">
+
 
         </activity>
-        <activity android:name=".CustomView.CustomViewAssignment_2">
-
-
-        </activity>
-        <activity android:name=".CustomView.CountDownTimer"></activity>
-        <activity android:name=".CustomView.CandleView">
-
+        <activity android:name=".CustomView.SpeedometerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 

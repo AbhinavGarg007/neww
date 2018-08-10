@@ -9,25 +9,25 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-public class MyView extends View {
+public class Candle extends View {
 
     Paint mPaint;
     private int topHeight;
-    /*CandleView candleView=new CandleView();*/
+    /*CandleViewActivity candleView=new CandleViewActivity();*/
 
 
-    public MyView(Context context) {
+    public Candle(Context context) {
         super(context);
         init();
     }
 
-    public MyView(Context context, @Nullable AttributeSet attrs) {
+    public Candle(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
 
     }
 
-    public MyView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public Candle(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         init();
