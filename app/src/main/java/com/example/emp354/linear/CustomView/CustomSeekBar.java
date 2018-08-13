@@ -11,16 +11,28 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import static java.lang.StrictMath.abs;
+
 public class CustomSeekBar extends View{
 
 
-    private Paint mLine,mCircle;
+    private Paint mLine,mCircle1,mCircle2,mProgress,mText1,mText2;
     private float start1X=50.0f;
-    private float start2X;
+    private float start2X=670.0f;
+
+    float startMoveX;
+    float startMoveY;
+    float textsize=50.0f;
+    float margin=50.0f;
+    private int mActivePointerId;
+    int progress1=0;
+    int progress2=100;
+
+
+
     float height;
     float width;
-
-
+    float line_width;
 
     public CustomSeekBar(Context context) {
         super(context);
@@ -44,25 +56,45 @@ public class CustomSeekBar extends View{
         mLine.setStyle(Paint.Style.STROKE);
         mLine.setStrokeWidth(10.0f);
 
-        mCircle=new Paint();
-        mCircle.setColor(Color.BLUE);
-        mCircle.setStyle(Paint.Style.FILL);
-        mCircle.setAlpha(150);
+        mCircle1=new Paint();
+        mCircle1.setColor(Color.RED);
+        mCircle1.setStyle(Paint.Style.FILL);
+        mCircle1.setAlpha(150);
 
+        mCircle2=new Paint();
+        mCircle2.setColor(Color.BLUE);
+        mCircle2.setStyle(Paint.Style.FILL);
+        mCircle2.setAlpha(150);
+
+        mProgress=new Paint();
+        mProgress.setColor(Color.GREEN);
+        mProgress.setStyle(Paint.Style.FILL);
+        mProgress.setStrokeWidth(15.0f);
+
+        mText1=new Paint();
+        mText1.setColor(Color.BLACK);
+        mText1.setTextSize(textsize);
+
+       /* mText2=new Paint();
+        mText2.setColor(Color.BLACK);
+        mText2.setTextSize(textsize);
+*/
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         height=getHeight();
-        float margin=50.0f;
+        margin=50.0f;
         width=getWidth();
+        line_width=width-(margin+margin);
         float radius=30.0f;
 
-
         canvas.drawLine(margin,height/2,width-margin,height/2,mLine);
-        canvas.drawCircle(start1X,height/2,radius,mCircle);
-        canvas.drawCircle(start2X,height/2,radius,mCircle);
-        /*canvas.drawT*/
+        canvas.drawLine(start1X,height/2,start2X,height/2,mProgress);
+        canvas.drawCircle(start1X,height/2,radius,mCircle1);
+        canvas.drawCircle(start2X,height/2,radius,mCircle2);
+        canvas.drawText(String.valueOf(progress1),120.0f,400.0f,mText1);
+        canvas.drawText(String.valueOf(progress2),550.0f,400.0f,mText1);
     }
 
     @Override
@@ -73,57 +105,214 @@ public class CustomSeekBar extends View{
         float x=event.getX();
         float y=event.getY();
 
-        float part=(width-100.0f)/100.0f;
-        int progress=(int)(x/part);
 
 
 
         switch (action)
         {
             case(MotionEvent.ACTION_DOWN):
+                /*if (x > 20.0f && x < 80.0f) {
+                        start1X = 50.0f;
+                    } else if (x > 640.0f && x < 700.0f) {
+                        start2X = 670.0f;
+                    }*/
 
-              /*  if(action==0.0f)
+                    if (progress1 <0) {
+                        start1X = margin;
+                        progress1 = 0;
+                    } else if (progress2 >100) {
+                        start2X = width - margin;
+                        progress2 = 100;}
+                     else if (progress2 - progress1 >= 20) {
+                        if (abs(x - start1X) < abs(start2X - x)) {
+                            start1X = x;
+                            progress1 = (int) (((x - margin) / line_width) * 100);
+
+                        } else {
+                            start2X = x;
+                            progress2 = (int) (((x - margin) / line_width) * 100);
+                        }
+                    } else {
+                        start2X = start1X + 20 * (line_width / 100);
+                        progress1 = (int) (((start1X - margin) / line_width) * 100);
+                        progress2 = (int) (((start2X - margin) / line_width) * 100);
+                    }
+
+
+                    invalidate();
+                break;
+
+
+                case(MotionEvent.ACTION_MOVE):
+
+                    if(progress1<0)
+                    {
+                        start1X=margin;
+                        progress1=0;
+                    }
+                   else if (progress2>100)
+                    {
+                        start2X=width-margin;
+                        progress2=100;
+                    }
+                     else if(progress2-progress1>=20) {
+                        if (abs(x - start1X) < abs(start2X - x)) {
+                            start1X = x;
+                            progress1=(int)(((x-margin)/line_width)*100);
+                        } else {
+                            start2X = x;
+                            progress2=(int)(((x-margin)/line_width)*100);
+                        }
+                    }
+                    else
+                    {
+                        start2X=start1X+20*(line_width/100);
+                        progress1=(int)(((start1X-margin)/line_width)*100);
+                        progress2=(int)(((start2X-margin)/line_width)*100);
+                    }
+
+                invalidate();
+                break;
+
+
+            case(MotionEvent.ACTION_UP):
+                float x2=getX();
+
+
+                break;
+            case(MotionEvent.ACTION_CANCEL):
+        }
+
+
+
+
+        return true;
+    }
+}
+
+
+/*
+ switch (action)
+         {
+         case(MotionEvent.ACTION_DOWN):
+
+
+
+              */
+/*  if(action==0.0f)
                 {
                     start1X=50.0f;
                 }
                 else
                 {
                     start1X=x;
-                }*/
+                }*//*
 
-              start1X=x;
-                Toast.makeText(CustomSeekBar.super.getContext(),String.valueOf( progress),Toast.LENGTH_SHORT).show();
-               start2X=start1X+200;
-               invalidate();
-                break;
+             */
+/* if(x<50.0f && x>670.0f)
 
-            case(MotionEvent.ACTION_MOVE):
-                if(action==0.0f)
+              start1X=x;*//*
+
+
+
+         if(x<50.0f)
+        {
+        start1X=50.0f;
+        start2X=250.0f;
+        }
+        else if(x>670.0f)
+        {
+        start2X=670.0f;
+        start1X=start2X-200.0f;
+        }
+        else
+        {
+        start1X=x;
+        start2X=x+200.0f;
+        }
+        Toast.makeText(CustomSeekBar.super.getContext(),String.valueOf( x),Toast.LENGTH_SHORT).show();
+
+        */
+/* start2X=start1X+200;*//*
+
+
+        invalidate();
+        break;
+
+        case(MotionEvent.ACTION_MOVE):
+                */
+/*if(action==0.0f)
                 {
                     start1X=50.0f;
                 }
                 else
                 {
                     start1X=x ;
-                }
-
-                Toast.makeText(CustomSeekBar.super.getContext(), String.valueOf(progress),Toast.LENGTH_SHORT).show();
-                start2X=start1X+200;
-                invalidate();
-                break;
-
-            case(MotionEvent.ACTION_UP):
-                invalidate();
-                break;
-            case(MotionEvent.ACTION_CANCEL):
-                invalidate();
-                break;
+                }*//*
 
 
+        if (x <= 50.0f) {
+        start1X = 50.0f;
+        */
+/* start2X = 250.0f;*//*
 
+        } else if (x >= 470.0f) {
+        start2X = 670.0f;
+        start1X=470.0f;
+        */
+/* start1X = start2X - 200.0f;*//*
 
+        } else {
+        start1X = x;
+        */
+/*start2X = x + 200.0f;*//*
 
         }
-        return true;
-    }
-}
+        */
+/*   start1X=x;*//*
+
+        Toast.makeText(CustomSeekBar.super.getContext(), String.valueOf(x),Toast.LENGTH_SHORT).show();
+        */
+/* start2X=start1X+200;*//*
+
+        invalidate();
+        break;
+
+        case(MotionEvent.ACTION_UP):
+
+        if (start1X == 50.0f) {
+        start2X = 250.0f;
+        }  else {
+        start2X = start1X + 200.0f;
+        }
+
+        invalidate();
+        break;
+        case(MotionEvent.ACTION_CANCEL):
+        invalidate();
+        break;
+        }*/
+
+
+
+
+
+
+
+
+
+
+   /* float part=(width-100.0f)/100.0f;
+    int progress=(int)(x/part);
+// Get the pointer ID
+        mActivePointerId = event.getPointerId(0);
+
+                // ... Many touch events later...
+
+                // Use the pointer ID to find the index of the active pointer
+                // and fetch its position
+                int pointerIndex = event.findPointerIndex(mActivePointerId);
+                // Get the pointer's current position
+                float x2 = event.getX(pointerIndex);
+                float y2 = event.getY(pointerIndex);
+*/
