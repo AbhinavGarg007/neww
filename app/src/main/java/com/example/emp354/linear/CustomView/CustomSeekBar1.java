@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import static java.lang.StrictMath.abs;
 
-public class CustomSeekBar extends View{
+public class CustomSeekBar1 extends View{
 
 
     private Paint mLine,mCircle1,mCircle2,mProgress,mText1,mText2;
@@ -33,18 +33,19 @@ public class CustomSeekBar extends View{
     float height;
     float width;
     float line_width;
+    float diff;
 
-    public CustomSeekBar(Context context) {
+    public CustomSeekBar1(Context context) {
         super(context);
         init();
     }
 
-    public CustomSeekBar(Context context, @Nullable AttributeSet attrs) {
+    public CustomSeekBar1(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public CustomSeekBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CustomSeekBar1(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -87,6 +88,7 @@ public class CustomSeekBar extends View{
         margin=50.0f;
         width=getWidth();
         line_width=width-(margin+margin);
+        diff=20*(line_width/100);
         float radius=30.0f;
 
         canvas.drawLine(margin,height/2,width-margin,height/2,mLine);
@@ -111,19 +113,79 @@ public class CustomSeekBar extends View{
         switch (action)
         {
             case(MotionEvent.ACTION_DOWN):
+
+               /* && start2X-x>=(20*(line_width/100))*/
+
+                if(x>margin && x<(width-margin)) {
+                    if (abs(x - start1X) < abs(start2X - x) ) {
+
+                        int r_progress1 = (int) (((x - margin) / line_width) * 100);
+                        if(progress2-r_progress1>=20)
+                        {start1X = x;
+                       /* start2X=start1X+diff;*/
+                            progress1=r_progress1;
+                            /*progress2=progress1+20;*/
+                        }else  if(r_progress1<=80){
+                            start1X=x;
+                            progress1=r_progress1;
+                            start2X=start1X+(diff);
+                            progress2=progress1+20;
+                        }
+
+                            /*progress1=r_progress1;*/
+                            /*if(progress2-r_progress1>=20)
+                                progress1=r_progress1;
+                            else
+                                progress1=progress2-20;*/
+
+
+                    } else {
+
+                        int r_progress2 = (int) (((x - margin) / line_width) * 100);
+                        if(r_progress2-progress1>=20)
+                        {start2X = x;
+                            progress2=r_progress2;
+                        }
+                        else if(r_progress2>=20)
+                        {start2X=x;
+                            progress2=r_progress2;
+                            start1X=start2X-diff;
+                            progress1=progress2-20;
+                        }
+                        /*if(r_progress2>100)
+                        {
+                            progress2=100;
+                        }
+                        else
+                        {
+                            progress2=r_progress2;
+                        }*/
+                    }
+                }else {
+
+                    if (abs(x - start1X) < abs(start2X - x)) {
+                        start1X = margin;
+                        progress1 = 0;
+                    }
+                    else {
+                        start2X = width - margin;
+                        progress2 = 100;
+                    }
+                }
+
                 /*if (x > 20.0f && x < 80.0f) {
                         start1X = 50.0f;
                     } else if (x > 640.0f && x < 700.0f) {
                         start2X = 670.0f;
                     }*/
 
-                    if (progress1 <0) {
+                    /*if (progress1 <0) {
                         start1X = margin;
                         progress1 = 0;
                     } else if (progress2 >100) {
                         start2X = width - margin;
-                        progress2 = 100;}
-                     else if (progress2 - progress1 >= 20) {
+                        progress2 = 100;}*/
+                    /* if (progress2 - progress1 >= 20) {
                         if (abs(x - start1X) < abs(start2X - x)) {
                             start1X = x;
                             progress1 = (int) (((x - margin) / line_width) * 100);
@@ -136,7 +198,10 @@ public class CustomSeekBar extends View{
                         start2X = start1X + 20 * (line_width / 100);
                         progress1 = (int) (((start1X - margin) / line_width) * 100);
                         progress2 = (int) (((start2X - margin) / line_width) * 100);
-                    }
+                    }*/
+
+
+
 
 
                     invalidate();
@@ -145,7 +210,67 @@ public class CustomSeekBar extends View{
 
                 case(MotionEvent.ACTION_MOVE):
 
-                    if(progress1<0)
+                    if(x>margin && x<(width-margin)) {
+                        if (abs(x - start1X) < abs(start2X - x)) {
+
+                            int r_progress1 = (int) (((x - margin) / line_width) * 100);
+                            /*if(r_progress1<0)
+                            {
+                                progress1=0;
+                            }else
+                            {
+                                if(progress2-r_progress1>=20)
+                                progress1=r_progress1;
+                                else
+                                    progress1=progress2-20;
+                            }*/
+
+                            if(progress2-r_progress1>=20)
+                            {start1X = x;
+                                progress1=r_progress1;
+                            }else if(r_progress1<=80) {
+                                start1X = x;
+                                progress1 = r_progress1;
+                                start2X = start1X + diff;
+                                progress2 = progress1 + 20;
+                            }
+
+                                /*progress1=r_progress1;*/
+                            /*if(progress2-r_progress1>=20)
+                                progress1=r_progress1;
+                            else
+                                progress1=progress2-20;*/
+
+
+
+                        } else {
+
+                            int r_progress2 = (int) (((x - margin) / line_width) * 100);
+                            if(r_progress2-progress1>=20)
+                            {start2X = x;
+                                progress2=r_progress2;
+                            }
+                            else if(r_progress2>=20) {
+                                start2X = x;
+                                progress2 = r_progress2;
+                                start1X = start2X - diff;
+                                progress1 = progress2 - 20;
+
+                            }
+                        }
+                    }else {
+                        if (abs(x - start1X) < abs(start2X - x)) {
+                            start1X = margin;
+                            progress1 = 0;
+                        }
+                        else {
+                            start2X = width - margin;
+                            progress2 = 100;
+                        }
+                    }
+
+
+                   /* if(progress1<0)
                     {
                         start1X=margin;
                         progress1=0;
@@ -169,9 +294,13 @@ public class CustomSeekBar extends View{
                         start2X=start1X+20*(line_width/100);
                         progress1=(int)(((start1X-margin)/line_width)*100);
                         progress2=(int)(((start2X-margin)/line_width)*100);
-                    }
+                    }*/
 
-                invalidate();
+
+
+
+
+                    invalidate();
                 break;
 
 
