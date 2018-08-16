@@ -93,11 +93,14 @@
         <activity android:name=".CustomView.CandleViewActivity" />
         <activity
             android:name=".CustomView.CircleWithSeekBar"
-            android:configChanges="screenSize|orientation"></activity>
-        <activity android:name=".CustomView.SpeedometerActivity">
+            android:configChanges="screenSize|orientation" />
+        <activity android:name=".CustomView.SpeedometerActivity" />
+        <activity android:name=".CustomView.SeekBarRangeActivity"></activity>
+        <activity android:name=".AsyncTaskPractice.AsyncTaskActivity">
 
         </activity>
-        <activity android:name=".CustomView.SeekBarRangeActivity">
+        <activity android:name=".SharedPreferenceAssignment.SharedPreferencesActivity"
+            android:theme="@style/ToolBarTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
