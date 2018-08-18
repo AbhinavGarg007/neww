@@ -95,18 +95,22 @@
             android:name=".CustomView.CircleWithSeekBar"
             android:configChanges="screenSize|orientation" />
         <activity android:name=".CustomView.SpeedometerActivity" />
-        <activity android:name=".CustomView.SeekBarRangeActivity"></activity>
-        <activity android:name=".AsyncTaskPractice.AsyncTaskActivity">
-
-        </activity>
-        <activity android:name=".SharedPreferenceAssignment.SharedPreferencesActivity"
-            android:theme="@style/ToolBarTheme" >
+        <activity android:name=".CustomView.SeekBarRangeActivity" />
+        <activity android:name=".AsyncTaskPractice.AsyncTaskActivity" />
+        <activity
+            android:name=".SharedPreferenceAssignment.SharedPreferencesActivity"
+            android:theme="@style/ToolBarTheme" />
+        <activity android:name=".FileStorage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Task.Task">
+
+        </activity>
+        <activity android:name=".Task.Task2"></activity>
     </application>
 
 </manifest>

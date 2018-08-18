@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FileStorage">
+
+
+    <EditText
+        android:id="@+id/edittext_directory_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_100"
+        android:hint="Directory Name"
+        android:textSize="@dimen/textsize_30"
+        android:textColor="@color/color_black"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/edittext_file_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_100"
+        android:hint="File Name"
+        android:textSize="@dimen/textsize_30"
+        android:textColor="@color/color_black"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/edittext_text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_100"
+        android:hint="Text"
+        android:textSize="@dimen/textsize_30"
+        android:textColor="@color/color_black"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/button_create_directory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/textsize_20"
+        android:text="CREATE DIRECTORY"/>
+
+    <Button
+        android:id="@+id/button_delete_directory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/textsize_20"
+        android:text="DELETE DIRECTORY"/>
+
+    <Button
+        android:id="@+id/button_create_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/textsize_20"
+        android:text="CREATE FILE"/>
+
+    <Button
+        android:id="@+id/button_delete_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/textsize_20"
+        android:text="DELETE FILE"/>
+
+</LinearLayout>
