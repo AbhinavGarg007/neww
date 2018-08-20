@@ -10,12 +10,13 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileStorage extends AppCompatActivity implements View.OnClickListener {
 
-    EditText edittext_file_name,edittext_directory_name,edittext_text;
-    Button button_create_file,button_delete_file,button_create_directory,button_delete_directory;
+    EditText edittext_file_name,edittext_directory_name,edittext_text,edittext_file_name_2,edittext_text_2;
+    Button button_create_file,button_delete_file,button_create_directory,button_delete_directory,button_save_data;
     File file;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,17 +25,22 @@ public class FileStorage extends AppCompatActivity implements View.OnClickListen
 
         edittext_directory_name=findViewById(R.id.edittext_directory_name);
         edittext_file_name=findViewById(R.id.edittext_file_name);
-        edittext_text=findViewById(R.id.edittext_name);
+        edittext_text=findViewById(R.id.edittext_text);
+        edittext_file_name_2=findViewById(R.id.edittext_file_name_2);
+        edittext_text_2=findViewById(R.id.edittext_text_2);
+
 
         button_create_file=findViewById(R.id.button_create_file);
         button_create_directory=findViewById(R.id.button_create_directory);
         button_delete_file=findViewById(R.id.button_delete_file);
         button_delete_directory=findViewById(R.id.button_delete_directory);
+        button_save_data=findViewById(R.id.button_save_data);
 
         button_create_directory.setOnClickListener(this);
         button_delete_directory.setOnClickListener(this);
         button_create_file.setOnClickListener(this);
         button_delete_file.setOnClickListener(this);
+        button_save_data.setOnClickListener(this);
         }
 
     @Override
@@ -105,13 +111,18 @@ public class FileStorage extends AppCompatActivity implements View.OnClickListen
                             file.createNewFile();
 
                             String data = edittext_text.getText().toString();
-                            if (data.length() != 0) {
+                            if (!(data.length()==0)) {
 
-                                FileOutputStream file_data;
-                                file_data = openFileOutput(filename, MODE_PRIVATE);
+                                FileWriter writer= new FileWriter(file);
+                                writer.append(data);
+                                writer.flush();
+                                writer.close();
+                                Toast.makeText(FileStorage.this, "Data is saved.", Toast.LENGTH_SHORT).show();
+
+                               /* FileOutputStream file_data = openFileOutput(filename, MODE_PRIVATE);
                                 file_data.write(data.getBytes());
                                 file_data.close();
-                                Toast.makeText(FileStorage.this, "Data is written in file.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(FileStorage.this, "Data is written in file.", Toast.LENGTH_SHORT).show();*/
                             }
 
 
@@ -143,6 +154,42 @@ public class FileStorage extends AppCompatActivity implements View.OnClickListen
                         Toast.makeText(FileStorage.this, "Either file not exist or not empty.", Toast.LENGTH_SHORT).show();
                     }
                 break;
+
+            case R.id.button_save_data:
+                try {
+                    String filename_2 = edittext_file_name_2.getText().toString();
+                    File file_2 = new File(FileStorage.this.getFilesDir(), filename_2);
+
+                    String data_2 = edittext_text_2.getText().toString();
+                    if (file_2.exists()) {
+                        Toast.makeText(FileStorage.this, "File exists.", Toast.LENGTH_SHORT).show();
+
+
+                        if (!(data_2.length() == 0)) {
+
+                            FileWriter writer = new FileWriter(file_2);
+                            writer.append(data_2);
+                            writer.flush();
+                            writer.close();
+                            Toast.makeText(FileStorage.this, "Data is saved.", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                        {
+                            Toast.makeText(FileStorage.this, "Please enter the data", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(FileStorage.this, "Please create file first", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+
+
+
 
 
         }

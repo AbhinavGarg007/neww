@@ -11,27 +11,27 @@
     <EditText
         android:id="@+id/edittext_directory_name"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_100"
+        android:layout_height="wrap_content"
         android:hint="Directory Name"
-        android:textSize="@dimen/textsize_30"
+        android:textSize="@dimen/textsize_20"
         android:textColor="@color/color_black"
         android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/edittext_file_name"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_100"
+        android:layout_height="wrap_content"
         android:hint="File Name"
-        android:textSize="@dimen/textsize_30"
+        android:textSize="@dimen/textsize_20"
         android:textColor="@color/color_black"
         android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/edittext_text"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_100"
+        android:layout_height="wrap_content"
         android:hint="Text"
-        android:textSize="@dimen/textsize_30"
+        android:textSize="@dimen/textsize_20"
         android:textColor="@color/color_black"
         android:textStyle="bold"/>
 
@@ -66,5 +66,31 @@
         android:textStyle="bold"
         android:textSize="@dimen/textsize_20"
         android:text="DELETE FILE"/>
+
+    <EditText
+        android:id="@+id/edittext_file_name_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="File Name"
+        android:textSize="@dimen/textsize_20"
+        android:textColor="@color/color_black"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/edittext_text_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Text"
+        android:textSize="@dimen/textsize_20"
+        android:textColor="@color/color_black"
+        android:textStyle="bold"/>
+    <Button
+        android:id="@+id/button_save_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/textsize_20"
+        android:text="SAVE DATA"/>
+
 
 </LinearLayout>
