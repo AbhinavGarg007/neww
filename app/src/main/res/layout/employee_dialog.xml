@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit details"
+        android:gravity="center"
+        android:background="@color/color_green"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textsize_30"/>
+  <!--  <EditText
+        android:id="@+id/et_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textColor="@color/color_black"
+        android:hint="Enter ID"
+        android:textColorHint="@color/color_black"
+        android:textSize="@dimen/textsize_20"/>-->
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter NAME"
+        android:textColorHint="@color/color_black"
+        android:textColor="@color/color_black"
+        android:singleLine="true"
+        android:textSize="@dimen/textsize_20"/>
+    <EditText
+        android:id="@+id/et_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter AGE"
+        android:textColorHint="@color/color_black"
+        android:textColor="@color/color_black"
+        android:singleLine="true"
+        android:textSize="@dimen/textsize_20"/>
+    <EditText
+        android:id="@+id/et_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter PROFILE"
+        android:textColorHint="@color/color_black"
+        android:textColor="@color/color_black"
+        android:singleLine="true"
+        android:textSize="@dimen/textsize_20"/>
+    <EditText
+        android:id="@+id/et_salary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter SALARY"
+        android:textColorHint="@color/color_black"
+        android:textColor="@color/color_black"
+        android:singleLine="true"
+        android:textSize="@dimen/textsize_20"/>
+    <EditText
+        android:id="@+id/et_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter ADDRESS"
+        android:textColorHint="@color/color_black"
+        android:textColor="@color/color_black"
+        android:singleLine="true"
+        android:textSize="@dimen/textsize_20"/>
+
+</LinearLayout>

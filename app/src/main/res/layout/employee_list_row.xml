@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_10">
+
+    <TextView
+        android:id="@+id/emp_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/textsize_30"
+        android:hint="ID"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/emp_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/textsize_30"
+        android:hint="NAME"
+        android:textColorHint="@android:color/white"
+        android:background="@color/color_black"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/emp_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/textsize_20"
+        android:textColor="@color/color_black"
+        android:hint="AGE"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/emp_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/textsize_20"
+        android:textColor="@color/color_black"
+        android:hint="PROFILE"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/emp_salary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/textsize_20"
+        android:textColor="@color/color_black"
+        android:hint="SALARY"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/emp_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/textsize_20"
+        android:textColor="@color/color_black"
+        android:hint="ADDRESS"
+        android:gravity="center"
+        />
+
+</LinearLayout>

@@ -24,5 +24,7 @@
     <color name="color_brown_dark_viewpager">#BC5324</color>
     <color name="color_blue_viewpager">#3AA9EE</color>
 
+    <color name="color_pink_button">#D93750</color>
+
 
 </resources>

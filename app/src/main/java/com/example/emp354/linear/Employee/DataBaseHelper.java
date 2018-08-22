@@ -44,6 +44,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
     {
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues values=new ContentValues();
+       /* values.put(EmployeeModelClass.COLUMN_ID,emp_id);*/
         values.put(EmployeeModelClass.COLUMN_NAME,name);
         values.put(EmployeeModelClass.COLUMN_AGE,age);
         values.put(EmployeeModelClass.COLUMN_PROFILE,profile);
@@ -92,8 +93,8 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         List<EmployeeModelClass> lemployeeModelClasses=new ArrayList<>();
 
         //Select all query
-        String selectQuery="SELECT * FROM " + EmployeeModelClass.TABLE_NAME +" ORDER BY " +
-                EmployeeModelClass.COLUMN_SALARY+" DESC ";
+        String selectQuery=" SELECT * FROM " + EmployeeModelClass.TABLE_NAME +" ORDER BY " +
+                EmployeeModelClass.COLUMN_SALARY + " DESC ";
 
         SQLiteDatabase db=this.getWritableDatabase();
         Cursor cursor=db.rawQuery(selectQuery,null);
@@ -138,6 +139,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
     {
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues values=new ContentValues();
+        /*values.put(EmployeeModelClass.COLUMN_ID,employeeModelClass.getId());*/
         values.put(EmployeeModelClass.COLUMN_NAME,employeeModelClass.getName());
         values.put(EmployeeModelClass.COLUMN_AGE,employeeModelClass.getAge());
         values.put(EmployeeModelClass.COLUMN_PROFILE,employeeModelClass.getProfile());

@@ -99,20 +99,35 @@
         <activity android:name=".AsyncTaskPractice.AsyncTaskActivity" />
         <activity
             android:name=".SharedPreferenceAssignment.SharedPreferencesActivity"
-            android:theme="@style/ToolBarTheme" >
-       </activity>
-        <activity android:name=".FileStorage">
+            android:theme="@style/ToolBarTheme" />
+        <activity android:name=".FileStorage" />
+        <activity android:name=".Task.Task" />
+        <activity android:name=".Task.Task2" />
+        <activity
+            android:name=".Employee.Employee"
+            android:theme="@style/ToolBarTheme">
+
+        </activity>
+        <activity
+            android:name=".DatabaseAssignmentMaccabi.SplashMaccabi"
+            android:theme="@style/ToolBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-        </activity>
-        <activity android:name=".Task.Task">
+
 
         </activity>
-        <activity android:name=".Task.Task2"></activity>
+        <activity
+            android:name=".DatabaseAssignmentMaccabi.MailIdScreenMaccabi"
+            android:theme="@style/ToolBarTheme"></activity>
+        <activity android:name=".DatabaseAssignmentMaccabi.MaccabiRegisterLogin"
+            android:theme="@style/ToolBarTheme">
+
+
+        </activity>
     </application>
 
 </manifest>

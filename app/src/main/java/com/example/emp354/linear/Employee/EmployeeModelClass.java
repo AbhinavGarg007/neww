@@ -20,7 +20,7 @@ public class EmployeeModelClass {
 
     //Create table
 
-    public static final String CREATE_TABLE="CREATE TABLE"+TABLE_NAME+"("+COLUMN_ID+"INTEGER PRIMARY KEY AUTOINCREMENT," +COLUMN_NAME+"TEXT," +COLUMN_AGE + "INTEGER," +COLUMN_PROFILE+"TEXT,"+COLUMN_SALARY+"INTEGER,"+COLUMN_ADDRESS+"TEXT" +")";
+    public static final String CREATE_TABLE="CREATE TABLE "+TABLE_NAME+" ( "+ COLUMN_ID +" INTEGER PRIMARY KEY AUTOINCREMENT , " + COLUMN_NAME +" TEXT , " + COLUMN_AGE + " INTEGER , " +COLUMN_PROFILE+" TEXT , "+ COLUMN_SALARY +" INTEGER , "+ COLUMN_ADDRESS +" TEXT " +")";
 
     public EmployeeModelClass()
     {}
