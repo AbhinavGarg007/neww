@@ -43,6 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email Id"
+                android:editable="false"
                 android:drawableRight="@drawable/ic_tick"
                 android:textSize="@dimen/textsize_15"/>
             <EditText

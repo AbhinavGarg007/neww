@@ -21,6 +21,8 @@ public class MaccabiRegisterLogin extends AppCompatActivity {
     LinearLayout layoutLogin,layoutSignup;
     EditText etMailId,etFirstName,etLastName,etPhoneNo,etSignupPassword,etLoginPassword;
     MaccabiDataBaseHelper db;
+    String mailId;
+    boolean isValidMailId;
     private List<MaccabiUserModel> maccabiUserModelList=new ArrayList<>();
 
     @Override
@@ -42,6 +44,7 @@ public class MaccabiRegisterLogin extends AppCompatActivity {
 
         Intent j=getIntent();
         boolean isValidMailId=j.getExtras().getBoolean("isValidMailId");
+        mailId=j.getStringExtra("mailId");
 
         if(isValidMailId)
         {
@@ -55,6 +58,8 @@ public class MaccabiRegisterLogin extends AppCompatActivity {
         db=new MaccabiDataBaseHelper(this);
         maccabiUserModelList.addAll(db.getAllUser());
 
+        etMailId.setText(mailId);
+
 
 
 
@@ -64,7 +69,7 @@ public class MaccabiRegisterLogin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String mailId=etMailId.getText().toString();
+
                 String firstName=etFirstName.getText().toString();
                 String lastName=etLastName.getText().toString();
                 int phoneNo=Integer.valueOf(etPhoneNo.getText().toString());
@@ -72,13 +77,25 @@ public class MaccabiRegisterLogin extends AppCompatActivity {
                 createUser(mailId,firstName,lastName,phoneNo,signUpPassword);
 
                 Toast.makeText(MaccabiRegisterLogin.this, "Now you are a registered user.", Toast.LENGTH_SHORT).show();
+
+                nextActivity();
+
+
             }
         });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String loginPassword=etSignupPassword.getText().toString();
+                String loginPassword=etLoginPassword.getText().toString();
+                boolean result= db.isPasswordCorrect(mailId,loginPassword);
+                if(result)
+                {
+                    nextActivity();
+                }
+                else
+                    Toast.makeText(MaccabiRegisterLogin.this, "Please enter correct password.", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -95,5 +112,13 @@ public class MaccabiRegisterLogin extends AppCompatActivity {
             maccabiUserModelList.add(0,m);
 
         }*/
+    }
+
+    private void nextActivity()
+    {
+        Intent i=new Intent(MaccabiRegisterLogin.this,MaccabiHomeActivity.class);
+        i.putExtra("mailId",mailId);
+        startActivity(i);
+        finish();
     }
 }

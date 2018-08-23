@@ -14,6 +14,8 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
     private SQLiteDatabase db;
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "MaccabiRecord";
+    String existLoginPassword;
+    String[] data;
 
     public MaccabiDataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -52,7 +54,7 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
 
 
     //to get user
-   /* public MaccabiUserModel getUser(long id)
+    /*public MaccabiUserModel getUser(long id)
     {
         SQLiteDatabase db=this.getReadableDatabase();
         Cursor cursor=db.query(MaccabiUserModel.TABLE_NAME,
@@ -121,7 +123,7 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public int updateUser(MaccabiUserModel maccabiUserModel) {
+    /*public int updateUser(MaccabiUserModel maccabiUserModel) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(MaccabiUserModel.COLUMN_MAIL_ID, maccabiUserModel.getEmailId());
@@ -133,14 +135,28 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
         return db.update(MaccabiUserModel.TABLE_NAME, values, MaccabiUserModel.COLUMN_ID + " = ?",
                 new String[]{String.valueOf(maccabiUserModel.getId())});
 
-    }
+    }*/
 
-    public void deleteEmployee(MaccabiUserModel maccabiUserModel) {
+    public void deleteUser(MaccabiUserModel maccabiUserModel) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(MaccabiUserModel.TABLE_NAME, MaccabiUserModel.COLUMN_ID + " = ? ",
                 new String[]{String.valueOf(maccabiUserModel.getId())}
         );
         db.close();
+
+    }
+
+    public int updateUser(String emailId,String firstName,String lastName,int phoneNo)
+    {
+        String updateUserQuery=" UPDATE " + MaccabiUserModel.TABLE_NAME+ " SET " + MaccabiUserModel.COLUMN_FIRST_NAME+ " ='"+firstName+"' , "+
+                MaccabiUserModel.COLUMN_LAST_NAME+ " = '"+lastName+"' , "+ MaccabiUserModel.COLUMN_PHONE_NO + "= "+phoneNo+
+                " WHERE "+MaccabiUserModel.COLUMN_MAIL_ID + " = '"+emailId+"'";
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.rawQuery(updateUserQuery,null);
+        int count =cursor.getCount();
+        return count;
+
+
 
     }
 
@@ -157,6 +173,44 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
         } else {
             return true;
         }
+
+    }
+
+    public boolean isPasswordCorrect(String emailId,String enteredloginPassword)
+    {
+      String isValidPassword= " SELECT " + MaccabiUserModel.COLUMN_PASSWORD + " FROM " + MaccabiUserModel.TABLE_NAME +
+              " WHERE " + MaccabiUserModel.COLUMN_MAIL_ID + " = '" + emailId + "'";
+      SQLiteDatabase db=this.getReadableDatabase();
+      Cursor cursor=db.rawQuery(isValidPassword,null);
+      if(cursor.moveToFirst()) {
+           existLoginPassword = cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_PASSWORD));
+      }
+      cursor.close();
+
+      if(enteredloginPassword.equals(existLoginPassword))
+      {
+          return true;
+      }
+      else
+          return false;
+    }
+
+
+    public String[] getUserData(String userMailId)
+    {
+        String getDataQuery="SELECT " + MaccabiUserModel.COLUMN_FIRST_NAME+ " , "+MaccabiUserModel.COLUMN_LAST_NAME+" , " +
+                MaccabiUserModel.COLUMN_PHONE_NO+ " FROM " + MaccabiUserModel.TABLE_NAME + " WHERE " +
+                MaccabiUserModel.COLUMN_MAIL_ID+ " ='"+userMailId+"'";
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.rawQuery(getDataQuery,null);
+        if(cursor.moveToFirst())
+        {
+         data= new String[]{cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_FIRST_NAME)),
+                 cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_LAST_NAME)),
+                 cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_PHONE_NO))};
+        }
+        cursor.close();
+        return data;
 
     }
 

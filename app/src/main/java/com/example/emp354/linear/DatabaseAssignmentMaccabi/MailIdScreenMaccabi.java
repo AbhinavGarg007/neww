@@ -14,6 +14,8 @@ public class MailIdScreenMaccabi extends AppCompatActivity {
 
     EditText et_mail;
     Button btn_next;
+    String mail_text;
+    boolean isValidMailId;
     private MaccabiDataBaseHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,28 +34,28 @@ public class MailIdScreenMaccabi extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mail_text=et_mail.getText().toString();
+                mail_text=et_mail.getText().toString();
                 boolean result=db.isMailIdExists(mail_text);
-                boolean isValidMailId;
 
                 if(result)
                 {
                     isValidMailId=result;
-                    Intent i=new Intent(MailIdScreenMaccabi.this,MaccabiRegisterLogin.class);
-                    i.putExtra("isValidMailId",isValidMailId);
-                    startActivity(i);
-                    finish();
                 }  else {
                     isValidMailId = false;
-                    Intent i = new Intent(MailIdScreenMaccabi.this, MaccabiRegisterLogin.class);
-                    i.putExtra("isValidMailId", isValidMailId);
-                    startActivity(i);
-                    finish();
-                }
+                    }
 
+                    nextActivity(isValidMailId);
 
 
             }
         });
+    }
+    private void nextActivity(boolean isValidMailId)
+    {
+        Intent i = new Intent(MailIdScreenMaccabi.this, MaccabiRegisterLogin.class);
+        i.putExtra("mailId",mail_text);
+        i.putExtra("isValidMailId", isValidMailId);
+        startActivity(i);
+        finish();
     }
 }

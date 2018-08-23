@@ -4,23 +4,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <ImageView
-            android:layout_width="@dimen/margin_20"
-            android:layout_height="@dimen/margin_20"
-            />
-
-
-    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center">
+        <TextView
+            android:layout_width="@dimen/margin_50"
+            android:layout_height="@dimen/margin_50"
+            android:background="@drawable/circle_blue"
+            android:text="0"
+            android:layout_marginRight="@dimen/margin_10"
+            android:layout_gravity="right"
+            android:gravity="center"/>
     <ImageView
         android:layout_width="@dimen/margin_150"
         android:layout_height="@dimen/margin_150"
@@ -29,19 +27,33 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome to the Community"
+            android:text="Welcome to the "
             android:textColor="@color/color_dark_blue"
             android:textStyle="bold"
             android:textSize="31sp"
             android:gravity="center"/>
-        <RelativeLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Community"
+            android:textColor="@color/color_dark_blue"
+            android:textStyle="bold"
+            android:textSize="31sp"
+            android:gravity="center"/>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             android:layout_margin="@dimen/margin_20">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
              
             <TextView
                 android:id="@+id/tv_mail"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="Email"
                 android:textSize="@dimen/textsize_20"
@@ -49,15 +61,20 @@
                 android:textColor="@color/color_dark_blue"/>
             <TextView
                 android:id="@+id/tv_mail_data"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="4"
                 android:layout_height="wrap_content"
-                android:text=""
                 android:layout_alignRight="@id/tv_mail"
-                android:textSize="@dimen/textsize_20"
-                android:textColor="@color/color_dark_blue"/>
+                android:textSize="@dimen/textsize_20" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/tv_first_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="First Name"
                 android:layout_marginBottom="@dimen/margin_10"
@@ -66,16 +83,22 @@
                 android:textColor="@color/color_dark_blue"/>
             <TextView
                 android:id="@+id/tv_first_name_data"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="4"
                 android:layout_height="wrap_content"
-                android:text=""
                 android:layout_alignRight="@id/tv_first_name"
                 android:layout_below="@+id/tv_mail"
-                android:textSize="@dimen/textsize_20"
-                android:textColor="@color/color_dark_blue"/>
+                android:textSize="@dimen/textsize_20" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/tv_last_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="Last Name"
                 android:layout_marginBottom="@dimen/margin_10"
@@ -84,16 +107,21 @@
                 android:textColor="@color/color_dark_blue"/>
             <TextView
                 android:id="@+id/tv_last_name_data"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="4"
                 android:layout_height="wrap_content"
-                android:text=""
                 android:layout_alignRight="@id/tv_last_name"
                 android:layout_below="@+id/tv_first_name"
-                android:textSize="@dimen/textsize_20"
-                android:textColor="@color/color_dark_blue"/>
+                android:textSize="@dimen/textsize_20" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/tv_phone_no"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="Phone number"
                 android:layout_below="@+id/tv_last_name"
@@ -101,14 +129,14 @@
                 android:textColor="@color/color_dark_blue"/>
             <TextView
                 android:id="@+id/tv_phone_no_data"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="4"
                 android:layout_height="wrap_content"
-                android:text=""
                 android:layout_alignRight="@id/tv_phone_no"
                 android:layout_below="@+id/tv_last_name"
-                android:textSize="@dimen/textsize_20"
-                android:textColor="@color/color_dark_blue"/>
-        </RelativeLayout>
+                android:textSize="@dimen/textsize_20" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

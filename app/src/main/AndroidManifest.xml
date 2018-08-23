@@ -105,9 +105,7 @@
         <activity android:name=".Task.Task2" />
         <activity
             android:name=".Employee.Employee"
-            android:theme="@style/ToolBarTheme">
-
-        </activity>
+            android:theme="@style/ToolBarTheme"></activity>
         <activity
             android:name=".DatabaseAssignmentMaccabi.SplashMaccabi"
             android:theme="@style/ToolBarTheme">
@@ -116,18 +114,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
-
         </activity>
         <activity
             android:name=".DatabaseAssignmentMaccabi.MailIdScreenMaccabi"
+            android:theme="@style/ToolBarTheme" />
+        <activity
+            android:name=".DatabaseAssignmentMaccabi.MaccabiRegisterLogin"
             android:theme="@style/ToolBarTheme"></activity>
-        <activity android:name=".DatabaseAssignmentMaccabi.MaccabiRegisterLogin"
-            android:theme="@style/ToolBarTheme">
-
-
-        </activity>
+        <activity android:name=".DatabaseAssignmentMaccabi.MaccabiHomeActivity"
+            android:theme="@style/ToolBarTheme"></activity>
     </application>
 
 </manifest>
