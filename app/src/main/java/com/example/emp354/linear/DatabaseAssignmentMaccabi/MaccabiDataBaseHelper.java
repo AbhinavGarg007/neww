@@ -83,10 +83,10 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
     //to get all users
 
 
-    public List<MaccabiUserModel> getAllUser() {
+    public ArrayList<MaccabiUserModel> getAllUser() {
 
 
-        List<MaccabiUserModel> maccabiUserModelList = new ArrayList<>();
+        ArrayList<MaccabiUserModel> maccabiUserModelList = new ArrayList<>();
 
         //to select all user query
         String selectQuery = " SELECT * FROM " + MaccabiUserModel.TABLE_NAME;
@@ -100,7 +100,7 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
                 MaccabiUserModel maccabiUserModel = new MaccabiUserModel();
                 maccabiUserModel.setId(cursor.getInt(cursor.getColumnIndex(MaccabiUserModel.COLUMN_ID)));
                 maccabiUserModel.setEmailId(cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_MAIL_ID)));
-                maccabiUserModel.setEmailId(cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_FIRST_NAME)));
+                maccabiUserModel.setFirstName(cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_FIRST_NAME)));
                 maccabiUserModel.setLastName(cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_LAST_NAME)));
                 maccabiUserModel.setPhoneNo(cursor.getInt(cursor.getColumnIndex(MaccabiUserModel.COLUMN_PHONE_NO)));
                 maccabiUserModel.setPassword(cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_PASSWORD)));

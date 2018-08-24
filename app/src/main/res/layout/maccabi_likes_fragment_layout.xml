@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/maccabi_white_stroke_corner_square"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_10"
+    android:layout_margin="@dimen/margin_10"
+    android:layout_marginBottom="@dimen/margin_10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:textSize="@dimen/textsize_20"
+            android:text="Email"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_mail_data"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:textSize="@dimen/textsize_20"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:text="First Name"
+                    android:textSize="@dimen/textsize_20"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_first_name"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:textSize="@dimen/textsize_20"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:text="Last Name"
+                    android:textSize="@dimen/textsize_20"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_last_name"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:textSize="@dimen/textsize_20"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:text="Phone Number"
+            android:textSize="@dimen/textsize_20"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_phone_no_data"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:textSize="@dimen/textsize_20"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

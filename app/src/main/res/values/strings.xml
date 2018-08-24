@@ -172,5 +172,7 @@
     <string name="click_me">CLICK ME</string>
     <string name="enter_the_digit_multiple_of_2">Enter the digit (multiple of 2)</string>
     <string name="you_are_already_a_member_of_maccabi_usa">You are already a member of Maccabi USA</string>
+    <string name="all_members_details">All Members Details</string>
+    <string name="likes">Likes</string>
 
 </resources>

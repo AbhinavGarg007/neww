@@ -2,11 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/home_icon"
+        android:id="@+id/home_icon_edit"
         android:orderInCategory="100"
         android:title="Home"
         android:icon="@drawable/maccabi_edit"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/home_icon_calendar"
+        android:orderInCategory="100"
+        android:title="Home"
+        android:visible="false"
+        android:icon="@drawable/maccabi_calendar"
+        app:showAsAction="always"/>
+
+
 
 
 </menu>

@@ -3,7 +3,9 @@ package com.example.emp354.linear.DatabaseAssignmentMaccabi;
 
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,9 +16,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.example.emp354.linear.Dialog.DatePickerFragment;
 import com.example.emp354.linear.R;
 
 
@@ -30,6 +34,13 @@ public class MaccabiHomeActivity extends AppCompatActivity {
     ImageView imageView;
     MaccabiMyProfileFragment maccabiMyProfileFragment;
     MaccabiEditProfileFragment maccabiEditProfileFragment;
+    MaccabiAllMembersDetailsFragment maccabiAllMembersDetailsFragment;
+    MaccabiLikeFragment maccabiLikeFragment;
+    /*DatePickerFragment datePickerFragment;*/
+    DialogFragment dialogFragment;
+    FragmentManager fragmentManager;
+    String tag;
+    Menu menu;
 
 
 
@@ -39,7 +50,6 @@ public class MaccabiHomeActivity extends AppCompatActivity {
         setContentView(R.layout.maccabi_home);
         drawerLayout =findViewById(R.id.drawer_layout);
         frameLayout=findViewById(R.id.layout_fragment);
-
         navigationView=findViewById(R.id.nav_view);
 
         //configure toolbar
@@ -59,6 +69,9 @@ public class MaccabiHomeActivity extends AppCompatActivity {
 
         maccabiMyProfileFragment=new MaccabiMyProfileFragment();
         maccabiEditProfileFragment=new MaccabiEditProfileFragment();
+        maccabiAllMembersDetailsFragment=new MaccabiAllMembersDetailsFragment();
+        maccabiLikeFragment=new MaccabiLikeFragment();
+
         // set arguements for fragment
         Bundle c=new Bundle();
         c.putString("mailId",mailId);
@@ -69,31 +82,79 @@ public class MaccabiHomeActivity extends AppCompatActivity {
         loadfragment(maccabiMyProfileFragment);
 
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                menu.findItem(R.id.home_icon_edit).setVisible(false);
+                menu.findItem(R.id.home_icon_calendar).setVisible(false);
+
+                switch (item.getTitle().toString())
+                {
+
+
+                    case "All Members Details":
+                        getSupportActionBar().setTitle(R.string.all_members_details);
+                        loadfragment(maccabiAllMembersDetailsFragment);
+                        break;
+
+                    case "Like" :
+                        getSupportActionBar().setTitle(R.string.likes);
+
+                        loadfragment(maccabiLikeFragment);
+                        break;
+                    case "Log Out" :
+                        break;
+                }
+                return true;
+            }
+        });
+
+
     }
     private void loadfragment(Fragment fragment)
     {
-        FragmentManager fragmentManager=getSupportFragmentManager();
+        fragmentManager=getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.layout_fragment,fragment);
         fragmentTransaction.commit();
 
     }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId())
         {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
-                return true;
+                break;
 
-            case R.id.home_icon:
-                loadfragment(maccabiEditProfileFragment);
+            case R.id.home_icon_edit:
+               /* MenuItem item1=(MenuItem)findViewById(R.id.home_icon_edit);
+                item1.setVisible(false);*/
+               menu.findItem(R.id.home_icon_edit).setVisible(false);
+                getSupportActionBar().setTitle("Edit Profile");
+               menu.findItem(R.id.home_icon_calendar).setVisible(true);
+               loadfragment(maccabiEditProfileFragment);
+               break;
+
+
+            case R.id.home_icon_calendar:
+                fragmentManager=getSupportFragmentManager();
+                dialogFragment=new MaccabiDatePickerFragment();
+                tag="datePicker";
+                dialogFragment.show(fragmentManager,tag);
+                break;
+
         }
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu=menu;
         getMenuInflater().inflate(R.menu.home_icon,menu);
         return true;
     }

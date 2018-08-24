@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/Inbox"
+        <item android:id="@+id/all_members_details"
             android:title="All Members Details"/>
 
-        <item android:id="@+id/snoozed"
+        <item android:id="@+id/like"
             android:title="Like"/>
 
-        <item android:id="@+id/done"
+        <item android:id="@+id/logout"
             android:title="Log Out"/>
     </group>
 </menu>
