@@ -29,6 +29,7 @@ public class MaccabiAllMembersDetailsFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         RecyclerView recyclerView=view.findViewById(R.id.recycler_view);
         db=new MaccabiDataBaseHelper(getActivity());
         db.getReadableDatabase();

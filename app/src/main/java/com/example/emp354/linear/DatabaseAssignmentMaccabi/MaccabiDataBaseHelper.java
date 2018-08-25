@@ -104,6 +104,9 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
                 maccabiUserModel.setLastName(cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_LAST_NAME)));
                 maccabiUserModel.setPhoneNo(cursor.getInt(cursor.getColumnIndex(MaccabiUserModel.COLUMN_PHONE_NO)));
                 maccabiUserModel.setPassword(cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_PASSWORD)));
+                maccabiUserModel.setAge(cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_AGE)));
+                maccabiUserModel.setDob(cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_DOB)));
+
 
 
                 maccabiUserModelList.add(maccabiUserModel);
@@ -146,10 +149,11 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public int updateUser(String emailId,String firstName,String lastName,int phoneNo)
+    public int updateUser(String emailId,String firstName,String lastName,int phoneNo,String dob,String age)
     {
         String updateUserQuery=" UPDATE " + MaccabiUserModel.TABLE_NAME+ " SET " + MaccabiUserModel.COLUMN_FIRST_NAME+ " ='"+firstName+"' , "+
                 MaccabiUserModel.COLUMN_LAST_NAME+ " = '"+lastName+"' , "+ MaccabiUserModel.COLUMN_PHONE_NO + "= "+phoneNo+
+                MaccabiUserModel.COLUMN_DOB+ " = '"+dob+"' ,'"+MaccabiUserModel.COLUMN_AGE+" = '"+age+"' "+
                 " WHERE "+MaccabiUserModel.COLUMN_MAIL_ID + " = '"+emailId+"'";
         SQLiteDatabase db=this.getWritableDatabase();
         Cursor cursor=db.rawQuery(updateUserQuery,null);
@@ -213,6 +217,5 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
         return data;
 
     }
-
 
 }

@@ -109,8 +109,10 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+       <!-- <Button
+            android:id="@+id/btn_like"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:background="@drawable/maccabi_white_stroke_corner_square"
@@ -119,7 +121,38 @@
             android:paddingLeft="@dimen/margin_10"
             android:text="Like"
             android:drawableLeft="@drawable/ic_thumb_up_black_24dp"
-            android:layout_marginRight="@dimen/margin_10"/>
+            android:layout_marginRight="@dimen/margin_10"/>-->
+        <LinearLayout
+            android:id="@+id/layout_click"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_height="match_parent"
+            android:background="@drawable/maccabi_white_stroke_corner_square">
+
+            <ImageView
+                android:id="@+id/iv_like"
+                android:layout_width="@dimen/margin_20"
+                android:layout_height="@dimen/margin_20"
+                android:src="@drawable/thumbsup_grey"
+                 />
+            <ImageView
+                android:id="@+id/iv_unlike"
+                android:layout_width="@dimen/margin_20"
+                android:layout_height="@dimen/margin_20"
+                android:src="@drawable/ic_thumb_up_black_24dp"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/tv_like_unlike"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:textSize="@dimen/textsize_20"
+                android:text="Like"/>
+
+        </LinearLayout>
         <TextView
             android:id="@+id/tv_no_of_likes"
             android:layout_width="0dp"

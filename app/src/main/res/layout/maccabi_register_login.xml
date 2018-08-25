@@ -9,13 +9,9 @@
     tools:context=".DatabaseAssignmentMaccabi.MaccabiRegisterLogin">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="@dimen/width_20"
-            android:layout_height="@dimen/height_20"
-            android:src="@drawable/maccabi_ic_back"/>
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout

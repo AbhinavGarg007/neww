@@ -9,25 +9,23 @@ public class MaccabiUserModel {
     public static final String COLUMN_LAST_NAME="LastName";
     public static final String COLUMN_PHONE_NO="PhoneNo";
     public static final String COLUMN_PASSWORD="Password";
+    public static final String COLUMN_DOB="DOB";
+    public static final String COLUMN_AGE="AGE";
 
 
-    private int id;
-    private String emailId;
-    private String firstName;
-    private String lastName;
-    private int phoneNo;
-    private String password;
+    private String emailId,firstName,lastName,password,dob,age;
+    private int id,phoneNo;
 
     //create table
     public static final String CREATE_TABLE="CREATE TABLE "+ TABLE_NAME + " ( " +COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , "+ COLUMN_MAIL_ID + " TEXT , " + COLUMN_FIRST_NAME + " TEXT , " + COLUMN_LAST_NAME + " TEXT , " +
-            COLUMN_PHONE_NO + " INTEGER , " + COLUMN_PASSWORD + " TEXT  " + ")";
+            COLUMN_PHONE_NO + " STRING , " + COLUMN_PASSWORD + " TEXT  ," + COLUMN_DOB + " TEXT ," + COLUMN_AGE + " TEXT " + ")";
 
     public MaccabiUserModel()
     {
 
     }
 
-    public MaccabiUserModel(int id,String emailId,String firstName,String lastName,int phoneNo,String password)
+    public MaccabiUserModel(int id,String emailId,String firstName,String lastName,int phoneNo,String password,String dob,String age)
     {
         this.id=id;
         this.emailId=emailId;
@@ -35,6 +33,8 @@ public class MaccabiUserModel {
         this.lastName=lastName;
         this.phoneNo=phoneNo;
         this.password=password;
+        this.dob=dob;
+        this.age=age;
     }
 
     public String getEmailId() {
@@ -83,5 +83,21 @@ public class MaccabiUserModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 }

@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.emp354.linear.Employee.DataBaseHelper;
 import com.example.emp354.linear.R;
@@ -22,6 +24,7 @@ public class MaccabiRegisterLogin extends AppCompatActivity {
     EditText etMailId,etFirstName,etLastName,etPhoneNo,etSignupPassword,etLoginPassword;
     MaccabiDataBaseHelper db;
     String mailId;
+    android.support.v7.widget.Toolbar toolbar;
     boolean isValidMailId;
     private List<MaccabiUserModel> maccabiUserModelList=new ArrayList<>();
 
@@ -29,6 +32,11 @@ public class MaccabiRegisterLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maccabi_register_login);
+        toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_maccabi_back);
 
 
         btnLogin=findViewById(R.id.btn_login);
@@ -120,5 +128,17 @@ public class MaccabiRegisterLogin extends AppCompatActivity {
         i.putExtra("mailId",mailId);
         startActivity(i);
         finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                Intent j=new Intent(MaccabiRegisterLogin.this,MailIdScreenMaccabi.class);
+                startActivity(j);
+                finish();
+        }
+        return true;
     }
 }

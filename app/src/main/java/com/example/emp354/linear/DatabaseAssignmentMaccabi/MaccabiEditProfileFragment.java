@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.emp354.linear.R;
@@ -16,6 +17,7 @@ import com.example.emp354.linear.R;
 public class MaccabiEditProfileFragment extends Fragment {
 
     EditText etMailId,etFirstName,etLastName,etPhoneNo;
+    TextView tv_dob,tv_age;
     Button btnUpdate;
     MaccabiDataBaseHelper db;
     String mailId;
@@ -33,6 +35,8 @@ public class MaccabiEditProfileFragment extends Fragment {
         etLastName=view.findViewById(R.id.et_last_name);
         etPhoneNo=view.findViewById(R.id.et_phone_no);
         btnUpdate=view.findViewById(R.id.btn_update);
+        tv_dob=view.findViewById(R.id.tv_dob);
+        tv_age=view.findViewById(R.id.tv_age);
 
         Bundle bundle=this.getArguments();
         mailId=bundle.getString("mailId");
@@ -46,6 +50,9 @@ public class MaccabiEditProfileFragment extends Fragment {
         etPhoneNo.setText(data[2]);
         db.close();
 
+
+
+
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +60,10 @@ public class MaccabiEditProfileFragment extends Fragment {
                 String firstName=etFirstName.getText().toString();
                 String lastName=etLastName.getText().toString();
                 int phoneNo=Integer.valueOf(etPhoneNo.getText().toString());
-                db.updateUser(mailId,firstName,lastName,phoneNo);
+                String dob=tv_dob.getText().toString();
+                String age=tv_age.getText().toString();
+
+                db.updateUser(mailId,firstName,lastName,phoneNo,dob,age);
                 Toast.makeText(getActivity(),"Your profile updated",Toast.LENGTH_SHORT).show();
 
 

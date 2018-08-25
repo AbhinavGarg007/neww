@@ -12,9 +12,11 @@ import java.util.Calendar;
 
 public class MaccabiDatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
+    MaccabiEditProfileFragment maccabiEditProfileFragment;
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        maccabiEditProfileFragment=new MaccabiEditProfileFragment();
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
@@ -27,8 +29,29 @@ public class MaccabiDatePickerFragment extends DialogFragment implements DatePic
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
         String text = ("Date is : " + dayOfMonth + "-" + (month + 1) + "-" + year);
         Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+         String age=calculateAge(year,month,dayOfMonth);
 
+         maccabiEditProfileFragment.tv_age.setText(age);
+         maccabiEditProfileFragment.tv_dob.setText(text);
+
+    }
+    private String calculateAge(int year,int month,int day)
+    {
+      Calendar dob=Calendar.getInstance();
+      Calendar today=Calendar.getInstance();
+      dob.set(year,month,day);
+        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
+            age--;
+        }
+
+        Integer ageInt = new Integer(age);
+        String ageS = ageInt.toString();
+
+        return ageS;
     }
 }

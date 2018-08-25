@@ -11,6 +11,16 @@
         android:layout_width="@dimen/margin_150"
         android:layout_height="@dimen/margin_150"
         android:src="@drawable/maccabi_logo_splash"/>
+    <TextView
+        android:id="@+id/tv_dob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/tv_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 
     <EditText
         android:id="@+id/et_mail_id"
