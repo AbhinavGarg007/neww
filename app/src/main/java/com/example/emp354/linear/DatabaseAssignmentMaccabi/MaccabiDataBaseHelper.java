@@ -180,7 +180,7 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean isPasswordCorrect(String emailId,String enteredloginPassword)
+    public long isPasswordCorrect(String emailId,String enteredloginPassword)
     {
       String isValidPassword= " SELECT " + MaccabiUserModel.COLUMN_PASSWORD + " FROM " + MaccabiUserModel.TABLE_NAME +
               " WHERE " + MaccabiUserModel.COLUMN_MAIL_ID + " = '" + emailId + "'";
@@ -191,12 +191,27 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
       }
       cursor.close();
 
+      long id=0;
       if(enteredloginPassword.equals(existLoginPassword))
       {
-          return true;
+          String validPasswordEntryId=" SELECT " + MaccabiUserModel.COLUMN_ID+" FROM "+MaccabiUserModel.TABLE_NAME+
+                  " WHERE "+MaccabiUserModel.COLUMN_MAIL_ID+" = '"+emailId+"'";
+          SQLiteDatabase db1=getReadableDatabase();
+          Cursor cursor1=db1.rawQuery(validPasswordEntryId,null);
+          if(cursor1.moveToFirst())
+          {
+              id= cursor1.getLong(cursor1.getColumnIndex(MaccabiUserModel.COLUMN_ID));
+          }
+          else {
+              id = -1;
+          }
       }
       else
-          return false;
+      {
+          id=0;
+      }
+
+      return id;
     }
 
 
@@ -216,6 +231,19 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return data;
 
+    }
+    public String getMailId(long id)
+    {String mailId="";
+        String getMailIdQuery="SELECT "+MaccabiUserModel.COLUMN_MAIL_ID+" FROM "+MaccabiUserModel.TABLE_NAME+
+                " WHERE "+MaccabiUserModel.COLUMN_ID+" = ?";
+        SQLiteDatabase db=this.getReadableDatabase();
+        String s[]={id+""};
+        Cursor cursor=db.rawQuery(getMailIdQuery,s);
+        if(cursor.moveToFirst())
+        {
+            mailId=cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_MAIL_ID));
+        }
+        return mailId;
     }
 
 }

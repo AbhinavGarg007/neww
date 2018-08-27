@@ -13,7 +13,9 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.emp354.linear.Employee.DataBaseHelper;
+import com.example.emp354.linear.MySharedPreferences;
 import com.example.emp354.linear.R;
+import com.example.emp354.linear.SaveSharedPreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,8 @@ public class MaccabiRegisterLogin extends AppCompatActivity {
     android.support.v7.widget.Toolbar toolbar;
     boolean isValidMailId;
     private List<MaccabiUserModel> maccabiUserModelList=new ArrayList<>();
+    MySharedPreferences mySharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,7 @@ public class MaccabiRegisterLogin extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_maccabi_back);
+        mySharedPreferences=MySharedPreferences.getInstance(this);
 
 
         btnLogin=findViewById(R.id.btn_login);
@@ -82,7 +87,10 @@ public class MaccabiRegisterLogin extends AppCompatActivity {
                 String lastName=etLastName.getText().toString();
                 int phoneNo=Integer.valueOf(etPhoneNo.getText().toString());
                 String signUpPassword=etSignupPassword.getText().toString();
-                createUser(mailId,firstName,lastName,phoneNo,signUpPassword);
+
+                long id=createUser(mailId,firstName,lastName,phoneNo,signUpPassword);
+                mySharedPreferences.saveId(id);
+
 
                 Toast.makeText(MaccabiRegisterLogin.this, "Now you are a registered user.", Toast.LENGTH_SHORT).show();
 
@@ -96,13 +104,23 @@ public class MaccabiRegisterLogin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String loginPassword=etLoginPassword.getText().toString();
-                boolean result= db.isPasswordCorrect(mailId,loginPassword);
-                if(result)
+                long result= db.isPasswordCorrect(mailId,loginPassword);
+                if(result==0)
                 {
-                    nextActivity();
+                    Toast.makeText(MaccabiRegisterLogin.this, "Please enter correct password.", Toast.LENGTH_SHORT).show();
+
+
+                }
+                else if(result==-1)
+                {
+                    Toast.makeText(MaccabiRegisterLogin.this, "Error in login", Toast.LENGTH_SHORT).show();
                 }
                 else
-                    Toast.makeText(MaccabiRegisterLogin.this, "Please enter correct password.", Toast.LENGTH_SHORT).show();
+                { mySharedPreferences.saveId(result);
+                    Toast.makeText(MaccabiRegisterLogin.this, "Login", Toast.LENGTH_SHORT).show();
+                    nextActivity();
+                }
+
 
             }
         });
@@ -111,15 +129,16 @@ public class MaccabiRegisterLogin extends AppCompatActivity {
 
     }
 
-    private void createUser(String emailId,String firstName,String lastName,int phoneNo,String password)
+    private long createUser(String emailId,String firstName,String lastName,int phoneNo,String password)
     {
         long id = db.insertUser(emailId,firstName,lastName,phoneNo,password);
-       /* MaccabiUserModel m=db.getUser(id);
+        /*MaccabiUserModel m=db.getUser(id);
         if(m !=null)
         {
             maccabiUserModelList.add(0,m);
 
         }*/
+       return id;
     }
 
     private void nextActivity()

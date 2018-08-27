@@ -64,12 +64,16 @@ public class MaccabiRecyclerViewAdapter extends RecyclerView.Adapter{
                         }
                         else
                         {
+                            isLiked=0;
+                            likes--;
                             holder1.iv_like.setVisibility(View.VISIBLE);
                             holder1.iv_unlike.setVisibility(View.GONE);
                             holder1.tv_like_unlike.setText("Like");
+
                         }
 
-                       /* holder1.tv_no_of_likes.setText("Total likes: "+ String.valueOf(likes) );*/
+
+                        holder1.tv_no_of_likes.setText("Total likes: "+ String.valueOf(likes) );
                     }
                 });
                 holder1.tv_no_of_likes.setText("Total likes: "+ String.valueOf(likes) );

@@ -1,21 +1,29 @@
 package com.example.emp354.linear.DatabaseAssignmentMaccabi;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.emp354.linear.MySharedPreferences;
 import com.example.emp354.linear.R;
+import com.example.emp354.linear.SaveSharedPreference;
 
 public class MaccabiMyProfileFragment extends Fragment{
 
     MaccabiDataBaseHelper db;
     String mailId;
+    MySharedPreferences mySharedPreferences;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,12 +37,28 @@ public class MaccabiMyProfileFragment extends Fragment{
         TextView tvFirstNameData=view.findViewById(R.id.tv_first_name_data);
         TextView tvLastNameData=view.findViewById(R.id.tv_last_name_data);
         TextView tvPhoneNo=view.findViewById(R.id.tv_phone_no_data);
-
-        Bundle bundle=this.getArguments();
-        mailId=bundle.getString("mailId");
-
-
+        mySharedPreferences=MySharedPreferences.getInstance(getContext());
         db=new MaccabiDataBaseHelper(getActivity());
+
+        if(mySharedPreferences.fetchId()==-1)
+      {
+          Bundle bundle = this.getArguments();
+          mailId = bundle.getString("mailId");
+
+        }
+
+else {/*long id=MySharedPreferences.getInstance(getContext()).fetchId();*/
+            long id=mySharedPreferences.fetchId();
+            /* mailId=mySharedPreferences.fetchMailId();*/
+           /* mailId="a@a.a";*/
+           Log.d("tag1","value of id"+id);
+           mailId=db.getMailId(id);
+            Log.d("tag2",mailId);
+        }
+
+
+
+
         db.getReadableDatabase();
         String[] data=db.getUserData(mailId);
         tvMailData.setText(mailId);

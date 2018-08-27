@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.emp354.linear.MySharedPreferences;
 import com.example.emp354.linear.R;
+import com.example.emp354.linear.SaveSharedPreference;
 
 public class MailIdScreenMaccabi extends AppCompatActivity {
 
@@ -18,10 +20,14 @@ public class MailIdScreenMaccabi extends AppCompatActivity {
     String mail_text;
     boolean isValidMailId;
     private MaccabiDataBaseHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mail_id_screen_maccabi);
+
+
+
 
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

@@ -34,8 +34,8 @@ public class MaccabiDatePickerFragment extends DialogFragment implements DatePic
         Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
          String age=calculateAge(year,month,dayOfMonth);
 
-         maccabiEditProfileFragment.tv_age.setText(age);
-         maccabiEditProfileFragment.tv_dob.setText(text);
+         /*maccabiEditProfileFragment.tv_age.setText(age);
+         maccabiEditProfileFragment.tv_dob.setText(text);*/
 
     }
     private String calculateAge(int year,int month,int day)

@@ -23,7 +23,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.example.emp354.linear.Dialog.DatePickerFragment;
+import com.example.emp354.linear.MySharedPreferences;
 import com.example.emp354.linear.R;
+import com.example.emp354.linear.SaveSharedPreference;
 
 
 public class MaccabiHomeActivity extends AppCompatActivity {
@@ -33,7 +35,6 @@ public class MaccabiHomeActivity extends AppCompatActivity {
     FrameLayout frameLayout;
     Toolbar toolbar;
     NavigationView navigationView;
-    ImageView imageView;
     MaccabiMyProfileFragment maccabiMyProfileFragment;
     MaccabiEditProfileFragment maccabiEditProfileFragment;
     MaccabiAllMembersDetailsFragment maccabiAllMembersDetailsFragment;
@@ -43,7 +44,7 @@ public class MaccabiHomeActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
     String tag;
     Menu menu;
-
+    MySharedPreferences mySharedPreferences;
 
 
     @Override
@@ -66,6 +67,7 @@ public class MaccabiHomeActivity extends AppCompatActivity {
 
 
 
+        mySharedPreferences=MySharedPreferences.getInstance(this);
         j=getIntent();
         mailId=j.getStringExtra("mailId");
 
@@ -106,6 +108,7 @@ public class MaccabiHomeActivity extends AppCompatActivity {
                         loadfragment(maccabiLikeFragment);
                         break;
                     case "Log Out" :
+                        logOut();
                         break;
                 }
                 return true;
@@ -187,6 +190,29 @@ public class MaccabiHomeActivity extends AppCompatActivity {
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+    public void logOut()
+    {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("LogOut")
+                .setMessage("Are you sure you want to logout?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                       /* SaveSharedPreference.setLoggedIn(getApplicationContext(), false,null);*/
+
+                                mySharedPreferences.clearAllData();
+                        Intent i=new Intent(MaccabiHomeActivity.this,MailIdScreenMaccabi.class);
+                        startActivity(i);
                         finish();
                     }
 

@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.emp354.linear.MySharedPreferences;
 import com.example.emp354.linear.R;
 
 public class MaccabiEditProfileFragment extends Fragment {
@@ -20,6 +21,7 @@ public class MaccabiEditProfileFragment extends Fragment {
     TextView tv_dob,tv_age;
     Button btnUpdate;
     MaccabiDataBaseHelper db;
+    MySharedPreferences mySharedPreferences;
     String mailId;
     @Nullable
     @Override
@@ -37,11 +39,24 @@ public class MaccabiEditProfileFragment extends Fragment {
         btnUpdate=view.findViewById(R.id.btn_update);
         tv_dob=view.findViewById(R.id.tv_dob);
         tv_age=view.findViewById(R.id.tv_age);
-
-        Bundle bundle=this.getArguments();
-        mailId=bundle.getString("mailId");
-
         db=new MaccabiDataBaseHelper(getActivity());
+        mySharedPreferences=MySharedPreferences.getInstance(getContext());
+
+        if(mySharedPreferences.fetchId()==-1)
+        {
+            Bundle bundle = this.getArguments();
+            mailId = bundle.getString("mailId");
+
+        }
+        else{
+            long id=mySharedPreferences.fetchId();
+            mailId=db.getMailId(id);
+
+        }
+
+
+
+
         db.getReadableDatabase();
         String[] data=db.getUserData(mailId);
         etMailId.setText(mailId);
