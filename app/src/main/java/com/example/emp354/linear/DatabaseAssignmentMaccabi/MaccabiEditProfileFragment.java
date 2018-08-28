@@ -22,7 +22,7 @@ public class MaccabiEditProfileFragment extends Fragment {
     Button btnUpdate;
     MaccabiDataBaseHelper db;
     MySharedPreferences mySharedPreferences;
-    String mailId;
+    String mailId,dob,age;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,11 +58,19 @@ public class MaccabiEditProfileFragment extends Fragment {
 
 
         db.getReadableDatabase();
+       /* Bundle bundle=this.getArguments();
+        dob=bundle.getString("dob");
+        age=bundle.getString("age");
+*/
         String[] data=db.getUserData(mailId);
         etMailId.setText(mailId);
         etFirstName.setText(data[0]);
         etLastName.setText(data[1]);
         etPhoneNo.setText(data[2]);
+        /*tv_dob.setText(dob);
+        tv_age.setText(age);
+*/
+
         db.close();
 
 
@@ -75,8 +83,8 @@ public class MaccabiEditProfileFragment extends Fragment {
                 String firstName=etFirstName.getText().toString();
                 String lastName=etLastName.getText().toString();
                 int phoneNo=Integer.valueOf(etPhoneNo.getText().toString());
-                String dob=tv_dob.getText().toString();
-                String age=tv_age.getText().toString();
+                dob=tv_dob.getText().toString();
+                age=tv_age.getText().toString();
 
                 db.updateUser(mailId,firstName,lastName,phoneNo,dob,age);
                 Toast.makeText(getActivity(),"Your profile updated",Toast.LENGTH_SHORT).show();

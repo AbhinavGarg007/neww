@@ -25,6 +25,7 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(MaccabiUserModel.CREATE_TABLE);
 
+
     }
 
     @Override
@@ -152,8 +153,8 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
     public int updateUser(String emailId,String firstName,String lastName,int phoneNo,String dob,String age)
     {
         String updateUserQuery=" UPDATE " + MaccabiUserModel.TABLE_NAME+ " SET " + MaccabiUserModel.COLUMN_FIRST_NAME+ " ='"+firstName+"' , "+
-                MaccabiUserModel.COLUMN_LAST_NAME+ " = '"+lastName+"' , "+ MaccabiUserModel.COLUMN_PHONE_NO + "= "+phoneNo+
-                MaccabiUserModel.COLUMN_DOB+ " = '"+dob+"' ,'"+MaccabiUserModel.COLUMN_AGE+" = '"+age+"' "+
+                MaccabiUserModel.COLUMN_LAST_NAME+ " = '"+lastName+"' , "+ MaccabiUserModel.COLUMN_PHONE_NO + "= "+phoneNo+" , "+
+                MaccabiUserModel.COLUMN_DOB+ " = '"+dob+"' ,"+MaccabiUserModel.COLUMN_AGE+" = '"+age+"' "+
                 " WHERE "+MaccabiUserModel.COLUMN_MAIL_ID + " = '"+emailId+"'";
         SQLiteDatabase db=this.getWritableDatabase();
         Cursor cursor=db.rawQuery(updateUserQuery,null);
@@ -245,5 +246,7 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
         }
         return mailId;
     }
+
+
 
 }

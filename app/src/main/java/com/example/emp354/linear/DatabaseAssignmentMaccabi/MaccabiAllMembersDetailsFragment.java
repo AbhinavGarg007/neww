@@ -15,28 +15,41 @@ import com.example.emp354.linear.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MaccabiAllMembersDetailsFragment extends Fragment {
+public class MaccabiAllMembersDetailsFragment extends Fragment implements MaccabiRecyclerViewAdapter.MaccabiUserListener {
     MaccabiRecyclerViewAdapter maccabiRecyclerViewAdapter;
     MaccabiDataBaseHelper db;
-    ArrayList<MaccabiUserModel> mUMList ;
+    ArrayList<MaccabiUserModel> mUMList;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.maccabi_all_members_details_fragment_layout,container,false);
+        View view = inflater.inflate(R.layout.maccabi_all_members_details_fragment_layout, container, false);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        RecyclerView recyclerView=view.findViewById(R.id.recycler_view);
-        db=new MaccabiDataBaseHelper(getActivity());
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        db = new MaccabiDataBaseHelper(getActivity());
         db.getReadableDatabase();
-        mUMList=db.getAllUser();
-        maccabiRecyclerViewAdapter=new MaccabiRecyclerViewAdapter(getContext(),mUMList);
+        mUMList = db.getAllUser();
+        maccabiRecyclerViewAdapter = new MaccabiRecyclerViewAdapter(getContext(), mUMList);
         recyclerView.setAdapter(maccabiRecyclerViewAdapter);
-        LinearLayoutManager layout_manager=new LinearLayoutManager(getContext());
+        LinearLayoutManager layout_manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layout_manager);
+
+
+        maccabiRecyclerViewAdapter.setMaccabiUserListener(this);
+
+
+    }
+
+    @Override
+    public void onUserLiked(MaccabiUserModel userModel) {
+
+
+        userModel.isLiked();
+
     }
 }

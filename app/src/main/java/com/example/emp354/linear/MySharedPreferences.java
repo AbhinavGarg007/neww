@@ -50,13 +50,13 @@ public class MySharedPreferences {
     public String fetchMailId()
     {
         return mPreferences.getString(MAIL_ID,"");
-    }
+    }*/
 
     public void clearAllData()
     {
         mEditor.clear();
         mEditor.apply();
-    }*/
+    }
 
 }
 

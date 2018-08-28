@@ -2,6 +2,7 @@ package com.example.emp354.linear.DatabaseAssignmentMaccabi;
 
 
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -19,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -26,6 +28,8 @@ import com.example.emp354.linear.Dialog.DatePickerFragment;
 import com.example.emp354.linear.MySharedPreferences;
 import com.example.emp354.linear.R;
 import com.example.emp354.linear.SaveSharedPreference;
+
+import java.util.Calendar;
 
 
 public class MaccabiHomeActivity extends AppCompatActivity {
@@ -44,7 +48,9 @@ public class MaccabiHomeActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
     String tag;
     Menu menu;
+    int currentYear,currentMonth,currentDay;
     MySharedPreferences mySharedPreferences;
+    Calendar calendar;
 
 
     @Override
@@ -58,6 +64,12 @@ public class MaccabiHomeActivity extends AppCompatActivity {
         //configure toolbar
         toolbar=findViewById(R.id.toolbar);
         /*imageView=findViewById(R.id.toolbar_home);*/
+
+        calendar=Calendar.getInstance();
+        currentYear = calendar.get(Calendar.YEAR);
+
+        currentMonth = calendar.get(Calendar.MONTH);
+        currentDay = calendar.get(Calendar.DAY_OF_MONTH);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -147,26 +159,26 @@ public class MaccabiHomeActivity extends AppCompatActivity {
 
             case R.id.home_icon_calendar:
 
-                fragmentManager=getSupportFragmentManager();
+               /* fragmentManager=getSupportFragmentManager();
                 dialogFragment=new MaccabiDatePickerFragment();
                 tag="datePicker";
                 dialogFragment.show(fragmentManager,tag);
-                break;
+                break;*/
+                DatePickerDialog datePickerDialog=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        populateSetDate(year, month+1, dayOfMonth);
+                    }
+                },currentYear,currentMonth,currentDay);
+                /*Calendar calendar=Calendar.getInstance();
+                calendar.add(Calendar.YEAR,currentYear-4);
+                calendar.add(Calendar.MONTH,currentMonth);*/
+                datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
 
-            /*DatePickerDialog datePickerDialog=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    populateSetDate(year, month+1, dayOfMonth);
-                }
-            },currentYear,currentMonth,currentDay);
-            Calendar calendar=Calendar.getInstance();
-            calendar.add(Calendar.YEAR,currentYear-4);
-            calendar.add(Calendar.MONTH,currentMonth);
-            datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+                datePickerDialog.setCancelable(false);
+                datePickerDialog.show();
+                return true;
 
-            datePickerDialog.setCancelable(false);
-            datePickerDialog.show();
-            return true;*/
 
 
         }
@@ -220,4 +232,30 @@ public class MaccabiHomeActivity extends AppCompatActivity {
                 .setNegativeButton("No", null)
                 .show();
     }
+
+    private String calculateAge(int year,int month,int day)
+    {
+        Calendar dob=Calendar.getInstance();
+        Calendar today=Calendar.getInstance();
+        dob.set(year,month,day);
+        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
+            age--;
+        }
+
+        Integer ageInt = new Integer(age);
+        String ageS = ageInt.toString();
+
+        return ageS;
+    }
+    private void populateSetDate(int year,int month,int day)
+    {String dob=day+"-"+month+"-"+year;
+
+     maccabiEditProfileFragment.tv_dob.setText(dob);
+     String age=calculateAge(year,month,day);
+     maccabiEditProfileFragment.tv_age.setText(age);
+    }
+
+
 }

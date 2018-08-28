@@ -2,39 +2,38 @@ package com.example.emp354.linear.DatabaseAssignmentMaccabi;
 
 public class MaccabiUserModel {
 
-    public static final String TABLE_NAME="MaccabiUser";
-    public static final String COLUMN_ID="ID";
-    public static final String COLUMN_MAIL_ID="MailID";
-    public static final String COLUMN_FIRST_NAME="FirstName";
-    public static final String COLUMN_LAST_NAME="LastName";
-    public static final String COLUMN_PHONE_NO="PhoneNo";
-    public static final String COLUMN_PASSWORD="Password";
-    public static final String COLUMN_DOB="DOB";
-    public static final String COLUMN_AGE="AGE";
+    public static final String TABLE_NAME = "MaccabiUser";
+    public static final String COLUMN_ID = "ID";
+    public static final String COLUMN_MAIL_ID = "MailID";
+    public static final String COLUMN_FIRST_NAME = "FirstName";
+    public static final String COLUMN_LAST_NAME = "LastName";
+    public static final String COLUMN_PHONE_NO = "PhoneNo";
+    public static final String COLUMN_PASSWORD = "Password";
+    public static final String COLUMN_DOB = "DOB";
+    public static final String COLUMN_AGE = "AGE";
 
 
-    private String emailId,firstName,lastName,password,dob,age;
-    private int id,phoneNo;
+    private String emailId, firstName, lastName, password, dob, age;
+    private int id, phoneNo;
+    private boolean isLiked;
 
     //create table
-    public static final String CREATE_TABLE="CREATE TABLE "+ TABLE_NAME + " ( " +COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , "+ COLUMN_MAIL_ID + " TEXT , " + COLUMN_FIRST_NAME + " TEXT , " + COLUMN_LAST_NAME + " TEXT , " +
+    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ( " + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " + COLUMN_MAIL_ID + " TEXT , " + COLUMN_FIRST_NAME + " TEXT , " + COLUMN_LAST_NAME + " TEXT , " +
             COLUMN_PHONE_NO + " STRING , " + COLUMN_PASSWORD + " TEXT  ," + COLUMN_DOB + " TEXT ," + COLUMN_AGE + " TEXT " + ")";
 
-    public MaccabiUserModel()
-    {
+    public MaccabiUserModel() {
 
     }
 
-    public MaccabiUserModel(int id,String emailId,String firstName,String lastName,int phoneNo,String password,String dob,String age)
-    {
-        this.id=id;
-        this.emailId=emailId;
-        this.firstName=firstName;
-        this.lastName=lastName;
-        this.phoneNo=phoneNo;
-        this.password=password;
-        this.dob=dob;
-        this.age=age;
+    public MaccabiUserModel(int id, String emailId, String firstName, String lastName, int phoneNo, String password, String dob, String age) {
+        this.id = id;
+        this.emailId = emailId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNo = phoneNo;
+        this.password = password;
+        this.dob = dob;
+        this.age = age;
     }
 
     public String getEmailId() {
@@ -99,5 +98,13 @@ public class MaccabiUserModel {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public boolean isLiked() {
+        return isLiked;
+    }
+
+    public void setLiked(boolean liked) {
+        isLiked = liked;
     }
 }
