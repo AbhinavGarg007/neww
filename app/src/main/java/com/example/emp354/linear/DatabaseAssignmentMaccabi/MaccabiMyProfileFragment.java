@@ -37,8 +37,12 @@ public class MaccabiMyProfileFragment extends Fragment{
         TextView tvFirstNameData=view.findViewById(R.id.tv_first_name_data);
         TextView tvLastNameData=view.findViewById(R.id.tv_last_name_data);
         TextView tvPhoneNo=view.findViewById(R.id.tv_phone_no_data);
+        TextView tvLikes=view.findViewById(R.id.tv_myprofile_like);
         mySharedPreferences=MySharedPreferences.getInstance(getContext());
+        int id=(int)mySharedPreferences.fetchId();
         db=new MaccabiDataBaseHelper(getActivity());
+
+        int count=db.getLikeCount(id);
 
         if(mySharedPreferences.fetchId()==-1)
       {
@@ -48,7 +52,7 @@ public class MaccabiMyProfileFragment extends Fragment{
         }
 
 else {/*long id=MySharedPreferences.getInstance(getContext()).fetchId();*/
-            long id=mySharedPreferences.fetchId();
+
             /* mailId=mySharedPreferences.fetchMailId();*/
            /* mailId="a@a.a";*/
            Log.d("tag1","value of id"+id);
@@ -65,6 +69,7 @@ else {/*long id=MySharedPreferences.getInstance(getContext()).fetchId();*/
         tvFirstNameData.setText(data[0]);
         tvLastNameData.setText(data[1]);
         tvPhoneNo.setText(data[2]);
+        tvLikes.setText(String.valueOf(count));
 
         db.close();
 

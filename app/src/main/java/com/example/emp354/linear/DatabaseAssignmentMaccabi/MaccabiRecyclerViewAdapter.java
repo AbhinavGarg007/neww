@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.emp354.linear.Employee.DataBaseHelper;
 import com.example.emp354.linear.R;
 
 import java.util.ArrayList;
@@ -18,11 +19,15 @@ public class MaccabiRecyclerViewAdapter extends RecyclerView.Adapter {
 
     private Context mcontext;
     private ArrayList<MaccabiUserModel> mUserList;
+    private ArrayList<Integer> mLikeList;
     private MaccabiUserListener mListener;
+    MaccabiDataBaseHelper db;
+    int count;
 
-    public MaccabiRecyclerViewAdapter(Context context, ArrayList list) {
+    public MaccabiRecyclerViewAdapter(Context context, ArrayList userList,ArrayList likeList) {
         mcontext = context;
-        mUserList = list;
+        mUserList = userList;
+        mLikeList=likeList;
     }
 
     @NonNull
@@ -36,20 +41,35 @@ public class MaccabiRecyclerViewAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        if (mUserList != null) {
+        db=new MaccabiDataBaseHelper(mcontext);
+        db.getReadableDatabase();
+
+
+        if (mUserList != null ) {
             MaccabiUserModel maccabiUserModel = mUserList.get(position);
+
             if (maccabiUserModel != null) {
 
+                count=db.getLikeCount(maccabiUserModel.getId());
                 final MyViewHolder holder1 = (MyViewHolder) holder;
                 holder1.tvMail.setText(maccabiUserModel.getEmailId());
                 holder1.tvFirstName.setText(maccabiUserModel.getFirstName());
                 holder1.tvLastName.setText(maccabiUserModel.getLastName());
                 holder1.tvPhoneNo.setText(String.valueOf(maccabiUserModel.getPhoneNo()));
                 holder1.tvUserAge.setText(maccabiUserModel.getAge());
-                /*  likes =maccabiUserModel.getLikes();*/
 
-
-               /* holder1.tv_no_of_likes.setText("Total likes: " + String.valueOf(likes));*/
+                /* likes =maccabiUserModel.getLikes();*/
+                if(mLikeList!=null)
+                {
+                 if(mLikeList.contains(maccabiUserModel.getId()))
+                    {
+                        holder1.iv_unlike.setVisibility(View.VISIBLE);
+                        holder1.iv_like.setVisibility(View.GONE);
+                        holder1.tv_like_unlike.setText("Unlike");
+                        maccabiUserModel.setLiked(true);
+                    }
+                }
+                holder1.tv_no_of_likes.setText("Total likes: "+count);
             }
 
         }
@@ -80,8 +100,12 @@ public class MaccabiRecyclerViewAdapter extends RecyclerView.Adapter {
             iv_like = itemView.findViewById(R.id.iv_like);
             iv_unlike = itemView.findViewById(R.id.iv_unlike);
 
+            /*iv_like.setOnClickListener(this);
+            iv_unlike.setOnClickListener(this);
+*/
             layout_click.setOnClickListener(this);
         }
+
 
         @Override
         public void onClick(View v) {
@@ -96,11 +120,13 @@ public class MaccabiRecyclerViewAdapter extends RecyclerView.Adapter {
                         iv_like.setVisibility(View.GONE);
                         iv_unlike.setVisibility(View.VISIBLE);
                         tv_like_unlike.setText("Unlike");
+                        tv_no_of_likes.setText("Total likes: "+String.valueOf(++count));
                     } else {
                         user.setLiked(false);
                         iv_like.setVisibility(View.VISIBLE);
                         iv_unlike.setVisibility(View.GONE);
                         tv_like_unlike.setText("Like");
+                        tv_no_of_likes.setText("Total likes: "+String.valueOf(--count));
 
                     }
 

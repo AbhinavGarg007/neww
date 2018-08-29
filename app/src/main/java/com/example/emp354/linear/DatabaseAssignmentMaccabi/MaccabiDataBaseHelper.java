@@ -1,13 +1,20 @@
 package com.example.emp354.linear.DatabaseAssignmentMaccabi;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.CharArrayBuffer;
+import android.database.ContentObserver;
 import android.database.Cursor;
+import android.database.DataSetObserver;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
+import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
 
@@ -24,6 +31,7 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(MaccabiUserModel.CREATE_TABLE);
+        db.execSQL(MaccabiLikesTable.CREATE_TABLE);
 
 
     }
@@ -32,6 +40,7 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //drop older table if exists
         db.execSQL("DROP TABLE IF EXISTS " + MaccabiUserModel.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + MaccabiLikesTable.TABLE_NAME);
 
         //create table again
         onCreate(db);
@@ -82,19 +91,13 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
 
 
     //to get all users
-
-
     public ArrayList<MaccabiUserModel> getAllUser() {
-
-
         ArrayList<MaccabiUserModel> maccabiUserModelList = new ArrayList<>();
 
         //to select all user query
         String selectQuery = " SELECT * FROM " + MaccabiUserModel.TABLE_NAME;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
-
-
         //looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
@@ -107,15 +110,58 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
                 maccabiUserModel.setPassword(cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_PASSWORD)));
                 maccabiUserModel.setAge(cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_AGE)));
                 maccabiUserModel.setDob(cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_DOB)));
-
-
-
                 maccabiUserModelList.add(maccabiUserModel);
             } while (cursor.moveToNext());
         }
         db.close();
         return maccabiUserModelList;
     }
+
+    public ArrayList<Integer> checkLikedEntry(int profile) {
+        ArrayList<Integer> maccabiLikesTablesList = new ArrayList<>();
+        //to get check entry
+        String selectquery = " SELECT " + MaccabiLikesTable.COLUMN_LIKE + " FROM " + MaccabiLikesTable.TABLE_NAME + " WHERE " +
+                MaccabiLikesTable.COLUMN_PROFILE + " = " + profile;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectquery, null);
+
+        //looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+
+                maccabiLikesTablesList.add(cursor.getInt(cursor.getColumnIndex(MaccabiLikesTable.COLUMN_LIKE)));
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return maccabiLikesTablesList;
+
+    }
+
+    public ArrayList<MaccabiUserModel> getLikedBy(int profile) {
+        ArrayList<MaccabiUserModel> getLikedByList = new ArrayList<>();
+        String joinQuery = " SELECT " + MaccabiUserModel.COLUMN_MAIL_ID + " , " + MaccabiUserModel.COLUMN_FIRST_NAME +
+                " , " + MaccabiUserModel.COLUMN_LAST_NAME + " , " + MaccabiUserModel.COLUMN_PHONE_NO + " FROM " +
+                MaccabiLikesTable.TABLE_NAME + " LEFT JOIN " + MaccabiUserModel.TABLE_NAME + " ON " +
+                MaccabiLikesTable.COLUMN_PROFILE + " = " + MaccabiUserModel.COLUMN_ID + " WHERE " +
+                MaccabiLikesTable.COLUMN_LIKE + " = " + profile;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(joinQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                MaccabiUserModel maccabiUserModelLikedBy = new MaccabiUserModel();
+                maccabiUserModelLikedBy.setEmailId(cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_MAIL_ID)));
+                maccabiUserModelLikedBy.setFirstName(cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_FIRST_NAME)));
+                maccabiUserModelLikedBy.setLastName(cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_LAST_NAME)));
+                maccabiUserModelLikedBy.setPhoneNo(cursor.getInt(cursor.getColumnIndex(MaccabiUserModel.COLUMN_PHONE_NO)));
+                getLikedByList.add(maccabiUserModelLikedBy);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return getLikedByList;
+    }
+
 
     public int getUserCount() {
 
@@ -150,17 +196,15 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public int updateUser(String emailId,String firstName,String lastName,int phoneNo,String dob,String age)
-    {
-        String updateUserQuery=" UPDATE " + MaccabiUserModel.TABLE_NAME+ " SET " + MaccabiUserModel.COLUMN_FIRST_NAME+ " ='"+firstName+"' , "+
-                MaccabiUserModel.COLUMN_LAST_NAME+ " = '"+lastName+"' , "+ MaccabiUserModel.COLUMN_PHONE_NO + "= "+phoneNo+" , "+
-                MaccabiUserModel.COLUMN_DOB+ " = '"+dob+"' ,"+MaccabiUserModel.COLUMN_AGE+" = '"+age+"' "+
-                " WHERE "+MaccabiUserModel.COLUMN_MAIL_ID + " = '"+emailId+"'";
-        SQLiteDatabase db=this.getWritableDatabase();
-        Cursor cursor=db.rawQuery(updateUserQuery,null);
-        int count =cursor.getCount();
+    public int updateUser(String emailId, String firstName, String lastName, int phoneNo, String dob, String age) {
+        String updateUserQuery = " UPDATE " + MaccabiUserModel.TABLE_NAME + " SET " + MaccabiUserModel.COLUMN_FIRST_NAME + " ='" + firstName + "' , " +
+                MaccabiUserModel.COLUMN_LAST_NAME + " = '" + lastName + "' , " + MaccabiUserModel.COLUMN_PHONE_NO + "= " + phoneNo + " , " +
+                MaccabiUserModel.COLUMN_DOB + " = '" + dob + "' ," + MaccabiUserModel.COLUMN_AGE + " = '" + age + "' " +
+                " WHERE " + MaccabiUserModel.COLUMN_MAIL_ID + " = '" + emailId + "'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(updateUserQuery, null);
+        int count = cursor.getCount();
         return count;
-
 
 
     }
@@ -168,7 +212,7 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
     public boolean isMailIdExists(String emailId) {
         String isValidQuery = " SELECT * FROM " + MaccabiUserModel.TABLE_NAME +
                 " WHERE " + MaccabiUserModel.COLUMN_MAIL_ID + " = '" + emailId + "'";
-       SQLiteDatabase db=this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(isValidQuery, null);
         int count = cursor.getCount();
         cursor.close();
@@ -181,72 +225,107 @@ public class MaccabiDataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public long isPasswordCorrect(String emailId,String enteredloginPassword)
-    {
-      String isValidPassword= " SELECT " + MaccabiUserModel.COLUMN_PASSWORD + " FROM " + MaccabiUserModel.TABLE_NAME +
-              " WHERE " + MaccabiUserModel.COLUMN_MAIL_ID + " = '" + emailId + "'";
-      SQLiteDatabase db=this.getReadableDatabase();
-      Cursor cursor=db.rawQuery(isValidPassword,null);
-      if(cursor.moveToFirst()) {
-           existLoginPassword = cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_PASSWORD));
-      }
-      cursor.close();
+    public long isPasswordCorrect(String emailId, String enteredloginPassword) {
+        String isValidPassword = " SELECT " + MaccabiUserModel.COLUMN_PASSWORD + " FROM " + MaccabiUserModel.TABLE_NAME +
+                " WHERE " + MaccabiUserModel.COLUMN_MAIL_ID + " = '" + emailId + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(isValidPassword, null);
+        if (cursor.moveToFirst()) {
+            existLoginPassword = cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_PASSWORD));
+        }
+        cursor.close();
 
-      long id=0;
-      if(enteredloginPassword.equals(existLoginPassword))
-      {
-          String validPasswordEntryId=" SELECT " + MaccabiUserModel.COLUMN_ID+" FROM "+MaccabiUserModel.TABLE_NAME+
-                  " WHERE "+MaccabiUserModel.COLUMN_MAIL_ID+" = '"+emailId+"'";
-          SQLiteDatabase db1=getReadableDatabase();
-          Cursor cursor1=db1.rawQuery(validPasswordEntryId,null);
-          if(cursor1.moveToFirst())
-          {
-              id= cursor1.getLong(cursor1.getColumnIndex(MaccabiUserModel.COLUMN_ID));
-          }
-          else {
-              id = -1;
-          }
-      }
-      else
-      {
-          id=0;
-      }
+        long id = 0;
+        if (enteredloginPassword.equals(existLoginPassword)) {
+            String validPasswordEntryId = " SELECT " + MaccabiUserModel.COLUMN_ID + " FROM " + MaccabiUserModel.TABLE_NAME +
+                    " WHERE " + MaccabiUserModel.COLUMN_MAIL_ID + " = '" + emailId + "'";
+            SQLiteDatabase db1 = getReadableDatabase();
+            Cursor cursor1 = db1.rawQuery(validPasswordEntryId, null);
+            if (cursor1.moveToFirst()) {
+                id = cursor1.getLong(cursor1.getColumnIndex(MaccabiUserModel.COLUMN_ID));
+            } else {
+                id = -1;
+            }
+        } else {
+            id = 0;
+        }
 
-      return id;
+        return id;
     }
 
 
-    public String[] getUserData(String userMailId)
-    {
-        String getDataQuery="SELECT " + MaccabiUserModel.COLUMN_FIRST_NAME+ " , "+MaccabiUserModel.COLUMN_LAST_NAME+" , " +
-                MaccabiUserModel.COLUMN_PHONE_NO+ " FROM " + MaccabiUserModel.TABLE_NAME + " WHERE " +
-                MaccabiUserModel.COLUMN_MAIL_ID+ " ='"+userMailId+"'";
-        SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursor=db.rawQuery(getDataQuery,null);
-        if(cursor.moveToFirst())
-        {
-         data= new String[]{cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_FIRST_NAME)),
-                 cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_LAST_NAME)),
-                 cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_PHONE_NO))};
+    public String[] getUserData(String userMailId) {
+        String getDataQuery = "SELECT " + MaccabiUserModel.COLUMN_FIRST_NAME + " , " + MaccabiUserModel.COLUMN_LAST_NAME + " , " +
+                MaccabiUserModel.COLUMN_PHONE_NO + " FROM " + MaccabiUserModel.TABLE_NAME + " WHERE " +
+                MaccabiUserModel.COLUMN_MAIL_ID + " ='" + userMailId + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(getDataQuery, null);
+        if (cursor.moveToFirst()) {
+            data = new String[]{cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_FIRST_NAME)),
+                    cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_LAST_NAME)),
+                    cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_PHONE_NO))};
         }
         cursor.close();
         return data;
 
     }
-    public String getMailId(long id)
-    {String mailId="";
-        String getMailIdQuery="SELECT "+MaccabiUserModel.COLUMN_MAIL_ID+" FROM "+MaccabiUserModel.TABLE_NAME+
-                " WHERE "+MaccabiUserModel.COLUMN_ID+" = ?";
-        SQLiteDatabase db=this.getReadableDatabase();
-        String s[]={id+""};
-        Cursor cursor=db.rawQuery(getMailIdQuery,s);
-        if(cursor.moveToFirst())
-        {
-            mailId=cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_MAIL_ID));
+
+    public String getMailId(long id) {
+        String mailId = "";
+        String getMailIdQuery = "SELECT " + MaccabiUserModel.COLUMN_MAIL_ID + " FROM " + MaccabiUserModel.TABLE_NAME +
+                " WHERE " + MaccabiUserModel.COLUMN_ID + " = ?";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String s[] = {id + ""};
+        Cursor cursor = db.rawQuery(getMailIdQuery, s);
+        if (cursor.moveToFirst()) {
+            mailId = cursor.getString(cursor.getColumnIndex(MaccabiUserModel.COLUMN_MAIL_ID));
         }
         return mailId;
     }
 
+    public long insertLike(int profile, int liked) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        String checkLikeQuery = " SELECT * FROM " + MaccabiLikesTable.TABLE_NAME + " WHERE " + MaccabiLikesTable.COLUMN_PROFILE + " = " + profile + " AND " +
+                MaccabiLikesTable.COLUMN_LIKE + " = " + liked;
+        Cursor cursor = db.rawQuery(checkLikeQuery, null);
+        if (cursor.getCount() > 0) {
+            return -1;
+        } else {
 
+            ContentValues values = new ContentValues();
+            values.put(MaccabiLikesTable.COLUMN_PROFILE, profile);
+            values.put(MaccabiLikesTable.COLUMN_LIKE, liked);
+
+            long id = db.insert(MaccabiLikesTable.TABLE_NAME, null, values);
+            db.close();
+            return id;
+        }
+    }
+
+    public boolean deleteLike(int profile, int liked) {
+        SQLiteDatabase db = getWritableDatabase();
+        String deleteLikeQuery = " DELETE FROM " + MaccabiLikesTable.TABLE_NAME + " WHERE " + MaccabiLikesTable.COLUMN_PROFILE + " = " + profile + " AND " +
+                MaccabiLikesTable.COLUMN_LIKE + " = " + liked;
+        Cursor cursor = db.rawQuery(deleteLikeQuery, null);
+        int count = cursor.getCount();
+        if (count != 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public int getLikeCount(int profile) {
+        int count = 0;
+        SQLiteDatabase db = getReadableDatabase();
+        String getLikeCountQuery = " SELECT * FROM " + MaccabiLikesTable.TABLE_NAME + " WHERE " +
+                MaccabiLikesTable.COLUMN_LIKE + " = " + profile;
+        Cursor cursor = db.rawQuery(getLikeCountQuery, null);
+        if (cursor.moveToFirst()) {
+            count = cursor.getCount();
+        }
+        return count;
+    }
 }

@@ -9,7 +9,7 @@ public class MaccabiLikesTable {
     private int profile,liked;
 
 
-    public static final String CREATE_TABLE="CREATE TABLE "+TABLE_NAME+" ( "+COLUMN_PROFILE+" INTEGER ,"
+    public static final String CREATE_TABLE=" CREATE TABLE "+TABLE_NAME+" ( "+COLUMN_PROFILE+" INTEGER ,"
             +COLUMN_LIKE+" INTEGER "+" ) ";
 
     public MaccabiLikesTable()

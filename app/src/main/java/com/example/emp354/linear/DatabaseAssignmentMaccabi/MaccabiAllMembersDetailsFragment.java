@@ -1,5 +1,6 @@
 package com.example.emp354.linear.DatabaseAssignmentMaccabi;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.emp354.linear.MySharedPreferences;
 import com.example.emp354.linear.R;
 
 import java.util.ArrayList;
@@ -19,6 +21,9 @@ public class MaccabiAllMembersDetailsFragment extends Fragment implements Maccab
     MaccabiRecyclerViewAdapter maccabiRecyclerViewAdapter;
     MaccabiDataBaseHelper db;
     ArrayList<MaccabiUserModel> mUMList;
+    ArrayList<Integer> mLikeList;
+    MySharedPreferences mySharedPreferences;
+    int profile,liked;
 
     @Nullable
     @Override
@@ -31,15 +36,19 @@ public class MaccabiAllMembersDetailsFragment extends Fragment implements Maccab
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        mySharedPreferences=MySharedPreferences.getInstance(getActivity());
+        int id=(int)mySharedPreferences.fetchId();
         db = new MaccabiDataBaseHelper(getActivity());
         db.getReadableDatabase();
+
         mUMList = db.getAllUser();
-        maccabiRecyclerViewAdapter = new MaccabiRecyclerViewAdapter(getContext(), mUMList);
+        mLikeList=db.checkLikedEntry(id);
+        maccabiRecyclerViewAdapter = new MaccabiRecyclerViewAdapter(getContext(), mUMList,mLikeList);
         recyclerView.setAdapter(maccabiRecyclerViewAdapter);
+
+
         LinearLayoutManager layout_manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layout_manager);
-
-
         maccabiRecyclerViewAdapter.setMaccabiUserListener(this);
 
 
@@ -49,7 +58,17 @@ public class MaccabiAllMembersDetailsFragment extends Fragment implements Maccab
     public void onUserLiked(MaccabiUserModel userModel) {
 
 
-        userModel.isLiked();
+        if(userModel.isLiked())
+        { profile=(int)mySharedPreferences.fetchId();
+         liked=userModel.getId();
+         db.insertLike(profile,liked);
+        }
+        else
+        {
+            profile=(int)mySharedPreferences.fetchId();
+            liked=userModel.getId();
+            db.deleteLike(profile,liked);
+        }
 
     }
 }
