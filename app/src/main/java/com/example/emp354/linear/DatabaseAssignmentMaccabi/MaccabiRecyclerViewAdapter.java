@@ -22,7 +22,7 @@ public class MaccabiRecyclerViewAdapter extends RecyclerView.Adapter {
     private ArrayList<Integer> mLikeList;
     private MaccabiUserListener mListener;
     MaccabiDataBaseHelper db;
-    int count;
+    int count=0;
 
     public MaccabiRecyclerViewAdapter(Context context, ArrayList userList,ArrayList likeList) {
         mcontext = context;
@@ -114,6 +114,7 @@ public class MaccabiRecyclerViewAdapter extends RecyclerView.Adapter {
                 case R.id.layout_click:
                     int position = getAdapterPosition();
                     MaccabiUserModel user = mUserList.get(position);
+                    count=db.getLikeCount(user.getId());
 
                     if (!user.isLiked()) {
                         user.setLiked(true);

@@ -29,6 +29,7 @@ public class MaccabiAllMembersDetailsFragment extends Fragment implements Maccab
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.maccabi_all_members_details_fragment_layout, container, false);
+        ((MaccabiHomeActivity)getActivity()).checkFragment();
         return view;
     }
 

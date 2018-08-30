@@ -27,7 +27,8 @@ public class MaccabiEditProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.maccabi_edit_profile,container,false);
-                return view;
+        ((MaccabiHomeActivity)getActivity()).checkFragment();
+        return view;
     }
 
     @Override

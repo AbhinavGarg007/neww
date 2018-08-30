@@ -67,17 +67,70 @@ public class MaccabiHomeActivity extends AppCompatActivity {
 
         calendar=Calendar.getInstance();
         currentYear = calendar.get(Calendar.YEAR);
-
         currentMonth = calendar.get(Calendar.MONTH);
         currentDay = calendar.get(Calendar.DAY_OF_MONTH);
 
-        setSupportActionBar(toolbar);
+        /*setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setTitle("My Profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.maccabi_menu_resize_again);
+*/
+        fragmentManager=getSupportFragmentManager();
+
+        toolbar.setNavigationIcon(R.drawable.maccabi_menu_resize_again);
+        toolbar.inflateMenu(R.menu.home_icon);
 
 
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.START);
+                }
+
+
+        });
+
+
+        // to load fragment on menu item click
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId())
+                {
+
+                    case R.id.home_icon_edit:
+               /* MenuItem item1=(MenuItem)findViewById(R.id.home_icon_edit);
+                item1.setVisible(false);*/
+                        loadfragment(maccabiEditProfileFragment);
+                        break;
+
+
+                    case R.id.home_icon_calendar:
+
+               /* fragmentManager=getSupportFragmentManager();
+                dialogFragment=new MaccabiDatePickerFragment();
+                tag="datePicker";
+                dialogFragment.show(fragmentManager,tag);
+                break;*/
+                        DatePickerDialog datePickerDialog=new DatePickerDialog(MaccabiHomeActivity.this, new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                populateSetDate(year, month+1, dayOfMonth);
+                            }
+                        },currentYear,currentMonth,currentDay);
+                        Calendar newCalendar=Calendar.getInstance();
+                        newCalendar.set(Calendar.YEAR,(currentYear-4));
+                        newCalendar.set(Calendar.MONTH,currentMonth);
+                        datePickerDialog.getDatePicker().setMaxDate(newCalendar.getTimeInMillis());
+                        datePickerDialog.setCancelable(false);
+                        datePickerDialog.show();
+                        return true;
+
+
+                }
+                return true;
+            }
+        });
 
         mySharedPreferences=MySharedPreferences.getInstance(this);
         j=getIntent();
@@ -98,25 +151,19 @@ public class MaccabiHomeActivity extends AppCompatActivity {
         loadfragment(maccabiMyProfileFragment);
 
 
+
+
+        //to load fragment on navigation drawer item click
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                menu.findItem(R.id.home_icon_edit).setVisible(false);
-                menu.findItem(R.id.home_icon_calendar).setVisible(false);
-
                 switch (item.getTitle().toString())
-                {
-
-
-                    case "All Members Details":
-                        getSupportActionBar().setTitle(R.string.all_members_details);
+                { case "All Members Details":
                         loadfragment(maccabiAllMembersDetailsFragment);
                         break;
 
                     case "Like" :
-                        getSupportActionBar().setTitle(R.string.likes);
-
                         loadfragment(maccabiLikeFragment);
                         break;
                     case "Log Out" :
@@ -129,17 +176,21 @@ public class MaccabiHomeActivity extends AppCompatActivity {
 
 
     }
-    private void loadfragment(Fragment fragment)
+
+
+
+    // to load fragment
+    public void loadfragment(Fragment fragment)
     {
-        fragmentManager=getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.layout_fragment,fragment);
+        fragmentTransaction.replace(R.id.layout_fragment,fragment,"addfragment");
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
     }
 
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId())
         {
@@ -148,68 +199,134 @@ public class MaccabiHomeActivity extends AppCompatActivity {
                 break;
 
             case R.id.home_icon_edit:
-               /* MenuItem item1=(MenuItem)findViewById(R.id.home_icon_edit);
-                item1.setVisible(false);*/
-               menu.findItem(R.id.home_icon_edit).setVisible(false);
-                getSupportActionBar().setTitle("Edit Profile");
-               menu.findItem(R.id.home_icon_calendar).setVisible(true);
+               *//* MenuItem item1=(MenuItem)findViewById(R.id.home_icon_edit);
+                item1.setVisible(false);*//*
                loadfragment(maccabiEditProfileFragment);
                break;
 
 
             case R.id.home_icon_calendar:
 
-               /* fragmentManager=getSupportFragmentManager();
+               *//* fragmentManager=getSupportFragmentManager();
                 dialogFragment=new MaccabiDatePickerFragment();
                 tag="datePicker";
                 dialogFragment.show(fragmentManager,tag);
-                break;*/
+                break;*//*
                 DatePickerDialog datePickerDialog=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         populateSetDate(year, month+1, dayOfMonth);
                     }
                 },currentYear,currentMonth,currentDay);
-                /*Calendar calendar=Calendar.getInstance();
-                calendar.add(Calendar.YEAR,currentYear-4);
-                calendar.add(Calendar.MONTH,currentMonth);*/
-                datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
-
+                Calendar newCalendar=Calendar.getInstance();
+                newCalendar.set(Calendar.YEAR,(currentYear-4));
+                newCalendar.set(Calendar.MONTH,currentMonth);
+                datePickerDialog.getDatePicker().setMaxDate(newCalendar.getTimeInMillis());
                 datePickerDialog.setCancelable(false);
                 datePickerDialog.show();
                 return true;
 
 
-
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu=menu;
         getMenuInflater().inflate(R.menu.home_icon,menu);
         return true;
+    }*/
+
+    // to check whichfragment is going to load
+    //according to that change toolbar icon
+    public void checkFragment()
+    {
+        Fragment fragment;
+
+        fragment=getSupportFragmentManager().findFragmentByTag("addfragment");
+        toolbar.getMenu().findItem(R.id.home_icon_edit).setVisible(false);
+        toolbar.getMenu().findItem(R.id.home_icon_calendar).setVisible(false);
+
+        if (fragment instanceof MaccabiMyProfileFragment)
+        {
+            toolbar.setTitle("My Profile");
+            toolbar.getMenu().findItem(R.id.home_icon_edit).setVisible(true);
+            toolbar.getMenu().findItem(R.id.home_icon_calendar).setVisible(false);
+
+        }
+        if(fragment instanceof MaccabiEditProfileFragment)
+        {
+            toolbar.setTitle("Edit Profile");
+            toolbar.getMenu().findItem(R.id.home_icon_edit).setVisible(false);
+            toolbar.getMenu().findItem(R.id.home_icon_calendar).setVisible(true);
+
+        }
+        if(fragment instanceof MaccabiAllMembersDetailsFragment)
+        {
+            toolbar.setTitle(R.string.all_members_details);
+
+
+        }
+        if(fragment instanceof MaccabiLikeFragment)
+        {
+            toolbar.setTitle(R.string.likes);
+
+
+        }
     }
+
+    //backpress functionality
     @Override
     public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Closing Activity")
-                .setMessage("Are you sure you want to exit?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
+        if(fragmentManager.getBackStackEntryCount()>1)
+        {
+            fragmentManager.popBackStackImmediate();
+            Fragment f = fragmentManager.findFragmentByTag("addfragment");
+            if(f instanceof MaccabiMyProfileFragment)
+            {
+                toolbar.setTitle("My Profile");
+                toolbar.getMenu().findItem(R.id.home_icon_edit).setVisible(true);
+                toolbar.getMenu().findItem(R.id.home_icon_calendar).setVisible(false);
+            }
+            else if(f instanceof MaccabiEditProfileFragment)
+            {
+                toolbar.setTitle("Edit Profile");
+                toolbar.getMenu().findItem(R.id.home_icon_edit).setVisible(false);
+                toolbar.getMenu().findItem(R.id.home_icon_calendar).setVisible(true);
+            }
+            else if(f instanceof MaccabiAllMembersDetailsFragment)
+            {
+                toolbar.setTitle(R.string.all_members_details);
 
-                })
-                .setNegativeButton("No", null)
-                .show();
+            }
+            else if(f instanceof MaccabiLikeFragment)
+            {
+                toolbar.setTitle(R.string.likes);
+
+            }
+        }
+        else {
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Closing Activity")
+                    .setMessage("Are you sure you want to exit?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+
+        }
     }
 
+
+    //logout functionality
     public void logOut()
     {
         new AlertDialog.Builder(this)
@@ -233,6 +350,7 @@ public class MaccabiHomeActivity extends AppCompatActivity {
                 .show();
     }
 
+    //to calculate age based on inserted dob
     private String calculateAge(int year,int month,int day)
     {
         Calendar dob=Calendar.getInstance();
@@ -249,6 +367,8 @@ public class MaccabiHomeActivity extends AppCompatActivity {
 
         return ageS;
     }
+
+    //to set text on hidden textview
     private void populateSetDate(int year,int month,int day)
     {String dob=day+"-"+month+"-"+year;
 
