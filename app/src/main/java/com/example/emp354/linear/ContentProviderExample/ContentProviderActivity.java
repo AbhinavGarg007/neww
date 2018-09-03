@@ -14,26 +14,37 @@ import com.example.emp354.linear.FragmentAssignment.CustomAdapterFragment;
 import com.example.emp354.linear.R;
 
 public class ContentProviderActivity extends AppCompatActivity {
-   EditText editText_2,editText_3;
+   EditText editText2,editText3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content_provider);
-editText_2=(EditText)findViewById(R.id.editText2);
-        editText_3=(EditText)findViewById(R.id.editText3);
+
+        editText2=(EditText)findViewById(R.id.editText2);
+        editText3=(EditText)findViewById(R.id.editText3);
 
     }
 
     public void onClickAddName(View view)
     {
         ContentValues values=new ContentValues();
-        values.put(StudentsProvider.NAME,editText_2.getText().toString());
-        values.put(StudentsProvider.GRADE,editText_3.getText().toString());
-        Uri uri=getContentResolver().insert(
-                StudentsProvider.CONTENT_URI,values);
-        Toast.makeText(getBaseContext(),
-                uri.toString(),Toast.LENGTH_SHORT).show();
+        values.put(StudentsProvider.NAME,editText2.getText().toString());
+        values.put(StudentsProvider.GRADE,editText3.getText().toString());
+        Uri uri=getContentResolver().insert(StudentsProvider.CONTENT_URI,values);
+        Toast.makeText(getBaseContext(), uri.toString(),Toast.LENGTH_SHORT).show();
 
+    }
+
+    public void onClickUpdate(View view)
+    {
+        ContentValues values=new ContentValues();
+        String name= editText2.getText().toString();
+        String grade=editText3.getText().toString();
+
+        values.put(StudentsProvider.NAME,name);
+        values.put(StudentsProvider.GRADE,grade);
+        int count=getContentResolver().update(StudentsProvider.CONTENT_URI,values,StudentsProvider.NAME+"=?",new String[]{name});
+        Toast.makeText(getBaseContext(), "Rows"+count+"updated",Toast.LENGTH_SHORT).show();
     }
     public void onClickRetrieveStudents(View view) {
         String URL = "content://com.example.emp354.linear.ContentProviderExample";

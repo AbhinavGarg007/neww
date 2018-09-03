@@ -108,9 +108,7 @@
             android:theme="@style/ToolBarTheme" />
         <activity
             android:name=".DatabaseAssignmentMaccabi.SplashMaccabi"
-            android:theme="@style/ToolBarTheme">
-
-        </activity>
+            android:theme="@style/ToolBarTheme" />
         <activity
             android:name=".DatabaseAssignmentMaccabi.MailIdScreenMaccabi"
             android:theme="@style/ToolBarTheme" />
@@ -120,13 +118,37 @@
         <activity
             android:name=".DatabaseAssignmentMaccabi.MaccabiHomeActivity"
             android:theme="@style/ToolBarTheme" />
-        <activity android:name=".ContentProviderExample.ContentProviderActivity">
+        <activity android:name=".ContentProviderExample.ContentProviderActivity" />
+
+        <provider
+            android:name=".ContentProviderExample.StudentsProvider"
+            android:authorities="com.example.emp354.linear.ContentProviderExample"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
+            android:name=".MaccabiContentProvider.MaccabiContentSplash"
+            android:theme="@style/ToolBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MaccabiContentProvider.MaccabiContentMailId"
+            android:theme="@style/ToolBarTheme" />
+        <activity
+            android:name=".MaccabiContentProvider.MaccabiContentRegisterLogin"
+            android:theme="@style/ToolBarTheme" />
+        <activity android:name=".MaccabiContentProvider.MaccabiContentHomeActivity"
+            android:theme="@style/ToolBarTheme"></activity>
+        <provider
+            android:name=".MaccabiContentProvider.MaccabiContentProvider"
+            android:authorities="com.example.emp354.linear.MaccabiContentProvider"
+            android:enabled="true"
+            android:exported="false" />
+
     </application>
 
 </manifest>
