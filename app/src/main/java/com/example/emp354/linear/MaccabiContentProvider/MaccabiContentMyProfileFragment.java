@@ -1,20 +1,22 @@
 package com.example.emp354.linear.MaccabiContentProvider;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.emp354.linear.MaccabiContentSharedPreference;
 import com.example.emp354.linear.R;
 
-public class MaccabiContentMyProfile extends Fragment implements View.OnClickListener {
+public class MaccabiContentMyProfileFragment extends Fragment implements View.OnClickListener {
 
     String mailId;
+    MaccabiContentSharedPreference maccabiContentSharedPreference;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -25,6 +27,10 @@ public class MaccabiContentMyProfile extends Fragment implements View.OnClickLis
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        maccabiContentSharedPreference=MaccabiContentSharedPreference.getInstance(getActivity());
+        int id=(int)maccabiContentSharedPreference.fetchId();
+
         TextView tvMailData=view.findViewById(R.id.tv_mail_data);
         TextView tvFirstNameData=view.findViewById(R.id.tv_first_name_data);
         TextView tvLastNameData=view.findViewById(R.id.tv_last_name_data);
@@ -32,9 +38,11 @@ public class MaccabiContentMyProfile extends Fragment implements View.OnClickLis
         TextView tvLikes=view.findViewById(R.id.tv_myprofile_like);
         TextView tvMyProfileLike=view.findViewById(R.id.tv_myprofile_like);
 
+
+
         tvMyProfileLike.setOnClickListener(this);
 
-        mailId=db.getMailId(id);
+       /* mailId=db.getMailId(id);
 
         db.getReadableDatabase();
         String[] data=db.getUserData(mailId);
@@ -44,16 +52,38 @@ public class MaccabiContentMyProfile extends Fragment implements View.OnClickLis
         tvPhoneNo.setText(data[2]);
         tvLikes.setText(String.valueOf(count));
 
-        db.close();
+        db.close();*/
+       String[] projection={MaccabiContentUserModel.COLUMN_MAIL_ID,MaccabiContentUserModel.COLUMN_FIRST_NAME
+               ,MaccabiContentUserModel.COLUMN_LAST_NAME,MaccabiContentUserModel.COLUMN_PHONE_NO};
+        Cursor cursor=getActivity().getContentResolver().query(MaccabiContentProvider.CONTENT_URI,
+                projection,
+                MaccabiContentUserModel.COLUMN_ID+"=?",
+                new String[] {String.valueOf(id)},
+                null);
 
+        if(cursor.moveToFirst())
+        {
+            String mailId=cursor.getString(cursor.getColumnIndex(MaccabiContentUserModel.COLUMN_MAIL_ID));
+            String firstName=cursor.getString(cursor.getColumnIndex(MaccabiContentUserModel.COLUMN_FIRST_NAME));
+            String lastName=cursor.getString(cursor.getColumnIndex(MaccabiContentUserModel.COLUMN_LAST_NAME));
+            String phoneNo=cursor.getString(cursor.getColumnIndex(MaccabiContentUserModel.COLUMN_PHONE_NO));
+
+            tvMailData.setText(mailId);
+            tvFirstNameData.setText(firstName);
+            tvLastNameData.setText(lastName);
+            tvPhoneNo.setText(phoneNo);
+
+        }
     }
+
+
 
     @Override
     public void onClick(View v) {
         switch (v.getId())
         {
             case R.id.tv_myprofile_like:
-                Fragment fragment=new MaccabiContentLike();
+                Fragment fragment=new MaccabiContentLikeFragment();
                 ((MaccabiContentHomeActivity) getActivity()).loadfragment(fragment);
 
                 break;

@@ -129,11 +129,7 @@
         <activity
             android:name=".MaccabiContentProvider.MaccabiContentSplash"
             android:theme="@style/ToolBarTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MaccabiContentProvider.MaccabiContentMailId"
@@ -141,14 +137,23 @@
         <activity
             android:name=".MaccabiContentProvider.MaccabiContentRegisterLogin"
             android:theme="@style/ToolBarTheme" />
-        <activity android:name=".MaccabiContentProvider.MaccabiContentHomeActivity"
-            android:theme="@style/ToolBarTheme"></activity>
+        <activity
+            android:name=".MaccabiContentProvider.MaccabiContentHomeActivity"
+            android:theme="@style/ToolBarTheme" />
+
         <provider
             android:name=".MaccabiContentProvider.MaccabiContentProvider"
             android:authorities="com.example.emp354.linear.MaccabiContentProvider"
             android:enabled="true"
             android:exported="false" />
 
+        <activity android:name=".RoomExample.RoomActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

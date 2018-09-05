@@ -25,6 +25,7 @@ import com.example.emp354.linear.DatabaseAssignmentMaccabi.MaccabiHomeActivity;
 import com.example.emp354.linear.DatabaseAssignmentMaccabi.MaccabiLikeFragment;
 import com.example.emp354.linear.DatabaseAssignmentMaccabi.MaccabiMyProfileFragment;
 import com.example.emp354.linear.DatabaseAssignmentMaccabi.MailIdScreenMaccabi;
+import com.example.emp354.linear.MaccabiContentSharedPreference;
 import com.example.emp354.linear.MySharedPreferences;
 import com.example.emp354.linear.R;
 
@@ -39,19 +40,20 @@ public class MaccabiContentHomeActivity extends AppCompatActivity {
     FrameLayout frameLayout;
     Toolbar toolbar;
     NavigationView navigationView;
-    MaccabiMyProfileFragment maccabiMyProfileFragment;
-    MaccabiEditProfileFragment maccabiEditProfileFragment;
-    MaccabiAllMembersDetailsFragment maccabiAllMembersDetailsFragment;
-    MaccabiLikeFragment maccabiLikeFragment;
+    MaccabiContentMyProfileFragment maccabiContentMyProfileFragment;
+    MaccabiContentEditProfileFragment maccabiContentEditProfileFragment;
+    MaccabiContentAllMembersDetailsFragment maccabiContentAllMembersDetailsFragment;
+    MaccabiContentLikeFragment maccabiContentLikeFragment;
     FragmentManager fragmentManager;
     int currentYear,currentMonth,currentDay;
-    MySharedPreferences mySharedPreferences;
+    MaccabiContentSharedPreference maccabiContentSharedPreference;
     Calendar calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maccabi_content_home);
+        maccabiContentSharedPreference=MaccabiContentSharedPreference.getInstance(this);
 
         drawerLayout =findViewById(R.id.drawer_layout);
         frameLayout=findViewById(R.id.layout_fragment);
@@ -80,7 +82,7 @@ public class MaccabiContentHomeActivity extends AppCompatActivity {
                 {
 
                     case R.id.home_icon_edit:
-                        loadfragment(maccabiEditProfileFragment);
+                        loadfragment(maccabiContentEditProfileFragment);
                         break;
 
 
@@ -108,16 +110,16 @@ public class MaccabiContentHomeActivity extends AppCompatActivity {
         j=getIntent();
         mailId=j.getStringExtra("mailId");
 
-        maccabiMyProfileFragment=new MaccabiMyProfileFragment();
-        maccabiEditProfileFragment=new MaccabiEditProfileFragment();
-        maccabiAllMembersDetailsFragment=new MaccabiAllMembersDetailsFragment();
-        maccabiLikeFragment=new MaccabiLikeFragment();
+        maccabiContentMyProfileFragment=new MaccabiContentMyProfileFragment();
+        maccabiContentEditProfileFragment=new MaccabiContentEditProfileFragment();
+        maccabiContentAllMembersDetailsFragment=new MaccabiContentAllMembersDetailsFragment();
+        maccabiContentLikeFragment=new MaccabiContentLikeFragment();
 
         Bundle c=new Bundle();
         c.putString("mailId",mailId);
-        maccabiMyProfileFragment.setArguments(c);
-        maccabiEditProfileFragment.setArguments(c);
-        loadfragment(maccabiMyProfileFragment);
+        maccabiContentMyProfileFragment.setArguments(c);
+        maccabiContentEditProfileFragment.setArguments(c);
+        loadfragment(maccabiContentMyProfileFragment);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -125,11 +127,11 @@ public class MaccabiContentHomeActivity extends AppCompatActivity {
 
                 switch (item.getTitle().toString())
                 { case "All Members Details":
-                    loadfragment(maccabiAllMembersDetailsFragment);
+                    loadfragment(maccabiContentAllMembersDetailsFragment);
                     break;
 
                     case "Like" :
-                        loadfragment(maccabiLikeFragment);
+                        loadfragment(maccabiContentLikeFragment);
                         break;
                     case "Log Out" :
                         logOut();
@@ -158,27 +160,27 @@ public class MaccabiContentHomeActivity extends AppCompatActivity {
         toolbar.getMenu().findItem(R.id.home_icon_edit).setVisible(false);
         toolbar.getMenu().findItem(R.id.home_icon_calendar).setVisible(false);
 
-        if (fragment instanceof MaccabiMyProfileFragment)
+        if (fragment instanceof MaccabiContentMyProfileFragment)
         {
             toolbar.setTitle("My Profile");
             toolbar.getMenu().findItem(R.id.home_icon_edit).setVisible(true);
             toolbar.getMenu().findItem(R.id.home_icon_calendar).setVisible(false);
 
         }
-        if(fragment instanceof MaccabiEditProfileFragment)
+        if(fragment instanceof MaccabiContentEditProfileFragment)
         {
             toolbar.setTitle("Edit Profile");
             toolbar.getMenu().findItem(R.id.home_icon_edit).setVisible(false);
             toolbar.getMenu().findItem(R.id.home_icon_calendar).setVisible(true);
 
         }
-        if(fragment instanceof MaccabiAllMembersDetailsFragment)
+        if(fragment instanceof MaccabiContentAllMembersDetailsFragment)
         {
             toolbar.setTitle(R.string.all_members_details);
 
 
         }
-        if(fragment instanceof MaccabiLikeFragment)
+        if(fragment instanceof MaccabiContentLikeFragment)
         {
             toolbar.setTitle(R.string.likes);
 
@@ -191,24 +193,24 @@ public class MaccabiContentHomeActivity extends AppCompatActivity {
         {
             fragmentManager.popBackStackImmediate();
             Fragment f = fragmentManager.findFragmentByTag("addfragment");
-            if(f instanceof MaccabiMyProfileFragment)
+            if(f instanceof MaccabiContentMyProfileFragment)
             {
                 toolbar.setTitle("My Profile");
                 toolbar.getMenu().findItem(R.id.home_icon_edit).setVisible(true);
                 toolbar.getMenu().findItem(R.id.home_icon_calendar).setVisible(false);
             }
-            else if(f instanceof MaccabiEditProfileFragment)
+            else if(f instanceof MaccabiContentEditProfileFragment)
             {
                 toolbar.setTitle("Edit Profile");
                 toolbar.getMenu().findItem(R.id.home_icon_edit).setVisible(false);
                 toolbar.getMenu().findItem(R.id.home_icon_calendar).setVisible(true);
             }
-            else if(f instanceof MaccabiAllMembersDetailsFragment)
+            else if(f instanceof MaccabiContentAllMembersDetailsFragment)
             {
                 toolbar.setTitle(R.string.all_members_details);
 
             }
-            else if(f instanceof MaccabiLikeFragment)
+            else if(f instanceof MaccabiContentLikeFragment)
             {
                 toolbar.setTitle(R.string.likes);
 
@@ -246,7 +248,7 @@ public class MaccabiContentHomeActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         /* SaveSharedPreference.setLoggedIn(getApplicationContext(), false,null);*/
 
-                       /* mySharedPreferences.clearAllData();*/
+                        maccabiContentSharedPreference.clearAllData();
                         Intent i=new Intent(MaccabiContentHomeActivity.this,MaccabiContentMailId.class);
                         startActivity(i);
                         finish();
@@ -279,9 +281,9 @@ public class MaccabiContentHomeActivity extends AppCompatActivity {
     private void populateSetDate(int year,int month,int day)
     {String dob=day+"-"+month+"-"+year;
 
-        maccabiEditProfileFragment.tv_dob.setText(dob);
+        /*maccabiEditProfileFragment.tv_dob.setText(dob);
         String age=calculateAge(year,month,day);
-        maccabiEditProfileFragment.tv_age.setText(age);
+        maccabiEditProfileFragment.tv_age.setText(age);*/
     }
 
 }

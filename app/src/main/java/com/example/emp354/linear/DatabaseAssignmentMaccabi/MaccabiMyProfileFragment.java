@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.emp354.linear.MaccabiContentProvider.MaccabiContentHomeActivity;
 import com.example.emp354.linear.MySharedPreferences;
 import com.example.emp354.linear.R;
 import com.example.emp354.linear.SaveSharedPreference;
@@ -37,7 +38,7 @@ public class MaccabiMyProfileFragment extends Fragment implements View.OnClickLi
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.maccabi_my_profile,container,false);
         /*setHasOptionsMenu(true);*/
-        ((MaccabiHomeActivity)getActivity()).checkFragment();
+        ((MaccabiContentHomeActivity)getActivity()).checkFragment();
         return view;
     }
 

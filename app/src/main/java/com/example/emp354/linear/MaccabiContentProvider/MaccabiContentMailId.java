@@ -1,6 +1,8 @@
 package com.example.emp354.linear.MaccabiContentProvider;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -19,10 +21,14 @@ public class MaccabiContentMailId extends AppCompatActivity {
     Button btn_next;
     String mail_text;
     boolean isValidMailId;
+    MaccabiContentProvider maccabiContentProvider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maccabi_content_mail_id);
+
+        maccabiContentProvider=new MaccabiContentProvider();
 
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -38,21 +44,29 @@ public class MaccabiContentMailId extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mail_text=et_mail.getText().toString();
-                boolean result=db.isMailIdExists(mail_text);
+               /* boolean result=maccabiContentProvider.isMailIdExists(mail_text);*/
+               String[] projection={MaccabiContentUserModel.COLUMN_MAIL_ID};
+                Cursor cursor=getContentResolver().query(MaccabiContentProvider.CONTENT_URI,
+                        projection,
+                        MaccabiContentUserModel.COLUMN_MAIL_ID+"=?",
+                        new String[]{mail_text},
+                        null);
+                int count=cursor.getCount();
+                cursor.close();
 
-                if(result)
+                if(count<=0)
                 {
-                    isValidMailId=result;
+                    isValidMailId=false;
                 }  else {
-                    isValidMailId = false;
+                    isValidMailId = true;
                 }
-                nextActivity();
+                nextActivity(isValidMailId);
 
 
             }
         });
     }
-    private void nextActivity()
+    private void nextActivity(boolean isValidMailId)
     {
         Intent i = new Intent(MaccabiContentMailId.this, MaccabiContentRegisterLogin.class);
         i.putExtra("mailId",mail_text);

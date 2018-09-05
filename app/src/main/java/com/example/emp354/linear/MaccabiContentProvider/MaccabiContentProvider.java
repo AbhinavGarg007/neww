@@ -24,15 +24,9 @@ public class MaccabiContentProvider extends ContentProvider {
     static final String PROVIDER_NAME="com.example.emp354.linear.MaccabiContentProvider";
     static final String URL="content://"+PROVIDER_NAME+"/user";
     static final Uri CONTENT_URI=Uri.parse(URL);
+    MaccabiContentDatabase maccabiContentDatabase;
+    SQLiteDatabase db;
 
-     static final String COLUMN_ID = "ID";
-     static final String COLUMN_MAIL_ID = "MailID";
-     static final String COLUMN_FIRST_NAME = "FirstName";
-     static final String COLUMN_LAST_NAME = "LastName";
-     static final String COLUMN_PHONE_NO = "PhoneNo";
-     static final String COLUMN_PASSWORD = "Password";
-     static final String COLUMN_DOB = "DOB";
-     static final String COLUMN_AGE = "AGE";
 
     private static HashMap<String,String> USER_PROJECTION_MAP;
     static final int USER=1;
@@ -46,39 +40,11 @@ public class MaccabiContentProvider extends ContentProvider {
     }
 
 
-    private SQLiteDatabase db;
-    static final String DATABASE_NAME="MaccabiContent";
-    static final  String TABLE_NAME="User";
-    static final int DATABASE_VERSION=1;
-    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ( " + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " + COLUMN_MAIL_ID + " TEXT , " + COLUMN_FIRST_NAME + " TEXT , " + COLUMN_LAST_NAME + " TEXT , " +
-            COLUMN_PHONE_NO + " STRING , " + COLUMN_PASSWORD + " TEXT  ," + COLUMN_DOB + " TEXT ," + COLUMN_AGE + " TEXT " + ")";
-
-
-
-    private static class MaccabiContentDatabase extends SQLiteOpenHelper {
-        public MaccabiContentDatabase(Context context) {
-            super(context, DATABASE_NAME, null,DATABASE_VERSION);
-        }
-
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-            db.execSQL(CREATE_TABLE);
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
-            onCreate(db);
-
-        }
-    }
-
-
 
     @Override
     public boolean onCreate() {
         Context context=getContext();
-        MaccabiContentDatabase maccabiContentDatabase=new MaccabiContentDatabase(context);
+        maccabiContentDatabase=new MaccabiContentDatabase(context);
         db=maccabiContentDatabase.getWritableDatabase();
 
         return (db==null)?false:true;
@@ -88,7 +54,7 @@ public class MaccabiContentProvider extends ContentProvider {
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
         SQLiteQueryBuilder sqb=new SQLiteQueryBuilder();
-        sqb.setTables(TABLE_NAME);
+        sqb.setTables(MaccabiContentUserModel.TABLE_NAME);
         switch (uriMatcher.match(uri))
         {
             case USER:
@@ -96,14 +62,14 @@ public class MaccabiContentProvider extends ContentProvider {
                 break;
 
             case USER_ID:
-                sqb.appendWhere(COLUMN_ID+"="+uri.getPathSegments().get(1));
+                sqb.appendWhere(MaccabiContentUserModel.COLUMN_ID+"="+uri.getPathSegments().get(1));
                 break;
 
             default:
         }
         if(sortOrder==null || sortOrder=="")
         {
-            sortOrder=COLUMN_FIRST_NAME;
+            sortOrder=MaccabiContentUserModel.COLUMN_FIRST_NAME;
         }
         Cursor c=sqb.query(db,projection,selection,selectionArgs,null,null,sortOrder);
         c.setNotificationUri(getContext().getContentResolver(),uri);
@@ -129,7 +95,7 @@ public class MaccabiContentProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
-        long rowId=db.insert(TABLE_NAME,"",values);
+        long rowId=db.insert(MaccabiContentUserModel.TABLE_NAME,"",values);
         if(rowId>0)
         {
             Uri _uri= ContentUris.withAppendedId(CONTENT_URI,rowId);
@@ -149,9 +115,21 @@ public class MaccabiContentProvider extends ContentProvider {
         return 0;
     }
 
-    public int getMailId()
+    public boolean isMailIdExists(String mailId)
     {
-        String mailId="";
-        Cursor cursor=getContext().getContentResolver().query(MaccabiContentProvider.CONTENT_URI,MaccabiContentProvider.USER_PROJECTION_MAP,)
+        String[] projection={MaccabiContentUserModel.COLUMN_MAIL_ID};
+        Cursor cursor=getContext().getContentResolver().query(MaccabiContentProvider.CONTENT_URI,
+                projection,
+                MaccabiContentUserModel.COLUMN_MAIL_ID,
+                new String[] {mailId},
+                null);
+        int count=cursor.getCount();
+        cursor.close();
+        if (count <= 0) {
+            return false;
+        } else {
+            return true;
+        }
+
     }
 }
