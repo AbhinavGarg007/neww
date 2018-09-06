@@ -12,7 +12,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
 
-    /*public static AppDatabase getAppDatabase(Context context)
+    public static AppDatabase getAppDatabase(Context context)
     {
         if(INSTANCE==null)
         {
@@ -26,5 +26,5 @@ public abstract class AppDatabase extends RoomDatabase {
     public static void destroyInstance()
     {
         INSTANCE=null;
-    }*/
+    }
 }

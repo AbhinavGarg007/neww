@@ -13,8 +13,15 @@ import android.widget.Toast;
 import com.example.emp354.linear.FragmentAssignment.CustomAdapterFragment;
 import com.example.emp354.linear.R;
 
+import java.util.ArrayList;
+
 public class ContentProviderActivity extends AppCompatActivity {
    EditText editText2,editText3;
+
+    ContentValues[] cvArray=new ContentValues[10];
+    int i=0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,17 +30,44 @@ public class ContentProviderActivity extends AppCompatActivity {
         editText2=(EditText)findViewById(R.id.editText2);
         editText3=(EditText)findViewById(R.id.editText3);
 
+
+
     }
 
-    public void onClickAddName(View view)
+    /*public void onClickAddName(View view)
     {
         ContentValues values=new ContentValues();
         values.put(StudentsProvider.NAME,editText2.getText().toString());
         values.put(StudentsProvider.GRADE,editText3.getText().toString());
         Uri uri=getContentResolver().insert(StudentsProvider.CONTENT_URI,values);
         Toast.makeText(getBaseContext(), uri.toString(),Toast.LENGTH_SHORT).show();
+        //bulk insert
+
+    }*/
+
+
+    public void onClickAddName(View view)
+    {
+
+
+        /*int i=0;*/
+
+            ContentValues cv=new ContentValues();
+            cv.put(StudentsProvider.NAME,editText2.getText().toString());
+            cv.put(StudentsProvider.GRADE,editText3.getText().toString());
+            cvArray[i]=cv;
+            i++;
 
     }
+
+    public void onClickBulkInsert(View view)
+    {
+        long insertCount=0;
+        insertCount=getContentResolver().bulkInsert(StudentsProvider.CONTENT_URI,cvArray);
+        Toast.makeText(ContentProviderActivity.this,String.valueOf(insertCount),Toast.LENGTH_SHORT).show();
+    }
+
+
 
     public void onClickUpdate(View view)
     {

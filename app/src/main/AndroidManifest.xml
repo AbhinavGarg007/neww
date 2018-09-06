@@ -118,7 +118,12 @@
         <activity
             android:name=".DatabaseAssignmentMaccabi.MaccabiHomeActivity"
             android:theme="@style/ToolBarTheme" />
-        <activity android:name=".ContentProviderExample.ContentProviderActivity" />
+        <activity android:name=".ContentProviderExample.ContentProviderActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
 
         <provider
             android:name=".ContentProviderExample.StudentsProvider"
@@ -147,12 +152,9 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name=".RoomExample.RoomActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".RoomExample.RoomActivity"
+            android:theme="@style/ToolBarTheme">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

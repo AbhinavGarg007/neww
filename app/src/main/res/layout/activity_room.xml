@@ -17,12 +17,16 @@
         android:textStyle="bold"
         />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:layout_margin="@dimen/margin_10"
+        android:layout_marginLeft="@dimen/margin_10"
+        android:layout_marginRight="@dimen/margin_10"
         android:orientation="vertical">
 
     <EditText
@@ -30,32 +34,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="First Name"
-        android:textSize="@dimen/textsize_20"/>
+        android:textSize="@dimen/textsize_15"/>
 
     <EditText
         android:id="@+id/et_last_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Last Name"
-        android:textSize="@dimen/textsize_20"/>
+        android:textSize="@dimen/textsize_15"/>
     <EditText
         android:id="@+id/et_phone_no"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Phone No."
-        android:textSize="@dimen/textsize_20"/>
+        android:textSize="@dimen/textsize_15"/>
     <EditText
         android:id="@+id/et_age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Age"
-        android:textSize="@dimen/textsize_20"/>
+        android:textSize="@dimen/textsize_15"/>
     <EditText
         android:id="@+id/et_salary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Salary"
-        android:textSize="@dimen/textsize_20"/>
+        android:textSize="@dimen/textsize_15"/>
         <Button
             android:id="@+id/btn_submit"
             android:layout_width="match_parent"
@@ -72,16 +76,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Count"/>
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update"/>
+        <Button
+            android:id="@+id/btn_delete_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete All"/>
 
+        <EditText
+            android:id="@+id/et_uid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Uid"
+            android:textSize="@dimen/textsize_15"/>
         <Button
             android:id="@+id/btn_delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Delete"/>
 
-
-
-
     </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

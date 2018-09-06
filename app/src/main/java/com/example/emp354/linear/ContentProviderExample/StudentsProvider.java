@@ -144,6 +144,29 @@ public class StudentsProvider extends ContentProvider{
     }
 
     @Override
+    public int bulkInsert(@NonNull Uri uri, @NonNull ContentValues[] values) {
+
+        switch (uriMatcher.match(uri))
+        {
+            case STUDENTS:
+
+                for(ContentValues value : values)
+                {
+
+                    long rowId=db.insert(TABLE_NAME,"",value);
+                    if(rowId>0)
+                    {
+                        Uri _uri=ContentUris.withAppendedId(CONTENT_URI,rowId);
+                        getContext().getContentResolver().notifyChange(_uri,null);
+                        return values.length;
+                    }
+                }
+                break;
+        }
+        return super.bulkInsert(uri,values);
+    }
+
+    @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
         int count=0;
         switch (uriMatcher.match(uri))
