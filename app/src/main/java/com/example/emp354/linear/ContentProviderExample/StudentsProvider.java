@@ -150,7 +150,7 @@ public class StudentsProvider extends ContentProvider{
         {
             case STUDENTS:
 
-                for(ContentValues value : values)
+                /*for(ContentValues value : values)
                 {
 
                     long rowId=db.insert(TABLE_NAME,"",value);
@@ -160,10 +160,21 @@ public class StudentsProvider extends ContentProvider{
                         getContext().getContentResolver().notifyChange(_uri,null);
                         return values.length;
                     }
+                }*/
+                for(int i=0;i<values.length;i++)
+                {
+                   ContentValues value=values[i];
+                    long rowId=db.insert(TABLE_NAME,"",value);
+                    if(rowId>0)
+                    {
+                        Uri _uri=ContentUris.withAppendedId(CONTENT_URI,rowId);
+                        getContext().getContentResolver().notifyChange(_uri,null);
+
+                    }
                 }
                 break;
         }
-        return super.bulkInsert(uri,values);
+        return values.length;
     }
 
     @Override

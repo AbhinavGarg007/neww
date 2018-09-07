@@ -52,11 +52,18 @@ public class ContentProviderActivity extends AppCompatActivity {
 
         /*int i=0;*/
 
-            ContentValues cv=new ContentValues();
-            cv.put(StudentsProvider.NAME,editText2.getText().toString());
-            cv.put(StudentsProvider.GRADE,editText3.getText().toString());
-            cvArray[i]=cv;
+            /*ContentValues cv = new ContentValues();
+            cv.put(StudentsProvider.NAME, editText2.getText().toString());
+            cv.put(StudentsProvider.GRADE, editText3.getText().toString());
+            cvArray[i] = cv;
+            i++;*/
+            cvArray[i]=new ContentValues();
+
+            cvArray[i].put(StudentsProvider.NAME, editText2.getText().toString());
+            cvArray[i].put(StudentsProvider.GRADE, editText3.getText().toString());
+
             i++;
+
 
     }
 
