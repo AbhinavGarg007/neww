@@ -1,10 +1,12 @@
 package com.example.emp354.linear.ContentProviderExample;
 
+import android.content.ContentProviderOperation;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import android.widget.EditText;
@@ -13,7 +15,9 @@ import android.widget.Toast;
 import com.example.emp354.linear.FragmentAssignment.CustomAdapterFragment;
 import com.example.emp354.linear.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ContentProviderActivity extends AppCompatActivity {
    EditText editText2,editText3;
@@ -73,6 +77,55 @@ public class ContentProviderActivity extends AppCompatActivity {
         insertCount=getContentResolver().bulkInsert(StudentsProvider.CONTENT_URI,cvArray);
         Toast.makeText(ContentProviderActivity.this,String.valueOf(insertCount),Toast.LENGTH_SHORT).show();
     }
+
+   /* public void onClickBatchOperation()
+    {
+      final SimpleDateFormat FORMATTER=new SimpleDateFormat("mm:ss.SSS");
+      long startTime=System.currentTimeMillis();
+      Log.d("Batch Insertion Sort","Starting batch insertion on: "+new Date(startTime));
+
+      final int MAX_OPERATIONS_FOR_INSERTION=200;
+      ArrayList<ContentProviderOperation> ops=new ArrayList<>();
+      for(int i=0;i<600;i++)
+      {
+          generateSampleProviderOperation(ops);
+          if(ops.size() >= MAX_OPERATIONS_FOR_INSERTION) {
+              getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
+              ops.clear();
+          }
+      }
+        if(ops.size() > 0)
+            getContentResolver().applyBatch(ContactsContract.AUTHORITY,ops);
+        Log.d("BatchInsertionTest", "End of batch insertion, elapsed: " + FORMATTER.format(new Date(System.currentTimeMillis() - startTime)));
+
+    }
+
+
+    private void generateSampleProviderOperation(ArrayList<ContentProviderOperation> ops){
+        int backReference = ops.size();
+        ops.add(ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI)
+                .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, null)
+                .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, null)
+                .withValue(ContactsContract.RawContacts.AGGREGATION_MODE, ContactsContract.RawContacts.AGGREGATION_MODE_DISABLED)
+                .build()
+        );
+        ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+                .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, backReference)
+                .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+                .withValue(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME, "GIVEN_NAME " + (backReference + 1))
+                .withValue(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME, "FAMILY_NAME")
+                .build()
+        );
+        for(int i = 0; i < 10; i++)
+            ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+                    .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, backReference)
+                    .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
+                    .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MAIN)
+                    .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, Integer.toString((backReference + 1) * 10 + i))
+                    .build()
+            );
+
+    }*/
 
 
 
