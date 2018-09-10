@@ -118,12 +118,9 @@
         <activity
             android:name=".DatabaseAssignmentMaccabi.MaccabiHomeActivity"
             android:theme="@style/ToolBarTheme" />
-        <activity android:name=".ContentProviderExample.ContentProviderActivity" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".ContentProviderExample.ContentProviderActivity">
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+        </activity>
 
         <provider
             android:name=".ContentProviderExample.StudentsProvider"
@@ -133,9 +130,7 @@
 
         <activity
             android:name=".MaccabiContentProvider.MaccabiContentSplash"
-            android:theme="@style/ToolBarTheme">
-
-        </activity>
+            android:theme="@style/ToolBarTheme"></activity>
         <activity
             android:name=".MaccabiContentProvider.MaccabiContentMailId"
             android:theme="@style/ToolBarTheme" />
@@ -152,9 +147,15 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name=".RoomExample.RoomActivity"
-            android:theme="@style/ToolBarTheme">
+        <activity
+            android:name=".RoomExample.RoomActivity"
+            android:theme="@style/ToolBarTheme"></activity>
+        <activity android:name=".Multithreading">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
