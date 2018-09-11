@@ -96,7 +96,13 @@
             android:configChanges="screenSize|orientation" />
         <activity android:name=".CustomView.SpeedometerActivity" />
         <activity android:name=".CustomView.SeekBarRangeActivity" />
-        <activity android:name=".AsyncTaskPractice.AsyncTaskActivity" />
+        <activity android:name=".AsyncTaskPractice.AsyncTaskActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".SharedPreferenceAssignment.SharedPreferencesActivity"
             android:theme="@style/ToolBarTheme" />
@@ -118,9 +124,7 @@
         <activity
             android:name=".DatabaseAssignmentMaccabi.MaccabiHomeActivity"
             android:theme="@style/ToolBarTheme" />
-        <activity android:name=".ContentProviderExample.ContentProviderActivity">
-
-        </activity>
+        <activity android:name=".ContentProviderExample.ContentProviderActivity" />
 
         <provider
             android:name=".ContentProviderExample.StudentsProvider"
@@ -130,7 +134,7 @@
 
         <activity
             android:name=".MaccabiContentProvider.MaccabiContentSplash"
-            android:theme="@style/ToolBarTheme"></activity>
+            android:theme="@style/ToolBarTheme" />
         <activity
             android:name=".MaccabiContentProvider.MaccabiContentMailId"
             android:theme="@style/ToolBarTheme" />
@@ -149,14 +153,18 @@
 
         <activity
             android:name=".RoomExample.RoomActivity"
-            android:theme="@style/ToolBarTheme"></activity>
-        <activity android:name=".Multithreading">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/ToolBarTheme" />
+        <activity android:name=".Multithreading.Multithreading" >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity android:name=".Multithreading.Multithreading_3" />
+        <activity android:name=".Multithreading.Multithreading_2">
+
+        </activity>
+        <activity android:name=".AsyncTaskPractice.AsyncTaskActivity_2">
+
+        </activity>
+        <activity android:name=".Multithreading.Multithreading_4"></activity>
     </application>
 
 </manifest>

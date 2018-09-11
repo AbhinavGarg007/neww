@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,26 +17,70 @@ public class AsyncTaskActivity extends AppCompatActivity {
     private EditText edittext_time;
     private TextView textview_1, textview_2;
     private Button button;
+    private AsyncTaskRunner runnerTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.async_task_activity);
+        Log.d("create","create");
 
         edittext_time = findViewById(R.id.edittext_time);
         textview_1 = findViewById(R.id.textview_1);
         textview_2 = findViewById(R.id.textview_2);
         button = findViewById(R.id.button);
+        runnerTask = new AsyncTaskRunner();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AsyncTaskRunner runner = new AsyncTaskRunner();
+
                 String sleeptime = edittext_time.getText().toString();
-                runner.execute(sleeptime);
+                runnerTask.execute(sleeptime);
             }
         });
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d("start","start");
+        super.onStart();
+    }
+
+    @Override
+    protected void onRestart() {
+        Log.d("restart","restart");
+        super.onRestart();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d("resume","resume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d("stop","stop");
+        runnerTask.cancel(true);
+        super.onStop();
+
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d("pause","pause");
+        runnerTask.cancel(true);
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.d("destroy","destroy");
+        runnerTask.cancel(true);
+        super.onDestroy();
 
     }
 
@@ -97,6 +142,7 @@ public class AsyncTaskActivity extends AppCompatActivity {
             for (int i = Integer.valueOf(params[0]); i >= 0; i--) {
                 try {
                     publishProgress("Sleeping for .. " + i + " seconds.");
+                    Log.d("value",String.valueOf(i));
                    /* dialog = ProgressDialog.show(AsyncTaskActivity.this, "ProgressDialog", "Wait for " + i + " seconds");*/
                     Thread.sleep(1000);
                     resp="Slept for " + params[0] + " seconds.";
@@ -114,6 +160,7 @@ public class AsyncTaskActivity extends AppCompatActivity {
 
         @Override
         public void onPostExecute(String s) {
+
             dialog.dismiss();
             textview_2.setText(s);
         }

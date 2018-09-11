@@ -1,4 +1,4 @@
-package com.example.emp354.linear;
+package com.example.emp354.linear.Multithreading;
 
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.emp354.linear.R;
 
 public class Multithreading extends AppCompatActivity {
 
