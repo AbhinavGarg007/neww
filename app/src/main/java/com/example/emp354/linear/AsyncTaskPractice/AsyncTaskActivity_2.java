@@ -1,13 +1,12 @@
 package com.example.emp354.linear.AsyncTaskPractice;
 
-import android.app.DownloadManager;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.amitshekhar.model.Response;
+
 import com.example.emp354.linear.R;
 
 import java.io.IOException;
