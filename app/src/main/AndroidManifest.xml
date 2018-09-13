@@ -155,16 +155,18 @@
         <activity android:name=".Multithreading.Multithreading_2" />
         <activity android:name=".AsyncTaskPractice.AsyncTaskActivity_2" />
         <activity android:name=".Multithreading.Multithreading_4" />
-        <activity android:name=".MultithreadingAssignment.AsyncTaskAssignment" />
-        <activity android:name=".Multithreading.Multithreading_5"></activity>
-        <activity android:name=".Multithreading.Multithreading_6">
+        <activity android:name=".ThreadingAssignments.UsingAsyncTask"></activity>
+        <activity android:name=".Multithreading.Multithreading_5" />
+        <activity android:name=".Multithreading.Multithreading_6" />
+        <activity android:name=".Services.ServiceFirst" />
+        <activity android:name=".ThreadingAssignments.UsingMultiThreading">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Services.ServiceFirst"></activity>
+        <activity android:name=".ThreadingAssignments.UsingNormalService"></activity>
     </application>
 
 </manifest>

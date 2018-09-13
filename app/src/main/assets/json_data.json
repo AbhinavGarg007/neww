@@ -1,0 +1,869 @@
+{"html_attributions": [],
+  "next_page_token": "CpQCBQEAAHG-1h3mvrvXCyr8ugzaJziuWiEV4KQk-jka-5TlFnQlWY5nh4VCcfrFHUEpOXgQrRukRGGswdISdugGEclESsIdpF6cicUdS8vt4jKpOd9kLuUfob228sOKY5a5tHjAih_lXNw2qT8W3bstGEQGjA3HDHGlgHH-7sgernN0OhlxRz7GVtW4g_UJjPXu2j1mOFNTTMfuD9iTUMnsgisHH55zPzKl9qdKMP_bRzd3ZkTJirybhBnJ5CJxbRAHLLZJRMRvrFNoQWjU1pJ48VCXh6kjA7S3AMEkCt3jM_q6LbmCg2n8cTkdp8DBGQCiow16HknAjvoxsJZ9HoyrvqE1yyZ1Uf0Qjp4g3ULHLrAqefVIEhAceL665PO2KMVAesY7t-fzGhQUcu7h466M0Czo_UCj3yheTq-UIA",
+  "results": [
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.5972001,
+          "lng": 77.3647598
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.5985490802915,
+            "lng": 77.36610878029151
+          },
+          "southwest": {
+            "lat": 28.5958511197085,
+            "lng": 77.3634108197085
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "d70e77201faad6022c01ddfd048b480fb2c6b6fe",
+      "name": "Pizza Hut",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 4608,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/115067936141537904067/photos\">Rammokaur</a>"
+          ],
+          "photo_reference": "CmRaAAAAIlfJ3AH4qZ63EkwsOp-6ofEnGDe50Ym-98DbOjZsgNo55fELuvdIAuOj7W8RkmWwfjfktwLaZfDrJSFgqJRhKs_Is-jhNrEq8NtD7ua4oCi_WSopZcPX8KQjKKfH-2BOEhAxJo-ZJrbG1L1gKuajWaPWGhQjW_FaqUFFS5BpL5CG12hKTsODnw",
+          "width": 2592
+        }
+      ],
+      "place_id": "ChIJVRkv03DlDDkRnBtFcKN_gHU",
+      "price_level": 1,
+      "rating": 3.5,
+      "reference": "CmRRAAAAb7dyRtqJTXbbghsl22G-lYq5JgjIzbvjI9awQVB5-ozQS0ghJVv8sFYXhr4DomuTL600azj1qgPD_O8TP2CgbHp3ekrgscRLdB3vomJ3G7UBHpEwqrD9XvCeeJFYqTseEhDwbru7OtbqvVi7fTdo8vK1GhSrLxWBDTYUACmwLhjqtCXOwo-yaQ",
+      "scope": "GOOGLE",
+      "types": [
+        "meal_delivery",
+        "meal_takeaway",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "C134, Gr Flr, Supertech Shopprix Mall, Sector 61, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.6128034,
+          "lng": 77.3626006
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.6143225802915,
+            "lng": 77.36413108029151
+          },
+          "southwest": {
+            "lat": 28.6116246197085,
+            "lng": 77.3614331197085
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "8bbb961712c92eecdf0606370aef78e50df346a4",
+      "name": "Pizza Hut",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 400,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/112985719918569005773/photos\">Pankaj Sharma</a>"
+          ],
+          "photo_reference": "CmRaAAAAc_SEy8qNbuM1n4wCwR1HlutC6X-OytVfnNkCFjaxHSlHImGXlKKORoO0m7RfNoV484hW-4w-otZgJtzMcf-zJFDnd2Y0Ad6zwKLLEqZDNsJP9H6YE0uRgflFKzCxVpuaEhD0CNhEDw9UWubE7vMYhj4jGhQL-DOe9Nre9s6TH7NwO2kzVTr3og",
+          "width": 700
+        }
+      ],
+      "place_id": "ChIJVRkv03DlDDkR7jqEZcQdREg",
+      "price_level": 1,
+      "rating": 3.8,
+      "reference": "CmRRAAAA7K_U1s-lycfyZBBvZANEdwz4ARdk7xKK74blIFNNqGPBDrmBbvZM-WyJv12gWhtbGJFCtFe9iW8aErFdQuyUR-R2Zk-JmFy1MAMgnQjfNaAc6xWM0VrglmKbjlEQNslmEhDnhZDrkDh-ka3SexMiFYD4GhRY5ad83IYTRCX5tAXGE3RCuk_dTQ",
+      "scope": "GOOGLE",
+      "types": [
+        "meal_delivery",
+        "meal_takeaway",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "KT 1 & 2, C 25, Stellar IT Park, Sector 62, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.61262,
+          "lng": 77.3666978
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.6143899802915,
+            "lng": 77.36838005
+          },
+          "southwest": {
+            "lat": 28.6116920197085,
+            "lng": 77.36444465
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png",
+      "id": "dc4e13e01e464831dd8ea257732a0423d95c1487",
+      "name": "Cafe Coffee Day",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/110805960544273445150/photos\">Gulshan Kumar</a>"
+          ],
+          "photo_reference": "CmRaAAAAxbjZgDIE4mNaj5vJvtLWwm3T22e5FLYwJ27_BvEQb9vdLeJrrarmBYBoPWuOapWbxAPGouxf3mgw_4A7TvWyV5yE63M0xm5v4Zg73xc200rhtGT5t8qoZihA746F1HrJEhBwJRxBmqEMAWCtHCGKv0IwGhSd7EGoiQa_vi6xwDqrdmDA8SDnMA",
+          "width": 5376
+        }
+      ],
+      "place_id": "ChIJjaZEdWjlDDkR8m7DHd5Bo5Q",
+      "rating": 4,
+      "reference": "CmRSAAAARY4q2r8Or4Mg1uKp4Vt3EouqLXJVz3VSdSHy9R8EZ5KX0RjYUIyPPg5_iOMCuoRSGRG8Ozwu5RngR9cK2xWgelwHC7p80qYC0H0C6XeZhvwUiqaC-OekW2bPs0DfCo6aEhAE1xa4znfaLTuZXCLxGobTGhRdKkXxXoLVxW_7LacvR5xu_3pO6g",
+      "scope": "GOOGLE",
+      "types": [
+        "cafe",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "C-28 & 29, Tower B, Opposite Hdfc Bank, Logix Cyber Park, Sector 62, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.5969759,
+          "lng": 77.3648687
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.5983248802915,
+            "lng": 77.36621768029151
+          },
+          "southwest": {
+            "lat": 28.5956269197085,
+            "lng": 77.3635197197085
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "7174fc0d21402981e2d1b9cb7c60c20b9822155a",
+      "name": "Otik Food Plaza",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 304,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/113839675565808490702/photos\">Otik Food Plaza</a>"
+          ],
+          "photo_reference": "CmRaAAAAr8OWmtfx95BbGX2klXxqecG2fyenPDuhRoZLufp2Y8hv-8sEHdFDWRsf75lnX_qiRxlR7DQJAg6uz8dctB4N35VPYbHiw7Hj88JVvxViU2ZuAj50ccdAWVMmzGk5djyPEhD8hzWJClvnUs_SY18udYWkGhT6wvEUeJ8wW_NFnrW7GtJaJYIK2w",
+          "width": 784
+        }
+      ],
+      "place_id": "ChIJ____v3nlDDkRLzZyIWvd-qo",
+      "rating": 3.7,
+      "reference": "CmRSAAAACl9Wb1rH8P1BC_x6KrSvTN1hVzKqWbeRzNlYk_1eAg8jBeTfFn9XhD5F5cdzvh9I7JS9W2up4M8anderWyJlZ8pTCGtqnm8tW9EYPVGUtrEu8ACOz2SCH4Nfp5ES2CpmEhBvAZiAKvep9ZR4oQDN5Kd_GhQJMCrKp3J8VEw688RkjZjL5TeNOw",
+      "scope": "GOOGLE",
+      "types": [
+        "bakery",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "C 134B, Sector 61, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.6143119,
+          "lng": 77.3717058
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.6156608802915,
+            "lng": 77.37305478029151
+          },
+          "southwest": {
+            "lat": 28.61296291970849,
+            "lng": 77.3703568197085
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "285f3b26fcf8fea83c70a000e6417f5cf71333c4",
+      "name": "Dev's Restaurant & Bar",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 1060,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/110109292044983395459/photos\">Dev&#39;s Restaurant &amp; Bar</a>"
+          ],
+          "photo_reference": "CmRaAAAAkAH7pUI6NFaESICrYFD2Raa8Q83JRZnBc1II135NZOgekUHd7iQ8TfyT9TLf_ExtY5caaBIZx5affvPtnQVeN5hulmwGXYtgruLDAbu_oKFMVT3Bo-4t3-yM8AesW_o1EhChmWFqLJs9Sup8cMzVt_oRGhR4SwMoMYTmJsw_PeB_aS7Ew7BL0A",
+          "width": 1062
+        }
+      ],
+      "place_id": "ChIJq6qqqkXlDDkR-FNiqiCzDRc",
+      "rating": 3.7,
+      "reference": "CmRRAAAA05qtnTitkCEldsTIexK2Nu9QT3Jht_QqTyv4HtcOK1uzQOJblcXXFe4fVQiEIM3-6qBX_EnHxV_mR137QCotOkT0ucZVqkl-Mh17iuPyu-InWMndk7dRJDFVH1BSj81kEhAZvXv38af44kRyYgPNSjCpGhQbb8Gm1BuAYNKSnPDgSd-HBX28_Q",
+      "scope": "GOOGLE",
+      "types": [
+        "restaurant",
+        "bar",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "Plot No.16, 58/15A, TOT Mall, C Block, Sector 62, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.5971159,
+          "lng": 77.36502569999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.5984648802915,
+            "lng": 77.3663746802915
+          },
+          "southwest": {
+            "lat": 28.5957669197085,
+            "lng": 77.36367671970848
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png",
+      "id": "45bab4bbf43fc02c2d2e298e209cf3e28a24feac",
+      "name": "Youth Cafe",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "place_id": "ChIJEVB_MnflDDkRKc5GbYdajws",
+      "rating": 5,
+      "reference": "CmRRAAAAOHP5yPX2qBgPidY5klaG78Pc9Gc4cGLfVlOy3QKiHNIBWq4MaS6amf_u7k2DrS6ZXTypbIXxKeTJY8x9oUuYmMNmMKAiu1dk7FmNynULFL5xRLWL4faY1HrtzQGZlhkZEhCKVDtf85ugO3U55KY6LdtfGhTgMwSRjHaakmyetCKEfg8DssI6og",
+      "scope": "GOOGLE",
+      "types": [
+        "cafe",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "Sc-61 , ashok marg,pizza hut,shoprix mall,, gautam Buddha Nagar,Noida, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.6128406,
+          "lng": 77.36261379999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.61418958029151,
+            "lng": 77.3639627802915
+          },
+          "southwest": {
+            "lat": 28.6114916197085,
+            "lng": 77.3612648197085
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png",
+      "id": "0a5dc00f4ed7efd60070363a5bad120a4f7701ca",
+      "name": "Cafe Coffee Day",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 4128,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102056848234375831749/photos\">Mahfooz .Ahmad</a>"
+          ],
+          "photo_reference": "CmRaAAAAqMyuouRP5RSrl6jqqxQT2zxBI42Z7jj6LCyd6KxP-iXNeVxDs2j-PN5-0DZwUuYXQpAfijcP4LTz-EVwn-rISkEWP2yGaD1Qo-SNJPHgEnTI9FWHt8v2XW45BJf-8ayvEhB3w0LkznS_8YzTsVMr6lZRGhQLnNjOzdgMFIAhuJPQaCSt33w7nA",
+          "width": 2322
+        }
+      ],
+      "place_id": "ChIJ10sJ62nlDDkRzTNvF-iNLfk",
+      "rating": 4,
+      "reference": "CmRSAAAArN0p8TpDzmxIgqQ33bO2f18PRI6MmLzXifE5yMozy5dddI1gkjtt6UVS1JhLSs0Tmwg4QjUKkrcdyRY9pGfnH0IDnq8-8zBMWl7svT7nsje4W1_jU_PWzpZKJkSacXpPEhDMlUS5RP9xFW39iIBZUClYGhSxOTxMCNSDdm2wpeE7udRYFkdegQ",
+      "scope": "GOOGLE",
+      "types": [
+        "cafe",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "SG 14 - 15, Stellar IT Park, C 25, Sector 62, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.612027,
+          "lng": 77.377661
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.6133759802915,
+            "lng": 77.37900998029151
+          },
+          "southwest": {
+            "lat": 28.61067801970849,
+            "lng": 77.37631201970851
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png",
+      "id": "429ad65aad6e0a1d167ba62b9f7af2001280a34a",
+      "name": "Cafe Coffee Day",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 3120,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/112389360786136723153/photos\">Abdul Sattar</a>"
+          ],
+          "photo_reference": "CmRaAAAAFgdC6edOwgUOIT6Trqh8opAnMBd-5CvlWQrC4Y_reiKs-E_nyU6qJZESLL8tBIwCQxGX6R-8wZsiZQbqCtaAvJi1HgfILbOEZd8ZAHnDogwPsSL4dpfCbWTnnGqqMKyBEhDUI7t8SBQmiE6hU3uPvb6zGhSkqBdoZERJLTYIN5A9BcezqNYRLg",
+          "width": 4160
+        }
+      ],
+      "place_id": "ChIJXVVVxWHlDDkR9M5BiJGtnaw",
+      "rating": 2.8,
+      "reference": "CmRSAAAAkjUN13u7-129okbklGKf4ZOjW2GFYfkCQhjFNwKB-U7kJXRPfljIrOSYp9VoEgcRHvjdrR6LExHVrdKA-3DMC-Xy_91SRxHEQSUm4EvVUXjcG-fhYSuuJWbGXjpt0wHJEhC0-6_5cj4W-olJ6XtNY_cBGhTOb6Wi2TbzuFm_NPrfV1dBEO4hig",
+      "scope": "GOOGLE",
+      "types": [
+        "cafe",
+        "restaurant",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "B22, Sector 62, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.5971196,
+          "lng": 77.3650126
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.5984379302915,
+            "lng": 77.36620813029151
+          },
+          "southwest": {
+            "lat": 28.5957399697085,
+            "lng": 77.3635101697085
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "2520ec6f2353e7a087ee0a5e4943ee1344c8f1a8",
+      "name": "Eden Kitchen & Bar",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 379,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/111067453045920261687/photos\">Eden Kitchen &amp; Bar</a>"
+          ],
+          "photo_reference": "CmRaAAAAGNbEcwF6L5ghHXZq7QxOID-70RXCzaVvqmBf-0VPpUS0QNukGPnh0DpxmmJdfntqsWBn-3JQEFpWI0m6ScLz3MhV91p47WVN8TvLuVhz3CNCg22bWNNzg1TnfyERuHYZEhBbROWdFwmpoyutGCqwHyX4GhR5goc1N8af2mSrST3XszPtrVdO3g",
+          "width": 571
+        }
+      ],
+      "place_id": "ChIJ6cZOLXflDDkRSiFuObZ7QuA",
+      "rating": 3.7,
+      "reference": "CmRSAAAAIYasHLY69EwkQRMQMYS4b71Hs70Re9M2OYwufV2iy0-LyOPFY1O4kdTvj2o_LFvxO8OIk4xq7I594w47SH_9TXFB8x8geap_9iJ7n2eL9S3xZlnkfP0JAeEcwQFZWodgEhDlRoKjPodZSM4LWur04bRzGhRZefHkTjYzas-zFVgyy6XpjW-Dug",
+      "scope": "GOOGLE",
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "434-438, 2nd Floor, Shopprix Mall, Ashok Marg, Sector 61, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.6094212,
+          "lng": 77.3784873
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.6107701802915,
+            "lng": 77.3798362802915
+          },
+          "southwest": {
+            "lat": 28.6080722197085,
+            "lng": 77.3771383197085
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "e844a4c7333b5f49bf222127f722c8808d99e328",
+      "name": "Aggarwal Sweets",
+      "place_id": "ChIJZceg_YnvDDkRk6psjeyzZL4",
+      "rating": 3,
+      "reference": "CmRSAAAASNJ5UPGzOd-ouSrklHOHBWO7x3Kfx10mBMvymat3dlhZA20yVxq6ZtxofE4ixeeL7t0PhbABd84EtTnAW-4wVZE3kont4feaaVGSpwMsCrq_957ZOptcnBBpktqTCtTiEhDFiYkH9nSwGWTzs9-vH5toGhTvU6fhZYO2QllelQ_TFYcDd1rmFA",
+      "scope": "GOOGLE",
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "Sector 66, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.61386859999999,
+          "lng": 77.3710985
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.6152175802915,
+            "lng": 77.37244748029151
+          },
+          "southwest": {
+            "lat": 28.61251961970849,
+            "lng": 77.36974951970849
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "15f400b194a10fe3591ad0381a0f34a93badb037",
+      "name": "Chinese Chilli Sizzler",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "place_id": "ChIJHXDrRmflDDkRCSPaqEGCHeg",
+      "rating": 4.5,
+      "reference": "CmRSAAAA08h6JJjKQVs_uG1xQlvNK9GzmMKc8qp6NgSWxE3JtZPURU5EYVUrxBLXQf9VUA8af4ofyE_RXTDO1CUbhCcPrkwYlGD3CRZrmxcU8OjyzZUj3w0gyF9vyn2obc6PIqwaEhAd88OHYBDCEHnNftWt8sJgGhRixB7kvLanhaZIUjHQd1p1ctF3kg",
+      "scope": "GOOGLE",
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "Sec 62, Near Tot Market, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.6125306,
+          "lng": 77.3659534
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.6143576802915,
+            "lng": 77.36809885
+          },
+          "southwest": {
+            "lat": 28.6116597197085,
+            "lng": 77.36523824999999
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "73a16572badbf113535f396e8dc1b7b2a2f17314",
+      "name": "Subway",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 3456,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/114450022222743708445/photos\">Praveen Yadav</a>"
+          ],
+          "photo_reference": "CmRaAAAAUFtPXofjdjUznyWnwBeJkQ0x73KdiJQZzoKyf-JwSnQc0sddRO7Y6yykfTpcy-WJKrSVcn5BBxVe-g3IsVYiklz5YxPdCf0awV-WC2ZpVJuAUCmdCZ_j0QeQOc1AGv7NEhDDGC_PQCS_cEvFh_-NNmkQGhQseahzl7OtxaFoMrCE6ZuuXzXtwA",
+          "width": 4608
+        }
+      ],
+      "place_id": "ChIJgcq8cWjlDDkRXr-oDJjt9_w",
+      "price_level": 1,
+      "rating": 3.4,
+      "reference": "CmRSAAAAUwa6YnGeSkWjm-Ic_i0EKvcSPQyLRwGu6C41UwZ861TMLAysUc6047-lr_84AIevJvUWHlc3vO4fHy8MWxyEipAFt7B5LvbetNKuhksUbGKrf5kRi5RFH4FfM4flkm5qEhDAJF4opx-3OZBrL9gXbA2gGhQ0x8ddHw3Eo8gP8zN0NqOth5gjXQ",
+      "scope": "GOOGLE",
+      "types": [
+        "meal_takeaway",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "C-28, 29, C Block, Logix Cyber Park, Sector 62, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.6043042,
+          "lng": 77.3654866
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.6056531802915,
+            "lng": 77.36683558029151
+          },
+          "southwest": {
+            "lat": 28.6029552197085,
+            "lng": 77.36413761970849
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "536b492cee3ae5fd450ce30d4a430c1300d5d282",
+      "name": "Foodies Strikes",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 648,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102813979881514930875/photos\">Piyush Awasthi</a>"
+          ],
+          "photo_reference": "CmRaAAAAU3MeLo78-iV5HvOXvKuc8DZ32-U1BBrNBnwu1uKHPt1N4OG7Xbo1drVzBkDi-62pi8hbeffz8u8Mzyv0hTZSRk15vrxZtpzHH7Fg726Dj0rYpzRfThCdf_Cd8oI2kYYmEhCRO1rZG1GHFJeYI5p5SbWyGhTMU915aAJFnB2YiKulhu5xiaUz1Q",
+          "width": 1152
+        }
+      ],
+      "place_id": "ChIJW5ub6m_lDDkRhgFWW2TwHgw",
+      "rating": 4.5,
+      "reference": "CmRRAAAAZLPicKgtANcPgdt7VtERlE5a70fc4SE9uRbT_0BwyK13GbBV1GTbgpgqQPZm0G_ttlerbMlOEppKkjunB9wcaHHRfh3bh1Na3rvSg8sV9xUfSV1Hp3pSjmgjW4jUWayOEhBLWPfcCuyJ_58XRT3AwHaxGhSVmc9I8JNTXD4p9vsN_XO5K_MDpQ",
+      "scope": "GOOGLE",
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "Block A, Sector 60, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.60110299999999,
+          "lng": 77.37361899999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.6024519802915,
+            "lng": 77.3749679802915
+          },
+          "southwest": {
+            "lat": 28.5997540197085,
+            "lng": 77.3722700197085
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "dedaf8f66ddba76cd0bc073665cd92ebdee32254",
+      "name": "Eatlo",
+      "place_id": "ChIJqxgNiXzlDDkR2KmpHAOQInM",
+      "reference": "CmRRAAAAvqt8D1emErGFmskAKRYACuyLldEWX_CGHyiBVcluAwInSUn1aQSMyY87-9_7t1c1pwQrlyKuceePjt-CAEvH6OL0SbZj0n1mX_CmVGtQCDW5WrYCWZoXB0LTKERBzavJEhBBxL0xZUCFd7k6c4OkwGBeGhRuosk8ZT7s70Td3MYTa3cR5Uw1Ow",
+      "scope": "GOOGLE",
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "A-48, Sector-63, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.6157278,
+          "lng": 77.379119
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.6170767802915,
+            "lng": 77.3804679802915
+          },
+          "southwest": {
+            "lat": 28.6143788197085,
+            "lng": 77.37777001970849
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "e7b4be6d4a8d52e5d139c95c80c06d952acb2b8b",
+      "name": "Nandinis Sweets and Fast Foods",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "place_id": "ChIJAQCssorvDDkRKHQmktQTxuI",
+      "reference": "CmRSAAAAisyxMhJtgW48PPwi66waa8bH1eMVTN0GuPZ6ulx7CD6hAX0e2bVZKU46hI6q8Qj6mYenO-Q7bRLymrHwQH3OaQMyp4jgNvUfJVRsH6UDDH__Cn_VgdjO7srWfWQwFTmaEhCm5BIo7XR7_0kwEAzXYUHMGhS8d5RRpV4KqueItft23DX2_wqdXw",
+      "scope": "GOOGLE",
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "16 VDS Block,, Sector 45, G B Nagar, Nai Basti Dundahera, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.602765,
+          "lng": 77.378912
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.6041139802915,
+            "lng": 77.38026098029151
+          },
+          "southwest": {
+            "lat": 28.60141601970849,
+            "lng": 77.3775630197085
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "1b48d04b763af9e7f2e882d442f599d0fdfbf133",
+      "name": "Lazeez Foods",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 250,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/116108474522994385533/photos\">Lazeez Foods</a>"
+          ],
+          "photo_reference": "CmRaAAAAnOMto23iWRvoM4jXUi_91T0K-95NtNArPnHx9EONwlENcwhNA3sP-upQFsljQLtq3KUCT5zyZk6hmzgbYZrCK8nEYeopMMlxREMJIuryjMilhsF5XQ0He2BrtwlE5dH8EhDl5glZoXyErtu_ObWmmeymGhQzQPhSYdURUGMhCZQGotLBnUjIHQ",
+          "width": 250
+        }
+      ],
+      "place_id": "ChIJFTmDKWLlDDkRiYO6J58dPuI",
+      "rating": 2.3,
+      "reference": "CmRSAAAAqTfNBeKRCpOu2JEGyYQPn_g79uMfSSj1gLnvAXrhBfnD5aBZ-hVdJ8r7MnY5ImuQmWjdArOidhSWRiHmNCpj88j5ASIEgG4r7kH59PSULbjoPy8ZVRNAjL27jU8GixJhEhDAIGWG1mUAgLeuuH_No765GhRsEQY87cBZaV6k2vi3e4ONGoNhAg",
+      "scope": "GOOGLE",
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "Plot-no 557, Sector 66, Near RK Public School Mamura Noida, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.6152902,
+          "lng": 77.3653631
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.6166391802915,
+            "lng": 77.36671208029149
+          },
+          "southwest": {
+            "lat": 28.6139412197085,
+            "lng": 77.36401411970849
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "a7e1603cc0c8194daf673f5da862b54f8e66900a",
+      "name": "The web",
+      "place_id": "ChIJnei4l0LlDDkRcFJxOWH78CE",
+      "reference": "CmRRAAAAaGmo1-mmwez9VvH_efOU_SFT26ReZoQ8ZL9348rmXWHXYSsopcShQgJ-CAvApf1GMchCpudjqPGvhoJ4dirPTbDWldtGvDPsHyXhOfI4wGplkTpc-H8jyF8m14WpCg9BEhATyHjzNar6ofDw9YOZgEB8GhSX_93xHHx7ho81eTPTwe6stqHffQ",
+      "scope": "GOOGLE",
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "C56,A/28, C Block, Phase 2, Industrial Area, Sector 62, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.618094,
+          "lng": 77.369975
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.6193656802915,
+            "lng": 77.3713206802915
+          },
+          "southwest": {
+            "lat": 28.6166677197085,
+            "lng": 77.36862271970848
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "6e79f662d1d680c39d066bd525d6d02b7a55fccb",
+      "name": "Malabar Junction",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 4032,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/117101218939791509309/photos\">Malabar Junction</a>"
+          ],
+          "photo_reference": "CmRaAAAAiC2OH9_M6UHbxKVIpAtswSlcn9PmuP0nrzVFFzx-sYKJ3UeA5nLN89SWhZYuOhTqZZ9uX2QLWKFOpdeNZgOTeluhzA9LKw9g55bpQQqWUIIa5JVcfvf71TZ18cvwakYcEhBXRDLqSUA_XwrVXk1vclA3GhTnY3xavxJEf1QSxCd8FnUWxDfuGg",
+          "width": 3024
+        }
+      ],
+      "place_id": "ChIJn0opVFzlDDkRGmSYWE0TrPs",
+      "rating": 4.2,
+      "reference": "CmRSAAAAKIVLj2Zz1CNc62avmWxmBVGB0S6OM5xM8vOcoYNFtp3EsrVK2sNSY6NLWdQJYzuLoBQM3srRPZmt7Q2dzbfcMhQReW6TTrF0rKmGD06pOZAIvfIFchmVqzciLjACLLzmEhDomawKWwM0G5ll_Lh1UbRDGhTCtjev41LgH8diCHH9ntRWFxdhnA",
+      "scope": "GOOGLE",
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "RN-8, Near Fortis Hospital,, BHA Millenium Road, B Block, Phase 2, Industrial Area, Sector 62, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.6181289,
+          "lng": 77.3696906
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.6194335802915,
+            "lng": 77.3708824802915
+          },
+          "southwest": {
+            "lat": 28.6167356197085,
+            "lng": 77.36818451970849
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "6a13eb93af2a75b31c675a1059a597bea8409757",
+      "name": "Rolls King",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 4160,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/110789818667977786664/photos\">Pankaj Jain</a>"
+          ],
+          "photo_reference": "CmRaAAAAlB0qTnlVyaCSdijUaXEtGyuitAMicRU3BqvhSkQ-GBcBgIp8xBFr_oPBGYP2C2mm5m6GW8tW97-kgpfycA_QHQ8-1V5lwLeiIcaSBjoVzWRlFmPzaJpHXanfmDhBD1sqEhDaJv6KvMEpfc1ON7C0r0zkGhSE81hktRn2B_aBXraTBjFefoP-aw",
+          "width": 3120
+        }
+      ],
+      "place_id": "ChIJ5TUEUVzlDDkRGqX7cKLZ42s",
+      "rating": 4.1,
+      "reference": "CmRRAAAAJrFi79ihNlxq7sF3C9E_W0ZXWQ1dL9EmaijDIt11p4ZY6m6hEdHbVutvAeS-O7HMOnHYfCrTw8jN3bmcSHjEXKtgHDSHcuYB8LrHWxfUEnQO8gyF-9QYltXYovbsSB3DEhCxjCCGUQMFJtMJ8de4Jf7QGhTnsRs1qXcgLQM5CgHf3gblG0kZfw",
+      "scope": "GOOGLE",
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "C-56/26, BHA Millenium Tower Rd,, C Block, Phase 2, Industrial Area, Sector 62, Noida"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 28.6186139,
+          "lng": 77.37239
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 28.6199628802915,
+            "lng": 77.3737389802915
+          },
+          "southwest": {
+            "lat": 28.61726491970849,
+            "lng": 77.37104101970849
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "b37493d69b0f8e7079ca77b4b582d6ac6639e564",
+      "name": "Cafe Express",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 2988,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/105151128555591054685/photos\">Sandeep Bhasin</a>"
+          ],
+          "photo_reference": "CmRaAAAAdGZdgjH4QoqSSKeRWuvSmLUEyXl2gVQzYy_zhrr2ePUTQLXIvPHDszQNrLiR70uh_zk8gf4ZpaEla4GoKO2hmNERFNVyjuquz-1DMxq_Khp9pP2X49S2alKlOcDk5VbqEhBdfXrZosxQk-cXx_W-8jfBGhTe_uROPVu9Tzp7ruPZxamUJt6SAw",
+          "width": 3984
+        }
+      ],
+      "place_id": "ChIJ5auUKFzlDDkRVEm46ZltPj0",
+      "rating": 2,
+      "reference": "CmRRAAAAdmoUteNOTQ-d-Lo7REqN9Wjyo8XFO6o1tCIcqtkeZ-AH_Kjj-74lW8h-pYD5OgAB8mPKguRV8xTteB2w59GJ25Gl6xSQ3ye0SKq7J8k_CT3vBWBDNGrxYx_C4-WDfhssEhBcXTJ7VF3WU2HDcbhBEsSuGhQ34gjkI0oQiQemPl1kRS53skFtLQ",
+      "scope": "GOOGLE",
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "vicinity": "B 22, Block B, Industrial Area, Sector 62, Noida"
+    }
+  ],
+  "status": "OK"
+}
