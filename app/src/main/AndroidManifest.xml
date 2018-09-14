@@ -160,13 +160,17 @@
         <activity android:name=".Multithreading.Multithreading_6" />
         <activity android:name=".Services.ServiceFirst" />
         <activity android:name=".ThreadingAssignments.UsingMultiThreading">
+
+        </activity>
+        <activity android:name=".ThreadingAssignments.UsingNormalService">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ThreadingAssignments.UsingNormalService"></activity>
+
+        <service android:name=".ThreadingAssignments.MyService"/>
     </application>
 
 </manifest>

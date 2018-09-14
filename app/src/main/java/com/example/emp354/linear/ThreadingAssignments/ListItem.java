@@ -1,6 +1,6 @@
 package com.example.emp354.linear.ThreadingAssignments;
 
-public class ListItem {
+public class ListItem{
 
     private String name;
     private String address;
@@ -28,4 +28,6 @@ public class ListItem {
     public void setAddress(String address) {
         this.address = address;
     }
+
+
 }
