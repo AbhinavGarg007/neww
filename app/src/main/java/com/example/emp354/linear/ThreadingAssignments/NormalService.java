@@ -13,6 +13,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.example.emp354.linear.ThreadingAssignments.Adapter.MyAdapter;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,7 +69,7 @@ public class NormalService extends Service{
                                 public void run() {
                                     Log.d("handler", "Thread id: " + Thread.currentThread().getId());
                                     dialog.dismiss();
-                                    adapter=new MyAdapter(listItem,getApplicationContext());
+                                   /* adapter=new MyAdapter(listItem,getApplicationContext());*/
                                     recyclerView.setAdapter(adapter);
 
                                 }

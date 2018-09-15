@@ -1,0 +1,64 @@
+{"images": [
+    {
+      "name": "MONUMENTS",
+      "values": [
+        "https://i1.wp.com/delhiphototour.com/wp-content/uploads/2016/02/photo-walk-of-monuments.jpg",
+        "http://spirittourism.com/wp-content/uploads/2012/07/Indian-Monuments-Beautiful-Monuments-of-India.jpg",
+        "http://s3.india.com/travel/wp-content/uploads/2016/05/red-fort.jpg",
+        "https://i2.wp.com/delhiphototour.com/wp-content/uploads/2016/02/New-Delhi-monuments-photo-tours.jpg",
+        "https://i0.wp.com/delhiphototour.com/wp-content/uploads/2015/02/Photo-Tour-Of-Delhi-Monuments1.jpg",
+        "https://i2.wp.com/delhiphototour.com/wp-content/uploads/2015/02/Photo-Tour-Of-Delhi-Monuments2.jpg",
+        "https://sobadsogood.com/uploads/media/2017/05/25/8-Giant-Monuments-From-World-That-No-One-Talks-About.jpg"
+      ]
+    },
+    {
+      "name": "FLOWERS",
+      "values": [
+        "https://images.pexels.com/photos/56866/garden-rose-red-pink-56866.jpeg",
+        "https://images.pexels.com/photos/87452/flowers-background-butterflies-beautiful-87452.jpeg",
+        "https://images.pexels.com/photos/54630/japanese-cherry-trees-flowers-spring-japanese-flowering-cherry-54630.jpeg",
+        "https://images.pexels.com/photos/207962/pexels-photo-207962.jpeg",
+        "https://images.pexels.com/photos/69776/tulips-bed-colorful-color-69776.jpeg",
+        "https://images.pexels.com/photos/40797/wild-flowers-flowers-plant-macro-40797.jpeg",
+        "https://images.pexels.com/photos/46216/sunflower-flowers-bright-yellow-46216.jpeg",
+        "https://images.pexels.com/photos/63638/roses-flower-nature-macro-63638.jpeg",
+        "https://images.pexels.com/photos/244497/pexels-photo-244497.png"
+      ]
+    },
+    {
+      "name": "LANDSCAPES",
+      "values": [
+        "https://images.pexels.com/photos/132037/pexels-photo-132037.jpeg",
+        "https://images.pexels.com/photos/210186/pexels-photo-210186.jpeg",
+        "http://www.ejphoto.com/images_of_the_month/SCO_Glencoe10a.jpg",
+        "https://www.trafalgar.com/~/media/images/website-refresh/hero/southamericalandscapes-hero-546842248.jpg",
+        "https://photogrist.com/wp-content/uploads/2016/10/Tasman-Glacier-Lake-Mt-Cook-National-Park.jpg"
+      ]
+    },
+    {
+      "name": "WATERFALLS",
+      "values": [
+        "https://www2.shutterstock.com/blog/wp-content/uploads/sites/5/2017/04/chinafalls1-1024x681.jpg",
+        "https://res.cloudinary.com/simpleview/image/upload/c_limit,f_auto,h_1200,q_75,w_1200/v1/clients/asheville/RobTravis_NEW_HookerRED_MG_4125-Edit_65769f7c-dfcc-43a6-973e-f3e6b52f57da.jpg",
+        "https://www2.shutterstock.com/blog/wp-content/uploads/sites/5/2017/04/chinafalls2-750x499.jpg",
+        "http://nomanbefore.com/wp-content/uploads/2017/10/Bali_BanyumalaWaterfall_v2-3681-683x1024.jpg",
+        "http://explorekc.explorekohchang.netdna-cdn.com/wp-content/gallery/koh-kood-waterfalls/klong-chao-waterfall-koh-kood-1b.JPG",
+        "https://d1lkesx7pm36d6.cloudfront.net/wp-content/uploads/2017/06/waterfalls-near-hyderabad.jpg"
+      ]
+    },
+    {
+      "name": "FOODS",
+      "values": [
+        "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/15_surprisingly_healthy_foods_slideshow/493ss_thinkstock_rf_spaghetti_with_tomatoes_on_plate.jpg",
+        "https://cdn1.medicalnewstoday.com/content/images/articles/269/269143/popular-healthy-foods.jpg",
+        "https://www.naturalnews.com/gallery/640/Food/Fancy-Food.jpg",
+        "https://images.agoramedia.com/everydayhealth/gcms/best-ra-foods-722x406.jpg",
+        "https://www.cheatsheet.com/wp-content/uploads/2015/12/close-up-of-fast-food-snacks-and-drink-on-table-640x426.jpg",
+        "https://www.rd.com/wp-content/uploads/2017/07/01-Foods-Queen-Elizabeth-II-Would-Never-Ever-Eat-shutterstock_580936888-1024x683.jpg",
+        "http://s.eatthis-cdn.com/media/images/ext/842849976/greasy-fast-food.jpg",
+        "https://hips.hearstapps.com/del.h-cdn.co/assets/16/32/2560x1280/landscape-1470763907-jack-box-tacos.jpg",
+        "https://www.healthline.com/hlcmsresource/images/AN_images/AN138-Pizza-732x549-Thumb_0.jpg"
+      ]
+    }
+  ]
+}

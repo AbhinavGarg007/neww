@@ -45,8 +45,8 @@ public class MyService extends Service {
 
                         JSONObject o = array.getJSONObject(i);
                         /*ServiceListItem item = new ServiceListItem(o.getString("name"),o.getString("vicinity"));*/
-                        ServiceListItem item = new ServiceListItem(o);
-                        listItem.add(item);
+                        /*ServiceListItem item = new ServiceListItem(o);*/
+                        /*listItem.add(item);*/
                         Thread.sleep(1000);
 
                        /* handler.post(new Runnable() {
@@ -69,7 +69,7 @@ public class MyService extends Service {
 
                 Intent intent = new Intent();
                 intent.setAction(MY_ACTION);
-                intent.putParcelableArrayListExtra("listItem", listItem);
+                /*intent.putParcelableArrayListExtra("listItem", listItem);*/
 
                /*intent.putStringArrayListExtra("intentList",listItem);*/
                 sendBroadcast(intent);

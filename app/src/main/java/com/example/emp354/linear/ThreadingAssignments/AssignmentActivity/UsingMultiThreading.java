@@ -1,4 +1,4 @@
-package com.example.emp354.linear.ThreadingAssignments;
+package com.example.emp354.linear.ThreadingAssignments.AssignmentActivity;
 
 import android.app.ProgressDialog;
 import android.os.Handler;
@@ -10,6 +10,8 @@ import android.util.Log;
 
 import com.example.emp354.linear.JSONUtils;
 import com.example.emp354.linear.R;
+import com.example.emp354.linear.ThreadingAssignments.ListItem;
+import com.example.emp354.linear.ThreadingAssignments.Adapter.MyAdapter;
 import com.example.emp354.linear.ThreadingAssignments.POJO.Geometry;
 import com.example.emp354.linear.ThreadingAssignments.POJO.Location;
 import com.example.emp354.linear.ThreadingAssignments.POJO.MyObject;
@@ -17,10 +19,8 @@ import com.example.emp354.linear.ThreadingAssignments.POJO.OpeningHours;
 import com.example.emp354.linear.ThreadingAssignments.POJO.Photos;
 import com.example.emp354.linear.ThreadingAssignments.POJO.Results;
 import com.example.emp354.linear.ThreadingAssignments.POJO.ViewPort;
-import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -62,35 +62,11 @@ public class UsingMultiThreading extends AppCompatActivity {
 
 
                 try{
-                    /*JSONObject jsonObject=new JSONObject(loadJSONFromAsset());
-                    JSONArray array=jsonObject.getJSONArray("results");
-                    for(int i=0;i<array.length();i++)
-                    {
-                        Log.d("loadRecyclerData", "Thread id: " + Thread.currentThread().getId());
-
-                        JSONObject o=array.getJSONObject(i);
-                        ListItem item=new ListItem(o.getString("name"),
-                                o.getString("vicinity"));
-                        listItem.add(item);
-                        Thread.sleep(1000);
-
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Log.d("handler", "Thread id: " + Thread.currentThread().getId());
-                                dialog.dismiss();
-                                adapter=new MyAdapter(listItem,getApplicationContext());
-                                recyclerView.setAdapter(adapter);
-
-                            }
-                        });
-                    }*/
-
-
                     //getting from the given json file
+
                     String jsonData=loadJSONFromAsset();
 
-                    MyObject myObject=new MyObject();
+                    final MyObject myObject=new MyObject();
 
                     JSONObject jsonObject= JSONUtils.getJSONObject(jsonData);
 
@@ -120,9 +96,9 @@ public class UsingMultiThreading extends AppCompatActivity {
 
                     List<Results> resultsList=new ArrayList<Results>();
 
-                    for(int i=0;i<JSONUtils.getLengthOfJSONArray(json_result_array);i++)
+                    for(int j=0;j<JSONUtils.getLengthOfJSONArray(json_result_array);j++)
                     {
-                      JSONObject jsonResultObject=JSONUtils.getJSONObject(json_result_array,i);
+                      JSONObject jsonResultObject=JSONUtils.getJSONObject(json_result_array,j);
 
                       Results results=new Results();
 
@@ -191,7 +167,7 @@ public class UsingMultiThreading extends AppCompatActivity {
 
                         List<String > weekday_list=new ArrayList<String>();
 
-                        for(int k=0;k<jsonWeekdayTextArray.length();k++)
+                        for(int k=0;k<JSONUtils.getLengthOfJSONArray(jsonWeekdayTextArray);k++)
                         {
                             weekday_list.add(JSONUtils.getStringObject(jsonWeekdayTextArray,k));
                         }
@@ -208,7 +184,7 @@ public class UsingMultiThreading extends AppCompatActivity {
 
                        List<Photos> photosList=new ArrayList<>();
 
-                       for(int l=0;l<jsonPhotoArray.length();l++)
+                       for(int l=0;l<JSONUtils.getLengthOfJSONArray(jsonPhotoArray);l++)
                        {
                            JSONObject jsonPhotoObject=JSONUtils.getJSONObject(jsonPhotoArray,l);
 
@@ -222,44 +198,99 @@ public class UsingMultiThreading extends AppCompatActivity {
 
                            JSONArray jsonHtmlAttributionsArray=JSONUtils.getJSONArray(jsonPhotoObject,"html_attributions");
 
-                           List<String> htmlAttributionsList=new ArrayList<>();
+                           List<String> photoHtmlAttributionsList=new ArrayList<String>();
 
-                           for(int m=0;m<jsonHtmlAttributionsArray.length();m++);
+                           for(int m=0;m<JSONUtils.getLengthOfJSONArray(jsonHtmlAttributionsArray);m++)
                            {
-                               html_attributions_list.add(JSONUtils.getStringObject(jsonHtmlAttributionsArray,m));
+                               photoHtmlAttributionsList.add(JSONUtils.getStringObject(jsonHtmlAttributionsArray,m));
+
                            }
+                           photos.setHtml_attributions(photoHtmlAttributionsList);
+                           photosList.add(photos);
+                       }
+                       results.setPhotos(photosList);
+
+
+                       results.setPlace_id(JSONUtils.getStringfromJSON(jsonResultObject,"place_id"));
+
+                       results.setPrice_level(JSONUtils.getIntegerfromJSON(jsonResultObject,"price_level"));
+
+                       results.setRating(JSONUtils.getDoublefromJSON(jsonResultObject,"rating"));
+
+                       results.setReference(JSONUtils.getStringfromJSON(jsonResultObject,"reference"));
+
+                       results.setScope(JSONUtils.getStringfromJSON(jsonResultObject,"scope"));
 
 
 
+                       JSONArray jsonTypesArray=JSONUtils.getJSONArray(jsonResultObject,"types");
 
+                       List<String> typesList=new ArrayList<>();
+
+                       for (int n=0;n<JSONUtils.getLengthOfJSONArray(jsonTypesArray);n++)
+                       {
+                        typesList.add(JSONUtils.getStringObject(jsonTypesArray,n));
                        }
 
+                       results.setTypes(typesList);
 
+                       results.setVicinity(JSONUtils.getStringfromJSON(jsonResultObject,"vicinity"));
 
-
-
-
-
-
-
-
-
-
-
+                       resultsList.add(results);
 
                     }
+                    myObject.setResults(resultsList);
 
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(5000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            Log.d("handler", "Thread id: " + Thread.currentThread().getId());
+                            dialog.dismiss();
+                            adapter=new MyAdapter(myObject,getApplicationContext());
+                            recyclerView.setAdapter(adapter);
 
-
+                        }
+                    });
 
 
                 }
-                catch (JSONException e)
+
+
+                /*JSONObject jsonObject=new JSONObject(loadJSONFromAsset());
+                    JSONArray array=jsonObject.getJSONArray("results");
+                    for(int i=0;i<array.length();i++)
+                    {
+                        Log.d("loadRecyclerData", "Thread id: " + Thread.currentThread().getId());
+
+                        JSONObject o=array.getJSONObject(i);
+                        ListItem item=new ListItem(o.getString("name"),
+                                o.getString("vicinity"));
+                        listItem.add(item);
+                        Thread.sleep(1000);
+
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.d("handler", "Thread id: " + Thread.currentThread().getId());
+                                dialog.dismiss();
+                                adapter=new MyAdapter(listItem,getApplicationContext());
+                                recyclerView.setAdapter(adapter);
+
+                            }
+                        });
+                    }
+               */
+
+                catch (Exception e)
                 {
                     e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
+
 
 
 

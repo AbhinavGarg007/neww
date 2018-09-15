@@ -175,5 +175,12 @@
     <string name="all_members_details">All Members Details</string>
     <string name="likes">Likes</string>
     <string name="title_activity_maccabi_content_home">MaccabiContentHomeActivity</string>
+    
+    
+    <string name="monuments">MONUMENTS</string>
+    <string name="flowers">FLOWERS</string>
+    <string name="landscapes">LANDSCAPES</string>
+    <string name="waterfalls">WATERFALLS</string>
+    <string name="foods">FOODS</string>
 
 </resources>

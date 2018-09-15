@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layout_linear"
-    tools:context=".ThreadingAssignments.AssignmentActivity.UsingAsyncTask">
+    android:orientation="vertical"
+    android:id="@+id/linearlayout"
+    tools:context=".ThreadingAssignments.AssignmentActivity.UsingIntentService">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/recyclerview_intent_service"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

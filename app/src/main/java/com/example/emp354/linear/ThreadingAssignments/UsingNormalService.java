@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.example.emp354.linear.R;
+import com.example.emp354.linear.ThreadingAssignments.Adapter.MyAdapter;
 
 public class UsingNormalService extends AppCompatActivity {
 

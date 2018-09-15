@@ -1,4 +1,4 @@
-package com.example.emp354.linear.ThreadingAssignments;
+package com.example.emp354.linear.ThreadingAssignments.Adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,17 +9,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.emp354.linear.R;
+import com.example.emp354.linear.ThreadingAssignments.POJO.MyObject;
+import com.example.emp354.linear.ThreadingAssignments.POJO.Results;
 
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 
-    List<ListItem> listItems;
+    List<Results> resultsList;
     Context context;
 
-    public MyAdapter(List<ListItem> listItems,Context context)
+    public MyAdapter(MyObject object, Context context)
     {
-        this.listItems=listItems;
+        if(object!=null)
+        {
+        resultsList=object.getResults();
+        }
+
         this.context=context;
     }
     @NonNull
@@ -34,16 +40,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
 
-        ListItem listItem=listItems.get(position);
+        Results results=resultsList.get(position);
 
-        holder.tv_name.setText(listItem.getName());
-        holder.tv_vicinity.setText(listItem.getAddress());
+        holder.tv_name.setText(results.getName());
+        holder.tv_vicinity.setText(results.getVicinity());
 
     }
 
     @Override
     public int getItemCount() {
-        return listItems.size();
+        return resultsList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder
