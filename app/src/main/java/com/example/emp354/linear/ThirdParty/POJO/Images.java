@@ -1,8 +1,10 @@
 package com.example.emp354.linear.ThirdParty.POJO;
 
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class Images {
+public class Images  {
 
     private String name;
 
