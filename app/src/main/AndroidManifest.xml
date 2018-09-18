@@ -161,21 +161,24 @@
         <activity android:name=".Multithreading.Multithreading_6" />
         <activity android:name=".ThreadingAssignments.AssignmentActivity.UsingAsyncTask" />
         <activity android:name=".ThreadingAssignments.AssignmentActivity.UsingMultiThreading" />
-        <activity android:name=".ThreadingAssignments.UsingNormalService"></activity>
+        <activity android:name=".ThreadingAssignments.UsingNormalService" />
         <activity android:name=".Services.ServiceFirst" />
 
         <service android:name=".ThreadingAssignments.MyService" />
         <service android:name=".ThreadingAssignments.Services.MyIntentService" />
 
         <activity android:name=".ThreadingAssignments.AssignmentActivity.UsingIntentService" />
-        <activity android:name=".ThirdParty.Assignment_1.ThirdPartyAssignment_1">
+        <activity android:name=".ThirdParty.Assignment_1.ThirdPartyAssignment_1"></activity>
+        <activity android:name=".ThirdParty.Assignment_2.ThirdPartyAssignment_2">
+
+        </activity>
+        <activity android:name=".ThirdParty.Assignment_2_again.ThirdPartyAssignment_2_again">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ThirdParty.Assignment_2.ThirdPartyAssignment_2"></activity>
     </application>
 
 </manifest>

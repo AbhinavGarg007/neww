@@ -1,60 +1,39 @@
-package com.example.emp354.linear.ThirdParty.Assignment_2;
+package com.example.emp354.linear.ThirdParty.Assignment_2_again;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.emp354.linear.DatabaseAssignmentMaccabi.MaccabiLikeAdapter;
 import com.example.emp354.linear.R;
 import com.example.emp354.linear.ThirdParty.POJO.Images;
 import com.example.emp354.linear.ThirdParty.POJO.ObjectPojoThirdParty;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
-
-/**
- * it is not working
- * i have made the same assignment with name Assignment_2_again
- */
-public class MyStickyHeaderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements StickyRecyclerHeadersAdapter<RecyclerView.ViewHolder> {
+public class MyStickyHeaderAdapter_again extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements StickyRecyclerHeadersAdapter<RecyclerView.ViewHolder> {
     private Context mcontext;
-    private List<Images> imagesList;
-    private String name;
-    List<String> values;
-    Images images;
+    List<String> mTitleList;
+    List<String> mUrlList;
 
 
-
-    public MyStickyHeaderAdapter(Context context, ObjectPojoThirdParty objectPojoThirdParty)
+    //constructor of sticky header adapter
+    public MyStickyHeaderAdapter_again(Context context, List<String> titleList,List<String> urlList)
     {
         mcontext=context;
-       if(objectPojoThirdParty!=null)
-       {
-           imagesList=objectPojoThirdParty.getImages();
-           /*int size=imagesList.size();
+        mTitleList=titleList;
+        mUrlList=urlList;
 
-           for(int i=0;i<size;i++) {
-               images = imagesList.get(i);
-               values = images.getValues();
-               name = images.getName();
-           }*/
-
-       }
     }
 
 
+    //inflating layout for imageview
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -63,69 +42,56 @@ public class MyStickyHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     }
 
+
+    //binding the imageview layout with the image
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         /*ImageView imageView=(ImageView)holder.itemView;*/
         ImageViewHolder imageViewHolder=(ImageViewHolder)holder;
         ImageLoader imageLoader=ImageLoader.getInstance();
 
-        int size=imagesList.size();
-
-        for(int i=0;i<size;i++)
-        {
-            images=imagesList.get(i);
-            values=images.getValues();
-            imageLoader.displayImage(values.get(position),imageViewHolder.imageView_2);
-
-        }
-
-
-        /*Images images=imagesList.get(position);
-        values=images.getValues();
-
-        for(int i=0;i<values.size();i++) {
-
-            imageLoader.displayImage(values.get(i), myViewHolder.imageView);
-        }*/
+        imageLoader.displayImage(mUrlList.get(position),imageViewHolder.imageView_2);
 
     }
 
+    //returns a unique id for grouping header with images
     @Override
     public long getHeaderId(int position) {
-        return imagesList.get(position).getName().charAt(position);
+        int length=mTitleList.get(position).length();
+        return mTitleList.get(position).charAt(length-2);
 
 
     }
 
+    //inflating layout for header
     @Override
     public RecyclerView.ViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
 
         View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.header_third_party,parent,false);
-        return new TextViewHolder(view) {};
+        return new TextViewHolder(view);
 
     }
 
+    //binding header data with header
     @Override
     public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
         /*TextView textView=(TextView)holder.itemView;*/
         TextViewHolder textViewHolder = (TextViewHolder) holder;
 
-        int size = imagesList.size();
-        for (int j = 0; j < size; j++) {
-            images = imagesList.get(j);
-            name = images.getName();
 
-            textViewHolder.textView_2.setText(name);
+            textViewHolder.textView_2.setText(mTitleList.get(position));
         }
-    }
 
+
+        //getting the count of recyclerview item
     @Override
     public int getItemCount() {
-        return 0;
+        return mUrlList.size();
     }
 
 
 
+    //viewholder for recyclerview item
     public class ImageViewHolder extends RecyclerView.ViewHolder
     { ImageView imageView_2;
     public ImageViewHolder(View itemView) {
@@ -135,6 +101,7 @@ public class MyStickyHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
 
+    //viewholder for header
     public class TextViewHolder extends RecyclerView.ViewHolder
     {TextView textView_2;
     public TextViewHolder(View itemView) {
