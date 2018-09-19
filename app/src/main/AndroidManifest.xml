@@ -3,6 +3,7 @@
     package="com.example.emp354.linear">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -168,16 +169,19 @@
         <service android:name=".ThreadingAssignments.Services.MyIntentService" />
 
         <activity android:name=".ThreadingAssignments.AssignmentActivity.UsingIntentService" />
-        <activity android:name=".ThirdParty.Assignment_1.ThirdPartyAssignment_1"></activity>
-        <activity android:name=".ThirdParty.Assignment_2.ThirdPartyAssignment_2">
-
-        </activity>
-        <activity android:name=".ThirdParty.Assignment_2_again.ThirdPartyAssignment_2_again">
+        <activity android:name=".ThirdParty.Assignment_1.ThirdPartyAssignment_1" />
+        <activity android:name=".ThirdParty.Assignment_2.ThirdPartyAssignment_2" />
+        <activity android:name=".ThirdParty.Assignment_2_again.ThirdPartyAssignment_2_again"></activity>
+        <activity android:name=".Networking.Networking.Networking_1.NetworkingExample">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity android:name=".Networking.Networking.Networking_2.NetworkingExample_2">
+
         </activity>
     </application>
 
