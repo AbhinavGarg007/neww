@@ -46,4 +46,16 @@ dependencies {
     //Sticky header
     implementation 'com.timehop.stickyheadersrecyclerview:library:0.4.3'
 
+    //for picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    //for retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+
+    //for gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    //for okHttp Client
+    implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
+
 }
