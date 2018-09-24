@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class RetrofitActivity extends AppCompatActivity {
             public void onResponse(Call<List<RetroPhotoModel>> call, Response<List<RetroPhotoModel>> response) {
                 dialog.dismiss();
                 generateDataList(response.body());
+                Log.d("response",String.valueOf(response.body()));
 
             }
 

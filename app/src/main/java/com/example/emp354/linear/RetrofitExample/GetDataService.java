@@ -9,4 +9,9 @@ public interface GetDataService {
 
     @GET("/photos")
     Call<List<RetroPhotoModel>> getAllPhotos();
+
+    //for query
+
+   /* @GET("{user_id}")
+    Call<List<RetroPhotoModel>> getAllPhotos(@Path("user_id") long id);*/
 }
