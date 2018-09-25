@@ -1,4 +1,4 @@
-package com.example.emp354.linear.Networking.Networking.Networking_1;
+package com.example.emp354.linear.Networking.Networking_1;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;

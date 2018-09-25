@@ -1,7 +1,7 @@
-package com.example.emp354.linear.AutoComplete.POJO;
+package com.example.emp354.linear.CommunicatingWithServer.AutoComplete.POJO;
 
 
-import com.example.emp354.linear.AutoComplete.POJO.Matched_substrings;
+import com.example.emp354.linear.CommunicatingWithServer.AutoComplete.POJO.Matched_substrings;
 
 import java.util.List;
 

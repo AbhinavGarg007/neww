@@ -172,27 +172,26 @@
         <activity android:name=".ThirdParty.Assignment_1.ThirdPartyAssignment_1" />
         <activity android:name=".ThirdParty.Assignment_2.ThirdPartyAssignment_2" />
         <activity android:name=".ThirdParty.Assignment_2_again.ThirdPartyAssignment_2_again" />
-        <activity android:name=".Networking.Networking.Networking_1.NetworkingExample" />
-        <activity android:name=".Networking.Networking.Networking_2.NetworkingExample_2" />
-        <activity android:name=".RetrofitExample.RetrofitActivity">
+        <activity android:name=".Networking.Networking_1.NetworkingExample" />
+        <activity android:name=".Networking.Networking_2.NetworkingExample_2" />
+        <activity android:name=".RetrofitExample.RetrofitActivity"></activity>
+        <activity android:name=".CommunicatingWithServer.AutoComplete.SearchScreen"
+            android:theme="@style/ToolBarTheme">
 
         </activity>
         <activity
-            android:name=".AutoComplete.SearchScreen"
-            android:theme="@style/ToolBarTheme" >
+            android:name=".CommunicatingWithServer.AutoComplete.ListScreen"
+            android:theme="@style/ToolBarTheme" />
+        <activity
+            android:name=".CommunicatingWithServer.AutoComplete.DetailScreen"
+            android:theme="@style/ToolBarTheme"></activity>
+        <activity android:name=".CommunicatingWithServer.ImageSearch.ImageSearchScreen"
+            android:theme="@style/ToolBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity android:name=".AutoComplete.ListScreen"
-            android:theme="@style/ToolBarTheme"/>
-        <activity android:name=".AutoComplete.DetailScreen"
-            android:theme="@style/ToolBarTheme">
-
-
         </activity>
     </application>
 

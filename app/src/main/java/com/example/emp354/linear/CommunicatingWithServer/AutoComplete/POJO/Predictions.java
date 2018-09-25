@@ -1,4 +1,4 @@
-package com.example.emp354.linear.AutoComplete.POJO;
+package com.example.emp354.linear.CommunicatingWithServer.AutoComplete.POJO;
 
 import java.util.List;
 

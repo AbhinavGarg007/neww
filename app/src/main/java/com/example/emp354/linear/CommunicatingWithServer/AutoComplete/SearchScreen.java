@@ -1,4 +1,4 @@
-package com.example.emp354.linear.AutoComplete;
+package com.example.emp354.linear.CommunicatingWithServer.AutoComplete;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,7 @@ import com.example.emp354.linear.R;
 
 public class SearchScreen extends AppCompatActivity {
 
+    //variables
     EditText editText;
     Button button;
 
@@ -23,10 +24,12 @@ public class SearchScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_screen);
 
+        //initialising variables
         editText=findViewById(R.id.et_search_screen);
         button=findViewById(R.id.btn_search_screen);
 
 
+        // implementing click listener on button
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +48,7 @@ public class SearchScreen extends AppCompatActivity {
                     }*/
 
                    else {
+                       //moving to next screen
                     Intent searchIntent=new Intent(SearchScreen.this,ListScreen.class);
                     searchIntent.putExtra("input",search_keyword);
                     startActivity(searchIntent);
@@ -56,6 +60,7 @@ public class SearchScreen extends AppCompatActivity {
         });
     }
 
+    //checking internet connection
     private boolean checkInternetConnection() {
         // Get Connectivity Manager
         ConnectivityManager connManager =

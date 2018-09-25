@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Action Bar</string>
+    <string name="app_name">MY APP</string>
     <string name="switchtext_on">Switch is on</string>
     <string name="switchtext_off">Switch is off</string>
     <string name="checkbox_check">Checkbox is checked</string>

@@ -1,4 +1,4 @@
-package com.example.emp354.linear.AutoComplete;
+package com.example.emp354.linear.CommunicatingWithServer.AutoComplete;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
-import com.example.emp354.linear.AutoComplete.POJO.PlaceModel;
-import com.example.emp354.linear.AutoComplete.POJO.Predictions;
+import com.example.emp354.linear.CommunicatingWithServer.AutoComplete.POJO.PlaceModel;
+import com.example.emp354.linear.CommunicatingWithServer.AutoComplete.POJO.Predictions;
+import com.example.emp354.linear.Listener.ItemClickListener;
 import com.example.emp354.linear.R;
 
 import java.util.List;
@@ -18,11 +20,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListScreen extends AppCompatActivity {
+public class ListScreen extends AppCompatActivity implements ItemClickListener {
 
    /* String BASE_URL="https://maps.googleapis.com/maps/api/place/queryautocomplete/json?key=AIzaSyCu9-ERueubyJ5g2o0T5P5Pa6jesPoL56g&input=";*/
-    AutoCompleteAdapter autoCompleteAdapter;
+
+   //declaring variables
+   AutoCompleteAdapter autoCompleteAdapter;
     RecyclerView recyclerView;
+    List<Predictions> predictionsList;
 
 
     @Override
@@ -32,9 +37,13 @@ public class ListScreen extends AppCompatActivity {
 
 
 
+        //gettin value from intent
         Intent listIntent=getIntent();
         String input=listIntent.getStringExtra("input");
 
+
+
+        //getting response through retrofit
         AutoCompleteService service= AutoCompleteRetrofitInstance.getRetrofitInstance().create(AutoCompleteService.class);
         Call<PlaceModel> call=service.getAllPlaces(AutoCompleteService.API_KEY,input);
         call.enqueue(new Callback<PlaceModel>() {
@@ -56,17 +65,16 @@ public class ListScreen extends AppCompatActivity {
 
     }
 
+    // method to set adapter with recycler view
     private void generateDataList(PlaceModel placeModel)
     {
         if(placeModel!=null) {
-            Log.d("g", "generateDataList: ");
-            Log.d("desc1", "huh  " + placeModel.getPredictions().get(0).getStructured_formatting().getMain_text_matched_substrings().get(0).getOffset());
-            /* Log.d("desc", "huh  "+placeModel.getPredictions().get(0).getDescription());*/
 
-            Log.d("g1", "generateDataList:1 ");
             recyclerView = findViewById(R.id.recyclerview_listscreen);
-            autoCompleteAdapter = new AutoCompleteAdapter(this, placeModel);
+            autoCompleteAdapter = new AutoCompleteAdapter(this, placeModel,this);
 
+            //initialising predictionList
+            predictionsList=placeModel.getPredictions();
 
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(layoutManager);
@@ -75,6 +83,26 @@ public class ListScreen extends AppCompatActivity {
         else
         {
             Log.d("placemodel","object is null.");
+        }
+    }
+
+
+    //implementing listener method
+    @Override
+    public void onItemClick(View view, int position) {
+        switch (view.getId())
+        {
+            case R.id.place_layout:
+                if(predictionsList!=null) {
+                    String place_id = predictionsList.get(position).getPlace_id();
+                    if(place_id!=null)
+                    {
+                        //moving to next screen with place_id
+                        Intent detailIntent=new Intent(ListScreen.this,DetailScreen.class);
+                        detailIntent.putExtra("place_id",place_id);
+                        startActivity(detailIntent);
+                    }
+                }
         }
     }
 }
