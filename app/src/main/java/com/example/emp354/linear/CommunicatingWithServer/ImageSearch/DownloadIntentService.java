@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -40,12 +41,17 @@ public class DownloadIntentService extends IntentService {
 
             String url = intent.getStringExtra("url");
 
-            downloadImage(url);
+           String message=downloadImage(url);
+
+            Intent intent1=new Intent("image_data");
+            intent1.putExtra("message",message);
+            intent1.putExtra("pos",intent.getStringExtra("pos"));
+            LocalBroadcastManager.getInstance(getBaseContext()).sendBroadcast(intent1);
         }
 
     }
 
-    private void downloadImage(String url) {
+    private String  downloadImage(String url) {
 
         try {
             URL imageUrl = new URL(url);
@@ -59,9 +65,8 @@ public class DownloadIntentService extends IntentService {
 
             if (bitmap != null) {
 
-                File dir=new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES),"search_images");
-                if(!dir.exists())
-                {
+                File dir = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "search_images");
+                if (!dir.exists()) {
                     dir.mkdir();
                 }
 
@@ -73,41 +78,36 @@ public class DownloadIntentService extends IntentService {
                 Log.d("tag",fileName);
 
 */
-                String fileName=url.substring(url.length()-10);
+                String fileName = url.substring(url.length() - 10);
+                File file = new File(dir, fileName + ".jpg");
 
-                File file=new File(dir,fileName+".jpg");
 
-                if (file.exists() && file.isFile())
-                {
-                    message="DOWNLOAD_ALREADY_MESSAGE";
-                }
+                    try {
+                        file.createNewFile();
+                        FileOutputStream fileOutputStream = new FileOutputStream(file);
 
-                try
-                {
-                    file.createNewFile();
-                    FileOutputStream fileOutputStream=new FileOutputStream(file);
-                   Log.d("tag","Image Downloaded");
-                    boolean flag=bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
-                    fileOutputStream.flush();
-                    fileOutputStream.close();
-                    if(flag)
-                    {
-                        message="DOWNLOAD_SUCCESS_MESSAGE";
+                        boolean flag = bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+                        fileOutputStream.flush();
+                        fileOutputStream.close();
+                        Thread.sleep(1000);
+                        /*if (flag) {
+                            message = "DOWNLOAD_SUCCESS_MESSAGE";
+                        }*/
+                        Log.d("ImageSearch", "Image Downloaded");
+                        message="Image Downloaded.";
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
 
                 }
 
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
+
+            } catch(Exception e){
+                e.printStackTrace();
 
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
 
 
                /* File root = Environment.getExternalStorageDirectory();
@@ -189,7 +189,7 @@ public class DownloadIntentService extends IntentService {
                 });
                 */
 
-
+return message;
     }
 }
 

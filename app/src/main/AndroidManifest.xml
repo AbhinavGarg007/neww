@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyApplication"
@@ -165,25 +165,24 @@
         <activity android:name=".ThreadingAssignments.AssignmentActivity.UsingMultiThreading" />
         <activity android:name=".ThreadingAssignments.UsingNormalService" />
         <activity android:name=".Services.ServiceFirst" />
-
         <activity android:name=".ThreadingAssignments.AssignmentActivity.UsingIntentService" />
         <activity android:name=".ThirdParty.Assignment_1.ThirdPartyAssignment_1" />
         <activity android:name=".ThirdParty.Assignment_2.ThirdPartyAssignment_2" />
         <activity android:name=".ThirdParty.Assignment_2_again.ThirdPartyAssignment_2_again" />
         <activity android:name=".Networking.Networking_1.NetworkingExample" />
         <activity android:name=".Networking.Networking_2.NetworkingExample_2" />
-        <activity android:name=".RetrofitExample.RetrofitActivity"></activity>
-        <activity android:name=".CommunicatingWithServer.AutoComplete.SearchScreen"
-            android:theme="@style/ToolBarTheme">
-
-        </activity>
+        <activity android:name=".RetrofitExample.RetrofitActivity" />
+        <activity
+            android:name=".CommunicatingWithServer.AutoComplete.SearchScreen"
+            android:theme="@style/ToolBarTheme"></activity>
         <activity
             android:name=".CommunicatingWithServer.AutoComplete.ListScreen"
             android:theme="@style/ToolBarTheme" />
         <activity
             android:name=".CommunicatingWithServer.AutoComplete.DetailScreen"
-            android:theme="@style/ToolBarTheme"></activity>
-        <activity android:name=".CommunicatingWithServer.ImageSearch.ImageSearchScreen"
+            android:theme="@style/ToolBarTheme" />
+        <activity
+            android:name=".CommunicatingWithServer.ImageSearch.ImageSearchScreen"
             android:theme="@style/ToolBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -192,11 +191,11 @@
             </intent-filter>
         </activity>
 
-
         <service android:name=".ThreadingAssignments.MyService" />
         <service android:name=".ThreadingAssignments.Services.MyIntentService" />
-        <service android:name=".CommunicatingWithServer.ImageSearch.DownloadIntentService"/>
+        <service android:name=".CommunicatingWithServer.ImageSearch.DownloadIntentService" />
 
+        <activity android:name=".CommunicatingWithServer.ImageSearch.FullViewActivity"></activity>
     </application>
 
 </manifest>

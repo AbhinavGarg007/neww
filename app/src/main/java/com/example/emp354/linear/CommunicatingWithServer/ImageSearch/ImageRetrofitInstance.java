@@ -1,5 +1,7 @@
 package com.example.emp354.linear.CommunicatingWithServer.ImageSearch;
 
+import android.util.Log;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -9,7 +11,9 @@ public class ImageRetrofitInstance {
     private static Retrofit retrofitImage;
 
     public  static Retrofit getRetrofitImageInstance()
+
     {
+        Log.d("ImageSearch","getting retrofit instance");
         if(retrofitImage==null)
         {
             retrofitImage=new Retrofit.Builder()

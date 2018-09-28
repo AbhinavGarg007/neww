@@ -12,6 +12,7 @@
         android:scaleType="fitXY"/>
 
     <ImageButton
+        android:id="@+id/ib_download"
         android:layout_width="@dimen/margin_20"
         android:layout_height="@dimen/margin_20"
         android:src="@drawable/add"

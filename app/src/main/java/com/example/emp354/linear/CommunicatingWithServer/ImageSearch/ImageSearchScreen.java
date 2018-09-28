@@ -1,10 +1,15 @@
 package com.example.emp354.linear.CommunicatingWithServer.ImageSearch;
 
 import android.app.IntentService;
+import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -39,20 +44,24 @@ import retrofit2.Response;
 
 public class ImageSearchScreen extends AppCompatActivity implements ItemClickListener {
 
+    //declaring variables
     ImageView ivSearch;
     TextView tvEmpty;
     EditText etSearch;
+    BroadcastReceiver broadcastReceiver;
     RecyclerView recyclerViewSearchImage;
     ImageAdapter imageAdapter;
     List<Items> itemsList;
+    ProgressDialog dialog,service_dialog;
 
 
    /* String API_KEY="AIzaSyDuCYDZW-M7fpbHsAxSo2EvEj4kfjQ-Jqg";*/
     String API_KEY="AIzaSyCGq2oBtD6jmHjqMMijiPHRsh_LBQgUZUs";
     String cx="008733068000644023346:eqlwl3brxma";
-    String enableImageSearch="true";
-    String disableWebSearch="true";
+    boolean enableImageSearch=true;
+    boolean disableWebSearch=true;
     String searchType="image";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,14 +74,36 @@ public class ImageSearchScreen extends AppCompatActivity implements ItemClickLis
         recyclerViewSearchImage=findViewById(R.id.recycler_view_search_image);
 
 
+        broadcastReceiver=new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String message=intent.getStringExtra("message");
+                int pos=Integer.valueOf(intent.getStringExtra("pos"));
+                service_dialog.dismiss();
+                Toast.makeText(ImageSearchScreen.this,message,Toast.LENGTH_SHORT).show();
+
+               //notify the adapter
+                /*imageAdapter.notifyDataSetChanged();*/
+
+                //notify the adapter for particular position
+                imageAdapter.notifyItemChanged(pos);
+            }
+        };
+
+
+        IntentFilter intentFilter=new IntentFilter("image_data");
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver,intentFilter);
+
+
+        //adding listener on edittext search bar
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
                 if(!etSearch.getText().toString().equals(""))
                 {
                     if(actionId== EditorInfo.IME_ACTION_DONE)
                     {
+                        dialog=ProgressDialog.show(ImageSearchScreen.this,"Loading","Please wait..");
                         FetchData(etSearch.getText().toString());
                         return true;
                     }
@@ -124,8 +155,10 @@ public class ImageSearchScreen extends AppCompatActivity implements ItemClickLis
         imageAdapter=new ImageAdapter(this,imageModel,this);
         GridLayoutManager gridLayoutManager=new GridLayoutManager(this,3, LinearLayoutManager.VERTICAL,false);
         recyclerViewSearchImage.setLayoutManager(gridLayoutManager);
-
         recyclerViewSearchImage.setAdapter(imageAdapter);
+        dialog.dismiss();
+
+        //recyclerViewSearchImage.addOnScrollListener(recyclerViewOnScrollListener);
     }
 
     @Override
@@ -134,16 +167,39 @@ public class ImageSearchScreen extends AppCompatActivity implements ItemClickLis
         {
             case R.id.layout_image_search:
                 if(itemsList!=null) {
-                    Log.d("url", itemsList.get(position).getImage().getThumbnailLink());
+                    Log.d("ImageSearch", itemsList.get(position).getImage().getThumbnailLink());
                     String url = itemsList.get(position).getImage().getThumbnailLink();
 
-                    Intent intent=new Intent(this,DownloadIntentService.class);
-                    intent.putExtra("url",url);
-                    startService(intent);
+                    //to check whether file is present in internal storage or not.
+                    File dir = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "search_images");
+                    String fileName = url.substring(url.length() - 10);
+                    File file = new File(dir, fileName + ".jpg");
+                    Log.d("ImageSearch",String.valueOf(file));
+                    if (file.exists() && file.isFile())
+                    {
+                        String path=file.getAbsolutePath();
+                        Intent intentFullView=new Intent(ImageSearchScreen.this,FullViewActivity.class);
+                        intentFullView.putExtra("path",path);
+                        startActivity(intentFullView);
+                    }
+
+                    else
+                    {
+
+                        Intent intent=new Intent(this,DownloadIntentService.class);
+                        intent.putExtra("url",url);
+                        intent.putExtra("pos",String.valueOf(position));
+                        startService(intent);
+                        service_dialog=ProgressDialog.show(ImageSearchScreen.this,"In progress","Please wait..");
+                    }
 
                 }
-
-
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
+        super.onDestroy();
     }
 }
