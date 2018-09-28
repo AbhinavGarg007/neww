@@ -8,6 +8,18 @@
     android:id="@+id/layout_splash"
     tools:context=".MainActivity">
 
+    <!--<FrameLayout
+        android:id="@+id/layout_bg_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/iv_bg_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_splash"
+            android:scaleType="fitCenter"/>
+    </FrameLayout>-->
+
 
     <LinearLayout
         android:id="@+id/layout_btn"
@@ -21,6 +33,7 @@
         android:alpha="0.8">
 
         <Button
+            android:id="@+id/btn_main_signin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -35,6 +48,7 @@
            android:layout_marginBottom="@dimen/margin_5"
            android:background="@android:color/white"/>
         <Button
+            android:id="@+id/btn_main_register"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

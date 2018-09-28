@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_register"
-    android:background="@drawable/ic_bg_girl">
+    android:background="@drawable/ic_bg_girl"
+    android:padding="@dimen/margin_20"
+    android:orientation="vertical">
 
 
 
     <LinearLayout
-        android:id="@+id/layout_btn"
+        android:id="@+id/layout_btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_20"
         android:layout_marginLeft="@dimen/margin_10"
         android:layout_marginRight="@dimen/margin_10"
-
+        android:background="@drawable/drawable_btn_bg_stroke"
         android:alpha="0.8">
 
         <Button
+            android:id="@+id/btn_register_signin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -26,13 +29,9 @@
             android:textColor="@android:color/white"
             android:background="@android:color/transparent"
             android:alpha="0.8"/>
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/margin_5"
-            android:layout_marginBottom="@dimen/margin_5"
-            android:background="@android:color/white"/>
+
         <Button
+            android:id="@+id/btn_register_register"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -43,13 +42,21 @@
     </LinearLayout>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
 
     <EditText
         android:id="@+id/et_first_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:padding="@dimen/margin_10"
         android:hint="@string/first_name"
-        android:textSize="12sp"
+        android:textSize="@dimen/textsize_12"
         android:textColorHint="@android:color/white"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/layout_btn"/>
@@ -57,56 +64,93 @@
         android:id="@+id/et_last_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:padding="@dimen/margin_10"
         android:hint="@string/last_name"
-        android:textSize="12sp"
+        android:textSize="@dimen/textsize_12"
         android:textColorHint="@android:color/white"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/et_first_name"/>
     <EditText
-        android:id="@+id/et_mail"
+        android:id="@+id/et_register_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:padding="@dimen/margin_10"
         android:hint="@string/email"
-        android:textSize="12sp"
+        android:textSize="@dimen/textsize_12"
         android:textColorHint="@android:color/white"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/et_last_name"/>
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/et_register_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:padding="@dimen/margin_10"
         android:hint="@string/password"
-        android:textSize="12sp"
+        android:textSize="@dimen/textsize_12"
         android:textColorHint="@android:color/white"
         android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/et_mail"/>
+        app:layout_constraintTop_toBottomOf="@id/et_register_email"/>
     <EditText
         android:id="@+id/et_confirm_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:padding="@dimen/margin_10"
         android:hint="@string/confirm_password"
-        android:textSize="12sp"
+        android:textSize="@dimen/textsize_12"
         android:textColorHint="@android:color/white"
         android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/et_password"/>
+        app:layout_constraintTop_toBottomOf="@id/et_register_password"/>
     <EditText
         android:id="@+id/et_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:padding="@dimen/margin_10"
         android:hint="@string/user_name"
-        android:textSize="12sp"
+        android:textSize="@dimen/textsize_12"
         android:textColorHint="@android:color/white"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/et_confirm_password"/>
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <RadioButton
+                android:id="@+id/rb_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/margin_20"
+                android:button="@drawable/custom_btn_radio_male"
+                android:text="@string/male"
+                android:textColor="@android:color/white"/>
+            <RadioButton
+                android:id="@+id/rb_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/custom_btn_radio_female"
+                android:text="@string/female"
+                android:textColor="@android:color/white"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
 
 
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_register"
+        android:layout_width="@dimen/margin_200"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/layout_register"
         android:background="@drawable/drawable_btn_bg"
         android:alpha="0.8"
-        android:text="@string/sign_in"
-        android:textColor="@android:color/white"/>
-</android.support.constraint.ConstraintLayout>
+        android:text="@string/register"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center"/>
+</LinearLayout>

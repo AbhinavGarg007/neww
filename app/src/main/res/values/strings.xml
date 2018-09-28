@@ -9,4 +9,10 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="last_name">Last Name</string>
     <string name="first_name">First Name</string>
+    <string name="email_id_username">Email id / Username</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit">Submit</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="toast_gender">Please select any gender</string>
 </resources>

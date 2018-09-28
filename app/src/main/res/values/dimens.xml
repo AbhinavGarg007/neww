@@ -4,4 +4,6 @@
     <dimen name="margin_10">10dp</dimen>
     <dimen name="margin_5">5dp</dimen>
     <dimen name="margin_2">2dp</dimen>
+    <dimen name="margin_200">200dp</dimen>
+    <dimen name="textsize_12">12sp</dimen>
 </resources>
