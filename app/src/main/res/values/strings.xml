@@ -15,4 +15,27 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="toast_gender">Please select any gender</string>
+    <string name="toast_registered">Now you are a registered user.</string>
+    <string name="toast_check_entries">Please check the entries.</string>
+    <string name="registering">Registering</string>
+    <string name="toast_account_exist">Account already exists, Please create a new one.</string>
+    <string name="enter_current_password">Enter current password</string>
+    <string name="enter_new_password">Enter new password</string>
+    <string name="retype_new_password">Retype new password</string>
+    <string name="update">Update</string>
+    <string name="cont">Continue</string>
+    <string name="account_created_successfully">ACCOUNT CREATED SUCCESSFULLY</string>
+    <string name="confirm_your_email_address">Confirm your email address.</string>
+    <string name="we_have_sent_you_the_instructions">We have sent you the instructions to\nconfirm your email address. Please check your\nemail mailbox and confirm your email address.</string>
+    <string name="please_continue_after_confirm_your_email_address">Please continue after confirm your email address.</string>
+    <string name="resend_email">Resend email</string>
+
+    <string name="profile">Profile</string>
+    <string name="feeds">Feeds</string>
+    <string name="browse_brands">Browse brands</string>
+    <string name="category">Category</string>
+    <string name="discover_your_items">Discover your items</string>
+    <string name="track_your_order">Track your order</string>
+    <string name="notification">Notification</string>
+    <string name="sign_out">Sign Out</string>
 </resources>

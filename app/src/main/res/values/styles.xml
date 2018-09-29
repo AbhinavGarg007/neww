@@ -12,4 +12,30 @@
 
     </style>
 
+    <style name="EditTextStyle" parent="Base.V7.Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/margin_10</item>
+        <item name="android:padding">@dimen/margin_10</item>
+        <item name="android:textSize">@dimen/textsize_12</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@android:color/white</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Base.TextAppearance.AppCompat.Widget.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/drawable_btn_bg</item>
+    </style>
+
+    <style name="SimpleButtonStyle" parent="Base.TextAppearance.AppCompat.Widget.Button">
+        <item name="android:layout_width">@dimen/margin_200</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/drawable_btn_bg</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
 </resources>

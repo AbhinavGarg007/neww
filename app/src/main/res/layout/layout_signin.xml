@@ -51,26 +51,12 @@
         android:gravity="center">
     <EditText
         android:id="@+id/et_signin_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_10"
-        android:padding="@dimen/margin_10"
-
-        android:hint="@string/email"
-        android:textSize="@dimen/textsize_12"
-        android:textColorHint="@android:color/white"
-        android:textColor="@android:color/white" />
+        style="@style/EditTextStyle"
+        android:hint="@string/email" />
     <EditText
         android:id="@+id/et_signin_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/margin_10"
-
-        android:hint="@string/password"
-        android:textSize="@dimen/textsize_12"
-        android:textColorHint="@android:color/white"
-        android:textColor="@android:color/white"
-      />
+        style="@style/EditTextStyle"
+        android:hint="@string/password" />
 
     <TextView
         android:id="@+id/tv_forgot_password"
@@ -86,11 +72,7 @@
 
     <Button
         android:id="@+id/btn_signin"
-        android:layout_width="@dimen/margin_200"
-        android:layout_height="wrap_content"
-        android:background="@drawable/drawable_btn_bg"
-        android:alpha="0.8"
+        style="@style/SimpleButtonStyle"
         android:text="@string/sign_in"
-        android:textColor="@android:color/white"
-        android:layout_gravity="center"/>
+        />
 </LinearLayout>

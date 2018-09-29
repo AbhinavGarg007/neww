@@ -13,9 +13,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Button btnSignin,btnRegister;
     String name;
+    VshopSharedPreference vshopSharedPreference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        vshopSharedPreference=VshopSharedPreference.getInstance(this);
+        if(vshopSharedPreference.fetchid()!=-1)
+        {
+            Intent intent=new Intent(MainActivity.this,HomeActivity.class);
+            startActivity(intent);
+        }
+
         setContentView(R.layout.activity_main);
         btnSignin=findViewById(R.id.btn_main_signin);
         btnRegister=findViewById(R.id.btn_main_register);

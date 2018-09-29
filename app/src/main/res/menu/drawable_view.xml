@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/profile"
+            android:icon="@drawable/ic_profile"
+            android:title="@string/profile" />
+
+        <item android:id="@+id/feeds"
+            android:icon="@drawable/ic_feeds"
+            android:title="@string/feeds"/>
+
+        <item android:id="@+id/browse_brands"
+            android:icon="@drawable/ic_browse_brand"
+            android:title="@string/browse_brands"/>
+
+        <item android:id="@+id/category"
+            android:icon="@drawable/ic_category"
+            android:title="@string/category" />
+
+        <item android:id="@+id/discover"
+            android:icon="@drawable/ic_discover_item"
+            android:title="@string/discover_your_items"/>
+
+        <item android:id="@+id/track"
+            android:icon="@drawable/ic_track_order"
+            android:title="@string/track_your_order"/>
+
+        <item android:id="@+id/notification"
+            android:icon="@drawable/ic_notification"
+            android:title="@string/notification"/>
+
+        <item android:id="@+id/sign_out"
+            android:icon="@drawable/ic_signout"
+            android:title="@string/sign_out"/>
+
+    </group>
+</menu>

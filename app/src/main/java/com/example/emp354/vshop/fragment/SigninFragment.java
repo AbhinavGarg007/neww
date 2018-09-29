@@ -1,6 +1,8 @@
 package com.example.emp354.vshop.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,14 +13,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.emp354.vshop.AppDatabase;
-import com.example.emp354.vshop.ForgotPasswordFragment;
 import com.example.emp354.vshop.HomeActivity;
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.SigninRegisterActivity;
+import com.example.emp354.vshop.VshopSharedPreference;
 import com.example.emp354.vshop.VshopUserModel;
-import com.example.emp354.vshop.fragment.RegisterFragment;
 
 public class SigninFragment extends Fragment implements View.OnClickListener {
     Button btnSubmit,btnSignin;
@@ -27,6 +29,8 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
     AppDatabase appDatabase;
     String DATABASE_NAME;
     VshopUserModel vshopUserModel;
+    ProgressDialog dialog;
+    VshopSharedPreference vshopSharedPreference;
 
     @Nullable
     @Override
@@ -41,6 +45,7 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
         appDatabase=AppDatabase.getAppDatabase(getContext());
         DATABASE_NAME="user_db";
         vshopUserModel=new VshopUserModel();
+        vshopSharedPreference=VshopSharedPreference.getInstance(getActivity());
 
         btnSubmit=view.findViewById(R.id.btn_signin);
         btnSignin=view.findViewById(R.id.btn_signin_register);
@@ -62,21 +67,45 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.btn_signin:
-                vshopUserModel=appDatabase.userDao().findByEmail(etEmail.getText().toString(),etPassword.getText().toString());
-                if(vshopUserModel!=null)
-                {
-
-                    Intent intent=new Intent(((SigninRegisterActivity)getActivity()),HomeActivity.class);
-                    startActivity(intent);
-                }
-
-
+                new SigninAsyncTask().execute();
                 break;
 
             case R.id.tv_forgot_password:
                 ((SigninRegisterActivity)getActivity()).loadFragment(new ForgotPasswordFragment());
                 break;
 
+        }
+    }
+
+
+    private class SigninAsyncTask extends AsyncTask<Void,Void,VshopUserModel>
+    {
+
+        @Override
+        protected void onPreExecute() {
+          dialog=ProgressDialog.show(getActivity(),"Logging In","Please wait..");
+
+        }
+
+        @Override
+        protected void onPostExecute(VshopUserModel vshopUserModel) {
+            dialog.dismiss();
+            if(vshopUserModel!=null)
+            {
+                vshopSharedPreference.saveId(vshopUserModel.getUid());
+                Intent intent=new Intent(((SigninRegisterActivity)getActivity()),HomeActivity.class);
+                startActivity(intent);
+            }
+            else {
+                Toast.makeText(getActivity(),"Please check the entries",Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+        @Override
+        protected VshopUserModel doInBackground(Void... voids) {
+            vshopUserModel=appDatabase.userDao().isAccountExist(etEmail.getText().toString(),etPassword.getText().toString());
+            return vshopUserModel;
         }
     }
 }

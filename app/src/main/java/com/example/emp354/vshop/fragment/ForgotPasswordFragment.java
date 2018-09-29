@@ -1,4 +1,4 @@
-package com.example.emp354.vshop;
+package com.example.emp354.vshop.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.emp354.vshop.R;
+import com.example.emp354.vshop.SigninRegisterActivity;
 import com.example.emp354.vshop.fragment.SigninFragment;
 
 public class ForgotPasswordFragment extends Fragment implements View.OnClickListener{

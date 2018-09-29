@@ -13,8 +13,11 @@ public interface UserDao {
     List<VshopUserModel> getAll();
 
     @Insert
-    void insertAll(VshopUserModel... users);
+    long insert(VshopUserModel users);
 
     @Query("SELECT * FROM vshopUser WHERE email LIKE  :email AND password LIKE  :password")
-    VshopUserModel findByEmail(String email,String password);
+    VshopUserModel isAccountExist(String email,String password);
+
+    @Query("SELECT * FROM vshopUser WHERE email LIKE  :email")
+    VshopUserModel isMailExist(String email);
 }

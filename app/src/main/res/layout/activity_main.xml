@@ -34,13 +34,9 @@
 
         <Button
             android:id="@+id/btn_main_signin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/ButtonStyle"
             android:text="@string/sign_in"
-            android:textColor="@android:color/white"
-            android:background="@drawable/drawable_btn_bg"
-            android:alpha="0.8"/>
+            />
        <View
            android:layout_width="1dp"
            android:layout_height="match_parent"
@@ -49,13 +45,9 @@
            android:background="@android:color/white"/>
         <Button
             android:id="@+id/btn_main_register"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/ButtonStyle"
             android:text="@string/register"
-            android:textColor="@android:color/white"
-            android:background="@drawable/drawable_btn_bg"
-            android:alpha="0.8"/>
+           />
     </LinearLayout>
 
 

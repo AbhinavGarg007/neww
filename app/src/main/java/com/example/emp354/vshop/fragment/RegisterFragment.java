@@ -1,5 +1,8 @@
 package com.example.emp354.vshop.fragment;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,8 +18,10 @@ import android.widget.Toast;
 
 import com.example.emp354.vshop.AppDatabase;
 import com.example.emp354.vshop.EditTextValidation;
+import com.example.emp354.vshop.HomeActivity;
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.SigninRegisterActivity;
+import com.example.emp354.vshop.VshopSharedPreference;
 import com.example.emp354.vshop.VshopUserModel;
 
 public class RegisterFragment extends Fragment implements View.OnClickListener {
@@ -29,6 +34,12 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     RadioButton rbMale,rbFemale;
     String selectGender;
     boolean isChecked=false;
+    boolean isAccountExist=false;
+    ProgressDialog dialog;
+    long id;
+    VshopSharedPreference vshopSharedPreference;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,6 +53,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         appDatabase=AppDatabase.getAppDatabase(getContext());
         DATABASE_NAME="user_db";
         vshopUserModel=new VshopUserModel();
+        vshopSharedPreference=VshopSharedPreference.getInstance(getActivity());
+
 
         btnSubmit=view.findViewById(R.id.btn_register);
         btnSignin=view.findViewById(R.id.btn_register_signin);
@@ -58,16 +71,12 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                isChecked=true;
-             /*   RadioButton checkedRadioButton=radioGroup.findViewById(i);
+
+                RadioButton checkedRadioButton=radioGroup.findViewById(i);
                 if(checkedRadioButton.getText().toString()!=null) {
+                    isChecked=true;
                     selectGender =checkedRadioButton.getText().toString();
                 }
-                else {
-                    Toast.makeText(getActivity(),"Please select any gender",Toast.LENGTH_SHORT).show();
-
-                }
-*/
             }
         });
 
@@ -81,91 +90,118 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         {
 
             case R.id.btn_register_signin:
-
                 ((SigninRegisterActivity)getActivity()).loadFragment(new SigninFragment());
                 break;
 
             case R.id.btn_register:
                 if(isChecked) {
-                    vshopUserModel.setFirstName(etFirstName.getText().toString());
-                    vshopUserModel.setLastName(etLastName.getText().toString());
-                    vshopUserModel.setEmail(etEmail.getText().toString());
-                    vshopUserModel.setPassword(etPassword.getText().toString());
-                    vshopUserModel.setUserName(etUserName.getText().toString());
-                    if (selectGender != null) {
-                        vshopUserModel.setGender(selectGender);
-                    } else {
-                        Toast.makeText(getActivity(), R.string.toast_gender, Toast.LENGTH_SHORT).show();
-
+                    { if (validateFormData(etFirstName.getText().toString(),
+                                etLastName.getText().toString(),
+                                etEmail.getText().toString(),
+                                etPassword.getText().toString(),
+                                etConfirmPassword.getText().toString(),
+                                etUserName.getText().toString(),
+                                selectGender))
+                        {
+                            new RegisterAsyncTask().execute();
+                        }
+                        else {
+                        printToast(getString(R.string.toast_check_entries)); }
                     }
-                }
+                }else {
+                  printToast(getString(R.string.toast_gender)); }
+                break;
 
-
-
-
-                if(validateFormData(etFirstName.getText().toString(),
-                        etLastName.getText().toString(),
-                        etEmail.getText().toString(),
-                        etPassword.getText().toString(),
-                        etConfirmPassword.getText().toString(),
-                        etUserName.getText().toString(),
-                        selectGender)) {
-
-                    appDatabase.userDao().insertAll(vshopUserModel);
-                    Toast.makeText(getContext(), "Now you are a registered user.", Toast.LENGTH_SHORT).show();
-                    break;
-                }
-                else {
-                    Toast.makeText(getContext(), "Check the entries.", Toast.LENGTH_SHORT).show();
-                }
+            default:
+                break;
         }
     }
 
+
+    //aync task method
+
+    private class RegisterAsyncTask extends AsyncTask<Void,Void,String>
+    {
+        @Override
+        protected void onPreExecute() {
+          dialog=ProgressDialog.show(((SigninRegisterActivity)getActivity()),getString(R.string.registering),"Please Wait..");
+        }
+
+        @Override
+        protected void onPostExecute(String string) {
+            dialog.dismiss();
+            printToast(string);
+            if(!isAccountExist) {
+                Intent intent = new Intent((SigninRegisterActivity) getActivity(), HomeActivity.class);
+                startActivity(intent);
+            }
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+
+            vshopUserModel=appDatabase.userDao().isMailExist(etEmail.getText().toString());
+            if(vshopUserModel!=null)
+            {
+                isAccountExist=true;
+                return getString(R.string.toast_account_exist);
+            }
+            else {
+                vshopUserModel=new VshopUserModel();
+                vshopUserModel.setFirstName(etFirstName.getText().toString());
+                vshopUserModel.setLastName(etLastName.getText().toString());
+                vshopUserModel.setEmail(etEmail.getText().toString());
+                vshopUserModel.setPassword(etPassword.getText().toString());
+                vshopUserModel.setUserName(etUserName.getText().toString());
+                vshopUserModel.setGender(selectGender);
+
+                id=appDatabase.userDao().insert(vshopUserModel);
+                vshopSharedPreference.saveId(id);
+
+                return getResources().getString(R.string.toast_registered);
+            }
+        }
+    }
+
+
+
+
+    //method to validate data
     private boolean validateFormData(String firstName,String lastName,String email,  String password,String confirmPassword,String userName,String gender) {
-
-
         if (!EditTextValidation.isValidName(firstName)) {
             etFirstName.setError("First letter must be capital.");
-            return false;
-
-        }
+            return false; }
         if (!EditTextValidation.isValidName(lastName)) {
             etLastName.setError("First letter must be capital.");
-            return false;
-        }
-
+            return false; }
         if (!EditTextValidation.isValidEmail(email)) {
             etEmail.setError("Invalid Email");
-            return false;
-        }
-
-
+            return false; }
         if (!EditTextValidation.isValidPassword(password)) {
             etPassword.setError("Must contain atleast 6 or atmost 8 characters or digits.");
-            return false;
-        }
-
+            return false; }
 
         if (!EditTextValidation.isValidPassword(confirmPassword)) {
             etConfirmPassword.setError("Rewrite Again");
             return false;
         } else if (!password.equals(confirmPassword)) {
             etConfirmPassword.setError("Rewrite Again");
-            return false;
-        }
-
+            return false; }
 
         if (!EditTextValidation.isValidUserName(userName)) {
             etUserName.setError("Must contain atleast 4 characters followed by atleast 2 digits.");
-            return false;
-        }
+            return false; }
 
         if(!EditTextValidation.isValidGender(gender))
-        {
-
-            return false;
-        }
+        { return false; }
 
         return true;
+    }
+
+    //method to print toast
+    private void printToast(String string)
+    {
+        Toast.makeText((SigninRegisterActivity)getActivity(),
+                string, Toast.LENGTH_SHORT).show();
     }
 }
