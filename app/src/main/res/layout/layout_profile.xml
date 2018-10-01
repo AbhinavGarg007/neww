@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_150"
+        android:background="@drawable/blur">
+    <LinearLayout
+        android:id="@+id/layout_following"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_20">
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="@dimen/margin_4"
+            android:layout_marginBottom="@dimen/margin_4"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:layout_marginRight="@dimen/margin_2"
+            android:layout_marginTop="@dimen/margin_4"
+            android:layout_marginBottom="@dimen/margin_4"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_2following"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_name_image"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:layout_height="@dimen/margin_150"
+        android:gravity="center"
+        android:padding="@dimen/margin_10"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="@dimen/margin_120"
+            android:layout_height="@dimen/margin_100"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/image_1" />
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Lucy Joe"
+            android:layout_marginTop="@dimen/margin_5"
+            android:textColor="@android:color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/iv_profile" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_favourites"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_toRightOf="@+id/iv_profile">
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="@dimen/margin_4"
+            android:layout_marginBottom="@dimen/margin_4"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:layout_marginRight="@dimen/margin_2"
+            android:layout_marginTop="@dimen/margin_4"
+            android:layout_marginBottom="@dimen/margin_4"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_12favourites"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_track_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Track Your Order"
+            android:padding="@dimen/margin_10"
+            android:textSize="@dimen/textsize_15"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:layout_marginRight="@dimen/margin_20"
+
+            android:background="@drawable/drawable_bg_rectangle_grey"
+            android:drawableEnd="@drawable/ic_chevron_right_black_24dp"/>
+
+        <TextView
+            android:id="@+id/tv_favourite_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_10"
+            android:text="@string/favourite_items"
+            android:textColor="@color/color_black"
+            android:background="@color/color_heading"/>
+
+        <LinearLayout
+            android:id="@+id/layout_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_left_black_24dp"
+                android:paddingLeft="@dimen/margin_10"
+                android:layout_gravity="center_vertical"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview_items"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="100dp">
+            </android.support.v7.widget.RecyclerView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_right_black_24dp"
+                android:paddingRight="@dimen/margin_10"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_favourite_shops"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_10"
+            android:text="@string/favourite_shops"
+            android:textColor="@color/color_black"
+            android:background="@color/color_heading"/>
+
+        <LinearLayout
+            android:id="@+id/layout_shops"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/margin_10"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_chevron_left_black_24dp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview_shops"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/margin_100"
+                android:layout_weight="1">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="@dimen/margin_10"
+                android:src="@drawable/ic_chevron_right_black_24dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

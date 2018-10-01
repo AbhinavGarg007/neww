@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout_drawer"
-    tools:context=".HomeActivity">
+    tools:context=".activity.HomeActivity">
 
     <LinearLayout
         android:id="@+id/layout_main"
@@ -22,10 +22,9 @@
         </android.support.v7.widget.Toolbar>
 
         <FrameLayout
-            android:id="@+id/layout_fragment"
+            android:id="@+id/layout_frame_home"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/color_grey_light">
+            android:layout_height="match_parent">
 
         </FrameLayout>
     </LinearLayout>

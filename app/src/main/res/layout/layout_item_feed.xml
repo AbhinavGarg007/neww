@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/layout_item_feeds"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/iv_feed"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_150" />
+
+    <LinearLayout
+        android:id="@+id/layout_product_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forever 21"
+        android:textSize="@dimen/textsize_15"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:id="@+id/tv_new_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_75_00"
+        android:textSize="@dimen/textsize_15"
+        android:layout_marginRight="@dimen/margin_10"/>
+    <TextView
+        android:id="@+id/tv_old_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_85_00"
+
+        android:textSize="@dimen/textsize_12"/>
+    </LinearLayout>
+    </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_action_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:padding="@dimen/margin_10"
+            android:src="@drawable/ic_actionbar"/>
+    </LinearLayout>
+
+</LinearLayout>

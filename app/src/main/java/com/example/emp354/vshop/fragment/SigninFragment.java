@@ -16,9 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.emp354.vshop.AppDatabase;
-import com.example.emp354.vshop.HomeActivity;
+import com.example.emp354.vshop.activity.HomeActivity;
 import com.example.emp354.vshop.R;
-import com.example.emp354.vshop.SigninRegisterActivity;
+import com.example.emp354.vshop.activity.SigninRegisterActivity;
 import com.example.emp354.vshop.VshopSharedPreference;
 import com.example.emp354.vshop.VshopUserModel;
 

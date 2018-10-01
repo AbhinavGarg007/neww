@@ -34,4 +34,7 @@ dependencies {
 
     //to debug database
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.4'
+
+    //for circle imageview
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 }

@@ -10,8 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.emp354.vshop.R;
-import com.example.emp354.vshop.SigninRegisterActivity;
-import com.example.emp354.vshop.fragment.SigninFragment;
+import com.example.emp354.vshop.activity.SigninRegisterActivity;
 
 public class ForgotPasswordFragment extends Fragment implements View.OnClickListener{
     Button btnCancel,btnSubmit;

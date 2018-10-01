@@ -38,4 +38,13 @@
     <string name="track_your_order">Track your order</string>
     <string name="notification">Notification</string>
     <string name="sign_out">Sign Out</string>
+    <string name="favourite_shops">FAVOURITE SHOPS</string>
+    <string name="favourite_items">FAVOURITE ITEMS</string>
+    <string name="_2following">2\nFollowing</string>
+    <string name="_12favourites">12\nFavourites</string>
+    <string name="edit_info">EDIT INFO</string>
+    <string name="enter_dob">Enter DOB</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="_75_00">$ 75.00</string>
+    <string name="_85_00"><strike>$ 85.00</strike></string>
 </resources>

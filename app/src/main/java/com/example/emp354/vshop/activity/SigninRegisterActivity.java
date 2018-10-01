@@ -1,4 +1,4 @@
-package com.example.emp354.vshop;
+package com.example.emp354.vshop.activity;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.fragment.RegisterFragment;
 import com.example.emp354.vshop.fragment.SigninFragment;
 
@@ -20,7 +21,7 @@ public class SigninRegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin_register);
-        frameLayout=findViewById(R.id.layout_fragment);
+        frameLayout=findViewById(R.id.layout_frame_signin_register);
 
         //loading fragment
         Intent intent=getIntent();
@@ -37,7 +38,7 @@ public class SigninRegisterActivity extends AppCompatActivity {
         if(fragment!=null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.layout_fragment, fragment);
+            fragmentTransaction.replace(R.id.layout_frame_signin_register, fragment);
             fragmentTransaction.commit();
         }
     }

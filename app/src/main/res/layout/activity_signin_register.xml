@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SigninRegisterActivity">
+    tools:context=".activity.SigninRegisterActivity">
     <FrameLayout
-        android:id="@+id/layout_fragment"
+        android:id="@+id/layout_frame_signin_register"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

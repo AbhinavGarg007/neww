@@ -1,9 +1,12 @@
-package com.example.emp354.vshop;
+package com.example.emp354.vshop.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
@@ -12,6 +15,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.example.emp354.vshop.R;
+import com.example.emp354.vshop.VshopSharedPreference;
+import com.example.emp354.vshop.fragment.EditProfileFragment;
+import com.example.emp354.vshop.fragment.FeedsFragment;
+import com.example.emp354.vshop.fragment.ProfileFragment;
 
 import static com.example.emp354.vshop.constants.Constant.BROWSE_BRANDS;
 import static com.example.emp354.vshop.constants.Constant.CATEGORY;
@@ -32,6 +41,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        loadFragment(new ProfileFragment());
         navigationView=findViewById(R.id.navigation_view);
         vshopSharedPreference=VshopSharedPreference.getInstance(this);
         toolbar=findViewById(R.id.toolbar);
@@ -48,6 +59,18 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId())
+                {
+                    case R.id.edit:
+                        loadFragment(new EditProfileFragment());
+                }
+                return true;
+            }
+        });
+
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -55,9 +78,11 @@ public class HomeActivity extends AppCompatActivity {
                 switch (menuItem.getTitle().toString())
                 {
                     case PROFILE:
+                        loadFragment(new ProfileFragment());
                         break;
 
                     case FEEDS:
+                        loadFragment(new FeedsFragment());
                         break;
 
                     case BROWSE_BRANDS:
@@ -105,5 +130,15 @@ public class HomeActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("No", null)
                 .show();
+    }
+
+    public void loadFragment(Fragment fragment)
+    {
+        if(fragment!=null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.layout_frame_home, fragment);
+            fragmentTransaction.commit();
+        }
     }
 }

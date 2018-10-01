@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/drawable_btn_bg">
+
+
+        <LinearLayout
+            android:id="@+id/layout_name_image_edit"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="@dimen/margin_150"
+            android:gravity="center"
+            android:background="@drawable/blur"
+            android:padding="@dimen/margin_10">
+            <FrameLayout
+                android:id="@+id/layout_frame_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_image"
+                android:layout_width="@dimen/margin_120"
+                android:layout_height="@dimen/margin_100"
+                android:src="@drawable/image_1" />
+
+                <ImageView
+                    android:id="@+id/iv_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pic_edit"
+                    android:layout_gravity="end|bottom"
+                    android:layout_margin="7dp"
+                    />
+            </FrameLayout>
+            <TextView
+                android:id="@+id/tv_name_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Lucy Joe"
+                android:layout_marginTop="@dimen/margin_5"
+                android:textColor="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/iv_profile" />
+        </LinearLayout>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_heading"
+        android:padding="@dimen/margin_10"
+        android:text="@string/edit_info"
+        android:textSize="@dimen/textsize_12"
+        android:textColor="@color/color_black" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+       >
+
+    <RadioGroup
+        android:id="@+id/rg_gender_edit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_50"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_10"
+        android:background="@android:color/white"
+        android:layout_marginBottom="@dimen/margin_1">
+
+        <RadioButton
+            android:id="@+id/rb_female_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/custom_btn_radio_female_edit"
+            android:paddingRight="@dimen/margin_20"
+            android:paddingLeft="@dimen/margin_10"
+            android:textSize="@dimen/textsize_12"
+            android:text="@string/female" />
+
+        <RadioButton
+            android:id="@+id/rb_male_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/margin_10"
+            android:button="@drawable/custom__btn_radio_male_edit"
+            android:textSize="@dimen/textsize_12"
+            android:text="@string/male" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/et_dob"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_50"
+        android:hint="@string/enter_dob"
+        android:padding="@dimen/margin_10"
+        android:textColor="@color/color_black"
+        android:textColorHint="@color/color_black"
+        android:textSize="@dimen/textsize_12"
+        android:background="@android:color/white"
+        android:layout_marginBottom="@dimen/margin_1"/>
+
+    <TextView
+        android:id="@+id/tv_reset_password"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_50"
+        android:padding="@dimen/margin_10"
+        android:text="@string/reset_password"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/textsize_12"
+        android:background="@android:color/white"/>
+    </LinearLayout>
+
+
+</LinearLayout>

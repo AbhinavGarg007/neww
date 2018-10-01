@@ -2,10 +2,36 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/ic_edit"
+        android:id="@+id/edit"
         android:orderInCategory="100"
         android:title="Home"
+
         android:icon="@drawable/ic_edit"
         app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/navigation_bag"
+        android:orderInCategory="100"
+        android:title="Home"
+        android:visible="false"
+        android:icon="@drawable/ic_navigation_bag"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/navigation_search"
+        android:icon="@drawable/ic_navigation_search"
+        android:orderInCategory="200"
+        android:visible="false"
+        android:title="Home"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/done"
+        android:title="Done"
+        app:showAsAction="always"
+        android:visible="false"
+        android:orderInCategory="100"/>
+
+
 
 </menu>
