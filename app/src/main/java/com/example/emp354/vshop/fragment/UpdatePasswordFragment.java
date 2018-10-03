@@ -24,7 +24,7 @@ public class UpdatePasswordFragment extends Fragment implements View.OnClickList
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         btnCancel=view.findViewById(R.id.btn_cancel_update);
-        btnUpdate=view.findViewById(R.id.btn_update);
+        btnUpdate=view.findViewById(R.id.btn_update_password);
 
         btnCancel.setOnClickListener(this);
         btnUpdate.setOnClickListener(this);
@@ -38,7 +38,7 @@ public class UpdatePasswordFragment extends Fragment implements View.OnClickList
                 ((HomeActivity)getActivity()).loadFragment(new EditProfileFragment());
                 break;
 
-            case R.id.btn_update:
+            case R.id.btn_update_password:
                 ((HomeActivity)getActivity()).loadFragment(new EditProfileFragment());
                 break;
         }

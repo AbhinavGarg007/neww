@@ -37,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
     VshopSharedPreference vshopSharedPreference;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
+    Fragment fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
 
         toolbar.setNavigationIcon(R.drawable.ic_menu);
         toolbar.inflateMenu(R.menu.menu_icon);
+        toolbar.setTitle(R.string.profile);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +67,8 @@ public class HomeActivity extends AppCompatActivity {
                 switch (menuItem.getItemId())
                 {
                     case R.id.edit:
-                        loadFragment(new EditProfileFragment());
+                        Intent intent=new Intent(HomeActivity.this,EditProfileActivity.class);
+                        startActivity(intent);
                 }
                 return true;
             }
@@ -78,11 +81,11 @@ public class HomeActivity extends AppCompatActivity {
                 switch (menuItem.getTitle().toString())
                 {
                     case PROFILE:
-                        loadFragment(new ProfileFragment());
+                        fragment=new ProfileFragment();
                         break;
 
                     case FEEDS:
-                        loadFragment(new FeedsFragment());
+                        fragment=new FeedsFragment();
                         break;
 
                     case BROWSE_BRANDS:
@@ -104,8 +107,10 @@ public class HomeActivity extends AppCompatActivity {
                         logOut();
                         break;
 
-
                 }
+                loadFragment(fragment);
+                drawerLayout.closeDrawer(GravityCompat.START);
+
                 return true;
             }
         });

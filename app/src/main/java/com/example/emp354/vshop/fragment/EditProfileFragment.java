@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.activity.HomeActivity;
+import com.jackandphantom.blurimage.BlurImage;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -34,6 +35,9 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+       /* BlurImage.with(getActivity()).load(R.drawable.image_1).intensity(20).Async(true).into(ivBlur);*/
+
         ivImage=view.findViewById(R.id.iv_image);
         ivEdit=view.findViewById(R.id.iv_edit);
         rgGender=view.findViewById(R.id.rg_gender_edit);

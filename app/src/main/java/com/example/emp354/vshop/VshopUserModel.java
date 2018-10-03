@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 public class VshopUserModel {
 
     @PrimaryKey(autoGenerate = true)
-    private int uid;
+    private long uid;
 
     @ColumnInfo(name="first_name")
     private String firstName;
@@ -28,11 +28,14 @@ public class VshopUserModel {
     @ColumnInfo(name = "gender")
     private String gender;
 
-    public int getUid() {
+    @ColumnInfo(name="dob")
+    private String dob;
+
+    public long getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(long uid) {
         this.uid = uid;
     }
 
@@ -82,5 +85,13 @@ public class VshopUserModel {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
     }
 }

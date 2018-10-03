@@ -4,16 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/layout_item_feeds"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="@dimen/margin_2">
     <ImageView
         android:id="@+id/iv_feed"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/margin_150" />
+        android:layout_height="@dimen/margin_150"
+        android:background="@android:color/holo_green_light"/>
 
     <LinearLayout
         android:id="@+id/layout_product_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/margin_10"
         android:orientation="horizontal">
 
     <LinearLayout
