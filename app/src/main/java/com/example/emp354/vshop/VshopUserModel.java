@@ -31,6 +31,9 @@ public class VshopUserModel {
     @ColumnInfo(name="dob")
     private String dob;
 
+    @ColumnInfo(name="profile_pic")
+    private String profile_pic;
+
     public long getUid() {
         return uid;
     }
@@ -93,5 +96,13 @@ public class VshopUserModel {
 
     public void setDob(String dob) {
         this.dob = dob;
+    }
+
+    public String getProfile_pic() {
+        return profile_pic;
+    }
+
+    public void setProfile_pic(String profile_pic) {
+        this.profile_pic = profile_pic;
     }
 }

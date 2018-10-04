@@ -24,8 +24,8 @@ public interface UserDao {
     @Query("SELECT * FROM vshopUser WHERE uid LIKE  :uid")
     VshopUserModel getUserInfo(long uid);
 
-    @Query("UPDATE vshopUser SET gender= :gender,dob= :dob WHERE uid= :uid")
-    void updateInfo(String gender,String dob,long uid);
+    @Query("UPDATE vshopUser SET gender= :gender,dob= :dob,profile_pic= :profile_pic WHERE uid= :uid")
+    void updateInfo(String gender,String dob,String profile_pic,long uid);
 
     @Query("UPDATE vshopUser SET password= :password WHERE uid= :uid")
     void updatePassword(String password,long uid);

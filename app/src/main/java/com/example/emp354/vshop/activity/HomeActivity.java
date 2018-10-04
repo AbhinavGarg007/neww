@@ -13,6 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -42,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Log.d("HomeActivity","onCreate");
 
         loadFragment(new ProfileFragment());
         navigationView=findViewById(R.id.navigation_view);
@@ -145,5 +147,42 @@ public class HomeActivity extends AppCompatActivity {
             fragmentTransaction.replace(R.id.layout_frame_home, fragment);
             fragmentTransaction.commit();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d("HomeActivity","onResume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d("HomeActivity","onPause");
+        super.onPause();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        Log.d("HomeActivity","onDestroy");
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onRestart() {
+        Log.d("HomeActivity","onRestart");
+        super.onRestart();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d("HomeActivity","onStart");
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d("HomeActivity","onDestroy");
+        super.onStop();
     }
 }

@@ -93,6 +93,7 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
             if(vshopUserModel!=null)
             {
                 vshopSharedPreference.saveId(vshopUserModel.getUid());
+                vshopSharedPreference.saveImage(vshopUserModel.getProfile_pic());
                 Intent intent=new Intent(((SigninRegisterActivity)getActivity()),HomeActivity.class);
                 startActivity(intent);
             }

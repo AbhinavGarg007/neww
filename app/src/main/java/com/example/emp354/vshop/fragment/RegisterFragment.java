@@ -158,6 +158,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                 id=appDatabase.userDao().insert(vshopUserModel);
                 vshopSharedPreference.saveId(id);
 
+
                 return getResources().getString(R.string.toast_registered);
             }
         }
