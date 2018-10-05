@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
 
         toolbar.setNavigationIcon(R.drawable.ic_menu);
         toolbar.inflateMenu(R.menu.menu_icon);
-        toolbar.setTitle(R.string.profile);
+        checkFragment();
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +128,6 @@ public class HomeActivity extends AppCompatActivity {
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        /* SaveSharedPreference.setLoggedIn(getApplicationContext(), false,null);*/
                         vshopSharedPreference.clearAllData();
                         Intent i=new Intent(HomeActivity.this,MainActivity.class);
                         startActivity(i);
@@ -144,7 +143,8 @@ public class HomeActivity extends AppCompatActivity {
         if(fragment!=null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.layout_frame_home, fragment);
+            fragmentTransaction.replace(R.id.layout_frame_home, fragment,"addfragment");
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
     }
@@ -185,4 +185,29 @@ public class HomeActivity extends AppCompatActivity {
         Log.d("HomeActivity","onDestroy");
         super.onStop();
     }
+
+    public void checkFragment()
+    {
+        Fragment fragment;
+
+        fragment=getSupportFragmentManager().findFragmentByTag("addfragment");
+
+        if(fragment instanceof ProfileFragment)
+        {
+            toolbar.setTitle(getResources().getString(R.string.profile));
+            toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(false);
+            toolbar.getMenu().findItem(R.id.navigation_search).setVisible(false);
+            toolbar.getMenu().findItem(R.id.edit).setVisible(true);
+        }
+
+        if(fragment instanceof FeedsFragment)
+        {
+            toolbar.setTitle(getResources().getString(R.string.feeds));
+            toolbar.getMenu().findItem(R.id.edit).setVisible(false);
+            toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
+            toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
+
+        }
+    }
+
 }

@@ -29,10 +29,10 @@ public class VshopUserModel {
     private String gender;
 
     @ColumnInfo(name="dob")
-    private String dob;
+    private String dob="";
 
     @ColumnInfo(name="profile_pic")
-    private String profile_pic;
+    private String profile_pic="";
 
     public long getUid() {
         return uid;

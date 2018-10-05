@@ -23,7 +23,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
+
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -61,7 +61,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     RadioButton rbMale,rbFemale;
     Calendar calendar;
     int currentYear,currentMonth,currentDay;
-    ProgressDialog dialog;
+    ProgressDialog editDialog,updateDialog;
     long id;
     String gender,dob,userChoosenTask,imageLocation;
     Dialog customDialog;
@@ -78,72 +78,21 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        Log.d("EditProfileActivity","onCreate");
+        Log.d("EditProfileActivity", "onCreate");
 
         //initialing variables
-
-
-
-        ivImage=findViewById(R.id.iv_image);
-        ivEdit=findViewById(R.id.iv_edit);
-        ivBlur=findViewById(R.id.iv_blur_edit);
-        rgGender=findViewById(R.id.rg_gender_edit);
-        tvDob=findViewById(R.id.tv_dob);
-        tvResetPassword=findViewById(R.id.tv_reset_password);
-        rbMale=findViewById(R.id.rb_male_edit);
-        rbFemale=findViewById(R.id.rb_female_edit);
-        editToolbar=findViewById(R.id.edit_toolbar);
-        tvCancel=findViewById(R.id.tv_cancel);
-        tvDone=findViewById(R.id.tv_done);
-        tvName=findViewById(R.id.tv_name_edit);
-
-
-        BlurImage.with(this).load(R.drawable.image_1).intensity(20).Async(true).into(ivBlur);
-
-        appDatabase=AppDatabase.getAppDatabase(this);
-        DATABASE_NAME="user_db";
-        vshopUserModel=new VshopUserModel();
-        vshopSharedPreference=VshopSharedPreference.getInstance(this);
-
-
-        id=vshopSharedPreference.fetchid();
-        vshopUserModel=appDatabase.userDao().getUserInfo(id);
-
-        if(vshopUserModel.getGender()!=null)
-        {
-            if(vshopUserModel.getGender().equals(getResources().getString(R.string.female)))
-            {
-                rbFemale.setChecked(true); }
-            else {
-                rbMale.setChecked(true); }
-        }
-        tvName.setText(vshopUserModel.getFirstName()+" "+vshopUserModel.getLastName());
-        //for dob
-            dob=String.valueOf(vshopUserModel.getDob());
-            tvDob.setText(vshopUserModel.getDob());
-
-        //for profile pic
-        bitmap=BitmapFactory.decodeFile(vshopUserModel.getProfile_pic());
-        imageLocation=String.valueOf(vshopUserModel.getProfile_pic());
-        ivImage.setImageBitmap(bitmap);
-
-        //for gender
-        gender=vshopUserModel.getGender();
-
-
-        rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                RadioButton checkedRadioButton=radioGroup.findViewById(i);
-                if(checkedRadioButton.getText().toString()!=null) {
-                    gender =checkedRadioButton.getText().toString();
-                }
-            }
-        });
-
-
-
+        ivImage = findViewById(R.id.iv_image);
+        ivEdit = findViewById(R.id.iv_edit);
+        ivBlur = findViewById(R.id.iv_blur_edit);
+        rgGender = findViewById(R.id.rg_gender_edit);
+        tvDob = findViewById(R.id.tv_dob);
+        tvResetPassword = findViewById(R.id.tv_reset_password);
+        rbMale = findViewById(R.id.rb_male_edit);
+        rbFemale = findViewById(R.id.rb_female_edit);
+        editToolbar = findViewById(R.id.edit_toolbar);
+        tvCancel = findViewById(R.id.tv_cancel);
+        tvDone = findViewById(R.id.tv_done);
+        tvName = findViewById(R.id.tv_name_edit);
 
         //apply onClickListeners
         tvResetPassword.setOnClickListener(this);
@@ -152,32 +101,56 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         tvDone.setOnClickListener(this);
         ivEdit.setOnClickListener(this);
 
-        calendar=Calendar.getInstance();
-        currentYear=calendar.get(Calendar.YEAR);
-        currentMonth=calendar.get(Calendar.MONTH);
-        currentDay=calendar.get(Calendar.DAY_OF_MONTH);
+        calendar = Calendar.getInstance();
+        currentYear = calendar.get(Calendar.YEAR);
+        currentMonth = calendar.get(Calendar.MONTH);
+        currentDay = calendar.get(Calendar.DAY_OF_MONTH);
 
-        /*editToolbar.setNavigationContentDescription("Cancel");
-       editToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+
+        appDatabase = AppDatabase.getAppDatabase(this);
+        DATABASE_NAME = "user_db";
+        vshopUserModel = new VshopUserModel();
+        vshopSharedPreference = VshopSharedPreference.getInstance(this);
+
+
+        id = vshopSharedPreference.fetchid();
+        vshopUserModel = appDatabase.userDao().getUserInfo(id);
+
+        if (vshopUserModel.getGender() != null) {
+            if (vshopUserModel.getGender().equals(getResources().getString(R.string.female))) {
+                rbFemale.setChecked(true);
+            } else {
+                rbMale.setChecked(true);
+            }
+        }
+        tvName.setText(vshopUserModel.getFirstName() + " " + vshopUserModel.getLastName());
+        //for dob
+        dob = String.valueOf(vshopUserModel.getDob());
+        tvDob.setText(vshopUserModel.getDob());
+
+        //for profile pic
+        if (vshopUserModel.getProfile_pic().equals("")) {
+            ivImage.setImageDrawable(getResources().getDrawable(R.drawable.imageview_placeholder));
+            BlurImage.with(this).load(R.drawable.imageview_placeholder).intensity(20).Async(true).into(ivBlur);
+        } else {
+            imageLocation = String.valueOf(vshopUserModel.getProfile_pic());
+            bitmap = BitmapFactory.decodeFile(vshopUserModel.getProfile_pic());
+            setImage(bitmap);
+        }
+
+
+        //for gender
+        gender = vshopUserModel.getGender();
+        rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                Intent editIntent=new Intent(EditProfileActivity.this,HomeActivity.class);
-                startActivity(editIntent);
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                RadioButton checkedRadioButton = radioGroup.findViewById(i);
+                if (checkedRadioButton.getText().toString() != null) {
+                    gender = checkedRadioButton.getText().toString();
+                }
             }
         });
 
-        editToolbar.setOnMenuItemClickListener(new android.support.v7.widget.Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                switch (menuItem.getItemId())
-                {
-                    case R.id.done:
-                        Intent editIntent=new Intent(EditProfileActivity.this,HomeActivity.class);
-                        startActivity(editIntent);
-                }
-                return true;
-            }
-        });*/
     }
 
     @Override
@@ -201,93 +174,43 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 break;
 
             case R.id.tv_cancel:
-                /*Intent cancelIntent=new Intent(this,HomeActivity.class);
-                startActivity(cancelIntent);*/
                 finish();
                 break;
 
 
             case R.id.tv_done:
-                /*Intent doneIntent=new Intent(this,HomeActivity.class);*/
-
-                if(tvDob.getText().toString()!=null && !tvDob.getText().toString().equals("")) {
+                if(!tvDob.getText().toString().equals("")) {
                     dob = tvDob.getText().toString();
                 }
                 new UpdateInfoAsyncTask().execute();
-                /*startActivity(doneIntent);*/
-                finish();
+
                 break;
-
-
 
             case R.id.iv_edit:
-               /* customDialog=new Dialog(this);
-                Button galleryButton,cameraButton;
-
-                customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);// used to remove the title of dialog
-                customDialog.setContentView(R.layout.custom_dialog_camera);
-
-                galleryButton=customDialog.findViewById(R.id.btn_gallery);
-                cameraButton=customDialog.findViewById(R.id.btn_camera);
-
-                customDialog.setCancelable(true);//dialog does not close on clicking outside
-
-                galleryButton.setOnClickListener(this);
-                cameraButton.setOnClickListener(this);
-
-                customDialog.show();// shows the dialog*/
-
+               /* new EditAsyncTask().execute();*/
                 selectImage();
                 break;
-
-
-            /*case R.id.btn_camera:
-                Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(takePicture, 0);//zero can be replaced with any action code
-                break;
-
-            case R.id.btn_gallery:
-                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(pickPhoto , 1);//one can be replaced with any action code
-                break;*/
-
         }
     }
 
-    /*protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
-        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-        switch(requestCode) {
-            case 0:
-                if(resultCode == RESULT_OK){
-                    Uri selectedImage = imageReturnedIntent.getData();
-                    ivImage.setImageURI(selectedImage);
-                }
 
-                break;
-            case 1:
-                if(resultCode == RESULT_OK){
-                    Uri selectedImage = imageReturnedIntent.getData();
-                    ivImage.setImageURI(selectedImage);
-                }
-                break;
-        }
-    }*/
 
+    //async task to update info
     private class UpdateInfoAsyncTask extends AsyncTask<Void,Void,Void>
     {
         @Override
         protected void onPreExecute() {
-        dialog=ProgressDialog.show(EditProfileActivity.this,"Updating data","Please Wait..");
+        updateDialog=ProgressDialog.show(EditProfileActivity.this,"Updating data","Please Wait..");
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            dialog.dismiss();
+            updateDialog.dismiss();
+            finish();
         }
-
         @Override
         protected Void doInBackground(Void... voids) {
+
             if(!gender.equals("") && !dob.equals("") && !imageLocation.equals("")) {
                 vshopSharedPreference.saveImage(imageLocation);
                 appDatabase.userDao().updateInfo(gender, dob, imageLocation, id);
@@ -297,9 +220,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void populateSetDate(int year,int month,int day)
-    {
-
-        String dob=day+"."+month+"."+year;
+    { String dob=day+"."+month+"."+year;
         tvDob.setText(dob);
     }
 
@@ -312,8 +233,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 boolean result=Utility.checkPermission(EditProfileActivity.this);
-
-
                 if(items[which].equals("Take Photo"))
                 {
                     userChoosenTask="Take Photo";
@@ -335,12 +254,15 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         builder.show();
     }
 
+
+    //method to open camera
     private void cameraIntent()
     {
         Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent,REQUEST_CAMERA);
     }
 
+    //method to open gallery
     private void galleryIntent()
     {
         Intent intent=new Intent();
@@ -384,25 +306,25 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    //method to perform operation on captured image
     private void onCaptureImageResult(Intent data)
     {
         Bitmap thumbnail=(Bitmap)data.getExtras().get("data");
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.JPEG,90,byteArrayOutputStream);
 
-        /* File destination=new File(Environment.getExternalStorageDirectory(),System.currentTimeMillis()+".jpg");*/
         File dir=new File(Environment.getExternalStorageDirectory(),"vshop_images");
         if (!dir.exists()) {
             dir.mkdir();
         }
         File destination=new File(dir,System.currentTimeMillis()+".jpg");
-        /*imageLocation=destination.getAbsolutePath();*/
-        /*Log.d("location",String.valueOf(imageLocation));*/
         FileOutputStream fo;
         try
         {
             destination.createNewFile();
             Log.d("location",String.valueOf(destination));
+
+            //to convert string filepath into uri
            /* Uri uri=Uri.fromFile(new File(destination.getAbsolutePath()));
             imageLocation=String.valueOf(uri);*/
            imageLocation=destination.getAbsolutePath();
@@ -415,25 +337,27 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         { e.printStackTrace(); }
         catch (IOException e)
         { e.printStackTrace(); }
-        ivImage.setImageBitmap(thumbnail);
+        setImage(thumbnail);
     }
 
+    //method to get image from gallery
     private void onSelectFromGalleryResult(Intent data)
-    { Bitmap bitmap=null;
+    { Bitmap bm=null;
         if(data!=null) {
             try {
-                Uri fileUri=data.getData();
-                bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+                Uri contentUri=data.getData();
+                bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
                /* imageLocation=String.valueOf(fileUri.getPath());*/
-                imageLocation=getRealPathFromURI(this,fileUri);
+                imageLocation=getRealPathFromURI(this,contentUri);
                 Log.d("location",String.valueOf(data.getData()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }ivImage.setImageBitmap(bitmap);
+        }setImage(bm);
     }
 
 
+    //method to get string file path from uri
     public String getRealPathFromURI(Context context, Uri contentUri) {
         Cursor cursor = null;
         try {
@@ -449,6 +373,13 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         }
 
 
+    }
+
+    //method to set image into imageview
+    private void setImage(Bitmap bm)
+    {
+        ivImage.setImageBitmap(bm);
+        BlurImage.with(this).load(bm).intensity(20).Async(true).into(ivBlur);
     }
 
     @Override
@@ -487,3 +418,100 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         super.onStop();
     }
 }
+
+
+/*protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+        switch(requestCode) {
+            case 0:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = imageReturnedIntent.getData();
+                    ivImage.setImageURI(selectedImage);
+                }
+
+                break;
+            case 1:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = imageReturnedIntent.getData();
+                    ivImage.setImageURI(selectedImage);
+                }
+                break;
+        }
+    }*/
+
+/* customDialog=new Dialog(this);
+                Button galleryButton,cameraButton;
+
+                customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);// used to remove the title of dialog
+                customDialog.setContentView(R.layout.custom_dialog_camera);
+
+                galleryButton=customDialog.findViewById(R.id.btn_gallery);
+                cameraButton=customDialog.findViewById(R.id.btn_camera);
+
+                customDialog.setCancelable(true);//dialog does not close on clicking outside
+
+                galleryButton.setOnClickListener(this);
+                cameraButton.setOnClickListener(this);
+
+                customDialog.show();// shows the dialog*/
+
+
+
+ /*case R.id.btn_camera:
+                Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(takePicture, 0);//zero can be replaced with any action code
+                break;
+
+            case R.id.btn_gallery:
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto , 1);//one can be replaced with any action code
+                break;*/
+
+
+
+  /*editToolbar.setNavigationContentDescription("Cancel");
+       editToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent editIntent=new Intent(EditProfileActivity.this,HomeActivity.class);
+                startActivity(editIntent);
+            }
+        });
+
+        editToolbar.setOnMenuItemClickListener(new android.support.v7.widget.Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId())
+                {
+                    case R.id.done:
+                        Intent editIntent=new Intent(EditProfileActivity.this,HomeActivity.class);
+                        startActivity(editIntent);
+                }
+                return true;
+            }
+        });*/
+
+
+//async task to edit data
+   /* private class EditAsyncTask extends AsyncTask<Void,Void,Void>
+    {
+        @Override
+        protected void onPreExecute() {
+            editDialog=ProgressDialog.show(EditProfileActivity.this,"Loading data","Please Wait..");
+        }
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            editDialog.dismiss();
+            setImage();
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            selectImage();
+            return null;
+        }
+    }
+*/
+
+
+

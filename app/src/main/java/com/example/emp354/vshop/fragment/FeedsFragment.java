@@ -29,6 +29,7 @@ public class FeedsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ((HomeActivity)getActivity()).checkFragment();
         recyclerView=view.findViewById(R.id.recyclerview_feeds);
         linearLayout=view.findViewById(R.id.layout_recycler_feeds);
         feedsRecyclerAdapter=new FeedsRecyclerAdapter();
