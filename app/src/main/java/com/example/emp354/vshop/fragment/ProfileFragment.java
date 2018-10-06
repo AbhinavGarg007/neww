@@ -42,17 +42,17 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
     RecyclerView recyclerViewProducts, recyclerViewShops;
     ImagesRecyclerAdapter imagesRecyclerAdapter;
     ShopsRecyclerAdapter shopsRecyclerAdapter;
-    int[] products = {R.drawable.image_1, R.drawable.image_3,
-            R.drawable.image_1, R.drawable.image_3,
-            R.drawable.image_1, R.drawable.image_3,
-            R.drawable.image_1, R.drawable.image_3,
-            R.drawable.image_1, R.drawable.image_3,};
+    int[] products = {R.drawable.product_1, R.drawable.product_2,
+            R.drawable.product_3, R.drawable.product_4,
+            R.drawable.product_5, R.drawable.product_6,
+            R.drawable.product_7, R.drawable.product_8,
+            R.drawable.product_9, R.drawable.product_10};
 
-    int[] shops = {R.drawable.image_3, R.drawable.image_1,
-            R.drawable.image_3, R.drawable.image_1,
-            R.drawable.image_3, R.drawable.image_1,
-            R.drawable.image_3, R.drawable.image_1,
-            R.drawable.image_3, R.drawable.image_1,};
+    int[] shops = {R.drawable.brand_1, R.drawable.brand_2,
+            R.drawable.brand_3, R.drawable.brand_4,
+            R.drawable.brand_5, R.drawable.brand_6,
+            R.drawable.brand_7, R.drawable.brand_8,
+            R.drawable.brand_9, R.drawable.brand_10};
 
     @Nullable
     @Override

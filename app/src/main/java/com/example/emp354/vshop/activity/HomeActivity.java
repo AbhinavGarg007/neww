@@ -13,14 +13,15 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.VshopSharedPreference;
-import com.example.emp354.vshop.fragment.EditProfileFragment;
-import com.example.emp354.vshop.fragment.FeedsFragment;
+import com.example.emp354.vshop.adapter.CategoriesRecyclerAdapter;
+import com.example.emp354.vshop.fragment.CategoriesFragment;
 import com.example.emp354.vshop.fragment.ProfileFragment;
 
 import static com.example.emp354.vshop.constants.Constant.BROWSE_BRANDS;
@@ -44,6 +45,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Log.d("HomeActivity","onCreate");
+
+        getHeight();
 
         loadFragment(new ProfileFragment());
         navigationView=findViewById(R.id.navigation_view);
@@ -87,13 +90,15 @@ public class HomeActivity extends AppCompatActivity {
                         break;
 
                     case FEEDS:
-                        fragment=new FeedsFragment();
+                        Intent feedIntent=new Intent(HomeActivity.this,FeedsActivity.class);
+                        startActivity(feedIntent);
                         break;
 
                     case BROWSE_BRANDS:
                         break;
 
                     case CATEGORY:
+                        fragment=new CategoriesFragment();
                         break;
 
                     case DISCOVER:
@@ -199,15 +204,22 @@ public class HomeActivity extends AppCompatActivity {
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(false);
             toolbar.getMenu().findItem(R.id.edit).setVisible(true);
         }
-
-        if(fragment instanceof FeedsFragment)
+        if(fragment instanceof CategoriesFragment)
         {
-            toolbar.setTitle(getResources().getString(R.string.feeds));
-            toolbar.getMenu().findItem(R.id.edit).setVisible(false);
+            toolbar.setTitle(getResources().getString(R.string.category));
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
-
+            toolbar.getMenu().findItem(R.id.edit).setVisible(false);
         }
+
+    }
+
+    public int getHeight()
+    {
+        DisplayMetrics displayMetrics=new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+
     }
 
 }
