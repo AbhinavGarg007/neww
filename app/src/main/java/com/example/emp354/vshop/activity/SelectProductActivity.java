@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class SelectProductActivity extends AppCompatActivity {
         int pos=selectProductIntent.getIntExtra("position",-1);
 
         toolbar=findViewById(R.id.toolbar_select_product);
+
         tvTitle=findViewById(R.id.tv_select_product_title);
         tvNewPrice=findViewById(R.id.tv_select_product_new_price);
         tvOldPrice=findViewById(R.id.tv_select_product_old_price);
@@ -65,6 +67,7 @@ public class SelectProductActivity extends AppCompatActivity {
     private void setToolbar()
     {
         toolbar.inflateMenu(R.menu.menu_icon);
+
         toolbar.getMenu().findItem(R.id.edit).setVisible(false);
         toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
         toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
@@ -73,6 +76,18 @@ public class SelectProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId())
+                {
+                    case R.id.navigation_bag:
+                        Intent intent=new Intent(SelectProductActivity.this,ShoppingBagActivity.class);
+                        startActivity(intent);
+                }
+                return true;
             }
         });
     }

@@ -21,6 +21,7 @@ import android.view.View;
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.VshopSharedPreference;
 import com.example.emp354.vshop.adapter.CategoriesRecyclerAdapter;
+import com.example.emp354.vshop.fragment.BrowseBrandsFragment;
 import com.example.emp354.vshop.fragment.CategoriesFragment;
 import com.example.emp354.vshop.fragment.ProfileFragment;
 
@@ -47,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
         Log.d("HomeActivity","onCreate");
 
         getHeight();
+        getWidth();
 
         loadFragment(new ProfileFragment());
         navigationView=findViewById(R.id.navigation_view);
@@ -95,6 +97,7 @@ public class HomeActivity extends AppCompatActivity {
                         break;
 
                     case BROWSE_BRANDS:
+                        fragment=new BrowseBrandsFragment();
                         break;
 
                     case CATEGORY:
@@ -204,6 +207,14 @@ public class HomeActivity extends AppCompatActivity {
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(false);
             toolbar.getMenu().findItem(R.id.edit).setVisible(true);
         }
+
+        if (fragment instanceof BrowseBrandsFragment)
+        {
+            toolbar.setTitle(getResources().getString(R.string.browse_brands));
+            toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
+            toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
+            toolbar.getMenu().findItem(R.id.edit).setVisible(false);
+        }
         if(fragment instanceof CategoriesFragment)
         {
             toolbar.setTitle(getResources().getString(R.string.category));
@@ -219,6 +230,13 @@ public class HomeActivity extends AppCompatActivity {
         DisplayMetrics displayMetrics=new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels;
+
+    }
+    public int getWidth()
+    {
+        DisplayMetrics displayMetrics=new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.widthPixels;
 
     }
 

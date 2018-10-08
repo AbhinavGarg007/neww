@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -32,23 +34,19 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feeds);
+        int height=getHeight()*30/100;
 
         toolbar=findViewById(R.id.toolbar_feeds);
         setToolbar();
         recyclerView=findViewById(R.id.recyclerview_feeds);
         linearLayout=findViewById(R.id.layout_recycler_feeds);
-        feedsRecyclerAdapter=new FeedsRecyclerAdapter(this,feeds,title,price,this);
+        feedsRecyclerAdapter=new FeedsRecyclerAdapter(this,feeds,title,price,this,height);
 
         GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2,LinearLayout.VERTICAL,false);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(feedsRecyclerAdapter);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               onBackPressed();
-            }
-        });
+
 
 
     }
@@ -64,10 +62,6 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
                 startActivity(selectProductIntent);
                 break;
 
-            case R.id.iv_action_bar:
-                Toast.makeText(this, "Please wait , work in progress", Toast.LENGTH_SHORT).show();
-                break;
-
         }
 
     }
@@ -80,5 +74,32 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
         toolbar.getMenu().findItem(R.id.edit).setVisible(false);
         toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
         toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId())
+                {
+                    case R.id.navigation_bag:
+                        Intent intent=new Intent(FeedsActivity.this,ShoppingBagActivity.class);
+                        startActivity(intent);
+                }
+                return true;
+            }
+        });
+
+    }
+
+    public int getHeight()
+    {
+        DisplayMetrics displayMetrics=new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+
     }
 }

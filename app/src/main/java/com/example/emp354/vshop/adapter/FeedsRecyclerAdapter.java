@@ -21,14 +21,16 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
     String[] mTitle;
     String[] mPrice;
     ItemClickListener mItemClickListener;
+    int mHeight;
 
-    public FeedsRecyclerAdapter(Context context,int[] feeds,String[] title,String[] price,ItemClickListener itemClickListener)
+    public FeedsRecyclerAdapter(Context context,int[] feeds,String[] title,String[] price,ItemClickListener itemClickListener,int height)
     {
       mContext=context;
       mFeeds=feeds;
       mTitle=title;
       mPrice=price;
       mItemClickListener =itemClickListener;
+      mHeight=height;
     }
     @NonNull
     @Override
@@ -57,22 +59,40 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
         ImageView ivFeed,ivActionBar;
         LinearLayout layoutItemFeeds;
         TextView tvTitle,tvNewPrice,tvOldPrice;
+        View view_dim;
 
         public FeedsHolder(@NonNull View itemView) {
             super(itemView);
             ivFeed=itemView.findViewById(R.id.iv_feed);
+
             ivActionBar=itemView.findViewById(R.id.iv_action_bar);
             tvTitle=itemView.findViewById(R.id.tv_title);
             tvNewPrice=itemView.findViewById(R.id.tv_new_price);
             tvOldPrice=itemView.findViewById(R.id.tv_old_price);
+            view_dim=itemView.findViewById(R.id.view_dim);
 
-            layoutItemFeeds=itemView.findViewById(R.id.layout_item_feeds);
+
+            layoutItemFeeds=itemView.findViewById(R.id.layout_action_bar);
             ivFeed.setOnClickListener(this);
+            ivFeed.getLayoutParams().height=mHeight;
+            view_dim.getLayoutParams().height=mHeight;
             ivActionBar.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.iv_action_bar:
+                    if(layoutItemFeeds.getVisibility() == View.GONE && view_dim.getVisibility() == View.GONE){
+                        layoutItemFeeds.setVisibility(View.VISIBLE);
+                        view_dim.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        layoutItemFeeds.setVisibility(View.GONE);
+                        view_dim.setVisibility(View.GONE);
+                    }
+
+            }
             mItemClickListener.onItemClick(view,getAdapterPosition());
 
         }

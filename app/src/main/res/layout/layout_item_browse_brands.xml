@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/margin_20"
+    android:paddingRight="@dimen/margin_20"
+    android:paddingTop="@dimen/margin_5"
+    android:paddingBottom="@dimen/margin_5"
+    android:id="@+id/layout_brand"
+    android:layout_marginBottom="@dimen/margin_1"
+    android:background="@android:color/white"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_browse_brands"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_brand_title"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:paddingStart="@dimen/margin_10"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/textsize_15"
+        android:text="@string/levis"/>
+
+    <TextView
+        android:id="@+id/tv_follow_browse_brands"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/follow_me"
+        android:textSize="@dimen/textsize_10"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:paddingTop="@dimen/margin_5"
+        android:paddingBottom="@dimen/margin_5"
+        android:background="@drawable/ic_bg_following"/>
+
+
+
+
+</LinearLayout>

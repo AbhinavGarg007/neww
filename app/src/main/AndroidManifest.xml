@@ -36,8 +36,11 @@
         <activity
             android:name=".activity.FeedsActivity"
             android:theme="@style/ToolbarTheme" />
-        <activity android:name=".activity.SelectProductActivity"
-            android:theme="@style/ToolbarTheme"></activity>
+        <activity
+            android:name=".activity.SelectProductActivity"
+            android:theme="@style/ToolbarTheme" />
+        <activity android:name=".activity.ShoppingBagActivity"
+            android:theme="@style/ToolbarTheme" ></activity>
     </application>
 
 </manifest>

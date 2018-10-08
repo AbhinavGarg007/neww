@@ -1,107 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_item_feeds"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/layout_item_feeds"
-    android:orientation="vertical"
-    android:layout_margin="@dimen/margin_2">
+    android:layout_margin="@dimen/margin_1"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/layout_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
 
-
         <ImageView
             android:id="@+id/iv_feed"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_150"
-            android:scaleType="fitXY"
-            android:background="@android:color/holo_green_light"/>
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_green_light"
+            android:scaleType="fitXY" />
 
+        <View
+            android:id="@+id/view_dim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#70000000"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/layout_action_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_5"
+                    android:background="@drawable/ic_action_textbg"
+                    android:paddingLeft="@dimen/margin_10"
+                    android:paddingTop="@dimen/margin_5"
+                    android:paddingRight="@dimen/margin_15"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:text="Share"
+                    android:textSize="@dimen/textsize_10" />
+
+                <ImageView
+                    android:id="@+id/iv_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|end"
+                    android:src="@drawable/ic_actionbar_share" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_5"
+                    android:background="@drawable/ic_action_textbg"
+                    android:paddingLeft="@dimen/margin_10"
+                    android:paddingTop="@dimen/margin_5"
+                    android:paddingRight="@dimen/margin_15"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:text="Like"
+                    android:textSize="@dimen/textsize_10" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_actionbar_like" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_5"
+                    android:background="@drawable/ic_action_textbg"
+                    android:paddingLeft="@dimen/margin_10"
+                    android:paddingTop="@dimen/margin_5"
+                    android:paddingRight="@dimen/margin_15"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:text="Add to cart"
+                    android:textSize="@dimen/textsize_10" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_actionbar_share" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
 
 
     <LinearLayout
         android:id="@+id/layout_product_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_10"
         android:background="@android:color/white"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/margin_10"
+        android:paddingRight="@dimen/margin_10"
+        android:paddingTop="@dimen/margin_2"
+        android:paddingBottom="@dimen/margin_2">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Forever 21"
-        android:textSize="@dimen/textsize_15"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:id="@+id/tv_new_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/_75_00"
-        android:textSize="@dimen/textsize_15"
-        android:layout_marginRight="@dimen/margin_10"/>
-    <TextView
-        android:id="@+id/tv_old_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/_85_00"
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forever 21"
+                android:textSize="@dimen/textsize_12" />
 
-        android:textSize="@dimen/textsize_12"/>
-    </LinearLayout>
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_new_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:text="@string/_75_00"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/textsize_12" />
+
+                <TextView
+                    android:id="@+id/tv_old_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_85_00"
+
+                    android:textSize="@dimen/textsize_10" />
+            </LinearLayout>
+        </LinearLayout>
+
         <ImageView
             android:id="@+id/iv_action_bar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="end"
             android:padding="@dimen/margin_10"
-            android:src="@drawable/ic_actionbar"/>
-    </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="bottom|right"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_10"
-            android:text="Share"
-            android:padding="@dimen/margin_10"
-            android:background="@drawable/ic_action_textbg"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_10"
-            android:text="Like"
-            android:padding="@dimen/margin_10"
-            android:background="@drawable/ic_action_textbg"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_10"
-            android:text="Add to cart"
-            android:padding="@dimen/margin_10"
-            android:background="@drawable/ic_action_textbg"/>
+            android:src="@drawable/ic_actionbar" />
     </LinearLayout>
 
-</FrameLayout>
+
+</LinearLayout>

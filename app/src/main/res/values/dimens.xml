@@ -22,5 +22,9 @@
     <dimen name="margin_50">50dp</dimen>
     <dimen name="textsize_20">20sp</dimen>
     <dimen name="textsize_10">10sp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+
+    <dimen name="margin_40">40dp</dimen>
+    <dimen name="margin_25">25dp</dimen>
 
 </resources>

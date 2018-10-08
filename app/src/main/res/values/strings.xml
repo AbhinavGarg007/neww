@@ -53,5 +53,10 @@
     <string name="navigation_search">Navigation Search</string>
     <string name="discount_ladies_hats">20% DISCOUNT FOR\nLADIES HATS</string>
     <string name="discount_ladies_clocks">20% DISCOUNT FOR\nLADIES CLOCKS</string>
+    <string name="shopping_bag_empty">SHOPPING BAG EMPTY</string>
+    <string name="please_add_items">Please add items</string>
+    <string name="follow_me">Follow Me</string>
+    <string name="following">Following</string>
+    <string name="levis">Levis</string>
 
 </resources>
