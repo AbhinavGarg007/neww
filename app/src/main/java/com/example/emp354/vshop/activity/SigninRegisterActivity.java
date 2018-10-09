@@ -23,7 +23,7 @@ public class SigninRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signin_register);
         frameLayout=findViewById(R.id.layout_frame_signin_register);
 
-        //loading fragment
+        //checking which fragment to load and loading fragment
         Intent intent=getIntent();
         fragmentName=intent.getStringExtra("fragmentName");
         if(fragmentName.equals(getResources().getString(R.string.sign_in)))

@@ -54,6 +54,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //declaring variables
     ImageView ivEdit,ivBlur;
     CircleImageView ivImage;
     RadioGroup rgGender;
@@ -107,15 +108,18 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         currentDay = calendar.get(Calendar.DAY_OF_MONTH);
 
 
+        //database related information
         appDatabase = AppDatabase.getAppDatabase(this);
         DATABASE_NAME = "user_db";
         vshopUserModel = new VshopUserModel();
         vshopSharedPreference = VshopSharedPreference.getInstance(this);
 
 
+        //getting id from sharedpreference and accordingly getting model data
         id = vshopSharedPreference.fetchid();
         vshopUserModel = appDatabase.userDao().getUserInfo(id);
 
+        //checking whether gender entry is not null
         if (vshopUserModel.getGender() != null) {
             if (vshopUserModel.getGender().equals(getResources().getString(R.string.female))) {
                 rbFemale.setChecked(true);
@@ -219,11 +223,13 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    //method to set date on textview
     private void populateSetDate(int year,int month,int day)
     { String dob=day+"."+month+"."+year;
         tvDob.setText(dob);
     }
 
+    //method to provide options to user to select image
     private void selectImage()
     {
         final CharSequence[] items={"Take Photo","Choose from Library","Cancel"};
@@ -273,6 +279,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
 
 
+    //method for the permission
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode)

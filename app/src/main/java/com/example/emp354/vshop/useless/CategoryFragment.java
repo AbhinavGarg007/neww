@@ -1,4 +1,4 @@
-package com.example.emp354.vshop.fragment;
+package com.example.emp354.vshop.useless;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

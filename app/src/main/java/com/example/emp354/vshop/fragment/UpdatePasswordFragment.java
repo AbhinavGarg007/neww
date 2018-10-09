@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.activity.HomeActivity;
+import com.example.emp354.vshop.useless.EditProfileFragment;
 
 public class UpdatePasswordFragment extends Fragment implements View.OnClickListener {
     Button btnCancel,btnUpdate;

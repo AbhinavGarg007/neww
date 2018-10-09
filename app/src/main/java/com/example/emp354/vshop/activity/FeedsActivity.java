@@ -10,6 +10,7 @@ import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.emp354.vshop.R;
@@ -17,10 +18,17 @@ import com.example.emp354.vshop.adapter.FeedsRecyclerAdapter;
 import com.example.emp354.vshop.listener.ItemClickListener;
 
 public class FeedsActivity extends AppCompatActivity implements ItemClickListener {
+    //declaring member variables
     RecyclerView recyclerView;
     LinearLayout linearLayout;
     FeedsRecyclerAdapter feedsRecyclerAdapter;
+    GridLayoutManager gridLayoutManager;
+    TextView tvTitle;
     Toolbar toolbar;
+    boolean isSearchOpen=false;
+    LinearLayout layoutSearch;
+
+    //passing static data
     int[] feeds={R.drawable.cloth_1,R.drawable.cloth_2,
             R.drawable.cloth_3,R.drawable.cloth_4,
             R.drawable.cloth_5,R.drawable.cloth_6,
@@ -34,23 +42,34 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feeds);
+        //calculating height
         int height=getHeight()*30/100;
 
+        //initialing variables
         toolbar=findViewById(R.id.toolbar_feeds);
-        setToolbar();
+        tvTitle=findViewById(R.id.tv_title_feeds);
+        layoutSearch=findViewById(R.id.layout_search_feeds);
         recyclerView=findViewById(R.id.recyclerview_feeds);
         linearLayout=findViewById(R.id.layout_recycler_feeds);
+
+
         feedsRecyclerAdapter=new FeedsRecyclerAdapter(this,feeds,title,price,this,height);
-
-        GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2,LinearLayout.VERTICAL,false);
+        gridLayoutManager=new GridLayoutManager(this,2,LinearLayout.VERTICAL,false);
+        //setting layout manager
         recyclerView.setLayoutManager(gridLayoutManager);
+        //setting adapter to the recycler view
         recyclerView.setAdapter(feedsRecyclerAdapter);
-
-
-
+        setToolbar();
 
     }
 
+    @Override
+    public void onBackPressed() {
+        searchStateCheck();
+    }
+
+
+    //method to perform operation after getting position from the adapter item click
     @Override
     public void onItemClick(View view, int position) {
 
@@ -61,15 +80,15 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
                 selectProductIntent.putExtra("position",position);
                 startActivity(selectProductIntent);
                 break;
-
         }
 
     }
 
+    //method to set toolbar
     private void setToolbar()
     {
         toolbar.setNavigationIcon(R.drawable.ic_navigation_arrow);
-        toolbar.setTitle(getResources().getString(R.string.feeds));
+        tvTitle.setText(getResources().getString(R.string.feeds));
         toolbar.inflateMenu(R.menu.menu_icon);
         toolbar.getMenu().findItem(R.id.edit).setVisible(false);
         toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
@@ -88,6 +107,16 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
                     case R.id.navigation_bag:
                         Intent intent=new Intent(FeedsActivity.this,ShoppingBagActivity.class);
                         startActivity(intent);
+                        break;
+
+
+                    case R.id.navigation_search:
+                        isSearchOpen=true;
+                        toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(false);
+                        toolbar.getMenu().findItem(R.id.navigation_search).setVisible(false);
+                        tvTitle.setVisibility(View.GONE);
+                        layoutSearch.setVisibility(View.VISIBLE);
+                        break;
                 }
                 return true;
             }
@@ -95,6 +124,7 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
 
     }
 
+    //method to get height on runtime
     public int getHeight()
     {
         DisplayMetrics displayMetrics=new DisplayMetrics();
@@ -102,4 +132,20 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
         return displayMetrics.heightPixels;
 
     }
+
+    //method to check whether search bar is open or not
+    public void searchStateCheck()
+    {
+        if(isSearchOpen)
+        {isSearchOpen=false;
+            layoutSearch.setVisibility(View.GONE);
+            toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
+            toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
+            tvTitle.setVisibility(View.VISIBLE);
+
+        }
+        else { finish();
+        }
+    }
+
 }

@@ -15,9 +15,12 @@ public class ShoppingBagActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_bag);
 
+        //declaring variables
         toolbar=findViewById(R.id.toolbar_shopping_bag_activity);
         toolbar.setTitle("Shopping Bag");
         toolbar.setNavigationIcon(R.drawable.ic_navigation_arrow);
+
+        //setting onClickListener on navigation item
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

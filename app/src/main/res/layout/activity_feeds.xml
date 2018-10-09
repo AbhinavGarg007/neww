@@ -12,6 +12,38 @@
         android:id="@+id/toolbar_feeds"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_title_feeds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:id="@+id/layout_search_feeds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_20"
+            android:background="@drawable/drawable_bg_rectangle_grey"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_navigation_search"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_10"/>
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:backgroundTint="@android:color/transparent"
+                android:maxLines="1"
+                android:hint="Search.."
+                />
+        </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
 

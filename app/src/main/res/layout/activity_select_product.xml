@@ -16,6 +16,38 @@
         android:id="@+id/toolbar_select_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_title_select_product_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:id="@+id/layout_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_20"
+            android:background="@drawable/drawable_bg_rectangle_grey"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_navigation_search"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_10"/>
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:backgroundTint="@android:color/transparent"
+                android:maxLines="1"
+                android:hint="Search.."
+                />
+        </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
 
@@ -61,7 +93,6 @@
                         android:id="@+id/tv_select_product_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/textsize_20"
                         android:text="Forever 21 black dress"/>
 
 
@@ -73,12 +104,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="$ 65.00"
-                            android:layout_marginRight="@dimen/margin_20"/>
+                            android:layout_marginRight="@dimen/margin_10"/>
 
                         <TextView
                             android:id="@+id/tv_select_product_old_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textSize="@dimen/textsize_12"
                             android:text="$75.00"/>
 
                     </LinearLayout>
@@ -117,50 +149,96 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="@dimen/margin_10"
+                android:paddingBottom="@dimen/margin_10"
+                android:paddingLeft="@dimen/margin_20"
+                android:paddingRight="@dimen/margin_20">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Select Size  (Waist Size)"
-                    android:paddingTop="@dimen/margin_10"
-                    android:paddingBottom="@dimen/margin_10"
-                    android:paddingLeft="@dimen/margin_20"
-                    android:paddingRight="@dimen/margin_20"/>
+                    android:layout_marginBottom="@dimen/margin_10"
+
+                   />
 
 
 
-                    <RadioGroup
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center">
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recyclerview_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-                    </RadioGroup>
+                        </android.support.v7.widget.RecyclerView>
 
-                
+                    <!--<TextView
+                        android:id="@+id/tv_size_26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="26"
+
+                        android:layout_margin="@dimen/margin_2"
+                        android:padding="@dimen/margin_5"/>
+                    <TextView
+                        android:id="@+id/tv_size_28"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="28"
+                        android:clickable="true"
+                        android:layout_margin="@dimen/margin_2"
+                        android:padding="@dimen/margin_5"/>
+                    <TextView
+                        android:id="@+id/tv_size_30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="30"
+                        android:clickable="true"
+                        android:layout_margin="@dimen/margin_2"
+                        android:padding="@dimen/margin_5"/>
+                    <TextView
+                        android:id="@+id/tv_size_32"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="32"
+                        android:clickable="true"
+                        android:layout_margin="@dimen/margin_2"
+                        android:padding="@dimen/margin_5"/>
+                    <TextView
+                        android:id="@+id/tv_size_34"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="34"
+                        android:clickable="true"
+                        android:layout_margin="@dimen/margin_2"
+                        android:padding="@dimen/margin_5"/>
+                    <TextView
+                        android:id="@+id/tv_size_36"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="36"
+                        android:clickable="true"
+
+                        android:layout_margin="@dimen/margin_2"
+                        android:padding="@dimen/margin_5"/>
+                    <TextView
+                        android:id="@+id/tv_size_38"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="38"
+                        android:clickable="true"
+                        android:layout_margin="@dimen/margin_2"
+                        android:padding="@dimen/margin_5"/>
+-->
+                    </LinearLayout>
+
+
 
             </LinearLayout>
             <View
@@ -174,12 +252,14 @@
                 android:layout_height="wrap_content">
 
                 <Button
+                    android:id="@+id/btn_quantity"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Quantity"
                     android:background="@android:color/white"/>
                 <Button
+                    android:id="@+id/btn_add_to_cart"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"

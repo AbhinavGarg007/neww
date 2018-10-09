@@ -1,4 +1,4 @@
-package com.example.emp354.vshop.fragment;
+package com.example.emp354.vshop.useless;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.activity.HomeActivity;
+import com.example.emp354.vshop.fragment.UpdatePasswordFragment;
 import com.jackandphantom.blurimage.BlurImage;
 
 import de.hdodenhof.circleimageview.CircleImageView;

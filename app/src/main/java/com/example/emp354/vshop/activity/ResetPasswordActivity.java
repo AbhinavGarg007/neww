@@ -17,6 +17,7 @@ import com.example.emp354.vshop.VshopUserModel;
 
 public class ResetPasswordActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //declaring member variables
     Button btnCancel,btnUpdate;
     EditText etCurrentPassword,etNewPassword,etRetypePassword;
     ProgressDialog dialog;
@@ -30,21 +31,25 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
+        //declaring member variables
         btnCancel=findViewById(R.id.btn_cancel_update);
         btnUpdate=findViewById(R.id.btn_update);
         etCurrentPassword=findViewById(R.id.et_current_password);
         etNewPassword=findViewById(R.id.et_new_password);
         etRetypePassword=findViewById(R.id.et_retype_new_password);
 
+        //database related data
         appDatabase=AppDatabase.getAppDatabase(this);
         DATABASE_NAME="user_db";
         vshopUserModel=new VshopUserModel();
         vshopSharedPreference=VshopSharedPreference.getInstance(this);
 
+        //setting onClickListener
         btnCancel.setOnClickListener(this);
         btnUpdate.setOnClickListener(this);
     }
 
+    //onClick method to perform certain operation based on id
     @Override
     public void onClick(View view) {
         switch (view.getId())
@@ -80,6 +85,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
 
     }
 
+    //async task to update password
     private class UpdatePasswordAsyncTask extends AsyncTask<Void,Void,Void>
     {
 
@@ -98,6 +104,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
         @Override
         protected Void doInBackground(Void... voids) {
 
+            //updating password in background
             appDatabase.userDao().updatePassword(etNewPassword.getText().toString(),id);
             return null;
         }

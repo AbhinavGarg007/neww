@@ -18,16 +18,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         vshopSharedPreference=VshopSharedPreference.getInstance(this);
+
+        //checking whether the sharedpreference contains any id or not
         if(vshopSharedPreference.fetchid()!=-1)
         {
             Intent intent=new Intent(MainActivity.this,HomeActivity.class);
             startActivity(intent);
         }
 
+        //setting layout and initialising member variables
         setContentView(R.layout.activity_main);
         btnSignin=findViewById(R.id.btn_main_signin);
         btnRegister=findViewById(R.id.btn_main_register);
 
+        //setting onClickListener
         btnSignin.setOnClickListener(this);
         btnRegister.setOnClickListener(this);
     }
@@ -48,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+    //method to go on next activity
     private void nextactivity(String fragmentName)
     {
         Intent intent=new Intent(MainActivity.this,SigninRegisterActivity.class);
