@@ -39,6 +39,9 @@
         <activity
             android:name=".activity.SelectProductActivity"
             android:theme="@style/ToolbarTheme" />
+        <activity
+            android:name=".activity.EmptyShoppingBagActivity"
+            android:theme="@style/ToolbarTheme" />
         <activity android:name=".activity.ShoppingBagActivity"
             android:theme="@style/ToolbarTheme" ></activity>
     </application>

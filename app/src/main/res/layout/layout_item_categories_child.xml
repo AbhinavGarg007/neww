@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/margin_5"
+    android:id="@+id/layout_product_variety"
+    android:paddingBottom="@dimen/margin_5">
+
+    <TextView
+        android:id="@+id/tv_product_variety"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="Ascoot Cap"
+        android:paddingStart="@dimen/margin_20"/>
+
+    <ImageView
+        android:id="@+id/iv_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_chevron_right_black_24dp"/>
+
+</LinearLayout>

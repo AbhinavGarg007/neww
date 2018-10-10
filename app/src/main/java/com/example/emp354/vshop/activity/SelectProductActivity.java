@@ -2,7 +2,6 @@ package com.example.emp354.vshop.activity;
 
 import android.content.Intent;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,12 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.adapter.SizeRecyclerAdapter;
@@ -26,12 +23,8 @@ import com.example.emp354.vshop.listener.ItemClickListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class SelectProductActivity extends AppCompatActivity implements View.OnClickListener,ItemClickListener {
 
@@ -166,7 +159,7 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.navigation_bag:
-                        Intent intent = new Intent(SelectProductActivity.this, ShoppingBagActivity.class);
+                        Intent intent = new Intent(SelectProductActivity.this, EmptyShoppingBagActivity.class);
                         startActivity(intent);
                         break;
 
@@ -208,6 +201,10 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
 
                 popup.show(); //showing popup menu
                 break;
+
+            case R.id.btn_add_to_cart:
+                Intent selectProductIntent=new Intent(SelectProductActivity.this,ShoppingBagActivity.class);
+                startActivity(selectProductIntent);
 
             /*case R.id.tv_size_26:
                 tvSize26.setTextColor(getResources().getColorStateList(R.color.size_color_selector));

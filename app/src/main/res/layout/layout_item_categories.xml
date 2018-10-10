@@ -3,12 +3,20 @@
     android:id="@+id/layout_item_category"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="horizontal"
-    android:paddingLeft="@dimen/margin_20"
-    android:paddingRight="@dimen/margin_20"
-    android:layout_margin="@dimen/margin_5"
-    android:background="@android:color/white"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/color_grey_light"
+   >
+
+    <LinearLayout
+        android:id="@+id/layout_inner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/margin_10"
+        android:paddingEnd="@dimen/margin_20"
+        android:layout_marginBottom="@dimen/margin_5">
+
+
 
     <TextView
         android:id="@+id/tv_type_category"
@@ -16,6 +24,7 @@
         android:layout_weight="2"
         android:layout_height="match_parent"
         android:text="HATS"
+        android:textAllCaps="true"
         android:gravity="center"
         android:textStyle="bold"
         android:textSize="@dimen/textsize_15"/>
@@ -28,6 +37,8 @@
         android:textAllCaps="true"
         android:textSize="@dimen/textsize_10"
         android:text="20% DISCOUNT FOR LADIES HATS"
+        android:paddingStart="@dimen/margin_10"
+        android:paddingEnd="@dimen/margin_10"
         android:gravity="center"
        />
 
@@ -36,10 +47,11 @@
         android:layout_width="0dp"
         android:layout_weight="2"
         android:src="@drawable/category_1"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         android:background="@android:color/transparent"
         android:layout_height="wrap_content" />
 
+    </LinearLayout>
 
 
 </LinearLayout>

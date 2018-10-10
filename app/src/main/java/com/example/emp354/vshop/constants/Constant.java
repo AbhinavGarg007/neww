@@ -2,11 +2,13 @@ package com.example.emp354.vshop.constants;
 
 import com.example.emp354.vshop.R;
 
+import java.util.List;
+
 public interface Constant {
     String PROFILE="Profile";
     String FEEDS="Feeds";
     String BROWSE_BRANDS="Browse brands";
-    String CATEGORY="Category";
+    String CATEGORIES="Categories";
     String DISCOVER="Discover your items";
     String TRACK="Track your order";
     String NOTIFICATION="Notification";
@@ -18,4 +20,7 @@ public interface Constant {
 
     String[] BRANDS_TITLE={"Fila","Levis","Calvin Klein","Gucci","Wrangler","Peter England"
             ,"Puma","Flu","Adidas","Raymond"};
+
+
+
 }

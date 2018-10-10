@@ -24,10 +24,11 @@ import com.example.emp354.vshop.VshopSharedPreference;
 import com.example.emp354.vshop.adapter.CategoriesRecyclerAdapter;
 import com.example.emp354.vshop.fragment.BrowseBrandsFragment;
 import com.example.emp354.vshop.fragment.CategoriesFragment;
+import com.example.emp354.vshop.fragment.CategoryFragment;
 import com.example.emp354.vshop.fragment.ProfileFragment;
 
 import static com.example.emp354.vshop.constants.Constant.BROWSE_BRANDS;
-import static com.example.emp354.vshop.constants.Constant.CATEGORY;
+import static com.example.emp354.vshop.constants.Constant.CATEGORIES;
 import static com.example.emp354.vshop.constants.Constant.DISCOVER;
 import static com.example.emp354.vshop.constants.Constant.FEEDS;
 import static com.example.emp354.vshop.constants.Constant.NOTIFICATION;
@@ -85,8 +86,8 @@ public class HomeActivity extends AppCompatActivity {
                         fragment=new BrowseBrandsFragment();
                         break;
 
-                    case CATEGORY:
-                        fragment=new CategoriesFragment();
+                    case CATEGORIES:
+                        fragment=new CategoryFragment();
                         break;
 
                     case DISCOVER:
@@ -245,7 +246,7 @@ public class HomeActivity extends AppCompatActivity {
             toolbar.getMenu().findItem(R.id.edit).setVisible(false);
             return;
         }
-        if(fragment instanceof CategoriesFragment)
+        if(fragment instanceof CategoryFragment)
         {
             tvTitle.setText(getResources().getString(R.string.category));
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);

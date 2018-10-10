@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.adapter.FeedsRecyclerAdapter;
@@ -105,7 +104,7 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
                 switch (menuItem.getItemId())
                 {
                     case R.id.navigation_bag:
-                        Intent intent=new Intent(FeedsActivity.this,ShoppingBagActivity.class);
+                        Intent intent=new Intent(FeedsActivity.this,EmptyShoppingBagActivity.class);
                         startActivity(intent);
                         break;
 
