@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/VerticalMatch"
+    tools:context=".activity.PaymentSuccessfulActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_payment_successful"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_title_payment_successful_activity"
+            style="@style/ToolbarTextview"
+            android:text="@string/payment"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/thank_you"
+        android:textSize="@dimen/textsize_30"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/margin_30"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:text="@string/your_payment_has_been_processed_successfully_namount_167_00_by_visa_xxxx_xxxx_xxxx_xxxx_nat_14_april_2016_12_30_we_will_send_you_nconfirmation_email_shortly"/>
+
+    <Button
+        android:id="@+id/btn_okay"
+       style="@style/TransparentButton"
+        android:text="@string/okay"
+        android:layout_marginStart="@dimen/margin_20"
+        android:layout_marginEnd="@dimen/margin_20" />
+    </LinearLayout>
+
+</LinearLayout>

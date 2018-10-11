@@ -22,6 +22,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import android.view.View;
@@ -34,7 +35,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.emp354.vshop.AppDatabase;
 import com.example.emp354.vshop.R;
@@ -74,7 +74,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     String DATABASE_NAME;
     VshopSharedPreference vshopSharedPreference;
 
-    android.support.v7.widget.Toolbar editToolbar;
+
+   Toolbar editToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

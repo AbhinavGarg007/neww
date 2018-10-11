@@ -60,6 +60,59 @@
     <string name="levis">Levis</string>
     <string name="quantity">Quantity</string>
     <string name="remove">Remove</string>
+    <string name="shopping_bag">Shopping Bag</string>
+    <string name="card_number">Card Number</string>
+    <string name="pay_with_credit_card">Pay with credit card</string>
+    <string name="expiration">Expiration</string>
+    <string name="month">Month</string>
+    <string name="cvv_cw">CVV/CW</string>
+    <string name="_3_or_4_digit_code">3 or 4 digit code</string>
+    <string name="_256">256</string>
+    <string name="xxxx_xxxx_xxxx_xxxx">XXXX-XXXX-XXXX-XXXX</string>
+    <string name="year">Year</string>
+    <string name="payment">Payment</string>
+    <string name="pay_now">Pay Now</string>
+    <string name="or_select_other_payment_method">or select other payment method</string>
+    <string name="okay">Okay</string>
+    <string name="thank_you">Thank You !</string>
+    <string name="your_payment_has_been_processed_successfully_namount_167_00_by_visa_xxxx_xxxx_xxxx_xxxx_nat_14_april_2016_12_30_we_will_send_you_nconfirmation_email_shortly">Your payment has been processed successfully.\nAmount $167.00 by VISA XXXX-XXXX-XXXX-XXXX\nAt 14 April 2016 12:30. We will send you\nconfirmation email shortly.</string>
+    <string name="add_to_cart">Add To Cart</string>
+
+
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <string-array name="years">
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+        <item>2023</item>
+        <item>2024</item>
+        <item>2025</item>
+        <item>2026</item>
+        <item>2027</item>
+        <item>2028</item>
+        <item>2029</item>
+        <item>2030</item>
+        <item>2031</item>
+        <item>2032</item>
+
+
+    </string-array>
 
 
 </resources>

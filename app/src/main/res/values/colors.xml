@@ -15,4 +15,6 @@
     <color name="color_brown_light">#F1DDCC</color>
     <color name="color_pink_light">#FFDEDF</color>
     <color name="color_green_light">#C6EFCD</color>
+    <color name="color_face">#FFD6B2</color>
+    <color name="color_discount">#FFC2C9</color>
 </resources>

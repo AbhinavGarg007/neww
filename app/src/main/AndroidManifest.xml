@@ -42,8 +42,17 @@
         <activity
             android:name=".activity.EmptyShoppingBagActivity"
             android:theme="@style/ToolbarTheme" />
-        <activity android:name=".activity.ShoppingBagActivity"
-            android:theme="@style/ToolbarTheme" ></activity>
+        <activity
+            android:name=".activity.ShoppingBagActivity"
+            android:theme="@style/ToolbarTheme" />
+        <activity
+            android:name=".activity.PaymentActivity"
+            android:theme="@style/ToolbarTheme">
+
+        </activity>
+        <activity
+            android:name=".activity.PaymentSuccessfulActivity"
+            android:theme="@style/ToolbarTheme"></activity>
     </application>
 
 </manifest>

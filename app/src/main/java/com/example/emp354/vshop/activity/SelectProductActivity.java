@@ -30,10 +30,10 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
 
     //declaring variables
     Toolbar toolbar;
-    TextView tvTitle, tvNewPrice,tvTitleToolbar, tvOldPrice,tvSize26,tvSize28,tvSize30,tvSize32,tvSize34,tvSize36,tvSize38;
+    TextView tvTitle, tvNewPrice,tvTitleToolbar, tvOldPrice,tvQuantity,tvAddToCart,tvSize26,tvSize28,tvSize30,tvSize32,tvSize34,tvSize36,tvSize38;
     ImageView ivSelectProductImage;
-    LinearLayout layoutSearch;
-    Button btnQuantity, btnAddToCart;
+    LinearLayout layoutSearch,llQuantity;
+
     RecyclerView recyclerView;
     List<Integer> isSizeSelected;
     EditText etSearch;
@@ -67,7 +67,8 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
         //initialising variables
         recyclerView=findViewById(R.id.recyclerview_size);
         layoutSearch=findViewById(R.id.layout_search);
-        etSearch=findViewById(R.id.et_search);
+        etSearch=findViewById(R.id.et_search_select_product);
+        llQuantity=findViewById(R.id.ll_quantity);
 
         toolbar = findViewById(R.id.toolbar_select_product);
         tvTitle = findViewById(R.id.tv_select_product_title);
@@ -75,8 +76,8 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
         tvNewPrice = findViewById(R.id.tv_select_product_new_price);
         tvOldPrice = findViewById(R.id.tv_select_product_old_price);
         ivSelectProductImage = findViewById(R.id.iv_select_product_image);
-        btnQuantity = findViewById(R.id.btn_quantity);
-        btnAddToCart = findViewById(R.id.btn_add_to_cart);
+        tvQuantity = findViewById(R.id.btn_quantity);
+        tvAddToCart = findViewById(R.id.btn_add_to_cart);
 
         //calling methods
         setToolbar();
@@ -108,8 +109,8 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
 
 
         //setting onClickListener
-        btnQuantity.setOnClickListener(this);
-        btnAddToCart.setOnClickListener(this);
+        llQuantity.setOnClickListener(this);
+        tvAddToCart.setOnClickListener(this);
         /*tvSize26.setOnClickListener(this);
         tvSize28.setOnClickListener(this);
         tvSize30.setOnClickListener(this);
@@ -183,8 +184,8 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_quantity:
-                PopupMenu popup = new PopupMenu(SelectProductActivity.this, btnQuantity);
+            case R.id.ll_quantity:
+                PopupMenu popup = new PopupMenu(SelectProductActivity.this, llQuantity);
 
                 //Inflating the Popup using xml file
                 popup.getMenuInflater()
@@ -193,7 +194,7 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
-                        btnQuantity.setText(getString(R.string.quantity) + item.getTitle());
+                        tvQuantity.setText(getString(R.string.quantity) + item.getTitle());
 
                         return true;
                     }

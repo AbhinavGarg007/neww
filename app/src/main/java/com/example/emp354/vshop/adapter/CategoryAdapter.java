@@ -115,7 +115,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         {
             view=mInflater.inflate(R.layout.layout_item_categories_child,viewGroup,false);
         }
-        
+
         //getting data
         String variety=getChild(groupPos,childPos);
 
