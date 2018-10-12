@@ -76,7 +76,12 @@
     <string name="okay">Okay</string>
     <string name="thank_you">Thank You !</string>
     <string name="your_payment_has_been_processed_successfully_namount_167_00_by_visa_xxxx_xxxx_xxxx_xxxx_nat_14_april_2016_12_30_we_will_send_you_nconfirmation_email_shortly">Your payment has been processed successfully.\nAmount $167.00 by VISA XXXX-XXXX-XXXX-XXXX\nAt 14 April 2016 12:30. We will send you\nconfirmation email shortly.</string>
+
     <string name="add_to_cart">Add To Cart</string>
+    <string name="discover">Discover</string>
+    <string name="track_order">Track Order</string>
+    <string name="tracking_status">Tracking Status</string>
+    <string name="order_summary">Order Summary</string>
 
 
     <string-array name="months">

@@ -134,6 +134,8 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
             llVariety.setBackgroundColor(mContext.getResources().getColor(android.R.color.white));
         }
 
+
+
         return view;
     }
 

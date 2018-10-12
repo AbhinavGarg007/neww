@@ -18,11 +18,16 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">@dimen/margin_10</item>
-        <item name="android:padding">@dimen/margin_10</item>
+        <item name="android:paddingBottom">@dimen/margin_20</item>
+        <item name="android:paddingLeft">@dimen/margin_30</item>
         <item name="android:textSize">@dimen/textsize_12</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textColorHint">@android:color/white</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:backgroundTint">@color/color_grey</item>
+
     </style>
+
 
     <style name="ButtonStyle" parent="Base.TextAppearance.AppCompat.Widget.Button">
         <item name="android:layout_width">0dp</item>
@@ -33,11 +38,14 @@
     </style>
 
     <style name="SimpleButtonStyle" parent="Base.TextAppearance.AppCompat.Widget.Button">
-        <item name="android:layout_width">@dimen/margin_200</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1.14</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/drawable_btn_bg</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:layout_gravity">center</item>
+        <item name="android:textAllCaps">false</item>
+
     </style>
 
     <style name="Match" >
@@ -103,5 +111,25 @@
 
         <item name="android:padding">@dimen/margin_10</item>
     </style>
+
+    <style name="SignInRegisterButton" parent="Base.TextAppearance.AppCompat.Widget.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:alpha">0.8</item>
+    </style>
+
+    <style name="RecyclerViewProduct">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingTop">@dimen/margin_10</item>
+        <item name="android:paddingBottom">@dimen/margin_10</item>
+    </style>
+
+
+
 
 </resources>

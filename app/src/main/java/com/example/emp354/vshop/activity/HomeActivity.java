@@ -25,7 +25,9 @@ import com.example.emp354.vshop.adapter.CategoriesRecyclerAdapter;
 import com.example.emp354.vshop.fragment.BrowseBrandsFragment;
 import com.example.emp354.vshop.fragment.CategoriesFragment;
 import com.example.emp354.vshop.fragment.CategoryFragment;
+import com.example.emp354.vshop.fragment.DiscoverFragment;
 import com.example.emp354.vshop.fragment.ProfileFragment;
+import com.example.emp354.vshop.fragment.TrackOrderFragment;
 
 import static com.example.emp354.vshop.constants.Constant.BROWSE_BRANDS;
 import static com.example.emp354.vshop.constants.Constant.CATEGORIES;
@@ -91,9 +93,11 @@ public class HomeActivity extends AppCompatActivity {
                         break;
 
                     case DISCOVER:
+                        fragment=new DiscoverFragment();
                         break;
 
                     case TRACK:
+                        fragment=new TrackOrderFragment();
                         break;
 
                     case NOTIFICATION:
@@ -249,6 +253,22 @@ public class HomeActivity extends AppCompatActivity {
         if(fragment instanceof CategoryFragment)
         {
             tvTitle.setText(getResources().getString(R.string.category));
+            toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
+            toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
+            toolbar.getMenu().findItem(R.id.edit).setVisible(false);
+            return;
+        }
+        if (fragment instanceof DiscoverFragment)
+        {
+            tvTitle.setText(getResources().getString(R.string.discover));
+            toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
+            toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
+            toolbar.getMenu().findItem(R.id.edit).setVisible(false);
+            return;
+        }
+        if (fragment instanceof TrackOrderFragment)
+        {
+            tvTitle.setText(getResources().getString(R.string.track_order));
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
             toolbar.getMenu().findItem(R.id.edit).setVisible(false);

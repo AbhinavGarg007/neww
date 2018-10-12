@@ -6,6 +6,7 @@
     android:id="@+id/layout_register"
     android:background="@drawable/ic_bg_girl"
     android:padding="@dimen/margin_20"
+
     android:orientation="vertical">
 
 
@@ -15,30 +16,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_20"
-        android:layout_marginLeft="@dimen/margin_10"
-        android:layout_marginRight="@dimen/margin_10"
         android:background="@drawable/drawable_btn_bg_stroke"
         android:alpha="0.8">
 
         <Button
             android:id="@+id/btn_register_signin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/SignInRegisterButton"
             android:text="@string/sign_in"
-            android:textColor="@android:color/white"
             android:background="@android:color/transparent"
-            android:alpha="0.8"/>
+            />
 
         <Button
             android:id="@+id/btn_register_register"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/SignInRegisterButton"
             android:text="@string/register"
-            android:textColor="@android:color/white"
             android:background="@drawable/drawable_btn_bg"
-            android:alpha="0.8"/>
+            />
     </LinearLayout>
 
 
@@ -112,9 +105,15 @@
 
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:weightSum="2">
     <Button
         android:id="@+id/btn_register"
         style="@style/SimpleButtonStyle"
         android:text="@string/register"
         />
+    </LinearLayout>
 </LinearLayout>

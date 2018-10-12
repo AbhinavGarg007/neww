@@ -16,9 +16,6 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,10 +23,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -62,10 +56,9 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     RadioButton rbMale,rbFemale;
     Calendar calendar;
     int currentYear,currentMonth,currentDay;
-    ProgressDialog editDialog,updateDialog;
+    ProgressDialog updateDialog;
     long id;
     String gender,dob,userChoosenTask,imageLocation;
-    Dialog customDialog;
     int REQUEST_CAMERA=0,SELECT_FILE=1;
     Bitmap bitmap;
 
@@ -120,32 +113,10 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         id = vshopSharedPreference.fetchid();
         vshopUserModel = appDatabase.userDao().getUserInfo(id);
 
-        //checking whether gender entry is not null
-        if (vshopUserModel.getGender() != null) {
-            if (vshopUserModel.getGender().equals(getResources().getString(R.string.female))) {
-                rbFemale.setChecked(true);
-            } else {
-                rbMale.setChecked(true);
-            }
-        }
-        tvName.setText(vshopUserModel.getFirstName() + " " + vshopUserModel.getLastName());
-        //for dob
-        dob = String.valueOf(vshopUserModel.getDob());
-        tvDob.setText(vshopUserModel.getDob());
-
-        //for profile pic
-        if (vshopUserModel.getProfile_pic().equals("")) {
-            ivImage.setImageDrawable(getResources().getDrawable(R.drawable.imageview_placeholder));
-            BlurImage.with(this).load(R.drawable.imageview_placeholder).intensity(20).Async(true).into(ivBlur);
-        } else {
-            imageLocation = String.valueOf(vshopUserModel.getProfile_pic());
-            bitmap = BitmapFactory.decodeFile(vshopUserModel.getProfile_pic());
-            setImage(bitmap);
-        }
+        setData();
 
 
-        //for gender
-        gender = vshopUserModel.getGender();
+        //setting listener on radio button
         rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -172,6 +143,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         populateSetDate(year,month+1,day);
+                        dob = tvDob.getText().toString();
                     }
                 },currentYear,currentMonth,currentDay);
                 dialog.setCancelable(false);
@@ -184,9 +156,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
 
             case R.id.tv_done:
-                if(!tvDob.getText().toString().equals("")) {
-                    dob = tvDob.getText().toString();
-                }
                 new UpdateInfoAsyncTask().execute();
 
                 break;
@@ -215,18 +184,17 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         }
         @Override
         protected Void doInBackground(Void... voids) {
-
-            if(!gender.equals("") && !dob.equals("") && !imageLocation.equals("")) {
                 vshopSharedPreference.saveImage(imageLocation);
                 appDatabase.userDao().updateInfo(gender, dob, imageLocation, id);
-            }
+
             return null;
         }
     }
 
     //method to set date on textview
     private void populateSetDate(int year,int month,int day)
-    { String dob=day+"."+month+"."+year;
+    {
+        String dob=day+"."+month+"."+year;
         tvDob.setText(dob);
     }
 
@@ -388,6 +356,36 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     {
         ivImage.setImageBitmap(bm);
         BlurImage.with(this).load(bm).intensity(20).Async(true).into(ivBlur);
+    }
+
+
+    private void setData()
+    {
+        //checking whether gender entry is not null
+        if (vshopUserModel.getGender() != null) {
+            //for gender
+            gender = vshopUserModel.getGender();
+            if (vshopUserModel.getGender().equals(getResources().getString(R.string.female))) {
+                rbFemale.setChecked(true);
+            } else {
+                rbMale.setChecked(true);
+            }
+        }
+        tvName.setText(vshopUserModel.getFirstName() + " " + vshopUserModel.getLastName());
+        //for dob
+        dob = String.valueOf(vshopUserModel.getDob());
+        tvDob.setText(vshopUserModel.getDob());
+
+        //for profile pic
+        if (vshopUserModel.getProfile_pic().equals("")) {
+            ivImage.setImageDrawable(getResources().getDrawable(R.drawable.imageview_placeholder));
+            BlurImage.with(this).load(R.drawable.imageview_placeholder).intensity(20).Async(true).into(ivBlur);
+        } else {
+            imageLocation = String.valueOf(vshopUserModel.getProfile_pic());
+            bitmap = BitmapFactory.decodeFile(vshopUserModel.getProfile_pic());
+            setImage(bitmap);
+        }
+
     }
 
     @Override

@@ -39,6 +39,7 @@ public class CategoryFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ((HomeActivity)getActivity()).checkFragment();
 
         //getting height on run time
         if(((HomeActivity)getActivity()).getHeight()!=0)
