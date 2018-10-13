@@ -82,6 +82,15 @@
     <string name="track_order">Track Order</string>
     <string name="tracking_status">Tracking Status</string>
     <string name="order_summary">Order Summary</string>
+    <string name="price">Price</string>
+    <string name="current_status">Current Status</string>
+    <string name="_25_00">$ 25.00</string>
+    <string name="shipping_address">Shipping Address :</string>
+    <string name="sujeet_mishra">Sujeet Mishra</string>
+    <string name="a_48_third_floor_sec_64">A-48, Third Floor, Sec-64</string>
+    <string name="noida_up_201301">Noida, UP-201301</string>
+    <string name="order_placed">Order placed</string>
+    <string name="current_status_tracking">Current Status\u0020\u0020:\u0020\u0020</string>
 
 
     <string-array name="months">

@@ -1,0 +1,45 @@
+package com.example.emp354.vshop.adapter;
+
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.example.emp354.vshop.R;
+
+public class DiscoverRecyclerAdapter extends RecyclerView.Adapter {
+
+    private Context mContext;
+
+
+    public DiscoverRecyclerAdapter(Context context)
+    {
+        mContext=context;
+    }
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view=LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_discover_item,viewGroup,false);
+        DiscoverViewHolder discoverViewHolder=new DiscoverViewHolder(view);
+        return discoverViewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+
+        DiscoverViewHolder holder=(DiscoverViewHolder) viewHolder;
+    }
+
+    @Override
+    public int getItemCount() {
+        return 5;
+    }
+
+    public class DiscoverViewHolder extends RecyclerView.ViewHolder {
+        public DiscoverViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
+}

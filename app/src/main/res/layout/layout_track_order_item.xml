@@ -10,15 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="@dimen/margin_10"
-        android:paddingTop="@dimen/margin_20"
-        android:paddingBottom="@dimen/margin_20">
+        android:paddingTop="@dimen/margin_15"
+        android:paddingBottom="@dimen/margin_15">
 
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/margin_10"
-            android:layout_weight="1">
+            android:layout_weight="3.2">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -29,7 +29,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="6"
             android:gravity="center_vertical"
             android:orientation="vertical">
 
@@ -43,7 +43,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="by Idee" />
+                android:text="by Idee"
+                android:textSize="@dimen/textsize_12"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,13 +53,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Current status : " />
+                    android:text="Current status : "
+                    android:textSize="@dimen/textsize_12"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Order placed"
-                    android:textColor="@color/color_black" />
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/textsize_12"/>
             </LinearLayout>
 
             <LinearLayout
@@ -68,13 +71,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ordered on : " />
+                    android:text="Ordered on       : "
+                    android:textSize="@dimen/textsize_12"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Fri, 18 Dec 2015"
-                    android:textColor="@color/color_black" />
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/textsize_12"/>
             </LinearLayout>
 
         </LinearLayout>

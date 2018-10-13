@@ -1,5 +1,6 @@
 package com.example.emp354.vshop.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,9 +13,11 @@ import android.view.ViewGroup;
 
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.activity.HomeActivity;
+import com.example.emp354.vshop.activity.TrackOrderActivity;
 import com.example.emp354.vshop.adapter.TrackOrderRecyclerAdapter;
+import com.example.emp354.vshop.listener.ItemClickListener;
 
-public class TrackOrderFragment extends Fragment {
+public class TrackOrderFragment extends Fragment implements ItemClickListener {
     RecyclerView recyclerView;
    TrackOrderRecyclerAdapter trackOrderRecyclerAdapter;
    LinearLayoutManager layoutManager;
@@ -38,10 +41,20 @@ public class TrackOrderFragment extends Fragment {
         }
 
        recyclerView=view.findViewById(R.id.recyclerview_track_order);
-       trackOrderRecyclerAdapter=new TrackOrderRecyclerAdapter(getActivity(),requiredHeight);
+       trackOrderRecyclerAdapter=new TrackOrderRecyclerAdapter(getActivity(),requiredHeight,this);
        layoutManager=new LinearLayoutManager(getActivity());
        recyclerView.setAdapter(trackOrderRecyclerAdapter);
        recyclerView.setLayoutManager(layoutManager);
 
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+     switch (view.getId())
+     {
+         case R.id.ll_track_order_item:
+             Intent trackOrderIntent=new Intent(getActivity(),TrackOrderActivity.class);
+             startActivity(trackOrderIntent);
+     }
     }
 }

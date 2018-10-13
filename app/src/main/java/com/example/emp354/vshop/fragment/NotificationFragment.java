@@ -12,30 +12,31 @@ import android.view.ViewGroup;
 
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.activity.HomeActivity;
-import com.example.emp354.vshop.adapter.DiscoverRecyclerAdapter;
+import com.example.emp354.vshop.adapter.NotificationRecyclerAdapter;
 
-public class DiscoverFragment extends Fragment {
+public class NotificationFragment extends Fragment {
+
     RecyclerView recyclerView;
-    DiscoverRecyclerAdapter discoverRecyclerAdapter;
+    NotificationRecyclerAdapter notificationRecyclerAdapter;
     LinearLayoutManager layoutManager;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.layout_discover,container,false);
+        View view =inflater.inflate(R.layout.layout_notification,container,false);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         ((HomeActivity)getActivity()).checkFragment();
 
-        recyclerView=view.findViewById(R.id.recyclerview_discover);
-        discoverRecyclerAdapter=new DiscoverRecyclerAdapter(getActivity());
-        layoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
-        recyclerView.setAdapter(discoverRecyclerAdapter);
+        recyclerView=view.findViewById(R.id.recyclerview_notification);
+        notificationRecyclerAdapter=new NotificationRecyclerAdapter(getActivity());
+        layoutManager=new LinearLayoutManager(getActivity());
+
+        recyclerView.setAdapter(notificationRecyclerAdapter);
         recyclerView.setLayoutManager(layoutManager);
+
 
     }
 }

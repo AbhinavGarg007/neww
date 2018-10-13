@@ -26,6 +26,7 @@ import com.example.emp354.vshop.fragment.BrowseBrandsFragment;
 import com.example.emp354.vshop.fragment.CategoriesFragment;
 import com.example.emp354.vshop.fragment.CategoryFragment;
 import com.example.emp354.vshop.fragment.DiscoverFragment;
+import com.example.emp354.vshop.fragment.NotificationFragment;
 import com.example.emp354.vshop.fragment.ProfileFragment;
 import com.example.emp354.vshop.fragment.TrackOrderFragment;
 
@@ -101,6 +102,7 @@ public class HomeActivity extends AppCompatActivity {
                         break;
 
                     case NOTIFICATION:
+                        fragment=new NotificationFragment();
                         break;
 
                     case SIGN_OUT:
@@ -269,6 +271,14 @@ public class HomeActivity extends AppCompatActivity {
         if (fragment instanceof TrackOrderFragment)
         {
             tvTitle.setText(getResources().getString(R.string.track_order));
+            toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
+            toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
+            toolbar.getMenu().findItem(R.id.edit).setVisible(false);
+            return;
+        }
+        if (fragment instanceof NotificationFragment)
+        {
+            tvTitle.setText(getResources().getString(R.string.notification));
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
             toolbar.getMenu().findItem(R.id.edit).setVisible(false);
