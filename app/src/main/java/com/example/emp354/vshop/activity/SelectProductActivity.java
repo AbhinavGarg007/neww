@@ -20,11 +20,17 @@ import android.widget.TextView;
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.adapter.SizeRecyclerAdapter;
 import com.example.emp354.vshop.listener.ItemClickListener;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.example.emp354.vshop.constants.Constant.CLOTHES;
+import static com.example.emp354.vshop.constants.Constant.DRAWABLE_INITIAL_PATH;
+import static com.example.emp354.vshop.constants.Constant.PRICE;
+import static com.example.emp354.vshop.constants.Constant.TITLE;
 
 public class SelectProductActivity extends AppCompatActivity implements View.OnClickListener,ItemClickListener {
 
@@ -39,15 +45,6 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
     EditText etSearch;
     boolean isSearchOpen=false;
     SizeRecyclerAdapter sizeRecyclerAdapter;
-
-    //declaring static data to perform operation
-    int[] images = {R.drawable.cloth_1, R.drawable.cloth_2,
-            R.drawable.cloth_3, R.drawable.cloth_4,
-            R.drawable.cloth_5, R.drawable.cloth_6,
-            R.drawable.cloth_7, R.drawable.cloth_8,
-            R.drawable.cloth_9, R.drawable.cloth_10,};
-    String title[] = {"Product1", "Product2", "Product3", "Product4", "Product5", "Product6", "Product7", "Product8", "Product9", "Product10"};
-    String price[] = {"$1.00", "$2.00", "$3.00", "$4.00", "$5.00", "$6.00", "$7.00", "$8.00", "$9.00", "$10.00"};
 
     //hashmap to check whether size is available or not
     HashMap<String,String> isSizeAvailable=new HashMap<>();
@@ -120,13 +117,14 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
         tvSize38.setOnClickListener(this);*/
 
 
-        ivSelectProductImage.setImageDrawable(getResources().getDrawable(images[pos]));
+        /*ivSelectProductImage.setImageDrawable(getResources().getDrawable(CLOTHES[pos]));*/
+        ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + CLOTHES[pos],ivSelectProductImage);
 
         //setting passed data to layout
-       tvTitleToolbar.setText(title[pos]);
-        tvTitle.setText(title[pos]);
-        tvNewPrice.setText(price[pos]);
-        tvOldPrice.setText(price[pos]);
+       tvTitleToolbar.setText(TITLE[pos]);
+        tvTitle.setText(TITLE[pos]);
+        tvNewPrice.setText(PRICE[pos]);
+        tvOldPrice.setText(PRICE[pos]);
         tvOldPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
 

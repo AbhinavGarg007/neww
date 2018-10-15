@@ -44,4 +44,7 @@ dependencies {
 
     //to blur the image
     implementation 'com.jackandphantom.android:blurimage:1.2.0'
+
+    //for universal image loader
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 }

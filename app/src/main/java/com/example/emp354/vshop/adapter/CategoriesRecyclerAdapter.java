@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.emp354.vshop.R;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import static com.example.emp354.vshop.constants.Constant.DRAWABLE_INITIAL_PATH;
 
 public class CategoriesRecyclerAdapter extends RecyclerView.Adapter {
     Context mContext;
@@ -41,7 +44,8 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter {
         CategoriesHolder categoriesHolder=(CategoriesHolder) viewHolder;
         categoriesHolder.tvType.setText(mType[i]);
         categoriesHolder.tvDiscount.setText(mDiscounts[i]);
-        categoriesHolder.ivCategory.setImageResource(mImage[i]);
+       /* categoriesHolder.ivCategory.setImageResource(mImage[i]);*/
+        ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + mImage[i],categoriesHolder.ivCategory);
     }
 
     @Override

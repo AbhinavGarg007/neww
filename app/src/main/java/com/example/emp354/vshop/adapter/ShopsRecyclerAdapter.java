@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.emp354.vshop.R;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import static com.example.emp354.vshop.constants.Constant.DRAWABLE_INITIAL_PATH;
 
 public class ShopsRecyclerAdapter extends RecyclerView.Adapter{
 
@@ -32,7 +35,8 @@ public class ShopsRecyclerAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
         ShopsHolder holder1=(ShopsHolder) viewHolder;
-        holder1.ivProduct.setImageResource(mImages[i]);
+       /* holder1.ivProduct.setImageResource(mImages[i]);*/
+        ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + mImages[i],holder1.ivProduct);
     }
 
     @Override

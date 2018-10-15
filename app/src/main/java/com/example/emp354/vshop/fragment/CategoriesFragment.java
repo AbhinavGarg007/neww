@@ -17,11 +17,13 @@ import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.activity.HomeActivity;
 import com.example.emp354.vshop.adapter.CategoriesRecyclerAdapter;
 
+import static com.example.emp354.vshop.constants.Constant.CATEGORY_DISCOUNT;
+import static com.example.emp354.vshop.constants.Constant.CATEGORY_IMAGE;
+import static com.example.emp354.vshop.constants.Constant.CATEGORY_TYPES;
+
 public class CategoriesFragment extends Fragment {
     int requiredHeight=0;
-    String[] type={"HATS","CLOCKS","SHORTS","BAGS","JEANS","SHOES"};
-    String[] discount={"20% DISCOUNT FOR\nLADIES HATS","20% DISCOUNT FOR\nLADIES CLOCKS","","","",""};
-    int[] image={R.drawable.category_1,R.drawable.category_2,R.drawable.category_3,R.drawable.category_4,R.drawable.category_5,R.drawable.category_6};
+
     CategoriesRecyclerAdapter categoriesRecyclerAdapter;
     @Nullable
     @Override
@@ -40,7 +42,7 @@ public class CategoriesFragment extends Fragment {
         {
             requiredHeight=((HomeActivity)getActivity()).getHeight()*14/100;
         }
-        categoriesRecyclerAdapter=new CategoriesRecyclerAdapter(getActivity(),type,discount,image,requiredHeight);
+        categoriesRecyclerAdapter=new CategoriesRecyclerAdapter(getActivity(),CATEGORY_TYPES,CATEGORY_DISCOUNT,CATEGORY_IMAGE,requiredHeight);
 
         recyclerView.setAdapter(categoriesRecyclerAdapter);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());

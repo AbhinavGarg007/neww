@@ -11,10 +11,13 @@ import android.widget.TextView;
 
 import com.example.emp354.vshop.ProductModel;
 import com.example.emp354.vshop.R;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 
 import java.util.HashMap;
 import java.util.List;
+
+import static com.example.emp354.vshop.constants.Constant.DRAWABLE_INITIAL_PATH;
 
 public class CategoryAdapter extends BaseExpandableListAdapter {
 
@@ -102,7 +105,8 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         //setting values to the views
         tvName.setText(name);
         tvDiscount.setText(discount);
-        ivCategory.setImageResource(image);
+        /*ivCategory.setImageResource(image);*/
+        ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + image,ivCategory);
         llCategory.setBackgroundColor(background);
 
         return view;

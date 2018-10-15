@@ -1,10 +1,12 @@
 package com.example.emp354.vshop.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,8 @@ import android.view.ViewGroup;
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.activity.HomeActivity;
 import com.example.emp354.vshop.adapter.DiscoverRecyclerAdapter;
+import com.example.emp354.vshop.decoration.LinePagerIndicatorDecoration;
+import com.example.emp354.vshop.decoration.SeparatorDecoration;
 
 public class DiscoverFragment extends Fragment {
     RecyclerView recyclerView;
@@ -37,5 +41,12 @@ public class DiscoverFragment extends Fragment {
         recyclerView.setAdapter(discoverRecyclerAdapter);
         recyclerView.setLayoutManager(layoutManager);
 
+        //add pager behaviour
+        PagerSnapHelper snapHelper=new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);
+
+        //pager indicator
+        /*recyclerView.addItemDecoration(new SeparatorDecoration(getActivity(), Color.GRAY, 1.5f));*/
+        recyclerView.addItemDecoration(new LinePagerIndicatorDecoration());
     }
 }

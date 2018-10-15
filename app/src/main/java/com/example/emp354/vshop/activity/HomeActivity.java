@@ -17,6 +17,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.emp354.vshop.R;
@@ -25,6 +26,7 @@ import com.example.emp354.vshop.adapter.CategoriesRecyclerAdapter;
 import com.example.emp354.vshop.fragment.BrowseBrandsFragment;
 import com.example.emp354.vshop.fragment.CategoriesFragment;
 import com.example.emp354.vshop.fragment.CategoryFragment;
+import com.example.emp354.vshop.fragment.Discover2Fragment;
 import com.example.emp354.vshop.fragment.DiscoverFragment;
 import com.example.emp354.vshop.fragment.NotificationFragment;
 import com.example.emp354.vshop.fragment.ProfileFragment;
@@ -46,20 +48,24 @@ public class HomeActivity extends AppCompatActivity {
     VshopSharedPreference vshopSharedPreference;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
+    LinearLayout layoutSearch;
     TextView tvTitle;
     Fragment fragment;
+    boolean isSearchOpen = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Log.d("HomeActivity","onCreate");
+        Log.d("HomeActivity", "onCreate");
 
         //initialising variables
-        navigationView=findViewById(R.id.navigation_view);
-        vshopSharedPreference=VshopSharedPreference.getInstance(this);
-        toolbar=findViewById(R.id.toolbar);
-        drawerLayout=findViewById(R.id.layout_drawer);
-        tvTitle=findViewById(R.id.tv_toolbar_home);
+        navigationView = findViewById(R.id.navigation_view);
+        vshopSharedPreference = VshopSharedPreference.getInstance(this);
+        toolbar = findViewById(R.id.toolbar);
+        drawerLayout = findViewById(R.id.layout_drawer);
+        layoutSearch = findViewById(R.id.layout_search_home);
+        tvTitle = findViewById(R.id.tv_toolbar_home);
         checkFragment();
         setToolbar();
         setNavigationView();
@@ -69,40 +75,38 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     //method to set navigation view
-    private void setNavigationView()
-    {
+    private void setNavigationView() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getTitle().toString())
-                {
+                switch (menuItem.getTitle().toString()) {
                     case PROFILE:
-                        fragment=new ProfileFragment();
+                        fragment = new ProfileFragment();
                         break;
 
                     case FEEDS:
-                        Intent feedIntent=new Intent(HomeActivity.this,FeedsActivity.class);
+                        Intent feedIntent = new Intent(HomeActivity.this, FeedsActivity.class);
                         startActivity(feedIntent);
                         break;
 
                     case BROWSE_BRANDS:
-                        fragment=new BrowseBrandsFragment();
+                        fragment = new BrowseBrandsFragment();
                         break;
 
                     case CATEGORIES:
-                        fragment=new CategoryFragment();
+                        fragment = new CategoryFragment();
                         break;
 
                     case DISCOVER:
-                        fragment=new DiscoverFragment();
+                        fragment = new Discover2Fragment();
                         break;
 
                     case TRACK:
-                        fragment=new TrackOrderFragment();
+                        fragment = new TrackOrderFragment();
                         break;
 
                     case NOTIFICATION:
-                        fragment=new NotificationFragment();
+                        fragment = new NotificationFragment();
                         break;
 
                     case SIGN_OUT:
@@ -121,8 +125,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     //method to set toolbar
-    private void setToolbar()
-    {
+    private void setToolbar() {
         toolbar.setNavigationIcon(R.drawable.ic_menu);
         toolbar.inflateMenu(R.menu.menu_icon);
         //setting click listener on navigation icon
@@ -137,11 +140,26 @@ public class HomeActivity extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                switch (menuItem.getItemId())
-                {
+                switch (menuItem.getItemId()) {
                     case R.id.edit:
-                        Intent intent=new Intent(HomeActivity.this,EditProfileActivity.class);
-                        startActivity(intent);
+                        Intent editIntent = new Intent(HomeActivity.this, EditProfileActivity.class);
+                        startActivity(editIntent);
+                        break;
+
+
+                    case R.id.navigation_bag:
+                        Intent searchBagIntent = new Intent(HomeActivity.this, EmptyShoppingBagActivity.class);
+                        startActivity(searchBagIntent);
+                        break;
+
+                    case R.id.navigation_search:
+                        isSearchOpen = true;
+                        toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(false);
+                        toolbar.getMenu().findItem(R.id.navigation_search).setVisible(false);
+                        tvTitle.setVisibility(View.GONE);
+                        layoutSearch.setVisibility(View.VISIBLE);
+                        break;
+
                 }
                 return true;
             }
@@ -149,18 +167,16 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     //method to perform logout operation
-    public void logOut()
-    {
+    public void logOut() {
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("LogOut")
                 .setMessage("Are you sure you want to logout?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         vshopSharedPreference.clearAllData();
-                        Intent i=new Intent(HomeActivity.this,MainActivity.class);
+                        Intent i = new Intent(HomeActivity.this, MainActivity.class);
                         startActivity(i);
                         finish();
                     }
@@ -170,73 +186,42 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     //method to load fragment
-    public void loadFragment(Fragment fragment)
-    {
-        if(fragment!=null) {
+    public void loadFragment(Fragment fragment) {
+        if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.layout_frame_home, fragment,"addfragment");
+            fragmentTransaction.replace(R.id.layout_frame_home, fragment, "addfragment");
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
     }
 
-    //method to perform back pressed operation
-    @Override
-    public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
-            getSupportFragmentManager().popBackStackImmediate();
-            Fragment f = getSupportFragmentManager().findFragmentByTag("addfragment");
-            whichFragmentInstance(f);
-        }
-        else
-        {
-            new AlertDialog.Builder(this)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle("Closing Activity")
-                    .setMessage("Are you sure you want to exit?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-
-                    })
-                    .setNegativeButton("No", null)
-                    .show();
-        }
-    }
 
     //method to check fragment instance and set the toolbar layout accordingly that will be called from fragment
     // onCreate method
-    public void checkFragment()
-    {
+    public void checkFragment() {
         Fragment fragment;
-        fragment=getSupportFragmentManager().findFragmentByTag("addfragment");
+        fragment = getSupportFragmentManager().findFragmentByTag("addfragment");
         whichFragmentInstance(fragment);
     }
 
     //getting height of display to make independent layout
-    public int getHeight()
-    {
-        DisplayMetrics displayMetrics=new DisplayMetrics();
+    public int getHeight() {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels;
     }
 
     //method to get width of display on runtime
-    public int getWidth()
-    {
-        DisplayMetrics displayMetrics=new DisplayMetrics();
+    public int getWidth() {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.widthPixels;
     }
 
     //method to check which fragment instance is loading and inflate the toolbar layout accordingly
-    private void whichFragmentInstance(Fragment fragment)
-    {
-        if(fragment instanceof ProfileFragment)
-        {
+    private void whichFragmentInstance(Fragment fragment) {
+        if (fragment instanceof ProfileFragment) {
             tvTitle.setText(getResources().getString(R.string.profile));
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(false);
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(false);
@@ -244,40 +229,35 @@ public class HomeActivity extends AppCompatActivity {
             return;
         }
 
-        if (fragment instanceof BrowseBrandsFragment)
-        {
+        if (fragment instanceof BrowseBrandsFragment) {
             tvTitle.setText(getResources().getString(R.string.browse_brands));
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
             toolbar.getMenu().findItem(R.id.edit).setVisible(false);
             return;
         }
-        if(fragment instanceof CategoryFragment)
-        {
+        if (fragment instanceof CategoryFragment) {
             tvTitle.setText(getResources().getString(R.string.category));
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
             toolbar.getMenu().findItem(R.id.edit).setVisible(false);
             return;
         }
-        if (fragment instanceof DiscoverFragment)
-        {
+        if (fragment instanceof Discover2Fragment) {
             tvTitle.setText(getResources().getString(R.string.discover));
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
             toolbar.getMenu().findItem(R.id.edit).setVisible(false);
             return;
         }
-        if (fragment instanceof TrackOrderFragment)
-        {
+        if (fragment instanceof TrackOrderFragment) {
             tvTitle.setText(getResources().getString(R.string.track_order));
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
             toolbar.getMenu().findItem(R.id.edit).setVisible(false);
             return;
         }
-        if (fragment instanceof NotificationFragment)
-        {
+        if (fragment instanceof NotificationFragment) {
             tvTitle.setText(getResources().getString(R.string.notification));
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
@@ -287,42 +267,81 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+
+    //method to perform back pressed operation
+    @Override
+    public void onBackPressed() {
+        if (isSearchOpen) {
+            isSearchOpen = false;
+            layoutSearch.setVisibility(View.GONE);
+            toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
+            toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
+            tvTitle.setVisibility(View.VISIBLE);
+
+        } else {
+            if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+                getSupportFragmentManager().popBackStackImmediate();
+                Fragment f = getSupportFragmentManager().findFragmentByTag("addfragment");
+                whichFragmentInstance(f);
+            } else {
+                new AlertDialog.Builder(this)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Exit from Vshop")
+                        .setMessage("Are you sure you want to exit?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                moveTaskToBack(true);
+                                android.os.Process.killProcess(android.os.Process.myPid());
+                                System.exit(1);
+                            }
+
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+
+        }
+    }
+
+
     @Override
     protected void onResume() {
-        Log.d("HomeActivity","onResume");
+        Log.d("HomeActivity", "onResume");
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        Log.d("HomeActivity","onPause");
+        Log.d("HomeActivity", "onPause");
         super.onPause();
     }
 
 
     @Override
     protected void onDestroy() {
-        Log.d("HomeActivity","onDestroy");
+        Log.d("HomeActivity", "onDestroy");
         super.onDestroy();
     }
 
     @Override
     protected void onRestart() {
-        Log.d("HomeActivity","onRestart");
+        Log.d("HomeActivity", "onRestart");
         super.onRestart();
     }
 
     @Override
     protected void onStart() {
-        Log.d("HomeActivity","onStart");
+        Log.d("HomeActivity", "onStart");
         super.onStart();
     }
 
     @Override
     protected void onStop() {
-        Log.d("HomeActivity","onDestroy");
+        Log.d("HomeActivity", "onDestroy");
         super.onStop();
     }
+
 
 
 }

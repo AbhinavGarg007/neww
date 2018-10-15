@@ -13,8 +13,11 @@ import android.widget.TextView;
 
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.listener.ItemClickListener;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.HashSet;
+
+import static com.example.emp354.vshop.constants.Constant.DRAWABLE_INITIAL_PATH;
 
 public class BrowseBrandsRecyclerAdapter extends RecyclerView.Adapter {
 
@@ -51,7 +54,8 @@ public class BrowseBrandsRecyclerAdapter extends RecyclerView.Adapter {
 
         BrowseBrandsViewHolder holder1=(BrowseBrandsViewHolder)viewHolder;
         if(mImages!=null) {
-            holder1.ivBrand.setImageResource(mImages[i]);
+           /* holder1.ivBrand.setImageResource(mImages[i]);*/
+            ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + mImages[i],holder1.ivBrand);
         }
         if(mTitle!=null)
         {

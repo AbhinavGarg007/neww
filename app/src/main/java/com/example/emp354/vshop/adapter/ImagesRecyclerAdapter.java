@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.emp354.vshop.R;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import static com.example.emp354.vshop.constants.Constant.DRAWABLE_INITIAL_PATH;
 
 public class ImagesRecyclerAdapter extends RecyclerView.Adapter {
 
@@ -34,7 +37,8 @@ public class ImagesRecyclerAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
         ImagesHolder holder1=(ImagesHolder) viewHolder;
-        holder1.ivProduct.setImageResource(mImages[i]);
+        /*holder1.ivProduct.setImageResource(mImages[i]);*/
+        ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + mImages[i],holder1.ivProduct);
     }
 
     @Override

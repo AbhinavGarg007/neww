@@ -26,8 +26,14 @@ import com.example.emp354.vshop.activity.HomeActivity;
 import com.example.emp354.vshop.adapter.ImagesRecyclerAdapter;
 import com.example.emp354.vshop.adapter.ShopsRecyclerAdapter;
 import com.jackandphantom.blurimage.BlurImage;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.InputStream;
+
+import static com.example.emp354.vshop.constants.Constant.DRAWABLE_INITIAL_PATH;
+import static com.example.emp354.vshop.constants.Constant.FILE_INITIAL_PATH;
+import static com.example.emp354.vshop.constants.Constant.PRODUCTS;
+import static com.example.emp354.vshop.constants.Constant.SHOPS;
 
 public class ProfileFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener,View.OnClickListener {
     TextView tvName;
@@ -42,17 +48,7 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
     RecyclerView recyclerViewProducts, recyclerViewShops;
     ImagesRecyclerAdapter imagesRecyclerAdapter;
     ShopsRecyclerAdapter shopsRecyclerAdapter;
-    int[] products = {R.drawable.product_1, R.drawable.product_2,
-            R.drawable.product_3, R.drawable.product_4,
-            R.drawable.product_5, R.drawable.product_6,
-            R.drawable.product_7, R.drawable.product_8,
-            R.drawable.product_9, R.drawable.product_10};
 
-    int[] shops = {R.drawable.brand_1, R.drawable.brand_2,
-            R.drawable.brand_3, R.drawable.brand_4,
-            R.drawable.brand_5, R.drawable.brand_6,
-            R.drawable.brand_7, R.drawable.brand_8,
-            R.drawable.brand_9, R.drawable.brand_10};
 
     @Nullable
     @Override
@@ -84,8 +80,8 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
         layoutShopRight.setOnClickListener(this);
 
 
-        imagesRecyclerAdapter = new ImagesRecyclerAdapter(getActivity(), products);
-        shopsRecyclerAdapter = new ShopsRecyclerAdapter(getActivity(), shops);
+        imagesRecyclerAdapter = new ImagesRecyclerAdapter(getActivity(), PRODUCTS);
+        shopsRecyclerAdapter = new ShopsRecyclerAdapter(getActivity(), SHOPS);
         productLayoutManager = new LinearLayoutManager(getActivity(), LinearLayout.HORIZONTAL, false);
         shopsLayoutManager = new LinearLayoutManager(getActivity(), LinearLayout.HORIZONTAL, false);
 
@@ -117,7 +113,8 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
 
     public void loadImage(String path) {
         bitmap = BitmapFactory.decodeFile(path);
-        ivProfile.setImageBitmap(bitmap);
+       /* ivProfile.setImageBitmap(bitmap);*/
+        ImageLoader.getInstance().displayImage(FILE_INITIAL_PATH + path,ivProfile);
         BlurImage.with(getActivity()).load(bitmap).intensity(20).Async(true).into(ivBlur);
     }
 

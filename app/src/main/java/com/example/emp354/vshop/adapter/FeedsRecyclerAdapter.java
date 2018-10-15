@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.listener.ItemClickListener;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import static com.example.emp354.vshop.constants.Constant.DRAWABLE_INITIAL_PATH;
 
 public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
     Context mContext;
@@ -44,7 +47,8 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
 
         FeedsHolder feedsHolder=(FeedsHolder)viewHolder;
-        feedsHolder.ivFeed.setImageResource(mFeeds[position]);
+       /* feedsHolder.ivFeed.setImageResource(mFeeds[position]);*/
+        ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + mFeeds[position],feedsHolder.ivFeed);
         feedsHolder.tvTitle.setText(mTitle[position]);
         feedsHolder.tvNewPrice.setText(mPrice[position]);
 

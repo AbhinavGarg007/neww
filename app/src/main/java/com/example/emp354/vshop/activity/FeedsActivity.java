@@ -16,6 +16,10 @@ import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.adapter.FeedsRecyclerAdapter;
 import com.example.emp354.vshop.listener.ItemClickListener;
 
+import static com.example.emp354.vshop.constants.Constant.CLOTHES;
+import static com.example.emp354.vshop.constants.Constant.PRICE;
+import static com.example.emp354.vshop.constants.Constant.TITLE;
+
 public class FeedsActivity extends AppCompatActivity implements ItemClickListener {
     //declaring member variables
     RecyclerView recyclerView;
@@ -26,16 +30,6 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
     Toolbar toolbar;
     boolean isSearchOpen=false;
     LinearLayout layoutSearch;
-
-    //passing static data
-    int[] feeds={R.drawable.cloth_1,R.drawable.cloth_2,
-            R.drawable.cloth_3,R.drawable.cloth_4,
-            R.drawable.cloth_5,R.drawable.cloth_6,
-            R.drawable.cloth_7,R.drawable.cloth_8,
-            R.drawable.cloth_9,R.drawable.cloth_10,};
-    String title[]={"Product1","Product2","Product3","Product4","Product5","Product6","Product7","Product8","Product9","Product10"};
-    String price[]={"$1.00","$2.00","$3.00","$4.00","$5.00","$6.00","$7.00","$8.00","$9.00","$10.00"};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +46,7 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
         linearLayout=findViewById(R.id.layout_recycler_feeds);
 
 
-        feedsRecyclerAdapter=new FeedsRecyclerAdapter(this,feeds,title,price,this,height);
+        feedsRecyclerAdapter=new FeedsRecyclerAdapter(this,CLOTHES,TITLE,PRICE,this,height);
         gridLayoutManager=new GridLayoutManager(this,2,LinearLayout.VERTICAL,false);
         //setting layout manager
         recyclerView.setLayoutManager(gridLayoutManager);

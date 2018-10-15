@@ -32,6 +32,8 @@
     <dimen name="margin_75">75dp</dimen>
     <dimen name="margin_43">43dp</dimen>
     <dimen name="textsize_25">25sp</dimen>
+    <dimen name="textsize_40">40sp</dimen>
+    <dimen name="margin_6">6dp</dimen>
 
 
 </resources>
