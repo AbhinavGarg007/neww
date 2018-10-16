@@ -21,6 +21,7 @@
             android:layout_weight="3.2">
 
             <ImageView
+                android:id="@+id/iv_track_order"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/product_6" />
@@ -34,6 +35,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_title_track_order_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Classic Round Glasses"
@@ -71,7 +73,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ordered on       : "
+                    android:text="Ordered on      : "
                     android:textSize="@dimen/textsize_12"/>
 
                 <TextView

@@ -22,6 +22,7 @@ public class NotificationFragment extends Fragment implements ItemClickListener 
     RecyclerView recyclerView;
     NotificationRecyclerAdapter notificationRecyclerAdapter;
     LinearLayoutManager layoutManager;
+    int requiredHeight;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,8 +34,14 @@ public class NotificationFragment extends Fragment implements ItemClickListener 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         ((HomeActivity)getActivity()).checkFragment();
 
+        if(((HomeActivity)getActivity()).getHeight()!=0)
+        {
+            requiredHeight=((HomeActivity)getActivity()).getHeight()*30/100;
+        }
+
+
         recyclerView=view.findViewById(R.id.recyclerview_notification);
-        notificationRecyclerAdapter=new NotificationRecyclerAdapter(getActivity(),this);
+        notificationRecyclerAdapter=new NotificationRecyclerAdapter(getActivity(),requiredHeight,this);
         layoutManager=new LinearLayoutManager(getActivity());
 
         recyclerView.setAdapter(notificationRecyclerAdapter);

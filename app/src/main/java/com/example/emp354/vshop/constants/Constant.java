@@ -53,4 +53,7 @@ public interface Constant {
             R.drawable.brand_5, R.drawable.brand_6,
             R.drawable.brand_7, R.drawable.brand_8,
             R.drawable.brand_9, R.drawable.brand_10};
-}
+
+    int[] TRACK_ORDER_IMAGES={R.drawable.glasses,R.drawable.pink_shoes,R.drawable.denim_shorts,R.drawable.orange_shoes};
+    String[] TRACK_ORDER_TITLE={"Classic Round Glasses","Pink Basket Shoes For Woman","Denim Shorts","Orange Sport Shoes"};
+ }

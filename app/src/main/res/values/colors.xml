@@ -21,4 +21,6 @@
     <color name="color_discount">#FFC2C9</color>
     <color name="color_notification_view">#5B5B5B</color>
 
+    <color name="color_transparent">#7E7E7E</color>
+
 </resources>

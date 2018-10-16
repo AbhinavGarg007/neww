@@ -13,6 +13,7 @@ import com.example.emp354.vshop.R;
 public class AccountSuccessfullyCreatedFragment extends Fragment {
     @Nullable
     @Override
+    //inflating layout
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.layout_account_create_success,container,false);
         return view;

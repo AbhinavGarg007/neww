@@ -10,12 +10,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.fragment.OrderSummaryFragment;
 import com.example.emp354.vshop.fragment.TrackingStatusFragment;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import static com.example.emp354.vshop.constants.Constant.DRAWABLE_INITIAL_PATH;
+import static com.example.emp354.vshop.constants.Constant.TRACK_ORDER_IMAGES;
+import static com.example.emp354.vshop.constants.Constant.TRACK_ORDER_TITLE;
 
 public class TrackOrderActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,7 +29,8 @@ public class TrackOrderActivity extends AppCompatActivity implements View.OnClic
     Button btnTrackingStatus,btnOrderSummary;
     Fragment fragment;
     Toolbar toolbar;
-    TextView tvTitle;
+    TextView tvTitle,tvTitleProduct;
+    ImageView ivProduct;
     LinearLayout layoutSearch;
     boolean isSearchOpen=false;
     @Override
@@ -37,12 +44,25 @@ public class TrackOrderActivity extends AppCompatActivity implements View.OnClic
         toolbar=findViewById(R.id.toolbar_track_order_activity);
         tvTitle=findViewById(R.id.tv_title_track_order_activity);
         layoutSearch=findViewById(R.id.layout_search_track_order);
+        tvTitleProduct=findViewById(R.id.tv_title_track_order_product_activity);
+        ivProduct=findViewById(R.id.iv_track_order_product_activity);
+
+
+
 
         //method to set toolbar
         setToolbar();
 
         //calling method to load fragment
         loadFragment(new TrackingStatusFragment());
+
+        //getting data from calling intent
+        Intent intent=getIntent();
+        int pos=intent.getIntExtra("position",0);
+
+
+        tvTitleProduct.setText(TRACK_ORDER_TITLE[pos]);
+        ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + TRACK_ORDER_IMAGES[pos],ivProduct);
 
         //setting click listener
         btnTrackingStatus.setOnClickListener(this);

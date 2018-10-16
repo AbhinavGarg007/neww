@@ -10,13 +10,18 @@ import android.view.ViewGroup;
 import com.example.emp354.vshop.R;
 
 public class ShoppingBagAdapter extends RecyclerView.Adapter {
+
+    //declaring variables
     private Context mContext;
+
+    //constructor for the adapter
     public ShoppingBagAdapter(Context context)
     {
         mContext=context;
     }
 
 
+    //inflating layout
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -25,6 +30,7 @@ public class ShoppingBagAdapter extends RecyclerView.Adapter {
         return shoppingBagViewHolder;
     }
 
+    //binding holder with data
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
@@ -32,10 +38,13 @@ public class ShoppingBagAdapter extends RecyclerView.Adapter {
 
     }
 
+    //getting the number of items
     @Override
     public int getItemCount() {
         return 3;
     }
+
+    //holder for the adapter
     public  class ShoppingBagViewHolder extends RecyclerView.ViewHolder {
         public ShoppingBagViewHolder(@NonNull View itemView) {
             super(itemView);

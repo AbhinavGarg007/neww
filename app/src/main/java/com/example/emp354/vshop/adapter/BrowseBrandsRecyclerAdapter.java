@@ -21,6 +21,7 @@ import static com.example.emp354.vshop.constants.Constant.DRAWABLE_INITIAL_PATH;
 
 public class BrowseBrandsRecyclerAdapter extends RecyclerView.Adapter {
 
+    //declaring variables
     private Context mContext;
     private int[] mImages;
     private String[] mTitle;
@@ -29,6 +30,7 @@ public class BrowseBrandsRecyclerAdapter extends RecyclerView.Adapter {
     private ItemClickListener mItemClickListener;
     private HashSet<Integer> mIsFollowed;
 
+    //constructor of adapter
     public BrowseBrandsRecyclerAdapter(Context context, int[] images, String[] title, int height, int width, HashSet<Integer> isFollowed,ItemClickListener itemClickListener)
     {
 
@@ -41,6 +43,7 @@ public class BrowseBrandsRecyclerAdapter extends RecyclerView.Adapter {
         mIsFollowed=isFollowed;
     }
 
+    //inflating view
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -49,6 +52,8 @@ public class BrowseBrandsRecyclerAdapter extends RecyclerView.Adapter {
         return browseBrandsViewHolder;
     }
 
+
+    //binding view with the data
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
@@ -59,8 +64,11 @@ public class BrowseBrandsRecyclerAdapter extends RecyclerView.Adapter {
         }
         if(mTitle!=null)
         {
+            //setting the value in textview
             holder1.tvBrand.setText(mTitle[i]);
         }
+
+        //checking if position is even or not and setting the background coor according to that.
         if(i%2!=0)
         {
             holder1.llBrand.setBackgroundColor(mContext.getResources().getColor(R.color.color_list));
@@ -69,6 +77,8 @@ public class BrowseBrandsRecyclerAdapter extends RecyclerView.Adapter {
         {
             holder1.llBrand.setBackgroundColor(mContext.getResources().getColor(android.R.color.white));
         }
+
+        //checking whether user is already following or not and setting the layout according to that
         if(mIsFollowed.contains(i))
         {
            holder1.tvFollow.setText(mContext.getResources().getString(R.string.following));
@@ -86,32 +96,41 @@ public class BrowseBrandsRecyclerAdapter extends RecyclerView.Adapter {
 
     }
 
+    //getting the count of items
     @Override
     public int getItemCount() {
         return mImages.length;
     }
 
     public class BrowseBrandsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        //declaring variable
         ImageView ivBrand;
         TextView tvBrand,tvFollow;
         LinearLayout llBrand;
 
 
+        //Holder
         public BrowseBrandsViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            //initialising variable
             ivBrand=itemView.findViewById(R.id.iv_browse_brands);
             llBrand=itemView.findViewById(R.id.layout_brand);
             ivBrand.getLayoutParams().height=mHeight;
             ivBrand.getLayoutParams().width=mWidth;
             tvBrand=itemView.findViewById(R.id.tv_brand_title);
             tvFollow=itemView.findViewById(R.id.tv_follow_browse_brands);
+
+            //setting click listener
             tvFollow.setOnClickListener(this);
 
         }
 
+        //performing click operation on view
         @Override
         public void onClick(View view) {
 
+            //passing view and adapter position to the custom click listener
             mItemClickListener.onItemClick(view,getAdapterPosition());
         }
     }

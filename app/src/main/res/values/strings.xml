@@ -91,6 +91,11 @@
     <string name="noida_up_201301">Noida, UP-201301</string>
     <string name="order_placed">Order placed</string>
     <string name="current_status_tracking">Current Status\u0020\u0020:\u0020\u0020</string>
+    <string name="best_seller">Best-seller!!!</string>
+    <string name="_15_new_items_to">15 NEW ITEMS TO</string>
+    <string name="refresh_you">REFRESH YOU</string>
+    <string name="recommend">RECOMMEND</string>
+    <string name="for_you">FOR YOU</string>
 
 
     <string-array name="months">

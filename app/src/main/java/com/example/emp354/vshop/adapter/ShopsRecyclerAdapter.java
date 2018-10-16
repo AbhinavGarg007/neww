@@ -15,14 +15,18 @@ import static com.example.emp354.vshop.constants.Constant.DRAWABLE_INITIAL_PATH;
 
 public class ShopsRecyclerAdapter extends RecyclerView.Adapter{
 
+    //declaring variables
     private Context mContext;
     private int[] mImages;
 
+    //constructor for the adapter
     public ShopsRecyclerAdapter(Context context, int[] images)
     {
         mContext=context;
         mImages=images;
     }
+
+    //inflating layout
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -31,6 +35,7 @@ public class ShopsRecyclerAdapter extends RecyclerView.Adapter{
         return imagesHolder;
     }
 
+    //binding layout with the data
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
@@ -39,16 +44,21 @@ public class ShopsRecyclerAdapter extends RecyclerView.Adapter{
         ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + mImages[i],holder1.ivProduct);
     }
 
+    //getting the number of items
     @Override
     public int getItemCount() {
         return 10;
     }
 
+    //holder for adapter
     public class ShopsHolder extends RecyclerView.ViewHolder {
+
+        //declaring variables
         ImageView ivProduct;
         public ShopsHolder(@NonNull View itemView) {
             super(itemView);
 
+            //initialising variables
             ivProduct=itemView.findViewById(R.id.iv_product);
         }
     }

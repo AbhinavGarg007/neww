@@ -15,7 +15,15 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            android:src="@drawable/discover1"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_transparent"
+            android:alpha="0.7"/>
+
 
 
         <LinearLayout
@@ -26,14 +34,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="15 NEW ITEMS TO"
+                android:text="@string/_15_new_items_to"
                 android:textSize="@dimen/textsize_20"
                 android:textColor="@android:color/white"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="REFRESH YOU"
+                android:text="@string/refresh_you"
                 android:textSize="@dimen/textsize_25"
+                android:textStyle="bold"
                 android:textColor="@android:color/white"/>
 
         </LinearLayout>
@@ -49,7 +58,8 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="@android:color/white"
             android:scaleType="centerCrop"
             app:layout_collapseMode="parallax">
@@ -59,7 +69,8 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.25"
             android:layout_gravity="bottom"
             android:background="@color/color_list"
             app:tabBackground="@drawable/tab_selector"
@@ -81,7 +92,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:background="@color/color_grey_light"/>
+            android:src="@drawable/discover2"/>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_transparent"
+            android:alpha="0.7"/>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -90,20 +110,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Recommend"
+                android:text="@string/recommend"
                 android:textColor="@android:color/white"
                 android:textAllCaps="true"
                 android:textSize="@dimen/textsize_20"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="For You"
+                android:text="@string/for_you"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:textAllCaps="true"
                 android:textSize="@dimen/textsize_25"/>
 
         </LinearLayout>
+
 
 
 

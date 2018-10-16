@@ -11,9 +11,11 @@ import com.example.emp354.vshop.R;
 
 public class DiscoverRecyclerAdapter extends RecyclerView.Adapter {
 
+    //declaring variables
     private Context mContext;
 
 
+    //constructor for adapter
     public DiscoverRecyclerAdapter(Context context)
     {
         mContext=context;
@@ -26,17 +28,20 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter {
         return discoverViewHolder;
     }
 
+    //binding view with the data
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
         DiscoverViewHolder holder=(DiscoverViewHolder) viewHolder;
     }
 
+    //getting count of number of items
     @Override
     public int getItemCount() {
         return 5;
     }
 
+    //holder for the adapter
     public class DiscoverViewHolder extends RecyclerView.ViewHolder {
         public DiscoverViewHolder(@NonNull View itemView) {
             super(itemView);

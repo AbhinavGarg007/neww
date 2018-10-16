@@ -7,13 +7,22 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0"
+        android:layout_weight="2"
         android:background="@color/color_grey_light">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/refresh_you"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_transparent"
+            android:alpha="0.6">
+
+        </FrameLayout>
 
 
         <LinearLayout
@@ -31,6 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="REFRESH YOU"
+                android:textStyle="bold"
                 android:textSize="@dimen/textsize_25"
                 android:textColor="@android:color/white"/>
 
@@ -40,12 +50,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="0dp"
+        android:layout_weight="1.25">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview_discover"
-            android:layout_width="wrap_content"
+            android:background="@color/color_black"
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
@@ -55,35 +66,46 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0">
+        android:layout_weight="1.5">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:background="@color/color_grey_light"/>
-        <LinearLayout
+            android:src="@drawable/recommend_image"
+            android:scaleType="fitXY" />
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Recommend"
-                android:textColor="@android:color/white"
-                android:textAllCaps="true"
-                android:textSize="@dimen/textsize_20"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="For You"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:textAllCaps="true"
-                android:textSize="@dimen/textsize_25"/>
 
-        </LinearLayout>
+            android:background="@color/color_transparent">
+
+   <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RECOMMEND"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textsize_20" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FOR YOU"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textsize_25"
+        android:textStyle="bold" />
+
+</LinearLayout>
+        </FrameLayout>
+
 
 
 

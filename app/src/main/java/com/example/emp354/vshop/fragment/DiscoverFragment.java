@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.activity.HomeActivity;
 import com.example.emp354.vshop.adapter.DiscoverRecyclerAdapter;
+import com.example.emp354.vshop.decoration.CirclePagerIndicatorDecoration;
 import com.example.emp354.vshop.decoration.LinePagerIndicatorDecoration;
 import com.example.emp354.vshop.decoration.SeparatorDecoration;
 
@@ -47,6 +48,6 @@ public class DiscoverFragment extends Fragment {
 
         //pager indicator
         /*recyclerView.addItemDecoration(new SeparatorDecoration(getActivity(), Color.GRAY, 1.5f));*/
-        recyclerView.addItemDecoration(new LinePagerIndicatorDecoration());
+        recyclerView.addItemDecoration(new CirclePagerIndicatorDecoration());
     }
 }

@@ -15,6 +15,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import static com.example.emp354.vshop.constants.Constant.DRAWABLE_INITIAL_PATH;
 
 public class CategoriesRecyclerAdapter extends RecyclerView.Adapter {
+    //decaring variables
     Context mContext;
     String[] mType;
     String[] mDiscounts;
@@ -22,6 +23,7 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter {
     int mHeight;
 
 
+    // constructor of adapter
     public CategoriesRecyclerAdapter(Context context,String[] type,String[] discount,int[] image,int height)
     {
         mContext=context;
@@ -30,6 +32,9 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter {
         mImage=image;
         mHeight=height;
     }
+
+
+    //inflating layout
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -38,6 +43,7 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter {
         return categoriesHolder;
     }
 
+    //binding layout to the data
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
@@ -48,16 +54,23 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter {
         ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + mImage[i],categoriesHolder.ivCategory);
     }
 
+    //getting count for number of items
     @Override
     public int getItemCount() {
         return 6;
     }
 
+
+    //holder for the adapter
     public class CategoriesHolder extends RecyclerView.ViewHolder {
+
+        //declaring variables
         TextView tvType,tvDiscount;
         ImageView ivCategory;
         public CategoriesHolder(@NonNull View itemView) {
             super(itemView);
+
+            //initialising variables
             tvType=itemView.findViewById(R.id.tv_type_category);
             tvDiscount=itemView.findViewById(R.id.tv_discount_category);
             ivCategory=itemView.findViewById(R.id.iv_category);

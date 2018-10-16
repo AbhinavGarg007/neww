@@ -22,6 +22,7 @@ import static com.example.emp354.vshop.constants.Constant.BRANDS_TITLE;
 
 public class BrowseBrandsFragment extends Fragment implements ItemClickListener {
 
+    //declaring variables
     RecyclerView recyclerView;
     int requiredHeight=0;
     int requiredWidth=0;
@@ -29,16 +30,21 @@ public class BrowseBrandsFragment extends Fragment implements ItemClickListener 
     HashSet<Integer> isFollowed;
     @Nullable
     @Override
+
+    //inflating layout
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.layout_browse_brands,container,false);
         return view;
     }
 
+    //performing operation after layout inflated
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         ((HomeActivity)getActivity()).checkFragment();
         isFollowed=new HashSet<>();
         recyclerView=view.findViewById(R.id.recyclerview_browse_brands);
+
+        //getting height and weight on runtime
         if(((HomeActivity)getActivity()).getHeight()!=0)
         {
             requiredHeight=((HomeActivity)getActivity()).getHeight()*7/100;
@@ -47,14 +53,21 @@ public class BrowseBrandsFragment extends Fragment implements ItemClickListener 
         {
             requiredWidth=((HomeActivity)getActivity()).getHeight()*10/100;
         }
+
+        //initialising adapter
         browseBrandsRecyclerAdapter=new BrowseBrandsRecyclerAdapter(getActivity(),BRANDS,BRANDS_TITLE,requiredHeight,requiredWidth,isFollowed,this);
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
+
+        //setting adapter to recycler view
         recyclerView.setAdapter(browseBrandsRecyclerAdapter);
+
+        //setting layout manager to recycler view
         recyclerView.setLayoutManager(linearLayoutManager);
 
     }
 
+    //performing operation after getting passed position
     @Override
     public void onItemClick(View view, int position) {
         switch (view.getId())

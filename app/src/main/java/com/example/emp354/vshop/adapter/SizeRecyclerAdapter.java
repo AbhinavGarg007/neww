@@ -18,20 +18,25 @@ import java.util.List;
 
 public class SizeRecyclerAdapter extends RecyclerView.Adapter {
 
+    //declaring variables
     private Context mContext;
     private List<String> mSize;
     private ItemClickListener mItemClickListener;
     private List<Integer> mIsSizeSelected;
     private HashMap<String,String> mIsSizeAvailable;
 
+    //constructor for the adapter
     public SizeRecyclerAdapter(Context context,List<String> size,ItemClickListener itemClickListener,List<Integer> isSizeSelected,HashMap<String,String> isSizeAvailable)
     {
+        //assigning values passed into constructor to variables
         mSize=size;
         mContext=context;
         mItemClickListener=itemClickListener;
         mIsSizeSelected=isSizeSelected;
         mIsSizeAvailable=isSizeAvailable;
     }
+
+    //inflating layout
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -40,6 +45,7 @@ public class SizeRecyclerAdapter extends RecyclerView.Adapter {
         return sizeViewHolder;
     }
 
+    //binding layout with the data
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         SizeViewHolder holder=(SizeViewHolder) viewHolder;
@@ -49,6 +55,8 @@ public class SizeRecyclerAdapter extends RecyclerView.Adapter {
         {
            holder.tvSize.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         }
+
+        //checking whether any one of the available size is already selected or not
         if(mIsSizeSelected.contains(i)) {
             holder.tvSize.setBackground(mContext.getDrawable(R.drawable.size_selected_drawable));
             holder.tvSize.setTextColor(mContext.getResources().getColor(android.R.color.white));
@@ -61,19 +69,23 @@ public class SizeRecyclerAdapter extends RecyclerView.Adapter {
 
     }
 
+    //returning the number of items
     @Override
     public int getItemCount() {
         return mSize.size();
     }
 
     public class SizeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        //declaring variables
         TextView tvSize;
         public SizeViewHolder(@NonNull View itemView) {
             super(itemView);
+            //initialising variables
             tvSize=itemView.findViewById(R.id.tv_size);
             tvSize.setOnClickListener(this);
         }
 
+        //passing view and adapter position in custom listener
         @Override
         public void onClick(View view) {
             mItemClickListener.onItemClick(view,getAdapterPosition());

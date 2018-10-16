@@ -19,6 +19,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import static com.example.emp354.vshop.constants.Constant.DRAWABLE_INITIAL_PATH;
 
 public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
+
+    //declaring variables
     Context mContext;
     int[] mFeeds;
     String[] mTitle;
@@ -26,6 +28,7 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
     ItemClickListener mItemClickListener;
     int mHeight;
 
+    //constructor for the adapter
     public FeedsRecyclerAdapter(Context context,int[] feeds,String[] title,String[] price,ItemClickListener itemClickListener,int height)
     {
       mContext=context;
@@ -35,6 +38,8 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
       mItemClickListener =itemClickListener;
       mHeight=height;
     }
+
+    //inflating layout
     @NonNull
     @Override
     public FeedsHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -43,6 +48,7 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
         return feedsHolder;
     }
 
+    //binding view with the data
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
 
@@ -54,12 +60,16 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
 
     }
 
+    //getting count of the number of items
     @Override
     public int getItemCount() {
         return 10;
     }
 
+
+    //holder for the adapter
     public class FeedsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        //declaring variables
         ImageView ivFeed,ivActionBar;
         LinearLayout layoutItemFeeds;
         TextView tvTitle,tvNewPrice,tvOldPrice;
@@ -67,8 +77,9 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
 
         public FeedsHolder(@NonNull View itemView) {
             super(itemView);
-            ivFeed=itemView.findViewById(R.id.iv_feed);
 
+            //initialising variables
+            ivFeed=itemView.findViewById(R.id.iv_feed);
             ivActionBar=itemView.findViewById(R.id.iv_action_bar);
             tvTitle=itemView.findViewById(R.id.tv_title);
             tvNewPrice=itemView.findViewById(R.id.tv_new_price);
@@ -77,12 +88,17 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
 
 
             layoutItemFeeds=itemView.findViewById(R.id.layout_action_bar);
+
+            //setting listener
             ivFeed.setOnClickListener(this);
+
+            //setting height of the layout
             ivFeed.getLayoutParams().height=mHeight;
             view_dim.getLayoutParams().height=mHeight;
             ivActionBar.setOnClickListener(this);
         }
 
+        //performing click on actiondots in layout
         @Override
         public void onClick(View view) {
             switch (view.getId()){
@@ -97,6 +113,7 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
                     }
 
             }
+            //passing view and adapter position to the itemClickListener
             mItemClickListener.onItemClick(view,getAdapterPosition());
 
         }

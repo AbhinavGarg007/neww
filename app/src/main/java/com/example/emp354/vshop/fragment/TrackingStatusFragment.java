@@ -13,6 +13,8 @@ import com.example.emp354.vshop.R;
 public class TrackingStatusFragment extends Fragment {
     @Nullable
     @Override
+
+    //inflating layout
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.layout_tracking_status,container,false);
         return view;

@@ -54,6 +54,7 @@ public class TrackOrderFragment extends Fragment implements ItemClickListener {
      {
          case R.id.ll_track_order_item:
              Intent trackOrderIntent=new Intent(getActivity(),TrackOrderActivity.class);
+             trackOrderIntent.putExtra("position",position);
              startActivity(trackOrderIntent);
      }
     }

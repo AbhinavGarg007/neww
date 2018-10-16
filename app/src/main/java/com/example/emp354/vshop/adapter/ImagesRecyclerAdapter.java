@@ -17,14 +17,18 @@ import static com.example.emp354.vshop.constants.Constant.DRAWABLE_INITIAL_PATH;
 
 public class ImagesRecyclerAdapter extends RecyclerView.Adapter {
 
+    //declaring variables
     private Context mContext;
     private int[] mImages;
 
+    //constructor for adapter
     public ImagesRecyclerAdapter(Context context, int[] images)
     {
         mContext=context;
         mImages=images;
     }
+
+    //inflating layout
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -33,6 +37,7 @@ public class ImagesRecyclerAdapter extends RecyclerView.Adapter {
         return imagesHolder;
     }
 
+    //binding view with the data
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
@@ -41,16 +46,19 @@ public class ImagesRecyclerAdapter extends RecyclerView.Adapter {
         ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + mImages[i],holder1.ivProduct);
     }
 
+    //returning the number of items
     @Override
     public int getItemCount() {
         return 10;
     }
 
     public class ImagesHolder extends RecyclerView.ViewHolder {
+        //declaring variables
         ImageView ivProduct;
         public ImagesHolder(@NonNull View itemView) {
             super(itemView);
 
+            //initialising variables
             ivProduct=itemView.findViewById(R.id.iv_product);
         }
     }
