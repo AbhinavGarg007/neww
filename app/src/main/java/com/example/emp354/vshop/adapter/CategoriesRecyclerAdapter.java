@@ -23,9 +23,11 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter {
     int mHeight;
 
 
+
     // constructor of adapter
     public CategoriesRecyclerAdapter(Context context,String[] type,String[] discount,int[] image,int height)
     {
+        //assigning values passed in constructor to variables
         mContext=context;
         mType=type;
         mDiscounts=discount;
@@ -34,7 +36,7 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter {
     }
 
 
-    //inflating layout
+    //inflating layout and assign it to holder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -47,10 +49,13 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
+        //casting holder into Categories Holder
         CategoriesHolder categoriesHolder=(CategoriesHolder) viewHolder;
         categoriesHolder.tvType.setText(mType[i]);
         categoriesHolder.tvDiscount.setText(mDiscounts[i]);
        /* categoriesHolder.ivCategory.setImageResource(mImage[i]);*/
+
+        //loading image using imageloader
         ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + mImage[i],categoriesHolder.ivCategory);
     }
 

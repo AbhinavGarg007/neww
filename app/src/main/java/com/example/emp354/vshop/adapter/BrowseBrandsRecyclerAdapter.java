@@ -34,6 +34,7 @@ public class BrowseBrandsRecyclerAdapter extends RecyclerView.Adapter {
     public BrowseBrandsRecyclerAdapter(Context context, int[] images, String[] title, int height, int width, HashSet<Integer> isFollowed,ItemClickListener itemClickListener)
     {
 
+        //assigning values passed to constructor
         mContext=context;
         mImages=images;
         mTitle=title;
@@ -43,7 +44,7 @@ public class BrowseBrandsRecyclerAdapter extends RecyclerView.Adapter {
         mIsFollowed=isFollowed;
     }
 
-    //inflating view
+    //inflating view and assign it to holder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -71,22 +72,26 @@ public class BrowseBrandsRecyclerAdapter extends RecyclerView.Adapter {
         //checking if position is even or not and setting the background coor according to that.
         if(i%2!=0)
         {
+            //settng background of layout light grey in colour
             holder1.llBrand.setBackgroundColor(mContext.getResources().getColor(R.color.color_list));
         }
         else
         {
+            //settng background of layout white in colour
             holder1.llBrand.setBackgroundColor(mContext.getResources().getColor(android.R.color.white));
         }
 
         //checking whether user is already following or not and setting the layout according to that
         if(mIsFollowed.contains(i))
         {
+            //if follow then text will be set as following
            holder1.tvFollow.setText(mContext.getResources().getString(R.string.following));
            holder1.tvFollow.setTextColor(mContext.getResources().getColor(android.R.color.white));
            holder1.tvFollow.setBackground(mContext.getResources().getDrawable(R.drawable.ic_bg_follow));
         }
         else
         {
+            //if not follow then text will be set as Follow Me
             holder1.tvFollow.setText(mContext.getResources().getString(R.string.follow_me));
             holder1.tvFollow.setTextColor(mContext.getResources().getColor(R.color.color_black));
             holder1.tvFollow.setBackground(mContext.getResources().getDrawable(R.drawable.ic_bg_following));

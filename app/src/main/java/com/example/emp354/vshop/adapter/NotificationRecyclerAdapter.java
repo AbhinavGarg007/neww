@@ -26,11 +26,13 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter {
     //constructor for adapter
     public NotificationRecyclerAdapter(Context context,int height,ItemClickListener itemClickListener)
     {
+        //assigning values passed in constructor to the variable
         mContext=context;
         mItemClickListener=itemClickListener;
         mHeight=height;
     }
 
+    //inflating layout and assign it to holder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -54,6 +56,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter {
         }
         else
         {
+            //for a particular position inflating the layout for the new released product
             if(i==0)
             {
                 holder.tvNew.setVisibility(View.VISIBLE);
@@ -62,6 +65,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter {
                 ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + R.drawable.glasses,holder.ivShipping);
                 holder.layoutItemNotification.setEnabled(false);
             }
+            //else making the layout visibility gone
             else {
                 /*holder.ivShipping.setImageResource(R.drawable.ic_track_shiping);*/
                 holder.tvNew.setVisibility(View.GONE);

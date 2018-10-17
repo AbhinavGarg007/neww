@@ -2,7 +2,6 @@ package com.example.emp354.vshop.activity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,7 +31,7 @@ import android.widget.Toast;
 
 import com.example.emp354.vshop.AppDatabase;
 import com.example.emp354.vshop.R;
-import com.example.emp354.vshop.Utility;
+import com.example.emp354.vshop.utility.Utility2;
 import com.example.emp354.vshop.VshopSharedPreference;
 import com.example.emp354.vshop.VshopUserModel;
 import com.jackandphantom.blurimage.BlurImage;
@@ -49,17 +48,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class EditProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     //declaring variables
-    ImageView ivEdit,ivBlur;
+    ImageView ivEdit, ivBlur;
     CircleImageView ivImage;
     RadioGroup rgGender;
-    TextView tvResetPassword,tvDob,tvCancel,tvDone,tvName;
-    RadioButton rbMale,rbFemale;
+    TextView tvResetPassword, tvDob, tvCancel, tvDone, tvName;
+    RadioButton rbMale, rbFemale;
     Calendar calendar;
-    int currentYear,currentMonth,currentDay;
+    int currentYear, currentMonth, currentDay;
     ProgressDialog updateDialog;
     long id;
-    String gender,dob,userChoosenTask,imageLocation;
-    int REQUEST_CAMERA=0,SELECT_FILE=1;
+    String gender, dob, imageLocation;
+    int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     Bitmap bitmap;
 
     AppDatabase appDatabase;
@@ -68,14 +67,15 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     VshopSharedPreference vshopSharedPreference;
 
 
-   Toolbar editToolbar;
+    Toolbar editToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
         Log.d("EditProfileActivity", "onCreate");
 
-        //initialing variables
+        //initialising variables
         ivImage = findViewById(R.id.iv_image);
         ivEdit = findViewById(R.id.iv_edit);
         ivBlur = findViewById(R.id.iv_blur_edit);
@@ -131,50 +131,51 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
+        switch (view.getId()) {
+            //click to reset password
             case R.id.tv_reset_password:
-                Intent resetPasswordIntent=new Intent(this,ResetPasswordActivity.class);
+                Intent resetPasswordIntent = new Intent(this, ResetPasswordActivity.class);
                 startActivity(resetPasswordIntent);
                 break;
 
+            //click to set dob
             case R.id.tv_dob:
-                DatePickerDialog dialog=new DatePickerDialog(EditProfileActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog dialog = new DatePickerDialog(EditProfileActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        populateSetDate(year,month+1,day);
+                        populateSetDate(year, month + 1, day);
                         dob = tvDob.getText().toString();
                     }
-                },currentYear,currentMonth,currentDay);
+                }, currentYear, currentMonth, currentDay);
                 dialog.setCancelable(false);
                 dialog.show();
                 break;
 
+            //click to finish the activity
             case R.id.tv_cancel:
                 finish();
                 break;
 
 
+            //click to update data in db
             case R.id.tv_done:
                 new UpdateInfoAsyncTask().execute();
 
                 break;
 
             case R.id.iv_edit:
-               /* new EditAsyncTask().execute();*/
+                /* new EditAsyncTask().execute();*/
                 selectImage();
                 break;
         }
     }
 
 
-
     //async task to update info
-    private class UpdateInfoAsyncTask extends AsyncTask<Void,Void,Void>
-    {
+    private class UpdateInfoAsyncTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
-        updateDialog=ProgressDialog.show(EditProfileActivity.this,"Updating data","Please Wait..");
+            updateDialog = ProgressDialog.show(EditProfileActivity.this, "Updating data", "Please Wait..");
         }
 
         @Override
@@ -182,46 +183,38 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
             updateDialog.dismiss();
             finish();
         }
+
         @Override
         protected Void doInBackground(Void... voids) {
-                vshopSharedPreference.saveImage(imageLocation);
-                appDatabase.userDao().updateInfo(gender, dob, imageLocation, id);
+            vshopSharedPreference.saveImage(imageLocation);
+            appDatabase.userDao().updateInfo(gender, dob, imageLocation, id);
 
             return null;
         }
     }
 
     //method to set date on textview
-    private void populateSetDate(int year,int month,int day)
-    {
-        String dob=day+"."+month+"."+year;
+    private void populateSetDate(int year, int month, int day) {
+        String dob = day + "." + month + "." + year;
         tvDob.setText(dob);
     }
 
     //method to provide options to user to select image
-    private void selectImage()
-    {
-        final CharSequence[] items={"Take Photo","Choose from Library","Cancel"};
-        AlertDialog.Builder builder=new AlertDialog.Builder(EditProfileActivity.this);
+    private void selectImage() {
+        final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivity.this);
         builder.setTitle("Add Photo");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                boolean result=Utility.checkPermission(EditProfileActivity.this);
-                if(items[which].equals("Take Photo"))
-                {
-                    userChoosenTask="Take Photo";
-                    if(result)
+                /*boolean result=Utility.checkPermission(EditProfileActivity.this);*/
+                if (items[which].equals("Take Photo")) {
+                    if (Utility2.checkCameraPermission(EditProfileActivity.this))
                         cameraIntent();
-                }
-                else if(items[which].equals("Choose from Library"))
-                {
-                    userChoosenTask="Choose From Library";
-                    if(result)
+                } else if (items[which].equals("Choose from Library")) {
+                    if (Utility2.checkGalleryPermission(EditProfileActivity.this))
                         galleryIntent();
-                }
-                else if(items[which].equals("Cancel"))
-                {
+                } else if (items[which].equals("Cancel")) {
                     dialog.dismiss();
                 }
             }
@@ -231,105 +224,104 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
 
     //method to open camera
-    private void cameraIntent()
-    {
-        Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent,REQUEST_CAMERA);
+    private void cameraIntent() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_CAMERA);
     }
 
     //method to open gallery
-    private void galleryIntent()
-    {
-        Intent intent=new Intent();
+    private void galleryIntent() {
+        Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Select File"),SELECT_FILE);
+        startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
     }
-
 
 
     //method for the permission
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode)
-        {
-            case Utility.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
-                if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
-                {
-                    if(userChoosenTask.equals("Take Photo"))
-                        cameraIntent();
-                    else if(userChoosenTask.equals("Choose from Library"))
-                        galleryIntent();
+        switch (requestCode) {
+            case Utility2.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    galleryIntent();
+                } else {
+                    Toast.makeText(this, "You do not have external storage permissions.", Toast.LENGTH_SHORT).show();
                 }
-                else {
-                    Toast.makeText(this,"You do not have permissions.",Toast.LENGTH_SHORT).show();
+                break;
+
+
+            case Utility2.MY_PERMISSIONS_REQUEST_CAMERA:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    cameraIntent();
+                } else {
+                    Toast.makeText(this, "You do not have camera permissions.", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
     }
 
 
+    //method to be called after getting data
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode==Activity.RESULT_OK)
-        {
-            if(requestCode==SELECT_FILE)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == SELECT_FILE)
                 onSelectFromGalleryResult(data);
-            else if(requestCode==REQUEST_CAMERA)
+            else if (requestCode == REQUEST_CAMERA)
                 onCaptureImageResult(data);
         }
     }
 
     //method to perform operation on captured image
-    private void onCaptureImageResult(Intent data)
-    {
-        Bitmap thumbnail=(Bitmap)data.getExtras().get("data");
-        ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-        thumbnail.compress(Bitmap.CompressFormat.JPEG,90,byteArrayOutputStream);
+    private void onCaptureImageResult(Intent data) {
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
 
-        File dir=new File(Environment.getExternalStorageDirectory(),"vshop_images");
+        File dir = new File(Environment.getExternalStorageDirectory(), "vshop_images");
         if (!dir.exists()) {
             dir.mkdir();
         }
-        File destination=new File(dir,System.currentTimeMillis()+".jpg");
+        File destination = new File(dir, System.currentTimeMillis() + ".jpg");
         FileOutputStream fo;
-        try
-        {
+        try {
             destination.createNewFile();
-            Log.d("location",String.valueOf(destination));
+            Log.d("location", String.valueOf(destination));
 
             //to convert string filepath into uri
            /* Uri uri=Uri.fromFile(new File(destination.getAbsolutePath()));
             imageLocation=String.valueOf(uri);*/
-           imageLocation=destination.getAbsolutePath();
-            Log.d("location",String.valueOf(imageLocation));
-            fo=new FileOutputStream(destination);
+            imageLocation = destination.getAbsolutePath();
+            Log.d("location", String.valueOf(imageLocation));
+            fo = new FileOutputStream(destination);
             fo.write(byteArrayOutputStream.toByteArray());
             fo.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        catch (FileNotFoundException e)
-        { e.printStackTrace(); }
-        catch (IOException e)
-        { e.printStackTrace(); }
         setImage(thumbnail);
     }
 
     //method to get image from gallery
-    private void onSelectFromGalleryResult(Intent data)
-    { Bitmap bm=null;
-        if(data!=null) {
+    private void onSelectFromGalleryResult(Intent data) {
+        Bitmap bm = null;
+        if (data != null) {
             try {
-                Uri contentUri=data.getData();
+                Uri contentUri = data.getData();
                 bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
-               /* imageLocation=String.valueOf(fileUri.getPath());*/
-                imageLocation=getRealPathFromURI(this,contentUri);
-                Log.d("location",String.valueOf(data.getData()));
+                /* imageLocation=String.valueOf(fileUri.getPath());*/
+                imageLocation = getRealPathFromURI(this, contentUri);
+                Log.d("location", String.valueOf(data.getData()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }setImage(bm);
+        }
+        setImage(bm);
     }
 
 
@@ -337,8 +329,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     public String getRealPathFromURI(Context context, Uri contentUri) {
         Cursor cursor = null;
         try {
-            String[] proj = { MediaStore.Images.Media.DATA };
-            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+            String[] proj = {MediaStore.Images.Media.DATA};
+            cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
             int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
             return cursor.getString(column_index);
@@ -352,15 +344,13 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     }
 
     //method to set image into imageview
-    private void setImage(Bitmap bm)
-    {
+    private void setImage(Bitmap bm) {
         ivImage.setImageBitmap(bm);
         BlurImage.with(this).load(bm).intensity(20).Async(true).into(ivBlur);
     }
 
 
-    private void setData()
-    {
+    private void setData() {
         //checking whether gender entry is not null
         if (vshopUserModel.getGender() != null) {
             //for gender
@@ -377,7 +367,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         tvDob.setText(vshopUserModel.getDob());
 
         //for profile pic
-        if (vshopUserModel.getProfile_pic().equals("")) {
+        if (vshopUserModel.getProfile_pic() == null || vshopUserModel.getProfile_pic().equals("")) {
             ivImage.setImageDrawable(getResources().getDrawable(R.drawable.imageview_placeholder));
             BlurImage.with(this).load(R.drawable.imageview_placeholder).intensity(20).Async(true).into(ivBlur);
         } else {
@@ -390,37 +380,37 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     protected void onPause() {
-        Log.d("EditProfileActivity","onPause");
+        Log.d("EditProfileActivity", "onPause");
         super.onPause();
     }
 
     @Override
     protected void onResume() {
-        Log.d("EditProfileActivity","onResume");
+        Log.d("EditProfileActivity", "onResume");
         super.onResume();
     }
 
     @Override
     protected void onDestroy() {
-        Log.d("EditProfileActivity","onDestroy");
+        Log.d("EditProfileActivity", "onDestroy");
         super.onDestroy();
     }
 
     @Override
     protected void onRestart() {
-        Log.d("EditProfileActivity","onRestart");
+        Log.d("EditProfileActivity", "onRestart");
         super.onRestart();
     }
 
     @Override
     protected void onStart() {
-        Log.d("EditProfileActivity","onStart");
+        Log.d("EditProfileActivity", "onStart");
         super.onStart();
     }
 
     @Override
     protected void onStop() {
-        Log.d("EditProfileActivity","onStop");
+        Log.d("EditProfileActivity", "onStop");
         super.onStop();
     }
 }

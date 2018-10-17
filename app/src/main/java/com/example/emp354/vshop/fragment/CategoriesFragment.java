@@ -22,9 +22,22 @@ import static com.example.emp354.vshop.constants.Constant.CATEGORY_IMAGE;
 import static com.example.emp354.vshop.constants.Constant.CATEGORY_TYPES;
 
 public class CategoriesFragment extends Fragment {
+
+    /**
+     * initialising varibles
+     */
     int requiredHeight=0;
 
     CategoriesRecyclerAdapter categoriesRecyclerAdapter;
+
+
+    /**
+     * method to inflate layout
+     * @param inflater to inflate layout
+     * @param container it is the parent of inflated layout
+     * @param savedInstanceState if you want to save the instance
+     * @return
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,6 +46,11 @@ public class CategoriesFragment extends Fragment {
     }
 
 
+    /**
+     * method to perform operation after layout in inflated
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         ((HomeActivity)getActivity()).checkFragment();

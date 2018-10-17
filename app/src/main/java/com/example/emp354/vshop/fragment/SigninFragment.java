@@ -23,6 +23,8 @@ import com.example.emp354.vshop.VshopSharedPreference;
 import com.example.emp354.vshop.VshopUserModel;
 
 public class SigninFragment extends Fragment implements View.OnClickListener {
+
+    //declaring variables
     Button btnSubmit,btnSignin;
     TextView tvForgotPassword;
     EditText etEmail,etPassword;
@@ -32,6 +34,7 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
     ProgressDialog dialog;
     VshopSharedPreference vshopSharedPreference;
 
+    //inflating layout
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,9 +42,11 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    //perform operation after layout is inflated
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        //initialising variables
         appDatabase=AppDatabase.getAppDatabase(getContext());
         DATABASE_NAME="user_db";
         vshopUserModel=new VshopUserModel();
@@ -53,6 +58,7 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
         etEmail=view.findViewById(R.id.et_signin_email);
         etPassword=view.findViewById(R.id.et_signin_password);
 
+        //setting listener on views
         btnSubmit.setOnClickListener(this);
         btnSignin.setOnClickListener(this);
         tvForgotPassword.setOnClickListener(this);
@@ -78,6 +84,7 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
     }
 
 
+    //async task to perform login operation
     private class SigninAsyncTask extends AsyncTask<Void,Void,VshopUserModel>
     {
 
@@ -90,6 +97,8 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(VshopUserModel vshopUserModel) {
             dialog.dismiss();
+
+            //if the data we are getting from db is not null , then move to next activity
             if(vshopUserModel!=null)
             {
                 vshopSharedPreference.saveId(vshopUserModel.getUid());
@@ -97,6 +106,8 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
                 Intent intent=new Intent(((SigninRegisterActivity)getActivity()),HomeActivity.class);
                 startActivity(intent);
             }
+
+            //else print entries are not correct
             else {
                 Toast.makeText(getActivity(),"Please check the entries",Toast.LENGTH_SHORT).show();
             }

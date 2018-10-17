@@ -25,6 +25,8 @@ import com.example.emp354.vshop.VshopSharedPreference;
 import com.example.emp354.vshop.VshopUserModel;
 
 public class RegisterFragment extends Fragment implements View.OnClickListener {
+
+    //declaring variables
     Button btnSubmit,btnSignin;
     EditText etFirstName,etLastName,etEmail,etPassword,etConfirmPassword,etUserName;
     AppDatabase appDatabase;
@@ -40,6 +42,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     VshopSharedPreference vshopSharedPreference;
 
 
+    //inflating layout
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,9 +50,11 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    //perform operation after view is inflated
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        //initialising variables
         appDatabase=AppDatabase.getAppDatabase(getContext());
         DATABASE_NAME="user_db";
         vshopUserModel=new VshopUserModel();
@@ -68,10 +73,12 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         rbMale=view.findViewById(R.id.rb_male);
         rbFemale=view.findViewById(R.id.rb_female);
 
+        //setting listener on radio group
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
 
+                //getting which radiobutton is clicked or not
                 RadioButton checkedRadioButton=radioGroup.findViewById(i);
                 if(checkedRadioButton.getText().toString()!=null) {
                     isChecked=true;
@@ -80,6 +87,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+        //setting listener on buttons
         btnSubmit.setOnClickListener(this);
         btnSignin.setOnClickListener(this);
     }
@@ -118,7 +126,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    //aync task method
+    //aync task method to register user
 
     private class RegisterAsyncTask extends AsyncTask<Void,Void,String>
     {
@@ -131,6 +139,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         protected void onPostExecute(String string) {
             dialog.dismiss();
             printToast(string);
+
+            //if account created the move to next activity
             if(!isAccountExist) {
                 Intent intent = new Intent((SigninRegisterActivity) getActivity(), HomeActivity.class);
                 startActivity(intent);
@@ -143,10 +153,12 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
             vshopUserModel=appDatabase.userDao().isMailExist(etEmail.getText().toString());
             if(vshopUserModel!=null)
             {
+                //if account exists, return account exist message
                 isAccountExist=true;
                 return getString(R.string.toast_account_exist);
             }
             else {
+                //add data in model and insert in the database
                 vshopUserModel=new VshopUserModel();
                 vshopUserModel.setFirstName(etFirstName.getText().toString());
                 vshopUserModel.setLastName(etLastName.getText().toString());

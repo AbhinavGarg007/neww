@@ -11,8 +11,12 @@ import android.widget.Toolbar;
 
 import com.example.emp354.vshop.R;
 
+/**
+ * activity to display the orders placed in past
+ */
 public class OrderHistoryActivity extends AppCompatActivity {
 
+    //declaring variables
     android.support.v7.widget.Toolbar toolbar;
     TextView tvTitle;
     LinearLayout layoutSearch;
@@ -21,6 +25,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_history);
+        //assigning variables
         toolbar=findViewById(R.id.toolbar_order_history_activity);
         tvTitle=findViewById(R.id.tv_title_order_history_activity);
         layoutSearch=findViewById(R.id.layout_search_order_history);
@@ -32,6 +37,8 @@ public class OrderHistoryActivity extends AppCompatActivity {
         searchStateCheck();
     }
 
+
+    //method to set toolbar ,inflate menu and setting click listener on menu items
     private void setToolbar()
     {
         toolbar.setNavigationIcon(R.drawable.ic_navigation_arrow);
@@ -50,11 +57,13 @@ public class OrderHistoryActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId())
                 {
+                    //if click on navigation bag icon
                     case R.id.navigation_bag:
                         Intent intent=new Intent(OrderHistoryActivity.this,EmptyShoppingBagActivity.class);
                         startActivity(intent);
                         break;
 
+                        //if click on navigation search icon
 
                     case R.id.navigation_search:
                         isSearchOpen=true;

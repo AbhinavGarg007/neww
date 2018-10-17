@@ -31,6 +31,7 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
     //constructor for the adapter
     public FeedsRecyclerAdapter(Context context,int[] feeds,String[] title,String[] price,ItemClickListener itemClickListener,int height)
     {
+        //assigning values passed in constructor to the variable
       mContext=context;
       mFeeds=feeds;
       mTitle=title;
@@ -39,7 +40,7 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
       mHeight=height;
     }
 
-    //inflating layout
+    //inflating layout and assign it to holder
     @NonNull
     @Override
     public FeedsHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -102,11 +103,13 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
         @Override
         public void onClick(View view) {
             switch (view.getId()){
+                //making layout visible after clicking on action dots
                 case R.id.iv_action_bar:
                     if(layoutItemFeeds.getVisibility() == View.GONE && view_dim.getVisibility() == View.GONE){
                         layoutItemFeeds.setVisibility(View.VISIBLE);
                         view_dim.setVisibility(View.VISIBLE);
                     }
+                    //making layout gone
                     else {
                         layoutItemFeeds.setVisibility(View.GONE);
                         view_dim.setVisibility(View.GONE);

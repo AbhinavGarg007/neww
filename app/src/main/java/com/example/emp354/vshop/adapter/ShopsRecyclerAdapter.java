@@ -22,11 +22,12 @@ public class ShopsRecyclerAdapter extends RecyclerView.Adapter{
     //constructor for the adapter
     public ShopsRecyclerAdapter(Context context, int[] images)
     {
+        //assigning values passed in constructor to the variable
         mContext=context;
         mImages=images;
     }
 
-    //inflating layout
+    //inflating layout and assign it to holder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -41,6 +42,8 @@ public class ShopsRecyclerAdapter extends RecyclerView.Adapter{
 
         ShopsHolder holder1=(ShopsHolder) viewHolder;
        /* holder1.ivProduct.setImageResource(mImages[i]);*/
+
+        //loading image using imageloader
         ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + mImages[i],holder1.ivProduct);
     }
 

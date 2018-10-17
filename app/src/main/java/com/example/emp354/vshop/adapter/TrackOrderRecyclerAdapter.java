@@ -27,7 +27,17 @@ public class TrackOrderRecyclerAdapter extends RecyclerView.Adapter {
     private int mHeight;
     private ItemClickListener mItemClickListener;
 
-    //constructor for the adapter
+
+
+
+
+    /**
+     * constructor for the adapter
+     *
+     * @param context context which is used to get the activity context
+     * @param height  which is used to assign the runtime permission
+     * @param itemClickListener
+     */
     public TrackOrderRecyclerAdapter(Context context,int height,ItemClickListener itemClickListener)
     {
         mContext=context;
@@ -35,7 +45,7 @@ public class TrackOrderRecyclerAdapter extends RecyclerView.Adapter {
         mItemClickListener=itemClickListener;
     }
 
-    //inflating layout
+    //inflating layout and assign it to holder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {

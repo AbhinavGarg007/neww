@@ -17,11 +17,12 @@ public class ShoppingBagAdapter extends RecyclerView.Adapter {
     //constructor for the adapter
     public ShoppingBagAdapter(Context context)
     {
+        //assigning values passed in constructor to the variable
         mContext=context;
     }
 
 
-    //inflating layout
+    //inflating layout and assign it to holder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -30,7 +31,7 @@ public class ShoppingBagAdapter extends RecyclerView.Adapter {
         return shoppingBagViewHolder;
     }
 
-    //binding holder with data
+    //binding holder layout with data
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 

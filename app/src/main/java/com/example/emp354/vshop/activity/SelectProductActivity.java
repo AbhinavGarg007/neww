@@ -36,8 +36,8 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
 
     //declaring variables
     Toolbar toolbar;
-    TextView tvTitle, tvNewPrice,tvTitleToolbar, tvOldPrice,tvQuantity,tvAddToCart,tvSize26,tvSize28,tvSize30,tvSize32,tvSize34,tvSize36,tvSize38;
-    ImageView ivSelectProductImage;
+    TextView tvTitle, tvNewPrice,tvTitleToolbar, tvOldPrice,tvQuantity,tvAddToCart,tvLike,tvSize26,tvSize28,tvSize30,tvSize32,tvSize34,tvSize36,tvSize38;
+    ImageView ivSelectProductImage,ivLike;
     LinearLayout layoutSearch,llQuantity;
 
     RecyclerView recyclerView;
@@ -45,6 +45,8 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
     EditText etSearch;
     boolean isSearchOpen=false;
     SizeRecyclerAdapter sizeRecyclerAdapter;
+    boolean isLiked=false;
+    int likes=95;
 
     //hashmap to check whether size is available or not
     HashMap<String,String> isSizeAvailable=new HashMap<>();
@@ -75,6 +77,9 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
         ivSelectProductImage = findViewById(R.id.iv_select_product_image);
         tvQuantity = findViewById(R.id.btn_quantity);
         tvAddToCart = findViewById(R.id.btn_add_to_cart);
+
+        ivLike=findViewById(R.id.iv_like);
+        tvLike=findViewById(R.id.tv_like);
 
         //calling methods
         setToolbar();
@@ -108,6 +113,7 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
         //setting onClickListener
         llQuantity.setOnClickListener(this);
         tvAddToCart.setOnClickListener(this);
+        ivLike.setOnClickListener(this);
         /*tvSize26.setOnClickListener(this);
         tvSize28.setOnClickListener(this);
         tvSize30.setOnClickListener(this);
@@ -126,6 +132,7 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
         tvNewPrice.setText(PRICE[pos]);
         tvOldPrice.setText(PRICE[pos]);
         tvOldPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        tvLike.setText(likes+" Likes");
 
 
     }
@@ -182,6 +189,27 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+
+
+            case R.id.iv_like:
+
+                if(!isLiked)
+                {
+                    isLiked=true;
+                    likes++;
+                    ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH+R.drawable.ic_likeselected,ivLike);
+                    tvLike.setText(likes+" Likes");
+                }
+                else
+                {
+                    isLiked=false;
+                    likes--;
+
+                    ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH+R.drawable.ic_like,ivLike);
+                    tvLike.setText(likes+" Likes");
+                }
+
+                break;
             case R.id.ll_quantity:
                 PopupMenu popup = new PopupMenu(SelectProductActivity.this, llQuantity);
 

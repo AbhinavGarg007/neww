@@ -18,6 +18,7 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter {
     //constructor for adapter
     public DiscoverRecyclerAdapter(Context context)
     {
+        //asigning values passed in constructor to the variable
         mContext=context;
     }
     @NonNull

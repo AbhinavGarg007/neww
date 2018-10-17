@@ -10,29 +10,29 @@ public class VshopUserModel {
     @PrimaryKey(autoGenerate = true)
     private long uid;
 
-    @ColumnInfo(name="first_name")
+    @ColumnInfo(name = "first_name")
     private String firstName;
 
-    @ColumnInfo(name="last_name")
+    @ColumnInfo(name = "last_name")
     private String lastName;
 
-    @ColumnInfo(name="email")
+    @ColumnInfo(name = "email")
     private String email;
 
-    @ColumnInfo(name="password")
+    @ColumnInfo(name = "password")
     private String password;
 
-    @ColumnInfo(name="user_name")
+    @ColumnInfo(name = "user_name")
     private String userName;
 
     @ColumnInfo(name = "gender")
     private String gender;
 
-    @ColumnInfo(name="dob")
-    private String dob="";
+    @ColumnInfo(name = "dob")
+    private String dob = "";
 
-    @ColumnInfo(name="profile_pic")
-    private String profile_pic="";
+    @ColumnInfo(name = "profile_pic")
+    private String profile_pic = "";
 
     public long getUid() {
         return uid;

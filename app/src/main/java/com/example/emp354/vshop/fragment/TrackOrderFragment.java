@@ -18,10 +18,14 @@ import com.example.emp354.vshop.adapter.TrackOrderRecyclerAdapter;
 import com.example.emp354.vshop.listener.ItemClickListener;
 
 public class TrackOrderFragment extends Fragment implements ItemClickListener {
+
+    //declaring variables
     RecyclerView recyclerView;
    TrackOrderRecyclerAdapter trackOrderRecyclerAdapter;
    LinearLayoutManager layoutManager;
    int requiredHeight;
+
+   //inflating layout
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,20 +33,26 @@ public class TrackOrderFragment extends Fragment implements ItemClickListener {
         return view;
     }
 
+    //performing operations after view is inflated
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //checking fragment and inflating layout according to that
         ((HomeActivity)getActivity()).checkFragment();
 
+        //getting height at runtime
         if(((HomeActivity)getActivity()).getHeight()!=0)
         {
             requiredHeight=((HomeActivity)getActivity()).getHeight()*40/100;
         }
 
+        //initialising variables
        recyclerView=view.findViewById(R.id.recyclerview_track_order);
        trackOrderRecyclerAdapter=new TrackOrderRecyclerAdapter(getActivity(),requiredHeight,this);
        layoutManager=new LinearLayoutManager(getActivity());
+
+       //setting adapter and layout manager to recyclerview
        recyclerView.setAdapter(trackOrderRecyclerAdapter);
        recyclerView.setLayoutManager(layoutManager);
 

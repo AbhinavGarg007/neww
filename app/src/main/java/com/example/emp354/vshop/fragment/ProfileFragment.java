@@ -35,7 +35,9 @@ import static com.example.emp354.vshop.constants.Constant.FILE_INITIAL_PATH;
 import static com.example.emp354.vshop.constants.Constant.PRODUCTS;
 import static com.example.emp354.vshop.constants.Constant.SHOPS;
 
-public class ProfileFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener,View.OnClickListener {
+public class ProfileFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener {
+
+    //declaring variables
     TextView tvName;
     ImageView ivBlur, ivProfile;
     LinearLayout layoutProductLeft, layoutProductRight, layoutShopLeft, layoutShopRight;
@@ -50,6 +52,7 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
     ShopsRecyclerAdapter shopsRecyclerAdapter;
 
 
+    //inflating layout
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,10 +61,12 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
         return view;
     }
 
+    //performing operation after layout is inflated
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Log.d("ProfileFragment", "onViewCreated");
-        ((HomeActivity)getActivity()).checkFragment();
+        //method to check which fragment is this and inflate toolbar layout according to that
+        ((HomeActivity) getActivity()).checkFragment();
         tvName = view.findViewById(R.id.tv_name);
         ivBlur = view.findViewById(R.id.iv_blur);
         ivProfile = view.findViewById(R.id.iv_profile);
@@ -74,28 +79,32 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
         recyclerViewShops = view.findViewById(R.id.recyclerview_shops);
 
 
+        //setting listener on views
         layoutProductLeft.setOnClickListener(this);
         layoutProductRight.setOnClickListener(this);
         layoutShopLeft.setOnClickListener(this);
         layoutShopRight.setOnClickListener(this);
 
 
+        //initialising adapter
         imagesRecyclerAdapter = new ImagesRecyclerAdapter(getActivity(), PRODUCTS);
         shopsRecyclerAdapter = new ShopsRecyclerAdapter(getActivity(), SHOPS);
         productLayoutManager = new LinearLayoutManager(getActivity(), LinearLayout.HORIZONTAL, false);
         shopsLayoutManager = new LinearLayoutManager(getActivity(), LinearLayout.HORIZONTAL, false);
 
+        //setting adapter and layout manager to recycler view
         recyclerViewProducts.setLayoutManager(productLayoutManager);
         recyclerViewShops.setLayoutManager(shopsLayoutManager);
         recyclerViewProducts.setAdapter(imagesRecyclerAdapter);
         recyclerViewShops.setAdapter(shopsRecyclerAdapter);
 
 
+        //initialising variables to perform db operation
         appDatabase = AppDatabase.getAppDatabase(getActivity());
         DATABASE_NAME = "user_db";
         vshopUserModel = new VshopUserModel();
         vshopSharedPreference = VshopSharedPreference.getInstance(getActivity());
-        vshopSharedPreference.setPreferencesChangeListener(this);
+
 
         long id = vshopSharedPreference.fetchid();
         vshopUserModel = appDatabase.userDao().getUserInfo(id);
@@ -103,7 +112,7 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
         /*  bitmap=MediaStore.Images.Media.getBitmap(vshopUserModel.getProfile_pic())*/
 
 
-        if (!vshopUserModel.getProfile_pic().equals("")) {
+        if (vshopUserModel.getProfile_pic() != null && !vshopUserModel.getProfile_pic().equals("")) {
             loadImage(vshopUserModel.getProfile_pic());
         } else {
             ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.imageview_placeholder));
@@ -111,14 +120,16 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
         }
     }
 
+    //method to load image
     public void loadImage(String path) {
         bitmap = BitmapFactory.decodeFile(path);
-       /* ivProfile.setImageBitmap(bitmap);*/
-        ImageLoader.getInstance().displayImage(FILE_INITIAL_PATH + path,ivProfile);
+        /* ivProfile.setImageBitmap(bitmap);*/
+        ImageLoader.getInstance().displayImage(FILE_INITIAL_PATH + path, ivProfile);
         BlurImage.with(getActivity()).load(bitmap).intensity(20).Async(true).into(ivBlur);
     }
 
 
+    //method to call when there is a change in sharedpreference listener
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         switch (s) {
@@ -179,6 +190,7 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
 
     @Override
     public void onStart() {
+        vshopSharedPreference.setPreferencesChangeListener(this);
         Log.d("ProfileFragment", "onStart");
         super.onStart();
     }

@@ -20,10 +20,12 @@ import com.example.emp354.vshop.decoration.LinePagerIndicatorDecoration;
 import com.example.emp354.vshop.decoration.SeparatorDecoration;
 
 public class DiscoverFragment extends Fragment {
+    //declarig variables
     RecyclerView recyclerView;
     DiscoverRecyclerAdapter discoverRecyclerAdapter;
     LinearLayoutManager layoutManager;
 
+    //method to inflate layout
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,14 +33,18 @@ public class DiscoverFragment extends Fragment {
         return view;
     }
 
+    //operations to performed after layout is inflated
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ((HomeActivity)getActivity()).checkFragment();
 
+        //initialising variables
         recyclerView=view.findViewById(R.id.recyclerview_discover);
         discoverRecyclerAdapter=new DiscoverRecyclerAdapter(getActivity());
         layoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+
+       //setting adapter and layout manager to recycerview
         recyclerView.setAdapter(discoverRecyclerAdapter);
         recyclerView.setLayoutManager(layoutManager);
 

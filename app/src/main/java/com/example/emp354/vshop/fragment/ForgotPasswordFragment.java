@@ -15,6 +15,7 @@ import com.example.emp354.vshop.activity.SigninRegisterActivity;
 public class ForgotPasswordFragment extends Fragment implements View.OnClickListener{
     Button btnCancel,btnSubmit;
 
+    //inflating layout
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -24,9 +25,11 @@ public class ForgotPasswordFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        //initialising button
        btnCancel=view.findViewById(R.id.btn_cancel);
        btnSubmit=view.findViewById(R.id.btn_submit);
 
+       //setting listener on button
        btnCancel.setOnClickListener(this);
        btnSubmit.setOnClickListener(this);
     }

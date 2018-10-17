@@ -19,8 +19,10 @@ import java.util.List;
 
 import static com.example.emp354.vshop.constants.Constant.DRAWABLE_INITIAL_PATH;
 
+
 public class CategoryAdapter extends BaseExpandableListAdapter {
 
+    //declaring variable
     private Context mContext;
     private List<ProductModel> mProduct;
     private LayoutInflater mInflater;
@@ -30,6 +32,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     //creating adapter constructor
     public CategoryAdapter(Context context, List<ProductModel> productModelArrayList, HashMap<String,List<String>> childList,int height)
     {
+        //assigning values passed in constructor to the variable
         mContext=context;
         mProduct=productModelArrayList;
         mInflater=(LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

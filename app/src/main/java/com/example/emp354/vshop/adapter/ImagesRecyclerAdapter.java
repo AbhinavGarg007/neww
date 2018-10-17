@@ -24,11 +24,12 @@ public class ImagesRecyclerAdapter extends RecyclerView.Adapter {
     //constructor for adapter
     public ImagesRecyclerAdapter(Context context, int[] images)
     {
+        //asigning values passed in constructor to the variable
         mContext=context;
         mImages=images;
     }
 
-    //inflating layout
+    //inflating layout and assign it to holder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {

@@ -36,7 +36,7 @@ public class SizeRecyclerAdapter extends RecyclerView.Adapter {
         mIsSizeAvailable=isSizeAvailable;
     }
 
-    //inflating layout
+    //inflating layout and assign it to holder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -53,10 +53,17 @@ public class SizeRecyclerAdapter extends RecyclerView.Adapter {
         holder.tvSize.setText(mSize.get(i));
         if(!mIsSizeAvailable.get(mSize.get(i)).equals("available"))
         {
+            //making text strike through
            holder.tvSize.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        }
+        else
+        {
+            //else display normal text
+            holder.tvSize.setPaintFlags(Paint.LINEAR_TEXT_FLAG);
         }
 
         //checking whether any one of the available size is already selected or not
+        //inflating layout according to that condition
         if(mIsSizeSelected.contains(i)) {
             holder.tvSize.setBackground(mContext.getDrawable(R.drawable.size_selected_drawable));
             holder.tvSize.setTextColor(mContext.getResources().getColor(android.R.color.white));
