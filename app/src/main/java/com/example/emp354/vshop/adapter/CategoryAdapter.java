@@ -1,6 +1,7 @@
 package com.example.emp354.vshop.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.emp354.vshop.ProductModel;
 import com.example.emp354.vshop.R;
+import com.example.emp354.vshop.activity.FeedsActivity;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 
@@ -140,6 +142,22 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         {
             llVariety.setBackgroundColor(mContext.getResources().getColor(android.R.color.white));
         }
+
+
+
+        llVariety.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                switch (view.getId())
+                {
+                    case R.id.layout_product_variety:
+                        Intent intent=new Intent(mContext,FeedsActivity.class);
+                        mContext.startActivity(intent);
+                        break;
+                }
+            }
+        });
 
 
 

@@ -13,15 +13,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -32,9 +31,9 @@ import android.widget.Toast;
 
 import com.example.emp354.vshop.AppDatabase;
 import com.example.emp354.vshop.R;
-import com.example.emp354.vshop.utility.Utility2;
 import com.example.emp354.vshop.VshopSharedPreference;
 import com.example.emp354.vshop.VshopUserModel;
+import com.example.emp354.vshop.utility.Utility2;
 import com.jackandphantom.blurimage.BlurImage;
 
 import java.io.ByteArrayOutputStream;
@@ -46,7 +45,7 @@ import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class EditProfileActivity extends AppCompatActivity implements View.OnClickListener {
+public class EditProfileActivityWithCrop extends AppCompatActivity implements View.OnClickListener {
 
     //declaring variables
     ImageView ivEdit, ivBlur;
@@ -141,7 +140,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
             //click to set dob
             case R.id.tv_dob:
-                DatePickerDialog dialog = new DatePickerDialog(EditProfileActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog dialog = new DatePickerDialog(EditProfileActivityWithCrop.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         populateSetDate(year, month + 1, day);
@@ -160,7 +159,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
             //click to update data in db
             case R.id.tv_done:
-                new UpdateInfoAsyncTask().execute();
+                new EditProfileActivityWithCrop.UpdateInfoAsyncTask().execute();
 
                 break;
 
@@ -176,7 +175,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     private class UpdateInfoAsyncTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
-            updateDialog = ProgressDialog.show(EditProfileActivity.this, "Updating data", "Please Wait..");
+            updateDialog = ProgressDialog.show(EditProfileActivityWithCrop.this, "Updating data", "Please Wait..");
         }
 
         @Override
@@ -203,17 +202,17 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     //method to provide options to user to select image
     private void selectImage() {
         final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivityWithCrop.this);
         builder.setTitle("Add Photo");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 /*boolean result=Utility.checkPermission(EditProfileActivity.this);*/
                 if (items[which].equals("Take Photo")) {
-                    if (Utility2.checkCameraPermission(EditProfileActivity.this))
+                    if (Utility2.checkCameraPermission(EditProfileActivityWithCrop.this))
                         cameraIntent();
                 } else if (items[which].equals("Choose from Library")) {
-                    if (Utility2.checkGalleryPermission(EditProfileActivity.this))
+                    if (Utility2.checkGalleryPermission(EditProfileActivityWithCrop.this))
                         galleryIntent();
                 } else if (items[which].equals("Cancel")) {
                     dialog.dismiss();
@@ -250,14 +249,45 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
     //method to be called after getting data
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == SELECT_FILE) {
+                /*AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivityWithCrop.this);
+                builder.setTitle("Want to crop the image")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                              cropIntent(data.getData());
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                onSelectFromGalleryResult(data);
+                            }
+                        });*/
                 onSelectFromGalleryResult(data);
+
             }
             else if (requestCode == REQUEST_CAMERA) {
+               /* AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivityWithCrop.this);
+                builder.setTitle("Want to crop the image")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                cropIntent(data.getData());
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                onCaptureImageResult(data);
+                            }
+                        });*/
                 onCaptureImageResult(data);
             }
             else if (requestCode==PIC_CROP) {
@@ -324,14 +354,29 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
     //method to perform operation on captured image
     private void onCaptureImageResult(Intent data) {
+         /*AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivityWithCrop.this);
+                builder.setTitle("Want to crop the image")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-       /* cropIntent(data.getData());*/
-        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+                                cropIntent(data.getData());
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                onCaptureImageResult(data);
+                            }
+                        });*/
+
+       cropIntent(data.getData());
+       /*  Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
 
         //for folder in just next to internal storage
-       /* File dir = new File(Environment.getExternalStorageDirectory(), "vshop_images");*/
+        *//* File dir = new File(Environment.getExternalStorageDirectory(), "vshop_images");*//*
 
         //for folder in app specific folder
         File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -346,11 +391,11 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
             Log.d("location", String.valueOf(destination));
 
             //to convert string filepath into uri
-           /* Uri uri=Uri.fromFile(new File(destination.getAbsolutePath()));
-            imageLocation=String.valueOf(uri);*/
+           *//* Uri uri=Uri.fromFile(new File(destination.getAbsolutePath()));
+            imageLocation=String.valueOf(uri);*//*
             imageLocation = destination.getAbsolutePath();
 
-           /* imageLocation=String.valueOf(destination);*/
+            *//* imageLocation=String.valueOf(destination);*//*
             Log.d("location", String.valueOf(imageLocation));
             fo = new FileOutputStream(destination);
             fo.write(byteArrayOutputStream.toByteArray());
@@ -360,13 +405,13 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         } catch (IOException e) {
             e.printStackTrace();
         }
-        setImage(thumbnail);
+        setImage(thumbnail);*/
     }
 
     //method to get image from gallery
     private void onSelectFromGalleryResult(Intent data) {
 
-       /* cropIntent(data.getData());*/
+         cropIntent(data.getData());
         Bitmap bm = null;
         if (data != null) {
             try {
@@ -385,7 +430,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
     //after getting uri of the cropped pic ,this function is passing the bitmap to the loading method.
     private void onCropImageResult(Intent data)
-
     {
         Uri contentUri = data.getData();
         //get the returned data
@@ -393,11 +437,42 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         //get the cropped bitmap
         Bitmap cropBitmap = extras.getParcelable("data");
 
-        //to assign the location to variable
-        imageLocation = getRealPathFromURI(this, contentUri);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        cropBitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
 
-        //display the returned cropped image
-       setImage(cropBitmap);
+        //for folder in just next to internal storage
+        /* File dir = new File(Environment.getExternalStorageDirectory(), "vshop_images");*/
+
+        //for folder in app specific folder
+        File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        File destination = new File(dir, System.currentTimeMillis() + ".jpg");
+        FileOutputStream fo;
+        try {
+            destination.createNewFile();
+            Log.d("location", String.valueOf(destination));
+
+            //to convert string filepath into uri
+           /* Uri uri=Uri.fromFile(new File(destination.getAbsolutePath()));
+            imageLocation=String.valueOf(uri);*/
+            imageLocation = destination.getAbsolutePath();
+
+            /* imageLocation=String.valueOf(destination);*/
+            Log.d("location", String.valueOf(imageLocation));
+            fo = new FileOutputStream(destination);
+            fo.write(byteArrayOutputStream.toByteArray());
+            fo.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setImage(cropBitmap);
+
+
     }
 
 
@@ -492,100 +567,5 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         super.onStop();
     }
 }
-
-
-/*protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
-        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-        switch(requestCode) {
-            case 0:
-                if(resultCode == RESULT_OK){
-                    Uri selectedImage = imageReturnedIntent.getData();
-                    ivImage.setImageURI(selectedImage);
-                }
-
-                break;
-            case 1:
-                if(resultCode == RESULT_OK){
-                    Uri selectedImage = imageReturnedIntent.getData();
-                    ivImage.setImageURI(selectedImage);
-                }
-                break;
-        }
-    }*/
-
-/* customDialog=new Dialog(this);
-                Button galleryButton,cameraButton;
-
-                customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);// used to remove the title of dialog
-                customDialog.setContentView(R.layout.custom_dialog_camera);
-
-                galleryButton=customDialog.findViewById(R.id.btn_gallery);
-                cameraButton=customDialog.findViewById(R.id.btn_camera);
-
-                customDialog.setCancelable(true);//dialog does not close on clicking outside
-
-                galleryButton.setOnClickListener(this);
-                cameraButton.setOnClickListener(this);
-
-                customDialog.show();// shows the dialog*/
-
-
-
- /*case R.id.btn_camera:
-                Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(takePicture, 0);//zero can be replaced with any action code
-                break;
-
-            case R.id.btn_gallery:
-                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(pickPhoto , 1);//one can be replaced with any action code
-                break;*/
-
-
-
-  /*editToolbar.setNavigationContentDescription("Cancel");
-       editToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent editIntent=new Intent(EditProfileActivity.this,HomeActivity.class);
-                startActivity(editIntent);
-            }
-        });
-
-        editToolbar.setOnMenuItemClickListener(new android.support.v7.widget.Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                switch (menuItem.getItemId())
-                {
-                    case R.id.done:
-                        Intent editIntent=new Intent(EditProfileActivity.this,HomeActivity.class);
-                        startActivity(editIntent);
-                }
-                return true;
-            }
-        });*/
-
-
-//async task to edit data
-   /* private class EditAsyncTask extends AsyncTask<Void,Void,Void>
-    {
-        @Override
-        protected void onPreExecute() {
-            editDialog=ProgressDialog.show(EditProfileActivity.this,"Loading data","Please Wait..");
-        }
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            editDialog.dismiss();
-            setImage();
-        }
-        @Override
-        protected Void doInBackground(Void... voids) {
-            selectImage();
-            return null;
-        }
-    }
-*/
-
 
 

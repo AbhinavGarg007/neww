@@ -108,7 +108,7 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
 
         long id = vshopSharedPreference.fetchid();
         vshopUserModel = appDatabase.userDao().getUserInfo(id);
-        tvName.setText(vshopUserModel.getFirstName() + " " + vshopUserModel.getLastName());
+        tvName.setText(String.format("%s %s", vshopUserModel.getFirstName(), vshopUserModel.getLastName()));
         /*  bitmap=MediaStore.Images.Media.getBitmap(vshopUserModel.getProfile_pic())*/
 
 

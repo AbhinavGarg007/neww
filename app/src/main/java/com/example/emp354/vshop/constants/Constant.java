@@ -16,7 +16,7 @@ public interface Constant {
 
 
     String DRAWABLE_INITIAL_PATH="drawable://";
-    String FILE_INITIAL_PATH="content://";
+    String FILE_INITIAL_PATH="file://";
 
     int[] BRANDS={R.drawable.brand_1,R.drawable.brand_2, R.drawable.brand_3,
             R.drawable.brand_4,R.drawable.brand_5,R.drawable.brand_6,
