@@ -35,6 +35,7 @@ import com.example.emp354.vshop.VshopSharedPreference;
 import com.example.emp354.vshop.VshopUserModel;
 import com.example.emp354.vshop.utility.Utility2;
 import com.jackandphantom.blurimage.BlurImage;
+import com.yalantis.ucrop.UCrop;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -45,7 +46,7 @@ import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class EditProfileActivityWithCrop extends AppCompatActivity implements View.OnClickListener {
+public class EditProfileActivityCropWithLibrary extends AppCompatActivity implements View.OnClickListener {
 
     //declaring variables
     ImageView ivEdit, ivBlur;
@@ -59,9 +60,7 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
     long id;
     String gender, dob, imageLocation;
     int REQUEST_CAMERA = 0, SELECT_FILE = 1, PIC_CROP=2;
-    private Uri picUri;
     Bitmap bitmap;
-    File dir,destination;
 
     AppDatabase appDatabase;
     VshopUserModel vshopUserModel;
@@ -142,7 +141,7 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
 
             //click to set dob
             case R.id.tv_dob:
-                DatePickerDialog dialog = new DatePickerDialog(EditProfileActivityWithCrop.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog dialog = new DatePickerDialog(EditProfileActivityCropWithLibrary.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         populateSetDate(year, month + 1, day);
@@ -158,9 +157,10 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
                 finish();
                 break;
 
+
             //click to update data in db
             case R.id.tv_done:
-                new EditProfileActivityWithCrop.UpdateInfoAsyncTask().execute();
+                new UpdateInfoAsyncTask().execute();
 
                 break;
 
@@ -176,7 +176,7 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
     private class UpdateInfoAsyncTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
-            updateDialog = ProgressDialog.show(EditProfileActivityWithCrop.this, "Updating data", "Please Wait..");
+            updateDialog = ProgressDialog.show(EditProfileActivityCropWithLibrary.this, "Updating data", "Please Wait..");
         }
 
         @Override
@@ -203,17 +203,17 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
     //method to provide options to user to select image
     private void selectImage() {
         final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivityWithCrop.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivityCropWithLibrary.this);
         builder.setTitle("Add Photo");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 /*boolean result=Utility.checkPermission(EditProfileActivity.this);*/
                 if (items[which].equals("Take Photo")) {
-                    if (Utility2.checkCameraPermission(EditProfileActivityWithCrop.this))
+                    if (Utility2.checkCameraPermission(EditProfileActivityCropWithLibrary.this))
                         cameraIntent();
                 } else if (items[which].equals("Choose from Library")) {
-                    if (Utility2.checkGalleryPermission(EditProfileActivityWithCrop.this))
+                    if (Utility2.checkGalleryPermission(EditProfileActivityCropWithLibrary.this))
                         galleryIntent();
                 } else if (items[which].equals("Cancel")) {
                     dialog.dismiss();
@@ -222,6 +222,7 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
         });
         builder.show();
     }
+
 
     //method for the permission
     @Override
@@ -234,6 +235,7 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
                     Toast.makeText(this, "You do not have external storage permissions.", Toast.LENGTH_SHORT).show();
                 }
                 break;
+
 
             case Utility2.MY_PERMISSIONS_REQUEST_CAMERA:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -248,60 +250,75 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
 
     //method to be called after getting data
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == Activity.RESULT_OK) {
-
-            /*
-             * if startActivityForResult was from Gallery intent
-             * and request code is SELECT_FILE
-             */
+            Log.d("req", ""+requestCode);
             if (requestCode == SELECT_FILE) {
+
+                File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+                File destination = new File(dir, System.currentTimeMillis() + ".jpg");
+                try {
+                    destination.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Uri uri=Uri.fromFile(new File(destination.getAbsolutePath()));
+
+                UCrop.of(data.getData(), uri)
+                        .withAspectRatio(16, 9)
+                        .withMaxResultSize(25, 25)
+                        .start(this);
+
                 /*onSelectFromGalleryResult(data);*/
-                cropIntent(data.getData());
             }
-
-            /*
-            if startActivtyForResult was from Camera Intent
-            and request code is REQUEST_CAMERA
-             */
             else if (requestCode == REQUEST_CAMERA) {
-               /*picUri=data.getData();*/
-               cropIntent(Uri.fromFile(destination));
-              /*  onCaptureImageResult(data);*/
+
+
+                File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+                File destination = new File(dir, System.currentTimeMillis() + ".jpg");
+                try {
+                    destination.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Uri uri=Uri.fromFile(new File(destination.getAbsolutePath()));
+
+
+                UCrop.of(data.getData(), uri)
+                        .withAspectRatio(16, 9)
+                        .withMaxResultSize(25, 25)
+                        .start(this);
+               /* onCaptureImageResult(data);*/
             }
 
-            /**
-             * if startActivityForResult was from Crop Intent
-             * and request code is PIC_CROP
-             */
-            else if (requestCode==PIC_CROP) {
-                onCropImageResult(data);
+            else if (requestCode == UCrop.REQUEST_CROP)
+            {
+                final Uri resultUri = UCrop.getOutput(data);
+                onCropImageResult(resultUri);
+            }
+            else if (resultCode == UCrop.RESULT_ERROR) {
+                final Throwable cropError = UCrop.getError(data);
+                Log.d("error", cropError.toString());
             }
         }
+
+
+
     }
 
 
     //method to open camera
     private void cameraIntent() {
         try {
-            /*Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent, REQUEST_CAMERA);*/
-
-            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-            /*create instance of File */
-           /* File file = new File(Environment.getExternalStorageDirectory()+File.separator + "img.jpg");*/
-            //for folder in app specific folder
-            dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-
-            if (!dir.exists()) {
-                dir.mkdir();
-            }
-            destination = new File(dir, System.currentTimeMillis() + ".jpg");
-            /*put uri as extra in intent object*/
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(destination));
-            /*start activity for result pass intent as argument and request code */
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent, REQUEST_CAMERA);
         }
         catch(ActivityNotFoundException anfe){
@@ -320,52 +337,15 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
         startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
     }
 
-    //method to perform crop an image
-    private void cropIntent(Uri picUri)
-    {
-        try {
-            //call the standard crop action intent (the user device may not support it)
-            Intent cropIntent = new Intent("com.android.camera.action.CROP");
-            //indicate image type and Uri
-            cropIntent.setDataAndType(picUri, "image/*");
-            //set crop properties
-            cropIntent.putExtra("crop", "true");
-            //indicate aspect of desired crop
-            cropIntent.putExtra("aspectX", 1);
-            cropIntent.putExtra("aspectY", 1);
-            //indicate output X and Y
-            cropIntent.putExtra("outputX", 256);
-            cropIntent.putExtra("outputY", 256);
-            //retrieve data on return
-            cropIntent.putExtra("return-data", true);
-            //start the activity - we handle returning in onActivityResult
-            startActivityForResult(cropIntent, PIC_CROP);
-
-        }
-        catch(ActivityNotFoundException anfe){
-            //display an error message
-            String errorMessage = "Whoops - your device doesn't support the crop action!";
-            Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
-    }
 
 
 
     //method to perform operation on captured image
     private void onCaptureImageResult(Intent data) {
 
-     /*  cropIntent(data.getData());*/
-
-         Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
-
-       /* //for folder in just next to internal storage
-         File dir = new File(Environment.getExternalStorageDirectory(), "vshop_images");*/
-
-        //for folder in app specific folder
         File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
         if (!dir.exists()) {
@@ -375,12 +355,7 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
         FileOutputStream fo;
         try {
             destination.createNewFile();
-            //to convert string filepath into uri
-           /* picUri=Uri.fromFile(new File(destination.getAbsolutePath()));*/
-            /*imageLocation=String.valueOf(uri);
-            imageLocation = destination.getAbsolutePath();*/
-
-             imageLocation=String.valueOf(destination);
+            imageLocation = destination.getAbsolutePath();
 
             fo = new FileOutputStream(destination);
             fo.write(byteArrayOutputStream.toByteArray());
@@ -395,7 +370,6 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
 
     //method to get image from gallery
     private void onSelectFromGalleryResult(Intent data) {
-        /* cropIntent(data.getData());*/
         Bitmap bm = null;
         if (data != null) {
             try {
@@ -403,7 +377,7 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
                 bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
                 /* imageLocation=String.valueOf(fileUri.getPath());*/
                 imageLocation = getRealPathFromURI(this, contentUri);
-
+                Log.d("location", String.valueOf(data.getData()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -411,23 +385,36 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
         setImage(bm);
     }
 
-
-    //after getting uri of the cropped pic ,this function is passing the bitmap to the loading method.
-    private void onCropImageResult(Intent data)
+    private void onCropImageResult(Uri uri)
     {
 
-        Uri contentUri = data.getData();
+
+        Bitmap bm = null;
+        if (uri != null) {
+            try {
+                bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
+                /* imageLocation=String.valueOf(fileUri.getPath());*/
+                imageLocation = getRealPathFromURI(this, uri);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        setImage(bm);
+
+
+        /*Uri contentUri = data.getData();
         //get the returned data
         Bundle extras = data.getExtras();
         //get the cropped bitmap
-       /* Bitmap cropBitmap = (Bitmap) extras.get("data");*/
-        Bitmap cropBitmap =  extras.getParcelable("data");
+        Bitmap cropBitmap = (Bitmap) extras.get("data");
+        *//* Bitmap cropBitmap =  extras.getParcelable("data");*//*
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         cropBitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
 
         //for folder in just next to internal storage
-        /* File dir = new File(Environment.getExternalStorageDirectory(), "vshop_images");*/
+        *//* File dir = new File(Environment.getExternalStorageDirectory(), "vshop_images");*//*
 
         //for folder in app specific folder
         File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -439,8 +426,8 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
         try {
             destination.createNewFile();
             //to convert string filepath into uri
-           /* Uri uri=Uri.fromFile(new File(destination.getAbsolutePath()));
-            imageLocation=String.valueOf(uri);*/
+           *//* Uri uri=Uri.fromFile(new File(destination.getAbsolutePath()));
+            imageLocation=String.valueOf(uri);*//*
             imageLocation = destination.getAbsolutePath();
             fo = new FileOutputStream(destination);
             fo.write(byteArrayOutputStream.toByteArray());
@@ -450,9 +437,8 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
         } catch (IOException e) {
             e.printStackTrace();
         }
-        setImage(cropBitmap);
+        setImage(cropBitmap);*/
     }
-
 
     //method to get string file path from uri
     public String getRealPathFromURI(Context context, Uri contentUri) {
@@ -468,8 +454,6 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
                 cursor.close();
             }
         }
-
-
     }
 
     //method to set image into imageview
@@ -490,7 +474,7 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
                 rbMale.setChecked(true);
             }
         }
-        tvName.setText(String.format("%s %s", vshopUserModel.getFirstName(), vshopUserModel.getLastName()));
+        tvName.setText(vshopUserModel.getFirstName() + " " + vshopUserModel.getLastName());
         //for dob
         dob = String.valueOf(vshopUserModel.getDob());
         tvDob.setText(vshopUserModel.getDob());
@@ -543,5 +527,8 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
         super.onStop();
     }
 }
+
+
+
 
 

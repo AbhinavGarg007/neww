@@ -142,7 +142,7 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.edit:
-                        Intent editIntent = new Intent(HomeActivity.this, EditProfileActivityWithCrop.class);
+                        Intent editIntent = new Intent(HomeActivity.this, EditProfileActivityCropWithLibrary.class);
                         startActivity(editIntent);
                         break;
 

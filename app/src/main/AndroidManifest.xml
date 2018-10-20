@@ -38,6 +38,9 @@
             android:name=".activity.EditProfileActivityWithCrop"
             android:theme="@style/ToolbarTheme" />
         <activity
+            android:name=".activity.EditProfileActivityCropWithLibrary"
+            android:theme="@style/ToolbarTheme" />
+        <activity
             android:name=".activity.ResetPasswordActivity"
             android:theme="@style/ToolbarTheme" />
         <activity
@@ -64,6 +67,12 @@
         <activity
             android:name=".activity.OrderHistoryActivity"
             android:theme="@style/ToolbarTheme"></activity>
+
+        <!--to crop the image-->
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 
 </manifest>
