@@ -260,9 +260,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
             else if (requestCode == REQUEST_CAMERA) {
                 onCaptureImageResult(data);
             }
-            else if (requestCode==PIC_CROP) {
-                onCropImageResult(data);
-            }
         }
     }
 
@@ -289,39 +286,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
     }
 
-    //method to perform crop an image
-    private void cropIntent(Uri picUri)
-    {
-        try {
-            //call the standard crop action intent (the user device may not support it)
-            Intent cropIntent = new Intent("com.android.camera.action.CROP");
-            //indicate image type and Uri
-            cropIntent.setDataAndType(picUri, "image/*");
-            //set crop properties
-            cropIntent.putExtra("crop", "true");
-            //indicate aspect of desired crop
-            cropIntent.putExtra("aspectX", 1);
-            cropIntent.putExtra("aspectY", 1);
-            //indicate output X and Y
-            cropIntent.putExtra("outputX", 256);
-            cropIntent.putExtra("outputY", 256);
-            //retrieve data on return
-            cropIntent.putExtra("return-data", true);
-            //start the activity - we handle returning in onActivityResult
-            startActivityForResult(cropIntent, PIC_CROP);
-
-        }
-        catch(ActivityNotFoundException anfe){
-            //display an error message
-            String errorMessage = "Whoops - your device doesn't support the crop action!";
-            Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
-    }
-
-
-
     //method to perform operation on captured image
     private void onCaptureImageResult(Intent data) {
 
@@ -332,10 +296,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
         //for folder in just next to internal storage
        /* File dir = new File(Environment.getExternalStorageDirectory(), "vshop_images");*/
-
         //for folder in app specific folder
         File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-
         if (!dir.exists()) {
             dir.mkdir();
         }
@@ -344,12 +306,10 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         try {
             destination.createNewFile();
             Log.d("location", String.valueOf(destination));
-
             //to convert string filepath into uri
            /* Uri uri=Uri.fromFile(new File(destination.getAbsolutePath()));
             imageLocation=String.valueOf(uri);*/
             imageLocation = destination.getAbsolutePath();
-
            /* imageLocation=String.valueOf(destination);*/
             Log.d("location", String.valueOf(imageLocation));
             fo = new FileOutputStream(destination);
@@ -365,7 +325,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
     //method to get image from gallery
     private void onSelectFromGalleryResult(Intent data) {
-
        /* cropIntent(data.getData());*/
         Bitmap bm = null;
         if (data != null) {
@@ -383,24 +342,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     }
 
 
-    //after getting uri of the cropped pic ,this function is passing the bitmap to the loading method.
-    private void onCropImageResult(Intent data)
-
-    {
-        Uri contentUri = data.getData();
-        //get the returned data
-        Bundle extras = data.getExtras();
-        //get the cropped bitmap
-        Bitmap cropBitmap = extras.getParcelable("data");
-
-        //to assign the location to variable
-        imageLocation = getRealPathFromURI(this, contentUri);
-
-        //display the returned cropped image
-       setImage(cropBitmap);
-    }
-
-
     //method to get string file path from uri
     public String getRealPathFromURI(Context context, Uri contentUri) {
         Cursor cursor = null;
@@ -415,8 +356,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 cursor.close();
             }
         }
-
-
     }
 
     //method to set image into imageview
@@ -424,7 +363,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         ivImage.setImageBitmap(bm);
         BlurImage.with(this).load(bm).intensity(20).Async(true).into(ivBlur);
     }
-
 
 
 
@@ -443,7 +381,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         //for dob
         dob = String.valueOf(vshopUserModel.getDob());
         tvDob.setText(vshopUserModel.getDob());
-
         //for profile pic
         if (vshopUserModel.getProfile_pic() == null || vshopUserModel.getProfile_pic().equals("")) {
             ivImage.setImageDrawable(getResources().getDrawable(R.drawable.imageview_placeholder));

@@ -15,7 +15,8 @@
     <ImageView
         android:id="@+id/iv_browse_brands"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"/>
 
     <TextView
         android:id="@+id/tv_brand_title"

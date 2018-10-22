@@ -70,6 +70,7 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
             case R.id.btn_place_order:
                 Intent placeOrderintent=new Intent(this,PaymentActivity.class);
                 startActivity(placeOrderintent);
+                ShoppingBagActivity.this.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
         }
     }
 }

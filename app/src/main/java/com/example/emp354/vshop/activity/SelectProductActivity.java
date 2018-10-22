@@ -142,7 +142,7 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
-        return height * 65 / 100;
+        return height * 55 / 100;
     }
 
 
@@ -232,7 +232,7 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
             case R.id.btn_add_to_cart:
                 Intent selectProductIntent=new Intent(SelectProductActivity.this,ShoppingBagActivity.class);
                 startActivity(selectProductIntent);
-
+                SelectProductActivity.this.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
             /*case R.id.tv_size_26:
                 tvSize26.setTextColor(getResources().getColorStateList(R.color.size_color_selector));
                 tvSize26.setBackground(getResources().getDrawable(R.drawable.size_selector));

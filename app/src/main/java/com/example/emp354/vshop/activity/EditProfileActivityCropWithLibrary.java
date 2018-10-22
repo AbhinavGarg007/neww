@@ -61,6 +61,8 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
     String gender, dob, imageLocation;
     int REQUEST_CAMERA = 0, SELECT_FILE = 1, PIC_CROP=2;
     Bitmap bitmap;
+    File dir,destination,cameraPicLocation;
+    Uri uri;
 
     AppDatabase appDatabase;
     VshopUserModel vshopUserModel;
@@ -161,7 +163,6 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
             //click to update data in db
             case R.id.tv_done:
                 new UpdateInfoAsyncTask().execute();
-
                 break;
 
             case R.id.iv_edit:
@@ -178,18 +179,15 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
         protected void onPreExecute() {
             updateDialog = ProgressDialog.show(EditProfileActivityCropWithLibrary.this, "Updating data", "Please Wait..");
         }
-
         @Override
         protected void onPostExecute(Void aVoid) {
             updateDialog.dismiss();
             finish();
         }
-
         @Override
         protected Void doInBackground(Void... voids) {
             vshopSharedPreference.saveImage(imageLocation);
             appDatabase.userDao().updateInfo(gender, dob, imageLocation, id);
-
             return null;
         }
     }
@@ -208,7 +206,7 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                /*boolean result=Utility.checkPermission(EditProfileActivity.this);*/
+
                 if (items[which].equals("Take Photo")) {
                     if (Utility2.checkCameraPermission(EditProfileActivityCropWithLibrary.this))
                         cameraIntent();
@@ -236,7 +234,6 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
                 }
                 break;
 
-
             case Utility2.MY_PERMISSIONS_REQUEST_CAMERA:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     cameraIntent();
@@ -257,68 +254,70 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
             Log.d("req", ""+requestCode);
             if (requestCode == SELECT_FILE) {
 
-                File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
                 if (!dir.exists()) {
                     dir.mkdir();
                 }
-                File destination = new File(dir, System.currentTimeMillis() + ".jpg");
+                destination = new File(dir, System.currentTimeMillis() + ".jpg");
                 try {
                     destination.createNewFile();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Uri uri=Uri.fromFile(new File(destination.getAbsolutePath()));
+                uri=Uri.fromFile(new File(destination.getAbsolutePath()));
 
                 UCrop.of(data.getData(), uri)
                         .withAspectRatio(16, 9)
-                        .withMaxResultSize(25, 25)
+                        .withMaxResultSize(400, 400)
                         .start(this);
-
                 /*onSelectFromGalleryResult(data);*/
             }
             else if (requestCode == REQUEST_CAMERA) {
-
-
-                File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
                 if (!dir.exists()) {
                     dir.mkdir();
                 }
-                File destination = new File(dir, System.currentTimeMillis() + ".jpg");
+                destination = new File(dir, System.currentTimeMillis() + ".jpg");
                 try {
                     destination.createNewFile();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Uri uri=Uri.fromFile(new File(destination.getAbsolutePath()));
-
-
-                UCrop.of(data.getData(), uri)
+                Uri destinationUri=Uri.fromFile(new File(destination.getAbsolutePath()));
+                UCrop.of(Uri.fromFile(cameraPicLocation), destinationUri)
                         .withAspectRatio(16, 9)
-                        .withMaxResultSize(25, 25)
+                        .withMaxResultSize(400, 400)
                         .start(this);
                /* onCaptureImageResult(data);*/
             }
-
             else if (requestCode == UCrop.REQUEST_CROP)
             {
                 final Uri resultUri = UCrop.getOutput(data);
                 onCropImageResult(resultUri);
             }
-            else if (resultCode == UCrop.RESULT_ERROR) {
-                final Throwable cropError = UCrop.getError(data);
-                Log.d("error", cropError.toString());
-            }
         }
-
-
-
+        else if (resultCode == UCrop.RESULT_ERROR) {
+            final Throwable cropError = UCrop.getError(data);
+            Log.d("error", cropError.toString());
+        }
     }
 
 
     //method to open camera
     private void cameraIntent() {
         try {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+            /*create instance of File */
+            /* File file = new File(Environment.getExternalStorageDirectory()+File.separator + "img.jpg");*/
+            //for folder in app specific folder
+            dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            if (!dir.exists()) {
+                dir.mkdir();
+            }
+            cameraPicLocation = new File(dir, System.currentTimeMillis() + ".jpg");
+            /*put uri as extra in intent object*/
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(cameraPicLocation));
+            /*start activity for result pass intent as argument and request code */
             startActivityForResult(intent, REQUEST_CAMERA);
         }
         catch(ActivityNotFoundException anfe){
@@ -338,122 +337,20 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
     }
 
 
-
-
-    //method to perform operation on captured image
-    private void onCaptureImageResult(Intent data) {
-
-        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
-        File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-
-        if (!dir.exists()) {
-            dir.mkdir();
-        }
-        File destination = new File(dir, System.currentTimeMillis() + ".jpg");
-        FileOutputStream fo;
-        try {
-            destination.createNewFile();
-            imageLocation = destination.getAbsolutePath();
-
-            fo = new FileOutputStream(destination);
-            fo.write(byteArrayOutputStream.toByteArray());
-            fo.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        setImage(thumbnail);
-    }
-
-    //method to get image from gallery
-    private void onSelectFromGalleryResult(Intent data) {
-        Bitmap bm = null;
-        if (data != null) {
-            try {
-                Uri contentUri = data.getData();
-                bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
-                /* imageLocation=String.valueOf(fileUri.getPath());*/
-                imageLocation = getRealPathFromURI(this, contentUri);
-                Log.d("location", String.valueOf(data.getData()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        setImage(bm);
-    }
-
+    //method to perform crop operation on image and then set it as bitmap
     private void onCropImageResult(Uri uri)
     {
-
-
         Bitmap bm = null;
         if (uri != null) {
             try {
                 bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
-                /* imageLocation=String.valueOf(fileUri.getPath());*/
-                imageLocation = getRealPathFromURI(this, uri);
-
+                 imageLocation=String.valueOf(uri.getPath());
+                /*imageLocation = getRealPathFromURI(this, uri);*/
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         setImage(bm);
-
-
-        /*Uri contentUri = data.getData();
-        //get the returned data
-        Bundle extras = data.getExtras();
-        //get the cropped bitmap
-        Bitmap cropBitmap = (Bitmap) extras.get("data");
-        *//* Bitmap cropBitmap =  extras.getParcelable("data");*//*
-
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        cropBitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
-
-        //for folder in just next to internal storage
-        *//* File dir = new File(Environment.getExternalStorageDirectory(), "vshop_images");*//*
-
-        //for folder in app specific folder
-        File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        if (!dir.exists()) {
-            dir.mkdir();
-        }
-        File destination = new File(dir, System.currentTimeMillis() + ".jpg");
-        FileOutputStream fo;
-        try {
-            destination.createNewFile();
-            //to convert string filepath into uri
-           *//* Uri uri=Uri.fromFile(new File(destination.getAbsolutePath()));
-            imageLocation=String.valueOf(uri);*//*
-            imageLocation = destination.getAbsolutePath();
-            fo = new FileOutputStream(destination);
-            fo.write(byteArrayOutputStream.toByteArray());
-            fo.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        setImage(cropBitmap);*/
-    }
-
-    //method to get string file path from uri
-    public String getRealPathFromURI(Context context, Uri contentUri) {
-        Cursor cursor = null;
-        try {
-            String[] proj = {MediaStore.Images.Media.DATA};
-            cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
     }
 
     //method to set image into imageview
@@ -462,7 +359,7 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
         BlurImage.with(this).load(bm).intensity(20).Async(true).into(ivBlur);
     }
 
-
+    //method to set data
     private void setData() {
         //checking whether gender entry is not null
         if (vshopUserModel.getGender() != null) {
@@ -478,7 +375,6 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
         //for dob
         dob = String.valueOf(vshopUserModel.getDob());
         tvDob.setText(vshopUserModel.getDob());
-
         //for profile pic
         if (vshopUserModel.getProfile_pic() == null || vshopUserModel.getProfile_pic().equals("")) {
             ivImage.setImageDrawable(getResources().getDrawable(R.drawable.imageview_placeholder));
@@ -528,6 +424,73 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
     }
 }
 
+
+
+
+
+//--------------------------------------------------------------------------------------------------
+
+  /*  //method to perform operation on captured image
+    private void onCaptureImageResult(Intent data) {
+
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
+        dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        File destination = new File(dir, System.currentTimeMillis() + ".jpg");
+        FileOutputStream fo;
+        try {
+            destination.createNewFile();
+            imageLocation = destination.getAbsolutePath();
+
+            fo = new FileOutputStream(destination);
+            fo.write(byteArrayOutputStream.toByteArray());
+            fo.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setImage(thumbnail);
+    }
+
+    //method to get image from gallery
+    private void onSelectFromGalleryResult(Intent data) {
+        Bitmap bm = null;
+        if (data != null) {
+            try {
+                Uri contentUri = data.getData();
+                bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+                *//* imageLocation=String.valueOf(fileUri.getPath());*//*
+                imageLocation = getRealPathFromURI(this, contentUri);
+                Log.d("location", String.valueOf(data.getData()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        setImage(bm);
+    }*/
+
+
+    /*//method to get string file path from uri
+    public String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = {MediaStore.Images.Media.DATA};
+            cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }*/
 
 
 

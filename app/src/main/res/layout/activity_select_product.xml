@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
@@ -50,15 +50,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/iv_select_product_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/color_grey"
-                android:scaleType="fitXY" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:scaleType="fitCenter" />
 
             <View
                 android:layout_width="match_parent"
@@ -157,9 +158,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_10"
-                        android:text="Select Size  (Waist Size)"
-
-                        />
+                        android:text="Select Size  (Waist Size)" />
 
 
                     <LinearLayout
@@ -238,4 +237,4 @@
 
     </LinearLayout>
 
-</ScrollView>
+</LinearLayout>

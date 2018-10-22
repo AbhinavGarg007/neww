@@ -94,11 +94,16 @@ public class TrackOrderActivity extends AppCompatActivity implements View.OnClic
     public void loadFragment(Fragment fragment)
     {
         if(fragment!=null) {
+            String backStateName = fragment.getClass().getName();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.layout_frame_track_order, fragment,"addfragment");
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            boolean fragmentPopped = fragmentManager.popBackStackImmediate (backStateName, 0);
+            if(!fragmentPopped) {
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
+                fragmentTransaction.replace(R.id.layout_frame_track_order, fragment, "addfragment");
+                fragmentTransaction.addToBackStack(backStateName);
+                fragmentTransaction.commit();
+            }
         }
     }
 

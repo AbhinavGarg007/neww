@@ -58,7 +58,10 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
 
     @Override
     public void onBackPressed() {
+        FeedsActivity.this.overridePendingTransition(R.anim.slide_in_from_left,
+                R.anim.slide_out_from_right);
         searchStateCheck();
+
     }
 
 
@@ -72,6 +75,7 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
                 Intent selectProductIntent=new Intent(FeedsActivity.this,SelectProductActivity.class);
                 selectProductIntent.putExtra("position",position);
                 startActivity(selectProductIntent);
+                overridePendingTransition(R.anim.slide_in_from_right,R.anim.slide_out_from_left);
                 break;
         }
 

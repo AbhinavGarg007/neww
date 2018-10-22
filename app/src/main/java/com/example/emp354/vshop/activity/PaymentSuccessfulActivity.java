@@ -47,6 +47,7 @@ public class PaymentSuccessfulActivity extends AppCompatActivity implements View
             case R.id.btn_okay:
                 Intent paymentSuccessfullIntent=new Intent(this,HomeActivity.class);
                 startActivity(paymentSuccessfullIntent);
+                PaymentSuccessfulActivity.this.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
                 break;
         }
 

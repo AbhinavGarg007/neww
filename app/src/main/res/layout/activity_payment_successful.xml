@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/VerticalMatch"
+    android:background="@android:color/white"
     tools:context=".activity.PaymentSuccessfulActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_payment_successful"

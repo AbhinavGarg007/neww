@@ -7,7 +7,13 @@
         android:id="@+id/tv_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_5"
+
+        android:paddingTop="@dimen/margin_5"
+        android:paddingBottom="@dimen/margin_5"
+        android:paddingStart="@dimen/margin_7"
+        android:paddingEnd="@dimen/margin_7"
+
+
         android:layout_margin="@dimen/margin_5"/>
 
 </LinearLayout>

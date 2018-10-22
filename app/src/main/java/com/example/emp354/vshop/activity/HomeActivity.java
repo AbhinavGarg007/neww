@@ -13,8 +13,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -114,6 +116,9 @@ public class HomeActivity extends AppCompatActivity {
                         break;
 
                 }
+
+                HomeActivity.this.overridePendingTransition(R.anim.slide_in_from_right,
+                        R.anim.slide_out_from_left);
                 //method call to load fragment
                 loadFragment(fragment);
                 //closing drawerlayout
@@ -188,11 +193,19 @@ public class HomeActivity extends AppCompatActivity {
     //method to load fragment
     public void loadFragment(Fragment fragment) {
         if (fragment != null) {
+            String backStateName = fragment.getClass().getName();
+
+
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.layout_frame_home, fragment, "addfragment");
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            fragmentTransaction.setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
+            boolean fragmentPopped = fragmentManager.popBackStackImmediate (backStateName, 0);
+
+            if(!fragmentPopped) {
+                fragmentTransaction.replace(R.id.layout_frame_home, fragment, "addfragment");
+            }
+                fragmentTransaction.addToBackStack(backStateName);
+                fragmentTransaction.commit();
         }
     }
 
@@ -231,9 +244,10 @@ public class HomeActivity extends AppCompatActivity {
 
         if (fragment instanceof BrowseBrandsFragment) {
             tvTitle.setText(getResources().getString(R.string.browse_brands));
+            toolbar.getMenu().findItem(R.id.edit).setVisible(false);
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
-            toolbar.getMenu().findItem(R.id.edit).setVisible(false);
+
             return;
         }
         if (fragment instanceof CategoryFragment) {
@@ -278,12 +292,17 @@ public class HomeActivity extends AppCompatActivity {
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
             tvTitle.setVisibility(View.VISIBLE);
 
-        } else {
+        }
+        else
+            {
             if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
                 getSupportFragmentManager().popBackStackImmediate();
                 Fragment f = getSupportFragmentManager().findFragmentByTag("addfragment");
+               /* f.setEnterTransition(new Slide(Gravity.RIGHT));
+                f.setExitTransition(new Slide(Gravity.LEFT));*/
                 whichFragmentInstance(f);
-            } else {
+            }
+            else {
                 new AlertDialog.Builder(this)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setTitle("Exit from Vshop")

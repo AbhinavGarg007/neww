@@ -107,6 +107,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.btn_pay_now:
                 Intent intent=new Intent(this,PaymentSuccessfulActivity.class);
                 startActivity(intent);
+                PaymentActivity.this.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
                 break;
 
 

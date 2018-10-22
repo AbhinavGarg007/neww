@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,6 +29,7 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
     String[] mPrice;
     ItemClickListener mItemClickListener;
     int mHeight;
+    Animation animation;
 
     //constructor for the adapter
     public FeedsRecyclerAdapter(Context context,int[] feeds,String[] title,String[] price,ItemClickListener itemClickListener,int height)
@@ -105,14 +108,25 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
             switch (view.getId()){
                 //making layout visible after clicking on action dots
                 case R.id.iv_action_bar:
+
                     if(layoutItemFeeds.getVisibility() == View.GONE && view_dim.getVisibility() == View.GONE){
+                        animation = AnimationUtils.loadAnimation(mContext,
+                                R.anim.slide_in_bottom_up);
                         layoutItemFeeds.setVisibility(View.VISIBLE);
+
                         view_dim.setVisibility(View.VISIBLE);
+                        layoutItemFeeds.setAnimation(animation);
+                        view_dim.setAnimation(animation);
                     }
                     //making layout gone
                     else {
+                        animation = AnimationUtils.loadAnimation(mContext,
+                                R.anim.slide_out_top_down);
                         layoutItemFeeds.setVisibility(View.GONE);
                         view_dim.setVisibility(View.GONE);
+                        layoutItemFeeds.setAnimation(animation);
+                        view_dim.setAnimation(animation);
+
                     }
 
             }
