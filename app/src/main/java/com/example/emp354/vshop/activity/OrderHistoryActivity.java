@@ -3,6 +3,7 @@ package com.example.emp354.vshop.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -19,7 +20,8 @@ public class OrderHistoryActivity extends AppCompatActivity {
     //declaring variables
     android.support.v7.widget.Toolbar toolbar;
     TextView tvTitle;
-    LinearLayout layoutSearch;
+   /* LinearLayout layoutSearch;*/
+    SearchView searchView;
     boolean isSearchOpen=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +30,15 @@ public class OrderHistoryActivity extends AppCompatActivity {
         //assigning variables
         toolbar=findViewById(R.id.toolbar_order_history_activity);
         tvTitle=findViewById(R.id.tv_title_order_history_activity);
-        layoutSearch=findViewById(R.id.layout_search_order_history);
+        /*layoutSearch=findViewById(R.id.layout_search_order_history);*/
+        searchView=findViewById(R.id.searchview_order_history);
         setToolbar();
     }
 
     @Override
     public void onBackPressed() {
         searchStateCheck();
+        OrderHistoryActivity.this.overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
     }
 
 
@@ -61,6 +65,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
                     case R.id.navigation_bag:
                         Intent intent=new Intent(OrderHistoryActivity.this,EmptyShoppingBagActivity.class);
                         startActivity(intent);
+                        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
                         break;
 
                         //if click on navigation search icon
@@ -70,7 +75,8 @@ public class OrderHistoryActivity extends AppCompatActivity {
                         toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(false);
                         toolbar.getMenu().findItem(R.id.navigation_search).setVisible(false);
                         tvTitle.setVisibility(View.GONE);
-                        layoutSearch.setVisibility(View.VISIBLE);
+                        /*layoutSearch.setVisibility(View.VISIBLE);*/
+                        searchView.setVisibility(View.VISIBLE);
                         break;
                 }
                 return true;
@@ -84,7 +90,8 @@ public class OrderHistoryActivity extends AppCompatActivity {
     {
         if(isSearchOpen)
         {isSearchOpen=false;
-            layoutSearch.setVisibility(View.GONE);
+            /*layoutSearch.setVisibility(View.GONE);*/
+            searchView.setVisibility(View.GONE);
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
             tvTitle.setVisibility(View.VISIBLE);

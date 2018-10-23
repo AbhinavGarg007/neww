@@ -105,6 +105,7 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
                 vshopSharedPreference.saveImage(vshopUserModel.getProfile_pic());
                 Intent intent=new Intent(((SigninRegisterActivity)getActivity()),HomeActivity.class);
                 startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
             }
 
             //else print entries are not correct

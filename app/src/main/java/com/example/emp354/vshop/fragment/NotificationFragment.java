@@ -65,6 +65,7 @@ public class NotificationFragment extends Fragment implements ItemClickListener 
             case R.id.layout_item_notification:
                 Intent notificationIntent=new Intent(getActivity(),OrderHistoryActivity.class);
                 startActivity(notificationIntent);
+                getActivity().overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
                 break;
         }
     }

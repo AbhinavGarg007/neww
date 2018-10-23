@@ -28,7 +28,22 @@
                 android:textColor="@color/color_black"
                 android:layout_gravity="center" />
 
-            <LinearLayout
+            <android.support.v7.widget.SearchView
+                android:id="@+id/searchview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:iconifiedByDefault="false"
+                android:visibility="gone"
+                android:focusable="true"
+                app:queryHint="@string/search"
+                >
+
+                <requestFocus/>
+
+            </android.support.v7.widget.SearchView>
+
+            <!--<LinearLayout
                 android:id="@+id/layout_search_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,7 +68,7 @@
                     android:maxLines="1"
                     android:hint="Search.."
                     />
-            </LinearLayout>
+            </LinearLayout>-->
 
         </android.support.v7.widget.Toolbar>
 

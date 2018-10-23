@@ -19,7 +19,21 @@
             style="@style/ToolbarTextview"
             android:text="Order History"/>
 
-        <LinearLayout
+        <android.support.v7.widget.SearchView
+            android:id="@+id/searchview_order_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:iconifiedByDefault="false"
+            android:visibility="gone"
+            android:focusable="true"
+            app:queryHint="@string/search"
+            >
+
+            <requestFocus/>
+
+        </android.support.v7.widget.SearchView>
+
+       <!-- <LinearLayout
             android:id="@+id/layout_search_order_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,7 +58,7 @@
                 android:maxLines="1"
                 android:hint="Search.."
                 />
-        </LinearLayout>
+        </LinearLayout>-->
     </android.support.v7.widget.Toolbar>
 
 

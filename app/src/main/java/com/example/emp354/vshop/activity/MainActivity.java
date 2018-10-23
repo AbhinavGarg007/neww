@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent=new Intent(MainActivity.this,SigninRegisterActivity.class);
         intent.putExtra("fragmentName",fragmentName);
         startActivity(intent);
+        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
     }
 
 }

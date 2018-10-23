@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.emp354.vshop.R;
@@ -31,7 +32,8 @@ public class TrackOrderActivity extends AppCompatActivity implements View.OnClic
     Toolbar toolbar;
     TextView tvTitle,tvTitleProduct;
     ImageView ivProduct;
-    LinearLayout layoutSearch;
+    /*LinearLayout layoutSearch;*/
+    android.support.v7.widget.SearchView searchView;
     boolean isSearchOpen=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,18 +45,16 @@ public class TrackOrderActivity extends AppCompatActivity implements View.OnClic
         btnOrderSummary=findViewById(R.id.btn_order_summary);
         toolbar=findViewById(R.id.toolbar_track_order_activity);
         tvTitle=findViewById(R.id.tv_title_track_order_activity);
-        layoutSearch=findViewById(R.id.layout_search_track_order);
+        /*layoutSearch=findViewById(R.id.layout_search_track_order);*/
+        searchView=findViewById(R.id.searchview_track_order);
         tvTitleProduct=findViewById(R.id.tv_title_track_order_product_activity);
         ivProduct=findViewById(R.id.iv_track_order_product_activity);
-
-
-
 
         //method to set toolbar
         setToolbar();
 
         //calling method to load fragment
-        loadFragment(new TrackingStatusFragment());
+        loadFirstFragment(new TrackingStatusFragment());
 
         //getting data from calling intent
         Intent intent=getIntent();
@@ -90,21 +90,41 @@ public class TrackOrderActivity extends AppCompatActivity implements View.OnClic
         loadFragment(fragment);
     }
 
-    //method to load fragment
+    //method to load fragment with animation
     public void loadFragment(Fragment fragment)
     {
         if(fragment!=null) {
             String backStateName = fragment.getClass().getName();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            boolean fragmentPopped = fragmentManager.popBackStackImmediate (backStateName, 0);
-            if(!fragmentPopped) {
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
-                fragmentTransaction.replace(R.id.layout_frame_track_order, fragment, "addfragment");
-                fragmentTransaction.addToBackStack(backStateName);
-                fragmentTransaction.commit();
+
+            Fragment currentFragment = fragmentManager.findFragmentById(R.id.layout_frame_track_order);
+            String currentFragmentName = currentFragment.getClass().getName();
+            if (!backStateName.equals(currentFragmentName)) {
+
+                boolean fragmentPopped = fragmentManager.popBackStackImmediate(backStateName, 0);
+                if (!fragmentPopped) {
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setCustomAnimations( R.anim.enter_from_right, R.anim.exit_to_left,R.anim.enter_from_left, R.anim.exit_to_right);
+                    fragmentTransaction.replace(R.id.layout_frame_track_order, fragment, "addfragment");
+                    fragmentTransaction.addToBackStack(backStateName);
+                    fragmentTransaction.commit();
+                }
             }
         }
+    }
+
+
+    //method to load only first fragment
+   public void loadFirstFragment(Fragment firstFragment)
+    {
+        String backStateName = firstFragment.getClass().getName();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+       /* fragmentTransaction.setCustomAnimations( R.anim.enter_from_right, R.anim.exit_to_left,R.anim.enter_from_left, R.anim.exit_to_right);*/
+        fragmentTransaction.replace(R.id.layout_frame_track_order, firstFragment, "addfragment");
+        fragmentTransaction.addToBackStack(backStateName);
+        fragmentTransaction.commit();
+
     }
 
     //method to set toolbar
@@ -135,6 +155,7 @@ public class TrackOrderActivity extends AppCompatActivity implements View.OnClic
                     case R.id.navigation_bag:
                         Intent intent=new Intent(TrackOrderActivity.this,EmptyShoppingBagActivity.class);
                         startActivity(intent);
+                        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
                         break;
 
 
@@ -143,7 +164,8 @@ public class TrackOrderActivity extends AppCompatActivity implements View.OnClic
                         toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(false);
                         toolbar.getMenu().findItem(R.id.navigation_search).setVisible(false);
                         tvTitle.setVisibility(View.GONE);
-                        layoutSearch.setVisibility(View.VISIBLE);
+                        /*layoutSearch.setVisibility(View.VISIBLE);*/
+                        searchView.setVisibility(View.VISIBLE);
                         break;
                 }
                 return true;
@@ -154,6 +176,7 @@ public class TrackOrderActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onBackPressed() {
         searchStateCheck();
+        TrackOrderActivity.this.overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
     }
 
     //method to check whether search bar is open or not
@@ -161,7 +184,8 @@ public class TrackOrderActivity extends AppCompatActivity implements View.OnClic
     {
         if(isSearchOpen)
         {isSearchOpen=false;
-            layoutSearch.setVisibility(View.GONE);
+            /*layoutSearch.setVisibility(View.GONE);*/
+            searchView.setVisibility(View.GONE);
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
             tvTitle.setVisibility(View.VISIBLE);

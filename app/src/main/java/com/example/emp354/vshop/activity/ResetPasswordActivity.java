@@ -57,7 +57,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
             case R.id.btn_cancel_update:
                 Intent cancelIntent=new Intent(this,EditProfileActivity.class);
                 startActivity(cancelIntent);
-                break;
+                overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);                break;
 
             case R.id.btn_update:
                 Intent updateIntent=new Intent(this,EditProfileActivity.class);
@@ -80,6 +80,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
 
 
                 startActivity(updateIntent);
+                overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
                 break;
         }
 

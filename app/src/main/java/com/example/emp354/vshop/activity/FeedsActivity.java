@@ -10,6 +10,7 @@ import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.emp354.vshop.R;
@@ -29,7 +30,8 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
     TextView tvTitle;
     Toolbar toolbar;
     boolean isSearchOpen=false;
-    LinearLayout layoutSearch;
+   /* LinearLayout layoutSearch;*/
+    android.support.v7.widget.SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,8 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
         //initialing variables
         toolbar=findViewById(R.id.toolbar_feeds);
         tvTitle=findViewById(R.id.tv_title_feeds);
-        layoutSearch=findViewById(R.id.layout_search_feeds);
+       /* layoutSearch=findViewById(R.id.layout_search_feeds);*/
+        searchView=findViewById(R.id.searchview_feeds);
         recyclerView=findViewById(R.id.recyclerview_feeds);
         linearLayout=findViewById(R.id.layout_recycler_feeds);
 
@@ -58,9 +61,8 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
 
     @Override
     public void onBackPressed() {
-        FeedsActivity.this.overridePendingTransition(R.anim.slide_in_from_left,
-                R.anim.slide_out_from_right);
         searchStateCheck();
+        FeedsActivity.this.overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
 
     }
 
@@ -75,7 +77,7 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
                 Intent selectProductIntent=new Intent(FeedsActivity.this,SelectProductActivity.class);
                 selectProductIntent.putExtra("position",position);
                 startActivity(selectProductIntent);
-                overridePendingTransition(R.anim.slide_in_from_right,R.anim.slide_out_from_left);
+                overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
                 break;
         }
 
@@ -104,6 +106,7 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
                     case R.id.navigation_bag:
                         Intent intent=new Intent(FeedsActivity.this,EmptyShoppingBagActivity.class);
                         startActivity(intent);
+                        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
                         break;
 
 
@@ -112,7 +115,8 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
                         toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(false);
                         toolbar.getMenu().findItem(R.id.navigation_search).setVisible(false);
                         tvTitle.setVisibility(View.GONE);
-                        layoutSearch.setVisibility(View.VISIBLE);
+                        /*layoutSearch.setVisibility(View.VISIBLE);*/
+                        searchView.setVisibility(View.VISIBLE);
                         break;
                 }
                 return true;
@@ -135,7 +139,8 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
     {
         if(isSearchOpen)
         {isSearchOpen=false;
-            layoutSearch.setVisibility(View.GONE);
+           /* layoutSearch.setVisibility(View.GONE);*/
+            searchView.setVisibility(View.GONE);
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
             tvTitle.setVisibility(View.VISIBLE);

@@ -115,6 +115,8 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
                         layoutItemFeeds.setVisibility(View.VISIBLE);
 
                         view_dim.setVisibility(View.VISIBLE);
+
+                        //for animation
                         layoutItemFeeds.setAnimation(animation);
                         view_dim.setAnimation(animation);
                     }
@@ -124,6 +126,8 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
                                 R.anim.slide_out_top_down);
                         layoutItemFeeds.setVisibility(View.GONE);
                         view_dim.setVisibility(View.GONE);
+
+                        //for animation
                         layoutItemFeeds.setAnimation(animation);
                         view_dim.setAnimation(animation);
 

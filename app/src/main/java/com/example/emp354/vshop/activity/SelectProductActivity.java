@@ -6,11 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,7 +38,8 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
     Toolbar toolbar;
     TextView tvTitle, tvNewPrice,tvTitleToolbar, tvOldPrice,tvQuantity,tvAddToCart,tvLike,tvSize26,tvSize28,tvSize30,tvSize32,tvSize34,tvSize36,tvSize38;
     ImageView ivSelectProductImage,ivLike;
-    LinearLayout layoutSearch,llQuantity;
+    LinearLayout llQuantity;
+    SearchView searchView;
 
     RecyclerView recyclerView;
     List<Integer> isSizeSelected;
@@ -65,8 +66,9 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
 
         //initialising variables
         recyclerView=findViewById(R.id.recyclerview_size);
-        layoutSearch=findViewById(R.id.layout_search);
-        etSearch=findViewById(R.id.et_search_select_product);
+        /*layoutSearch=findViewById(R.id.layout_search);*/
+        searchView=findViewById(R.id.searchview_select_product);
+        /*etSearch=findViewById(R.id.et_search_select_product);*/
         llQuantity=findViewById(R.id.ll_quantity);
 
         toolbar = findViewById(R.id.toolbar_select_product);
@@ -167,6 +169,7 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
                     case R.id.navigation_bag:
                         Intent intent = new Intent(SelectProductActivity.this, EmptyShoppingBagActivity.class);
                         startActivity(intent);
+                        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
                         break;
 
 
@@ -176,7 +179,9 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
                         toolbar.getMenu().findItem(R.id.navigation_search).setVisible(false);
                         tvTitleToolbar.setVisibility(View.GONE);
 
-                        layoutSearch.setVisibility(View.VISIBLE);
+                        /*layoutSearch.setVisibility(View.VISIBLE);*/
+                        searchView.setVisibility(View.VISIBLE);
+
                         break;
 
                 }
@@ -232,7 +237,7 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
             case R.id.btn_add_to_cart:
                 Intent selectProductIntent=new Intent(SelectProductActivity.this,ShoppingBagActivity.class);
                 startActivity(selectProductIntent);
-                SelectProductActivity.this.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
+                SelectProductActivity.this.overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
             /*case R.id.tv_size_26:
                 tvSize26.setTextColor(getResources().getColorStateList(R.color.size_color_selector));
                 tvSize26.setBackground(getResources().getDrawable(R.drawable.size_selector));
@@ -283,6 +288,7 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onBackPressed() {
         searchStateCheck();
+        SelectProductActivity.this.overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
 
     }
 
@@ -304,7 +310,8 @@ public class SelectProductActivity extends AppCompatActivity implements View.OnC
     {
         if(isSearchOpen)
         {isSearchOpen=false;
-            layoutSearch.setVisibility(View.GONE);
+          /*  layoutSearch.setVisibility(View.GONE);*/
+            searchView.setVisibility(View.GONE);
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
             tvTitleToolbar.setVisibility(View.VISIBLE);

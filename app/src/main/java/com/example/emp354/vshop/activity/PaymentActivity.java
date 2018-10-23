@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 
@@ -107,10 +105,16 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.btn_pay_now:
                 Intent intent=new Intent(this,PaymentSuccessfulActivity.class);
                 startActivity(intent);
-                PaymentActivity.this.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
+                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
                 break;
 
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        PaymentActivity.this.overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
     }
 }

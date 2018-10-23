@@ -144,6 +144,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
             if(!isAccountExist) {
                 Intent intent = new Intent((SigninRegisterActivity) getActivity(), HomeActivity.class);
                 startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
             }
         }
 

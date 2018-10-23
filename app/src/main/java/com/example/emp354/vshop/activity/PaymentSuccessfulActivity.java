@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.emp354.vshop.R;
 
@@ -47,9 +46,15 @@ public class PaymentSuccessfulActivity extends AppCompatActivity implements View
             case R.id.btn_okay:
                 Intent paymentSuccessfullIntent=new Intent(this,HomeActivity.class);
                 startActivity(paymentSuccessfullIntent);
-                PaymentSuccessfulActivity.this.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
+                PaymentSuccessfulActivity.this.overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
                 break;
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        PaymentSuccessfulActivity.this.overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
     }
 }

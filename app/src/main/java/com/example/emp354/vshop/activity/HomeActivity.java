@@ -12,11 +12,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.transition.Slide;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -24,12 +23,9 @@ import android.widget.TextView;
 
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.VshopSharedPreference;
-import com.example.emp354.vshop.adapter.CategoriesRecyclerAdapter;
 import com.example.emp354.vshop.fragment.BrowseBrandsFragment;
-import com.example.emp354.vshop.fragment.CategoriesFragment;
 import com.example.emp354.vshop.fragment.CategoryFragment;
 import com.example.emp354.vshop.fragment.Discover2Fragment;
-import com.example.emp354.vshop.fragment.DiscoverFragment;
 import com.example.emp354.vshop.fragment.NotificationFragment;
 import com.example.emp354.vshop.fragment.ProfileFragment;
 import com.example.emp354.vshop.fragment.TrackOrderFragment;
@@ -51,6 +47,7 @@ public class HomeActivity extends AppCompatActivity {
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     LinearLayout layoutSearch;
+    SearchView searchView;
     TextView tvTitle;
     Fragment fragment;
     boolean isSearchOpen = false;
@@ -66,14 +63,15 @@ public class HomeActivity extends AppCompatActivity {
         vshopSharedPreference = VshopSharedPreference.getInstance(this);
         toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.layout_drawer);
-        layoutSearch = findViewById(R.id.layout_search_home);
+        searchView=findViewById(R.id.searchview);
+        /*layoutSearch = findViewById(R.id.layout_search_home);*/
         tvTitle = findViewById(R.id.tv_toolbar_home);
         checkFragment();
         setToolbar();
         setNavigationView();
         getHeight();
         getWidth();
-        loadFragment(new ProfileFragment());
+        loadFirstFragment(new ProfileFragment());
     }
 
     //method to set navigation view
@@ -117,8 +115,7 @@ public class HomeActivity extends AppCompatActivity {
 
                 }
 
-                HomeActivity.this.overridePendingTransition(R.anim.slide_in_from_right,
-                        R.anim.slide_out_from_left);
+                HomeActivity.this.overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
                 //method call to load fragment
                 loadFragment(fragment);
                 //closing drawerlayout
@@ -149,12 +146,14 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.edit:
                         Intent editIntent = new Intent(HomeActivity.this, EditProfileActivityCropWithLibrary.class);
                         startActivity(editIntent);
+                        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
                         break;
 
 
                     case R.id.navigation_bag:
                         Intent searchBagIntent = new Intent(HomeActivity.this, EmptyShoppingBagActivity.class);
                         startActivity(searchBagIntent);
+                        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
                         break;
 
                     case R.id.navigation_search:
@@ -162,7 +161,8 @@ public class HomeActivity extends AppCompatActivity {
                         toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(false);
                         toolbar.getMenu().findItem(R.id.navigation_search).setVisible(false);
                         tvTitle.setVisibility(View.GONE);
-                        layoutSearch.setVisibility(View.VISIBLE);
+                       /* layoutSearch.setVisibility(View.VISIBLE);*/
+                        searchView.setVisibility(View.VISIBLE);
                         break;
 
                 }
@@ -194,19 +194,34 @@ public class HomeActivity extends AppCompatActivity {
     public void loadFragment(Fragment fragment) {
         if (fragment != null) {
             String backStateName = fragment.getClass().getName();
-
-
             FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
-            boolean fragmentPopped = fragmentManager.popBackStackImmediate (backStateName, 0);
 
-            if(!fragmentPopped) {
-                fragmentTransaction.replace(R.id.layout_frame_home, fragment, "addfragment");
+            Fragment currentFragment=fragmentManager.findFragmentById(R.id.layout_frame_home);
+            String currentFragmentName=currentFragment.getClass().getName();
+            if (!backStateName.equals(currentFragmentName))
+            {
+                boolean fragmentPopped = fragmentManager.popBackStackImmediate(backStateName, 0);
+
+                if (!fragmentPopped) {
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,R.anim.enter_from_left, R.anim.exit_to_right);
+                    fragmentTransaction.replace(R.id.layout_frame_home, fragment, "addfragment");
+                    fragmentTransaction.addToBackStack(backStateName);
+                    fragmentTransaction.commit();
+                }
+
             }
-                fragmentTransaction.addToBackStack(backStateName);
-                fragmentTransaction.commit();
         }
+    }
+
+
+    public void loadFirstFragment(Fragment firstFragment)
+    {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.layout_frame_home, firstFragment, "addfragment");
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
 
@@ -287,11 +302,11 @@ public class HomeActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (isSearchOpen) {
             isSearchOpen = false;
-            layoutSearch.setVisibility(View.GONE);
+           /* layoutSearch.setVisibility(View.GONE);*/
+            searchView.setVisibility(View.GONE);
             toolbar.getMenu().findItem(R.id.navigation_bag).setVisible(true);
             toolbar.getMenu().findItem(R.id.navigation_search).setVisible(true);
             tvTitle.setVisibility(View.VISIBLE);
-
         }
         else
             {
@@ -319,7 +334,6 @@ public class HomeActivity extends AppCompatActivity {
                         .setNegativeButton("No", null)
                         .show();
             }
-
         }
     }
 

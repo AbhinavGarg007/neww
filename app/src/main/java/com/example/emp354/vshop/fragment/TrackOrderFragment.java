@@ -66,6 +66,7 @@ public class TrackOrderFragment extends Fragment implements ItemClickListener {
              Intent trackOrderIntent=new Intent(getActivity(),TrackOrderActivity.class);
              trackOrderIntent.putExtra("position",position);
              startActivity(trackOrderIntent);
+             getActivity().overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
      }
     }
 }

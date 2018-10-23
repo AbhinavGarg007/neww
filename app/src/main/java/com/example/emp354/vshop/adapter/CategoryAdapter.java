@@ -1,7 +1,9 @@
 package com.example.emp354.vshop.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -154,6 +156,9 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
                     case R.id.layout_product_variety:
                         Intent intent=new Intent(mContext,FeedsActivity.class);
                         mContext.startActivity(intent);
+
+                        //need to open the activity with animation
+                        ((Activity)mContext).overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
                         break;
                 }
             }

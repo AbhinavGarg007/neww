@@ -21,7 +21,21 @@
                 android:id="@+id/tv_title_select_product_activity"
                 style="@style/ToolbarTextview"/>
 
-            <LinearLayout
+            <android.support.v7.widget.SearchView
+                android:id="@+id/searchview_select_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:iconifiedByDefault="false"
+                android:visibility="gone"
+                android:focusable="true"
+                app:queryHint="@string/search"
+                >
+
+                <requestFocus/>
+
+            </android.support.v7.widget.SearchView>
+
+           <!-- <LinearLayout
                 android:id="@+id/layout_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,7 +58,7 @@
                     android:backgroundTint="@android:color/transparent"
                     android:hint="@string/search"
                     android:maxLines="1" />
-            </LinearLayout>
+            </LinearLayout>-->
 
         </android.support.v7.widget.Toolbar>
 

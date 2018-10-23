@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_recycler_feeds"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layout_recycler_feeds"
     android:orientation="vertical"
     tools:context=".activity.FeedsActivity">
 
@@ -12,13 +12,27 @@
         android:id="@+id/toolbar_feeds"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/tv_title_feeds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
-        <LinearLayout
+        <android.support.v7.widget.SearchView
+            android:id="@+id/searchview_feeds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:visibility="gone"
+            app:iconifiedByDefault="false"
+            app:queryHint="@string/search">
+
+            <requestFocus />
+
+        </android.support.v7.widget.SearchView>
+
+        <!--<LinearLayout
             android:id="@+id/layout_search_feeds"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,10 +57,9 @@
                 android:maxLines="1"
                 android:hint="Search.."
                 />
-        </LinearLayout>
+        </LinearLayout>-->
 
     </android.support.v7.widget.Toolbar>
-
 
 
     <android.support.v7.widget.RecyclerView
