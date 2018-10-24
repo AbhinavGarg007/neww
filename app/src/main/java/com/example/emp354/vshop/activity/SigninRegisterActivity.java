@@ -6,15 +6,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.fragment.RegisterFragment;
 import com.example.emp354.vshop.fragment.SigninFragment;
 
-public class SigninRegisterActivity extends AppCompatActivity {
+public class SigninRegisterActivity extends AppCompatActivity implements View.OnClickListener {
     FrameLayout frameLayout;
     String fragmentName;
+    Button btnSignIn,btnRegister;
+    Fragment fragment;
 
 
     @Override
@@ -22,6 +26,14 @@ public class SigninRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin_register);
         frameLayout=findViewById(R.id.layout_frame_signin_register);
+        btnRegister=findViewById(R.id.btn_register);
+        btnSignIn=findViewById(R.id.btn_signin);
+
+
+
+        btnSignIn.setOnClickListener(this);
+        btnRegister.setOnClickListener(this);
+
 
         //checking which fragment to load and loading fragment
         Intent intent=getIntent();
@@ -67,5 +79,24 @@ public class SigninRegisterActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId())
+        {
+            case R.id.btn_signin:
+               fragment=new SigninFragment();
+               btnSignIn.setBackground(getResources().getDrawable(R.drawable.drawable_btn_bg));
+               btnRegister.setBackground(getResources().getDrawable(android.R.color.transparent));
+               break;
+
+            case R.id.btn_register:
+                fragment=new RegisterFragment();
+                btnRegister.setBackground(getResources().getDrawable(R.drawable.drawable_btn_bg));
+                btnSignIn.setBackground(getResources().getDrawable(android.R.color.transparent));
+                break;
+        }
+        loadFragment(fragment);
     }
 }

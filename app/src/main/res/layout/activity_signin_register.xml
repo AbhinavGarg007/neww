@@ -4,7 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_bg_girl"
+    android:padding="@dimen/margin_20"
     tools:context=".activity.SigninRegisterActivity">
+
+
+    <LinearLayout
+        android:id="@+id/layout_btn_signin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:alpha="0.8"
+        android:background="@drawable/drawable_btn_bg_stroke">
+
+        <Button
+            android:id="@+id/btn_signin"
+            style="@style/SignInRegisterButton"
+            android:background="@drawable/drawable_btn_bg"
+            android:text="@string/sign_in" />
+
+        <Button
+            android:id="@+id/btn_register"
+            style="@style/SignInRegisterButton"
+            android:background="@android:color/transparent"
+            android:text="@string/register" />
+    </LinearLayout>
     <FrameLayout
         android:id="@+id/layout_frame_signin_register"
         android:layout_width="match_parent"

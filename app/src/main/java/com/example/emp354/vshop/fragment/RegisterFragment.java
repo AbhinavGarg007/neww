@@ -61,8 +61,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         vshopSharedPreference=VshopSharedPreference.getInstance(getActivity());
 
 
-        btnSubmit=view.findViewById(R.id.btn_register);
-        btnSignin=view.findViewById(R.id.btn_register_signin);
+        btnSubmit=view.findViewById(R.id.btn_register_submit);
+       /* btnSignin=view.findViewById(R.id.btn_register_signin);*/
         etFirstName=view.findViewById(R.id.et_first_name);
         etLastName=view.findViewById(R.id.et_last_name);
         etEmail=view.findViewById(R.id.et_register_email);
@@ -89,7 +89,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
 
         //setting listener on buttons
         btnSubmit.setOnClickListener(this);
-        btnSignin.setOnClickListener(this);
+        /*btnSignin.setOnClickListener(this);*/
     }
 
     @Override
@@ -97,11 +97,11 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         switch (view.getId())
         {
 
-            case R.id.btn_register_signin:
+            /*case R.id.btn_register_signin:
                 ((SigninRegisterActivity)getActivity()).loadFragment(new SigninFragment());
-                break;
+                break;*/
 
-            case R.id.btn_register:
+            case R.id.btn_register_submit:
                 if(isChecked) {
                     { if (validateFormData(etFirstName.getText().toString(),
                                 etLastName.getText().toString(),

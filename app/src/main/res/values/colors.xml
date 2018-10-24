@@ -14,8 +14,12 @@
     <color name="color_blue_dark">#6DBBDC</color>
 
     <color name="color_brown_light">#F1DDCC</color>
+    <color name="color_brown_dark_focus">#F1DDCC</color>
     <color name="color_pink_light">#FFDEDF</color>
+    <color name="color_pink_dark_focus">#FFDEDF</color>
     <color name="color_green_light">#C6EFCD</color>
+    <color name="color_freen_dark_focus">#C6EFCD</color>
+
     <color name="color_green_dark">#079D2B</color>
     <color name="color_face">#FFD6B2</color>
     <color name="color_discount">#FFC2C9</color>

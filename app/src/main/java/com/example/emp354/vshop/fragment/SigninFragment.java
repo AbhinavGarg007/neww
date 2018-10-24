@@ -52,15 +52,15 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
         vshopUserModel=new VshopUserModel();
         vshopSharedPreference=VshopSharedPreference.getInstance(getActivity());
 
-        btnSubmit=view.findViewById(R.id.btn_signin);
-        btnSignin=view.findViewById(R.id.btn_signin_register);
+        btnSubmit=view.findViewById(R.id.btn_signin_submit);
+        /*btnSignin=view.findViewById(R.id.btn_signin_register);*/
         tvForgotPassword=view.findViewById(R.id.tv_forgot_password);
         etEmail=view.findViewById(R.id.et_signin_email);
         etPassword=view.findViewById(R.id.et_signin_password);
 
         //setting listener on views
         btnSubmit.setOnClickListener(this);
-        btnSignin.setOnClickListener(this);
+        /*btnSignin.setOnClickListener(this);*/
         tvForgotPassword.setOnClickListener(this);
     }
 
@@ -68,11 +68,11 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
 
-            case R.id.btn_signin_register:
+            /*case R.id.btn_signin_register:
                 ((SigninRegisterActivity)getActivity()).loadFragment(new RegisterFragment());
-                break;
+                break;*/
 
-            case R.id.btn_signin:
+            case R.id.btn_signin_submit:
                 new SigninAsyncTask().execute();
                 break;
 
