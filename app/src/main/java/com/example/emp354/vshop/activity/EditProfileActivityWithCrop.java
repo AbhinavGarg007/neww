@@ -475,7 +475,7 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
     //method to set image into imageview
     private void setImage(Bitmap bm) {
         ivImage.setImageBitmap(bm);
-        BlurImage.with(this).load(bm).intensity(20).Async(true).into(ivBlur);
+        BlurImage.with(this).load(bm).intensity(2).Async(true).into(ivBlur);
     }
 
 
@@ -498,7 +498,7 @@ public class EditProfileActivityWithCrop extends AppCompatActivity implements Vi
         //for profile pic
         if (vshopUserModel.getProfile_pic() == null || vshopUserModel.getProfile_pic().equals("")) {
             ivImage.setImageDrawable(getResources().getDrawable(R.drawable.imageview_placeholder));
-            BlurImage.with(this).load(R.drawable.imageview_placeholder).intensity(20).Async(true).into(ivBlur);
+            BlurImage.with(this).load(R.drawable.imageview_placeholder).intensity(2).Async(true).into(ivBlur);
         } else {
             imageLocation = String.valueOf(vshopUserModel.getProfile_pic());
             bitmap = BitmapFactory.decodeFile(vshopUserModel.getProfile_pic());

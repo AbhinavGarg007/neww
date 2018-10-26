@@ -32,6 +32,8 @@ public class TrackOrderActivity extends AppCompatActivity implements View.OnClic
     Toolbar toolbar;
     TextView tvTitle,tvTitleProduct;
     ImageView ivProduct;
+    FragmentTransaction fragmentTransaction;
+    FragmentManager fragmentManager;
     /*LinearLayout layoutSearch;*/
     android.support.v7.widget.SearchView searchView;
     boolean isSearchOpen=false;
@@ -49,6 +51,10 @@ public class TrackOrderActivity extends AppCompatActivity implements View.OnClic
         searchView=findViewById(R.id.searchview_track_order);
         tvTitleProduct=findViewById(R.id.tv_title_track_order_product_activity);
         ivProduct=findViewById(R.id.iv_track_order_product_activity);
+
+
+        fragmentManager = getSupportFragmentManager();
+
 
         //method to set toolbar
         setToolbar();
@@ -93,21 +99,21 @@ public class TrackOrderActivity extends AppCompatActivity implements View.OnClic
     //method to load fragment with animation
     public void loadFragment(Fragment fragment)
     {
+
+        fragmentManager.executePendingTransactions();
         if(fragment!=null) {
             String backStateName = fragment.getClass().getName();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-
             Fragment currentFragment = fragmentManager.findFragmentById(R.id.layout_frame_track_order);
             String currentFragmentName = currentFragment.getClass().getName();
             if (!backStateName.equals(currentFragmentName)) {
-
+                fragmentTransaction = fragmentManager.beginTransaction();
                 boolean fragmentPopped = fragmentManager.popBackStackImmediate(backStateName, 0);
                 if (!fragmentPopped) {
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.setCustomAnimations( R.anim.enter_from_right, R.anim.exit_to_left,R.anim.enter_from_left, R.anim.exit_to_right);
                     fragmentTransaction.replace(R.id.layout_frame_track_order, fragment, "addfragment");
                     fragmentTransaction.addToBackStack(backStateName);
                     fragmentTransaction.commit();
+
                 }
             }
         }

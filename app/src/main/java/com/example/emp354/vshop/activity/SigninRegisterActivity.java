@@ -85,6 +85,7 @@ public class SigninRegisterActivity extends AppCompatActivity implements View.On
     //method to load fragment
     private void loadFragment(Fragment fragment) {
         if (fragment != null) {
+
             String backStateName = fragment.getClass().getName();
             FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -100,6 +101,7 @@ public class SigninRegisterActivity extends AppCompatActivity implements View.On
                 }
                 fragmentTransaction.replace(R.id.layout_frame_signin_register, fragment, "addFragment");
                 fragmentTransaction.commit();
+                fragmentManager.executePendingTransactions();
             }
         }
     }

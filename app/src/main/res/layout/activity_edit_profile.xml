@@ -45,6 +45,7 @@
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
+        android:id="@+id/layout_content_crop_with_library"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">

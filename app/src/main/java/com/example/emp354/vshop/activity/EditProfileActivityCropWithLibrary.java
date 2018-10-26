@@ -22,8 +22,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -45,6 +48,7 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import jp.wasabeef.blurry.Blurry;
 
 public class EditProfileActivityCropWithLibrary extends AppCompatActivity implements View.OnClickListener {
 
@@ -63,6 +67,7 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
     Bitmap bitmap;
     File dir,destination,cameraPicLocation;
     Uri uri;
+    LinearLayout linearLayout;
 
     AppDatabase appDatabase;
     VshopUserModel vshopUserModel;
@@ -91,6 +96,7 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
         tvCancel = findViewById(R.id.tv_cancel);
         tvDone = findViewById(R.id.tv_done);
         tvName = findViewById(R.id.tv_name_edit);
+        linearLayout=findViewById(R.id.layout_content_crop_with_library);
 
         //apply onClickListeners
         tvResetPassword.setOnClickListener(this);
@@ -200,7 +206,7 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
 
     //method to provide options to user to select image
     private void selectImage() {
-        final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
+        /*final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivityCropWithLibrary.this);
         builder.setTitle("Add Photo");
         builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -218,9 +224,49 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
                 }
             }
         });
-        builder.show();
-    }
 
+        builder.show();
+        builder.setCancelable(true);*/
+        final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
+        final AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivityCropWithLibrary.this);
+        builder.setTitle("Add Photo");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                if (items[which].equals("Take Photo")) {
+                    if (Utility2.checkCameraPermission(EditProfileActivityCropWithLibrary.this))
+                        cameraIntent();
+                } else if (items[which].equals("Choose from Library")) {
+                    if (Utility2.checkGalleryPermission(EditProfileActivityCropWithLibrary.this))
+                        galleryIntent();
+                } else if (items[which].equals("Cancel")) {
+                    dialog.cancel();
+
+                }
+            }
+        });
+        AlertDialog alertDialog=builder.create();
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Blurry.with(EditProfileActivityCropWithLibrary.this).radius(25).sampling(2).onto( linearLayout);
+            }
+        });
+
+        alertDialog.show();
+        alertDialog.setCancelable(true);
+
+        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                Blurry.delete(linearLayout);
+            }
+        });
+
+
+
+    }
 
     //method for the permission
     @Override
@@ -356,7 +402,7 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
     //method to set image into imageview
     private void setImage(Bitmap bm) {
         ivImage.setImageBitmap(bm);
-        BlurImage.with(this).load(bm).intensity(20).Async(true).into(ivBlur);
+        BlurImage.with(this).load(bm).intensity(2).Async(true).into(ivBlur);
     }
 
     //method to set data
@@ -378,7 +424,7 @@ public class EditProfileActivityCropWithLibrary extends AppCompatActivity implem
         //for profile pic
         if (vshopUserModel.getProfile_pic() == null || vshopUserModel.getProfile_pic().equals("")) {
             ivImage.setImageDrawable(getResources().getDrawable(R.drawable.imageview_placeholder));
-            BlurImage.with(this).load(R.drawable.imageview_placeholder).intensity(20).Async(true).into(ivBlur);
+            BlurImage.with(this).load(R.drawable.imageview_placeholder).intensity(2).Async(true).into(ivBlur);
         } else {
             imageLocation = String.valueOf(vshopUserModel.getProfile_pic());
             bitmap = BitmapFactory.decodeFile(vshopUserModel.getProfile_pic());

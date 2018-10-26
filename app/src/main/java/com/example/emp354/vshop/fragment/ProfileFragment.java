@@ -116,7 +116,7 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
             loadImage(vshopUserModel.getProfile_pic());
         } else {
             ivProfile.setImageDrawable(getResources().getDrawable(R.drawable.imageview_placeholder));
-            BlurImage.with(getActivity()).load(R.drawable.imageview_placeholder).intensity(20).Async(true).into(ivBlur);
+            BlurImage.with(getActivity()).load(R.drawable.imageview_placeholder).intensity(2).Async(true).into(ivBlur);
         }
     }
 
@@ -125,7 +125,7 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
         bitmap = BitmapFactory.decodeFile(path);
         /* ivProfile.setImageBitmap(bitmap);*/
         ImageLoader.getInstance().displayImage(FILE_INITIAL_PATH + path, ivProfile);
-        BlurImage.with(getActivity()).load(bitmap).intensity(20).Async(true).into(ivBlur);
+        BlurImage.with(getActivity()).load(bitmap).intensity(2).Async(true).into(ivBlur);
     }
 
 
