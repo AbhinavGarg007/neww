@@ -1,4 +1,4 @@
-package com.example.emp354.vshop.fragment;
+package com.example.emp354.vshop.useless;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.activity.SigninRegisterActivity;
+import com.example.emp354.vshop.fragment.SigninFragment;
 
 public class ForgotPasswordFragment extends Fragment implements View.OnClickListener{
     Button btnCancel,btnSubmit;
@@ -39,11 +40,11 @@ public class ForgotPasswordFragment extends Fragment implements View.OnClickList
         switch (view.getId())
         {
             case R.id.btn_cancel:
-                ((SigninRegisterActivity)getActivity()).loadFragment(new SigninFragment());
+                ((SigninRegisterActivity)getActivity()).loadFirstFragment(new SigninFragment());
                 break;
 
             case R.id.btn_submit:
-                ((SigninRegisterActivity)getActivity()).loadFragment(new SigninFragment());
+                ((SigninRegisterActivity)getActivity()).loadFirstFragment(new SigninFragment());
                 break;
         }
     }

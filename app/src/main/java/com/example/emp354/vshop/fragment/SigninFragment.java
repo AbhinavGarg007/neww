@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.emp354.vshop.AppDatabase;
+import com.example.emp354.vshop.activity.ForgotPasswordActivity;
 import com.example.emp354.vshop.activity.HomeActivity;
 import com.example.emp354.vshop.R;
 import com.example.emp354.vshop.activity.SigninRegisterActivity;
@@ -77,7 +78,9 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.tv_forgot_password:
-                ((SigninRegisterActivity)getActivity()).loadFragment(new ForgotPasswordFragment());
+               Intent intent=new Intent(getActivity(),ForgotPasswordActivity.class);
+               startActivity(intent);
+               getActivity().overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
                 break;
 
         }

@@ -214,7 +214,6 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-
     public void loadFirstFragment(Fragment firstFragment)
     {
         FragmentManager fragmentManager = getSupportFragmentManager();

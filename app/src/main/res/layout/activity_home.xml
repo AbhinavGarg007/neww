@@ -35,11 +35,7 @@
                 android:background="@android:color/transparent"
                 app:iconifiedByDefault="false"
                 android:visibility="gone"
-                android:focusable="true"
-                app:queryHint="@string/search"
-                >
-
-                <requestFocus/>
+                app:queryHint="@string/search">
 
             </android.support.v7.widget.SearchView>
 

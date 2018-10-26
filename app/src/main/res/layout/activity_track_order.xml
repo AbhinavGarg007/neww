@@ -24,11 +24,8 @@
             android:layout_height="wrap_content"
             app:iconifiedByDefault="false"
             android:visibility="gone"
-            android:focusable="true"
             app:queryHint="@string/search"
             >
-
-            <requestFocus/>
 
         </android.support.v7.widget.SearchView>
 

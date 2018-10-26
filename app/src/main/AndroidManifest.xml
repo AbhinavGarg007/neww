@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.emp354.vshop">
 
-    <uses-feature android:name="android.hardware.camera"
-        android:required="true"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -28,9 +30,12 @@
             android:name=".activity.SigninRegisterActivity"
             android:theme="@style/ToolbarTheme" />
         <activity
+            android:name=".activity.ForgotPasswordActivity"
+            android:theme="@style/ToolbarTheme"/>
+        <activity
             android:name=".activity.HomeActivity"
             android:theme="@style/ToolbarTheme"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.EditProfileActivity"
             android:theme="@style/ToolbarTheme" />
@@ -66,13 +71,15 @@
             android:theme="@style/ToolbarTheme" />
         <activity
             android:name=".activity.OrderHistoryActivity"
-            android:theme="@style/ToolbarTheme"></activity>
+            android:theme="@style/ToolbarTheme" />
 
-        <!--to crop the image-->
+        <!-- to crop the image -->
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+
     </application>
 
 </manifest>

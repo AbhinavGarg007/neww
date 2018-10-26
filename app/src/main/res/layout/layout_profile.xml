@@ -142,7 +142,6 @@
             android:background="@drawable/drawable_bg_rectangle_grey"
             android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
             android:hint="Track Your Order"
-
             android:padding="@dimen/margin_10"
             android:textSize="@dimen/textsize_15" />
 
