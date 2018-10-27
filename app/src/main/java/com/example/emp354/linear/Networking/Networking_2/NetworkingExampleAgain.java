@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.emp354.linear.R;
 
-public class NetworkingExample_2 extends AppCompatActivity {
+public class NetworkingExampleAgain extends AppCompatActivity {
 
 
 

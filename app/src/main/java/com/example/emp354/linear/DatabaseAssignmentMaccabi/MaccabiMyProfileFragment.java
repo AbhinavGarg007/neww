@@ -38,7 +38,7 @@ public class MaccabiMyProfileFragment extends Fragment implements View.OnClickLi
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.maccabi_my_profile,container,false);
         /*setHasOptionsMenu(true);*/
-        ((MaccabiContentHomeActivity)getActivity()).checkFragment();
+        ((MaccabiHomeActivity)getActivity()).checkFragment();
         return view;
     }
 
