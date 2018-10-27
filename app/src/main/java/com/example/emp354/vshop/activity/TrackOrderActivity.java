@@ -100,7 +100,7 @@ public class TrackOrderActivity extends AppCompatActivity implements View.OnClic
     public void loadFragment(Fragment fragment)
     {
 
-        fragmentManager.executePendingTransactions();
+       /* fragmentManager.executePendingTransactions();*/
         if(fragment!=null) {
             String backStateName = fragment.getClass().getName();
             Fragment currentFragment = fragmentManager.findFragmentById(R.id.layout_frame_track_order);
@@ -109,7 +109,7 @@ public class TrackOrderActivity extends AppCompatActivity implements View.OnClic
                 fragmentTransaction = fragmentManager.beginTransaction();
                 boolean fragmentPopped = fragmentManager.popBackStackImmediate(backStateName, 0);
                 if (!fragmentPopped) {
-                    fragmentTransaction.setCustomAnimations( R.anim.enter_from_right, R.anim.exit_to_left,R.anim.enter_from_left, R.anim.exit_to_right);
+                    /*fragmentTransaction.setCustomAnimations( R.anim.enter_from_right, R.anim.exit_to_left,R.anim.enter_from_left, R.anim.exit_to_right);*/
                     fragmentTransaction.replace(R.id.layout_frame_track_order, fragment, "addfragment");
                     fragmentTransaction.addToBackStack(backStateName);
                     fragmentTransaction.commit();
