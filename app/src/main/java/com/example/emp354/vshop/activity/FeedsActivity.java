@@ -74,11 +74,19 @@ public class FeedsActivity extends AppCompatActivity implements ItemClickListene
         switch (view.getId())
         {
             case R.id.iv_feed:
-                Intent selectProductIntent=new Intent(FeedsActivity.this,SelectProductActivity.class);
-                selectProductIntent.putExtra("position",position);
-                startActivity(selectProductIntent);
-                overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
-                break;
+
+                /*if(view.findViewById(R.id.view_dim).getVisibility()==View.VISIBLE)
+                {
+                    view.findViewById(R.id.view_dim).setVisibility(View.GONE);
+                    view.findViewById(R.id.layout_item_feeds).setVisibility(View.GONE);
+                }
+                else {*/
+                    Intent selectProductIntent = new Intent(FeedsActivity.this, SelectProductActivity.class);
+                    selectProductIntent.putExtra("position", position);
+                    startActivity(selectProductIntent);
+                    overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+                    break;
+               /* }*/
         }
 
     }

@@ -1,5 +1,7 @@
 package com.example.emp354.vshop.adapter;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -29,26 +31,25 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
     String[] mPrice;
     ItemClickListener mItemClickListener;
     int mHeight;
-    Animation animation;
+    Animation animationUp, animationDown;
 
     //constructor for the adapter
-    public FeedsRecyclerAdapter(Context context,int[] feeds,String[] title,String[] price,ItemClickListener itemClickListener,int height)
-    {
+    public FeedsRecyclerAdapter(Context context, int[] feeds, String[] title, String[] price, ItemClickListener itemClickListener, int height) {
         //assigning values passed in constructor to the variable
-      mContext=context;
-      mFeeds=feeds;
-      mTitle=title;
-      mPrice=price;
-      mItemClickListener =itemClickListener;
-      mHeight=height;
+        mContext = context;
+        mFeeds = feeds;
+        mTitle = title;
+        mPrice = price;
+        mItemClickListener = itemClickListener;
+        mHeight = height;
     }
 
     //inflating layout and assign it to holder
     @NonNull
     @Override
     public FeedsHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view=LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_item_feed,viewGroup,false);
-        FeedsHolder feedsHolder=new FeedsHolder(view);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_item_feed, viewGroup, false);
+        FeedsHolder feedsHolder = new FeedsHolder(view);
         return feedsHolder;
     }
 
@@ -56,9 +57,9 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
 
-        FeedsHolder feedsHolder=(FeedsHolder)viewHolder;
-       /* feedsHolder.ivFeed.setImageResource(mFeeds[position]);*/
-        ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + mFeeds[position],feedsHolder.ivFeed);
+        FeedsHolder feedsHolder = (FeedsHolder) viewHolder;
+        /* feedsHolder.ivFeed.setImageResource(mFeeds[position]);*/
+        ImageLoader.getInstance().displayImage(DRAWABLE_INITIAL_PATH + mFeeds[position], feedsHolder.ivFeed);
         feedsHolder.tvTitle.setText(mTitle[position]);
         feedsHolder.tvNewPrice.setText(mPrice[position]);
 
@@ -74,69 +75,101 @@ public class FeedsRecyclerAdapter extends RecyclerView.Adapter {
     //holder for the adapter
     public class FeedsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         //declaring variables
-        ImageView ivFeed,ivActionBar;
+        ImageView ivFeed, ivActionBar;
         LinearLayout layoutItemFeeds;
-        TextView tvTitle,tvNewPrice,tvOldPrice;
+        TextView tvTitle, tvNewPrice, tvOldPrice;
         View view_dim;
 
         public FeedsHolder(@NonNull View itemView) {
             super(itemView);
 
             //initialising variables
-            ivFeed=itemView.findViewById(R.id.iv_feed);
-            ivActionBar=itemView.findViewById(R.id.iv_action_bar);
-            tvTitle=itemView.findViewById(R.id.tv_title);
-            tvNewPrice=itemView.findViewById(R.id.tv_new_price);
-            tvOldPrice=itemView.findViewById(R.id.tv_old_price);
-            view_dim=itemView.findViewById(R.id.view_dim);
+            ivFeed = itemView.findViewById(R.id.iv_feed);
+            ivActionBar = itemView.findViewById(R.id.iv_action_bar);
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvNewPrice = itemView.findViewById(R.id.tv_new_price);
+            tvOldPrice = itemView.findViewById(R.id.tv_old_price);
+            view_dim = itemView.findViewById(R.id.view_dim);
 
-
-            layoutItemFeeds=itemView.findViewById(R.id.layout_action_bar);
+            layoutItemFeeds = itemView.findViewById(R.id.layout_action_bar);
 
             //setting listener
             ivFeed.setOnClickListener(this);
 
             //setting height of the layout
-            ivFeed.getLayoutParams().height=mHeight;
-            view_dim.getLayoutParams().height=mHeight;
+            ivFeed.getLayoutParams().height = mHeight;
+            view_dim.getLayoutParams().height = mHeight;
             ivActionBar.setOnClickListener(this);
+
+
         }
 
         //performing click on actiondots in layout
         @Override
         public void onClick(View view) {
-            switch (view.getId()){
+
+            layoutItemFeeds.clearAnimation();
+            view_dim.clearAnimation();
+            animationUp = AnimationUtils.loadAnimation(mContext, R.anim.slide_in_bottom_up);
+            animationDown = AnimationUtils.loadAnimation(mContext, R.anim.slide_out_top_down);
+
+            switch (view.getId()) {
                 //making layout visible after clicking on action dots
                 case R.id.iv_action_bar:
 
-                    if(layoutItemFeeds.getVisibility() == View.GONE && view_dim.getVisibility() == View.GONE){
-                        animation = AnimationUtils.loadAnimation(mContext,
-                                R.anim.slide_in_bottom_up);
+                    if (layoutItemFeeds.getVisibility() == View.INVISIBLE && view_dim.getVisibility() == View.INVISIBLE) {
                         layoutItemFeeds.setVisibility(View.VISIBLE);
-
                         view_dim.setVisibility(View.VISIBLE);
-
                         //for animation
-                        layoutItemFeeds.setAnimation(animation);
-                        view_dim.setAnimation(animation);
+                        layoutItemFeeds.setAnimation(animationUp);
+
+
                     }
                     //making layout gone
-                    else {
-                        animation = AnimationUtils.loadAnimation(mContext,
-                                R.anim.slide_out_top_down);
-                        layoutItemFeeds.setVisibility(View.GONE);
-                        view_dim.setVisibility(View.GONE);
-
+                    else if (layoutItemFeeds.getVisibility() == View.VISIBLE && view_dim.getVisibility() == View.VISIBLE) {
+                        layoutItemFeeds.setVisibility(View.INVISIBLE);
                         //for animation
-                        layoutItemFeeds.setAnimation(animation);
-                        view_dim.setAnimation(animation);
+                        layoutItemFeeds.setAnimation(animationDown);
+
 
                     }
+                    break;
+
+
+                case R.id.iv_feed:
+                    if (view_dim.getVisibility() == View.VISIBLE && layoutItemFeeds.getVisibility() == View.VISIBLE) {
+                        layoutItemFeeds.setVisibility(View.INVISIBLE);
+                        //for animation
+                        layoutItemFeeds.setAnimation(animationDown);
+                    } else {
+                        //passing view and adapter position to the itemClickListener
+                        mItemClickListener.onItemClick(view, getAdapterPosition());
+                    }
+
+                    break;
 
             }
-            //passing view and adapter position to the itemClickListener
-            mItemClickListener.onItemClick(view,getAdapterPosition());
+            animationDown.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    view_dim.setVisibility(View.INVISIBLE);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+
 
         }
+
     }
+
+
 }

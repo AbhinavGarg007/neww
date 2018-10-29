@@ -25,7 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#70000000"
-            android:visibility="gone" />
+            android:visibility="invisible"
+           />
 
         <LinearLayout
             android:id="@+id/layout_action_bar"
@@ -35,7 +36,8 @@
             android:layout_marginRight="@dimen/margin_10"
             android:layout_marginBottom="@dimen/margin_10"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="invisible"
+            >
 
             <LinearLayout
                 android:layout_width="wrap_content"
