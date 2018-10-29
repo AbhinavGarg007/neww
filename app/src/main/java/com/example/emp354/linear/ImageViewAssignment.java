@@ -1,13 +1,14 @@
 package com.example.emp354.linear;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.emp354.linear.Button.CompoundBtnAssignment;
-import com.example.emp354.linear.R;
 
 public class ImageViewAssignment extends AppCompatActivity {
 
@@ -34,4 +35,6 @@ public class ImageViewAssignment extends AppCompatActivity {
             }
         });
     }
+
+
 }
