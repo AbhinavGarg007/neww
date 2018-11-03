@@ -116,9 +116,7 @@
             android:theme="@style/ToolBarTheme" />
         <activity
             android:name=".DatabaseAssignmentMaccabi.SplashMaccabi"
-            android:theme="@style/ToolBarTheme">
-
-        </activity>
+            android:theme="@style/ToolBarTheme" />
         <activity
             android:name=".DatabaseAssignmentMaccabi.MailIdScreenMaccabi"
             android:theme="@style/ToolBarTheme" />
@@ -159,7 +157,7 @@
             android:name=".RoomExample.RoomActivity"
             android:theme="@style/ToolBarTheme" />
         <activity android:name=".Multithreading.Multithreading" />
-        <activity android:name=".Multithreading.Multithreading_2" />
+        <activity android:name=".Multithreading.Multithreading_2"></activity>
         <activity android:name=".Multithreading.Multithreading_3" />
         <activity android:name=".Multithreading.Multithreading_4" />
         <activity android:name=".Multithreading.Multithreading_5" />
@@ -195,16 +193,21 @@
         <activity android:name=".CommunicatingWithServer.ImageSearch.FullViewActivity" />
         <activity android:name=".Image.ImageCapture" />
         <activity android:name=".ExpandableListView.ExpandableActivity" />
-        <activity android:name=".StartingActivity.IntroActivity"
-            android:theme="@style/ToolBarTheme">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity
+            android:name=".StartingActivity.IntroActivity"
+            android:theme="@style/ToolBarTheme" />
+        <activity
+            android:name=".StartingActivity.AfterIntro"
+            android:theme="@style/ToolBarTheme" />
+        <activity android:name=".KotlinPractice.KotlinActivity1"></activity>
+        <activity android:name=".KotlinPractice.KotlinActivity_2">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".StartingActivity.AfterIntro"
-            android:theme="@style/ToolBarTheme"></activity>
+        <activity android:name=".KotlinPractice.ThirdParty.ThirdPartyAssignment_1"></activity>
     </application>
 
 </manifest>
