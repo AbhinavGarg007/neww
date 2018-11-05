@@ -201,13 +201,15 @@
             android:theme="@style/ToolBarTheme" />
         <activity android:name=".KotlinPractice.KotlinActivity1"></activity>
         <activity android:name=".KotlinPractice.KotlinActivity_2">
+
+        </activity>
+        <activity android:name=".KotlinPractice.ThirdParty.ThirdPartyAssignment_1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".KotlinPractice.ThirdParty.ThirdPartyAssignment_1"></activity>
     </application>
 
 </manifest>
