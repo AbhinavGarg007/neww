@@ -63,6 +63,9 @@ dependencies {
     //for kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    //for map
+    implementation "com.google.android.gms:play-services-maps:16.0.0"
+
 }
 repositories {
     mavenCentral()
